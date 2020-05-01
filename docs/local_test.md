@@ -61,7 +61,7 @@ ip netns exec net1 ip addr add 10.1.1.2/24 dev veth-net1
 
 上面的命令配置了如下的虚拟网络：
 
-![](netns.png)
+![netns](img/netns.png)
 
 配置完成后你可以运行 `ip netns exec net0 ping 10.1.1.2` 来测试在 net0 上是否能够 ping 到 net1。
 

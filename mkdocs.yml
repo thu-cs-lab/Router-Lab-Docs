@@ -1,4 +1,4 @@
-site_name: Router Lab 使用文档
+site_name: Router Lab 实验文档
 site_description: 'Documentation for Router Lab'
 site_author: 'Router Lab Developers'
 copyright: 'Copyright &copy; 2019-2020 Department of Computer Science and Technology, Tsinghua University. All Rights Reserved.'
@@ -25,11 +25,12 @@ nav:
   - 在线测试: online_judge.md
   - 验收流程: check.md
   - 实验思路: experiment.md
-  - FAQ: fad.md
+  - FAQ: faq.md
+  - 名词解释: glossary.md
   - 附录:
-    - ip 命令: howto/ip_.md
+    - ip 命令: howto/ip.md
     - make 命令: howto/make.md
-    - 树莓派使用: howto/respberry_pi.md
+    - 树莓派使用: howto/raspberry_pi.md
     - 调试方法: howto/debug.md
     - RIP 调试: howto/rip.md
 
