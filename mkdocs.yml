@@ -21,7 +21,7 @@ extra:
   pagetime: 'on'
 
 nav:
-  - 文档:
+  - 网络原理实验:
     - 总述: index.md
     - 框架使用: framework.md
     - 本地测试: local_test.md
@@ -31,6 +31,13 @@ nav:
     - 在线实验: online_experiment.md
     - FAQ: faq.md
     - 名词解释: glossary.md
+  - 计网联合实验:
+    - 总述: joint/index.md
+    - 基本知识: joint/basics.md
+    - 模块设计: joint/modules.md
+    - 数据通路: joint/datapath.md
+    - 软硬件接口: joint/interface.md
+    - 验收要求: joint/check.md
   - 附录:
     - ip 命令: howto/ip.md
     - make 命令: howto/make.md
