@@ -26,8 +26,8 @@ nav:
     - 框架使用: framework.md
     - 本地测试: local_test.md
     - 在线测试: online_judge.md
-    - 验收流程: check.md
     - 实验思路: experiment_hint.md
+    - 验收流程: check.md
     - 在线实验: online_experiment.md
     - FAQ: faq.md
     - 名词解释: glossary.md
