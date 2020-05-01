@@ -7,10 +7,12 @@ theme:
   name: 'material'
   language: 'zh'
   custom_dir: 'theme-override/'
-  logo:
-    icon: router
-  feature:
-    tabs: true
+  icon:
+    logo: material/router
+    repo: fontawesome/brands/github
+  features:
+    - tabs
+    - instant
 
 repo_name: 'thu-cs-lab/Router-Lab-Docs'
 repo_url: 'https://github.com/thu-cs-lab/Router-Lab-Docs'

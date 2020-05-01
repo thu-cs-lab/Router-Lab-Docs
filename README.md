@@ -4,7 +4,7 @@
 
 本项目为 Router Lab 的实验文档，采用 `mkdocs` 编写。
 
-本站点的自动编译版本在 [这里](https://lab.cs.tsinghua.edu.cn/router/doc) 上发布。
+本站点的自动编译版本在 [这里](https://lab.cs.tsinghua.edu.cn/router/doc/) 发布。
 
 ## 撰写
 
