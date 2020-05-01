@@ -42,7 +42,7 @@ rtt min/avg/max/mdev = 71.744/110.426/148.365/27.896 ms
 这时候可以克隆下本仓库（如果提示找不到 `git` 可以通过 `sudo apt install git` 解决）：
 
 ```bash
-pi@raspberrypi:~ $ git clone https://github.com/z4yx/Router-Lab.git
+pi@raspberrypi:~ $ git clone https://github.com/thu-cs-lab/Router-Lab.git
 Cloning into 'Router-Lab'...
 remote: Enumerating objects: 84, done.
 remote: Counting objects: 100% (84/84), done.

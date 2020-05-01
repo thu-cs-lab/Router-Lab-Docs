@@ -7,7 +7,7 @@
 第一步是克隆本仓库：
 
 ```shell
-git clone https://github.com/z4yx/Router-Lab.git
+git clone https://github.com/thu-cs-lab/Router-Lab.git
 cd Router-Lab
 git submodule update --init --recursive
 ```
