@@ -1,0 +1,73 @@
+site_name: Router Lab 使用文档
+site_description: 'Documentation for Router Lab'
+site_author: 'Router Lab Developers'
+copyright: 'Copyright &copy; 2019-2020 Department of Computer Science and Technology, Tsinghua University. All Rights Reserved.'
+
+theme: 
+  name: 'material'
+  language: 'zh'
+  custom_dir: 'theme-override/'
+  logo:
+    icon: router
+  feature:
+    tabs: true
+
+repo_name: 'thu-cs-lab/Router-Lab-Docs'
+repo_url: 'https://github.com/thu-cs-lab/Router-Lab-Docs'
+
+extra:
+  pagetime: 'on'
+
+nav:
+  - 总述: index.md
+  - 框架使用: framework.md
+  - 本地测试: local_test.md
+  - 在线测试: online_judge.md
+  - 验收流程: check.md
+  - 实验思路: experiment.md
+  - FAQ: fad.md
+  - 附录:
+    - ip 命令: howto/ip_.md
+    - make 命令: howto/make.md
+    - 树莓派使用: howto/respberry_pi.md
+    - 调试方法: howto/debug.md
+    - RIP 调试: howto/rip.md
+
+extra_javascript:
+  - 'https://cdn.jsdelivr.net/npm/mathjax@2.7.0/MathJax.js?config=TeX-MML-AM_CHTML'
+
+plugins:
+  - search
+  - git-revision-date-localized:
+      fallback_to_build_date: true
+  - git-authors:
+      show_contribution: true
+      show_line_count: true
+
+markdown_extensions:
+  - admonition
+  - codehilite:
+      guess_lang: false
+      linenums: true
+  - footnotes
+  - def_list
+  - meta
+  - toc:
+      permalink: true
+  - pymdownx.arithmatex
+  - pymdownx.betterem:
+      smart_enable: all
+  - pymdownx.caret
+  - pymdownx.critic
+  - pymdownx.details
+  - pymdownx.emoji:
+      emoji_generator: !!python/name:pymdownx.emoji.to_svg
+  - pymdownx.inlinehilite
+  - pymdownx.magiclink
+  - pymdownx.mark
+  - pymdownx.smartsymbols
+  - pymdownx.superfences
+  - pymdownx.tasklist:
+      custom_checkbox: true
+  - pymdownx.tilde
+
