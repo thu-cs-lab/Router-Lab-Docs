@@ -77,7 +77,7 @@ int main() {
 }
 ```
 
-你可以直接基于 `Homework/boilerplate` 下的代码，把上面的代码实现完全。代码中在发送 RIP 包的时候，会涉及到 IP 头的构造，由于不需要用各种高级特性，可以这么设定：V=4，IHL=5，TOS(DSCP/ECN)=0，ID=0，FLAGS/OFF=0，TTL=1，其余按照要求实现即可。
+你需要基于 `Homework/router` 下的代码，把上面的代码实现完全。代码中在发送 RIP 包的时候，会涉及到 IP 头的构造，由于不需要用各种高级特性，可以这么设定：V=4，IHL=5，TOS(DSCP/ECN)=0，ID=0，FLAGS/OFF=0，TTL=1，其余按照要求实现即可。
 
 关于如何启动并配置一个比较标准的 RIP 实现，请参考 [这个页面](../howto/rip/)。
 

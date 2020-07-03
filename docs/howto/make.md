@@ -1,6 +1,6 @@
 # `make` 命令的使用和 `Makefile` 的编写
 
-`make` 命令的功能就是按照 Makefile 中编写的规则来生成一些文件，这些文件之间会有依赖的关系，`make` 会安装依赖关系增量地进行生成，达到编译一个完整的程序的目的。下面以 `Homework/boilerplate/Makefile` 举例说明：
+`make` 命令的功能就是按照 Makefile 中编写的规则来生成一些文件，这些文件之间会有依赖的关系，`make` 会安装依赖关系增量地进行生成，达到编译一个完整的程序的目的。下面以 `Homework/router/Makefile` 举例说明：
 
 ```makefile
 CXX ?= g++
@@ -14,10 +14,10 @@ LDFLAGS ?= -lpcap
 
 ```makefile
 .PHONY: all clean
-all: boilerplate
+all: router
 
 clean:
-	rm -f *.o boilerplate std
+	rm -f *.o router std
 
 %.o: %.cpp
 	$(CXX) $(CXXFLAGS) -c $^ -o $@
@@ -25,7 +25,7 @@ clean:
 hal.o: $(LAB_ROOT)/HAL/src/linux/router_hal.cpp
 	$(CXX) $(CXXFLAGS) -c $^ -o $@
 
-boilerplate: main.o hal.o protocol.o checksum.o lookup.o forwarding.o
+router: main.o hal.o protocol.o checksum.o lookup.o forwarding.o
 	$(CXX) $^ -o $@ $(LDFLAGS)
 ```
 

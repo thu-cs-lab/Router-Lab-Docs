@@ -161,13 +161,13 @@ Data: 45 00 04 CE 04 D5 00 00 FF 11 F9 38 C0 A8 17 6D E0 00 00 FB 14 E9 14 E9 04
 
 如果这一步失败了，可能是你的 USB 网卡对应的网口名称并不是 eth1-4 ，这时候你可以编辑 `HAL/src/linux/platform/standard.h`，选择一个无用的网口名称替换掉，然后重新编译。
 
-如果你想基于 `Homework/boilerplate` 来实现最终的路由器，在完成作业题后，到 `Homework/boilerplate` 目录下修改代码、编译并运行即可：
+如果你想基于 `Homework/router` 来实现最终的路由器，在完成作业题后，到 `Homework/router` 目录下修改代码、编译并运行即可：
 
 ```bash
-pi@raspberrypi:~/Router-Lab $ cd Homework/boilerplate/
-pi@raspberrypi:~/Router-Lab/Homework/boilerplate $ make
+pi@raspberrypi:~/Router-Lab $ cd Homework/router/
+pi@raspberrypi:~/Router-Lab/Homework/router $ make
 ...
-pi@raspberrypi:~/Router-Lab/Homework/boilerplate $ sudo ./boilerplate
+pi@raspberrypi:~/Router-Lab/Homework/router $ sudo ./router
 HAL_Init: found MAC addr of interface eth1
 HAL_Init: pcap capture enabled for eth1
 HAL_Init: pcap capture disabled for eth2, either the interface does not exist or permission is denied

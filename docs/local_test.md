@@ -11,7 +11,7 @@ checksum： 计算校验和
 forwarding： 转发逻辑
 lookup： 路由表查询和更新
 protocol： RIP 协议解析和封装
-boilerplate： 用以上代码实现一个路由器
+router： 用以上代码实现一个路由器
 ```
 
 每个题目都有类似的结构（以 `checksum` 为例）：
