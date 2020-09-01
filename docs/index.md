@@ -41,4 +41,4 @@ pip3 install pyshark
 
 后续维护： @Harry-Chen @jiegec
 
-提交贡献： @Konaoo @nzh63 @linusboyle
+提交贡献： @Konano @nzh63 @linusboyle
