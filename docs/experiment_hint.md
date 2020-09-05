@@ -1,13 +1,13 @@
 # 建议的实验思路
 
-推荐的实验流程是：（暗号：架）
+推荐的实验流程是：
 
-1. 克隆本仓库，认真阅读文档
+1. 克隆 `Router-Lab` 仓库，认真阅读文档
 2. 运行 Example 下面的程序，保证自己环境正确配置了
-3. 进行 Homework 的编写，编写几个关键的比较复杂容易出错的函数，保证这些实现是正确的
+3. 进行 Homework 的编写，完成编程作业要求的几个函数
 4. 把上一步实现的几个函数和 HAL 配合使用，实现一个真实可用的路由器
 
-建议采用的一些调试工具和方法：（暗号：文）
+建议采用的一些调试工具和方法：
 
 1. Wireshark：无论是抓包还是查看评测用到的所有数据的格式，都是非常有用的，一定要学会
 2. 编写测试的输入输出，这个仓库的 `Datagen` 目录下有一个用 Rust 编写的 PCAP 测试样例生成程序，你可以修改它以得到更适合你的代码的测试样例，利用 Wireshark 确认你构造的样例确实是合法的
@@ -22,10 +22,10 @@ int main() {
     // 0b. 创建若干条 /24 直连路由
     for (int i = 0; i < N_IFACE_ON_BOARD;i++) {
         RoutingTableEntry entry = {
-            .addr = addrs[i] & 0x00FFFFFF, // big endian
+            .addr = addrs[i] & 0x00FFFFFF, // 大端
             .len = 24,
             .if_index = i,
-            .nexthop = 0 // means direct
+            .nexthop = 0 // 表示直连路由
         };
         update(true, entry);
     }
@@ -59,15 +59,15 @@ int main() {
             //      然后调用你编写的 assemble 函数，另外再把 IP 和 UDP 头补充在前面，
             //      通过 HAL_SendIPPacket 发回询问的网口
             // 3b.1 此时目的 IP 地址不是路由器本身，则调用你编写的 query 函数查询，
-            //      如果查到目的地址，如果是直连路由， nexthop 改为目的 IP 地址，
+            //      如果查到目的地址，如果是直连路由（nexthop = 0 表示直连路由）， nexthop 改为目的 IP 地址，
             //      用 HAL_ArpGetMacAddress 获取 nexthop 的 MAC 地址，如果找到了，
             //      就调用你编写的 forward 函数进行 TTL 和 Checksum 的更新，
             //      通过 HAL_SendIPPacket 发到指定的网口，
-            //      在 TTL 减到 0 的时候建议构造一个 ICMP Time Exceeded 返回给发送者；
-            //      如果没查到目的地址的路由，建议返回一个 ICMP Destination Network Unreachable；
-            //      如果没查到下一跳的 MAC 地址，HAL 会自动发出 ARP 请求，在对方回复后，下次转发时就知道了
+            //      在 TTL 减到 0 的时候要求构造一个 ICMP Time Exceeded 返回给发送者；
+            //      如果没查到目的地址的路由，要求返回一个 ICMP Destination Network Unreachable；
+            //      如果没查到下一跳的 MAC 地址，HAL 会自动发出 ARP 请求，在对方回复后，下次转发时就知道了。
         } else if (res == 0) {
-            // Timeout, ignore
+            // 一段时间没有收到包，属于正常情况，忽略即可
         } else {
             fprintf(stderr, "Error: %d\n", res);
             break;
