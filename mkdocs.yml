@@ -23,6 +23,7 @@ extra:
 nav:
   - 网络原理实验:
     - 总述: index.md
+    - 课程要求: requirement.md
     - 框架使用: framework.md
     - 本地测试: local_test.md
     - 在线测试: online_judge.md

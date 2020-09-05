@@ -1,22 +1,19 @@
 # 如何使用框架
 
-这个框架主要分为两部分，一部分是硬件抽象层，即 HAL （Hardware Abstraction Layer），它提供了数个后端，可以在不修改用户代码的情况下把程序运行在不同的平台上；另一部分是数个小实验，它们对你所需要实现的路由器的几个关键功能进行了针对性的测试，采用文件输入输出的黑盒测试方法，在真机调试之前就可以进行解决很多问题。
-
-（暗号：我）
+这个框架主要分为两部分，一部分是硬件抽象层，即 HAL （Hardware Abstraction Layer），它提供了数个后端，可以在不修改用户代码的情况下把程序运行在不同的平台上；另一部分是四个编程作业题，它们对你所需要实现的路由器的几个关键功能进行了针对性的测试，采用文件输入输出的黑盒测试方法，在真机调试之前就可以进行解决很多问题。
 
 第一步是克隆本仓库：
 
 ```shell
-git clone https://github.com/thu-cs-lab/Router-Lab.git
-cd Router-Lab
-git submodule update --init --recursive
+> git clone https://github.com/thu-cs-lab/Router-Lab.git
+> cd Router-Lab
 ```
 
 如果到 GitHub 的网络情况不好，也可以从 `https://git.tsinghua.edu.cn/Router-Lab/Router-Lab.git` 克隆，我们会保证两个地址内容一致。
 
-之后如果这个仓库的代码有什么更新，请运行 `git pull` 进行更新。
+之后如果这个仓库的代码有什么更新，请运行 `git pull https://github.com/thu-cs-lab/Router-Lab.git` 进行更新。
 
-### 如何使用 HAL
+## 如何使用 HAL
 
 在 `HAL` 目录中，是完整的 HAL 的源代码。它包括一个头文件 `router_hal.h` 和若干后端的源代码。
 
