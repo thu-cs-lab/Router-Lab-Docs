@@ -91,4 +91,6 @@ echo 1 > /proc/sys/net/ipv4/conf/all/forwarding
 
 ### 树莓派组网
 
+树莓派的 USB 网卡按照插拔的顺序，会在 `eth1-4` 开始分配，在实验的拓扑里，我们建议大家改成 `本机设备对端设备` 的名字格式，可以通过 `ip link set $old_name name $new_name` 修改名字，这样方便记忆和配置。每次插拔可能都需要重新修改，可以通过常见的工具来判断是否连接到了正确的设备上。
+
 在 `Setup/rpi` 目录下存放了可供参考的在树莓派的 R1 和 R3 上配置的脚本，还有恢复它的改动的脚本，注意它采用了树莓派中管理网络的 dhcpcd 进行地址的配置，所以可能不适用于树莓派以外的环境。 如果运行过配置脚本，如果要恢复环境，运行恢复脚本 `Setup/restore.sh` 即可，也可以手动删除 `/etc/dhcpcd.conf` 最后的几行内容然后用 `sudo systemctl restart dhcpcd` 来重启 dhcpcd 。简单起见，它采用了 netns 来模拟 PC1 和 PC2，这样只需要两个树莓派就可以进行调试。
