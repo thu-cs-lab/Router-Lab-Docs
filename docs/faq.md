@@ -63,3 +63,34 @@
 !!! question "我在 WSL 下编译 router，发现编译不通过，`checksum.cpp` 等几个 cpp 文件都不是合法的 cpp 代码。"
 
     这是因为在 Windows 里 git clone 的符号链接在 WSL 内看到的是普通文件，建议在 WSL 中进行 git clone 的操作，这样符号链接才是正确的。
+
+!!! question "我想在 SHELL 里面随时看到我所在的 netns，有什么好办法吗"
+
+    下面是一个 `fish` 配置的，例子，放到 `~/.config/fish.config.sh` 中：
+
+    ```shell
+        function fish_prompt --description "Write out the prompt"
+            set -l color_cwd
+            set -l suffix
+            switch "$USER"
+                case root toor
+                    if set -q fish_color_cwd_root
+                        set color_cwd $fish_color_cwd_root
+                    else
+                        set color_cwd $fish_color_cwd
+                    end
+                    set suffix '#'
+                case '*'
+                    set color_cwd $fish_color_cwd
+                    set suffix '>'
+            end
+            switch (ip netns identify)
+                case ''
+                    set prefix ''
+                case '*'
+                    set prefix "("(ip netns identify)") "
+            end
+
+            echo -n -s "$prefix" "$USER" @ (prompt_hostname) ' ' (set_color $color_cwd) (prompt_pwd) (set_color normal) "$suffix "
+        end
+    ```
