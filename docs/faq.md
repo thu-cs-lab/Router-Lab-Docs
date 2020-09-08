@@ -66,7 +66,7 @@
 
 !!! question "我想在 SHELL 里面随时看到我所在的 netns，有什么好办法吗"
 
-    下面是一个 `fish` 配置的例子，放到 `~/.config/fish.config.sh` 中：
+    下面是一个 `fish` 配置的例子，放到 `~/.config/fish/config.fish` 中：
 
     ```shell
     function fish_prompt --description "Write out the prompt"
