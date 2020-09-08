@@ -83,33 +83,6 @@ R3:
     2. 实验中你编写的路由器会运行在 R2 上，它会进行 ARP 响应（HAL 代码内实现）和 ICMP 响应（你的代码实现）和转发（你的代码实现），实际上做的和 Linux 网络栈的部分功能是一致的
     3. 为了保证确实是你编写的路由器在工作而不是 Linux 网络栈在工作，所以不在 R2 上配置这两个 IP 地址
 
-#### 功能实现的要求
-
-必须实现的有：
-
-1. 转发功能，支持直连路由和间接路由，包括查表，TTL 减一，Checksum 更新并转到正确的 interface 出去。
-2. 周期性地向所有端口发送 RIP Response （设为 5s，而不是 RFC 要求的 30s），目标地址为 RIP 的组播地址。
-3. 对收到的 RIP Request 有相应的 RIP Response 进行回复，目标地址为 RIP Request 的源地址。
-4. 实现水平分割（split horizon）和毒性反转（reverse poisoning），处理 metric=16 的情况。
-5. 收到 RIP Response 时，对路由表进行维护。
-6. 对 ICMP Echo Request 进行 ICMP Echo Reply 的回复。
-7. 在查不到路由表的时候，回复 ICMP Host Unreachable。
-8. 在 TTL 减为 0 时，回复 ICMP Time Exceeded。
-9. 在发送的 RIP Response 出现不止 25 条 Entry 时拆分。
-
-可选实现的有（不加分，但对调试有帮助）：
-
-1. 定期或者在更新的时候向 stdout/stderr 打印最新的 RIP 路由表。
-2. 在路由表出现更新的时候立即发送 RIP Response（完整或者增量），目标地址为 RIP 的组播地址，可以加快路由表的收敛速度。
-3. 路由的失效（Invalid）和删除（Flush）计时器。
-4. 程序启动时向所有 interface 发送 RIP Request，目标地址为 RIP 的组播地址。
-
-不需要实现的有：
-
-1. ARP 的处理。
-2. IGMP 的处理。
-3. interface 状态的跟踪（UP/DOWN 切换）。
-
 ??? warning "容易出错的地方"
 
     1. Metric 计算和更新方式不正确或者不在 [1,16] 的范围内
