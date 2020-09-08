@@ -75,7 +75,7 @@ R3:
 
 第七步的分数计算方法暂未确定。
 
-在 `Setup` 目录下存放了可供参考的 R1 和 R3 上配置的脚本，还有恢复它的改动的脚本，注意它采用了树莓派中管理网络的 dhcpcd 进行地址的配置，所以可能不适用于树莓派以外的环境。 如果运行过配置脚本，如果要恢复环境，运行恢复脚本 `Setup/restore.sh` 即可，也可以手动删除 `/etc/dhcpcd.conf` 最后的几行内容然后用 `sudo systemctl restart dhcpcd` 来重启 dhcpcd 。简单起见，它采用了 netns 来模拟 PC1 和 PC2，这样只需要两个树莓派就可以进行调试。
+同学可以在下发的树莓派上自己搭建一个和要求一致的网络拓扑来进行测试，见 “本地测试” 文档。
 
 ??? question "为何不在 R2 上配置 IP 地址：192.168.3.2 和 192.168.4.1"
 
@@ -155,8 +155,6 @@ default via 192.168.5.2 dev pc2r3
 ```
 
 初始情况下 R1 R2 R3 都只有对应的直连路由，只有在正确地运行 RIP 协议后，才能从 PC1 ping 通 PC2 。
-
-验收的时候下，由于 PC1 和 PC2 只连接一个 USB 网卡，所以上面的 pc1r1 和 pc2r3 都是 eth1 。同学自由选择 R2 上两个 USB 网卡的插入顺序，但在 R1 上先插到 R2 的 USB 网卡，即 eth1 ，再插到 PC1 的 USB 网卡，即 eth2，在 R3 也是先插到 R2 的网卡，即 eth1 ，再插到 PC2 的 USB 网卡，即 eth2。这样规定的目的是方便替换 PC1/2 的设备，在验收的时候可以从同学自己的电脑直接换成树莓派。
 
 同学在自己测试时，PC1 和 PC2 可以用自己的笔记本电脑，按照上面要求配置两条路由即可测试。配置静态路由的方法参考：[Windows](https://tekbloq.com/2018/10/24/how-to-add-a-static-route-to-the-windows-routing-table/) [macOS](https://blog.remibergsma.com/2012/03/04/howto-quickly-add-a-route-in-mac-osx/) [Linux](https://www.cyberciti.biz/faq/linux-route-add/) 。一般来说，在配置 IP 地址和子网掩码的时候直连路由自动就添加好了，只需要在 PC1 上添加 192.168.5.0/24 via 192.168.1.1 和在 PC2 上添加 192.168.1.0/24 via 192.168.5.2 即可。具体到 Linux 的命令，就是（假如 USB 网卡是 eth1）：
 
