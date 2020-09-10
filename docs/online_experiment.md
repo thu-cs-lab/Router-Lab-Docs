@@ -2,6 +2,10 @@
 
 这一章描述了 TanLabs 的工作原理。
 
+!!! warning TODO
+    
+    合并到”在线测试“一章？
+
 ## 编程作业
 
 利用 GitLab CI，在仓库中设置了 `.gitlab-ci.yml` 文件，评测的流程：

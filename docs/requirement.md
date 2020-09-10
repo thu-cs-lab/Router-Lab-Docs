@@ -8,14 +8,14 @@
 
 目前，一共包括四个编程实验如下：
 
-- checksum：计算 IP Checksum
-- forwarding：进行转发的 IP 头更新
-- lookup：路由表的查询
-- protocol：RIP 协议的处理
+- `checksum`：计算 IP Checksum
+- `forwarding`：进行转发的 IP 头更新
+- `lookup`：路由表的查询
+- `protocol`：RIP 协议的处理
 
-你需要在 [TanLabs](https://lab.cs.tsinghua.edu.cn/tan) 上登录，并且在网站上创建属于你的作业 GitLab 仓库。你需要使用 Git 往你的作业仓库中提交的你的代码，然后在 TanLabs 查看评测结果。评测的流程和要求详见 TanLabs 网站上的说明。
+你需要在 [TanLabs](https://lab.cs.tsinghua.edu.cn/tan/) 上登录，并且在网站上创建属于你的作业 GitLab 仓库。你需要使用 Git 往你的作业仓库中提交的你的代码，然后在 TanLabs 查看评测结果。评测的流程和要求详见 TanLabs 网站上的说明。
 
-编程作业占实验的 20% 分数。参加联合实验的同学也需要完成编程实验（得到这一部分满分）。每个编程作业占四分之一的编程作业分数，同一个编程作业的数据点的分数相同。
+编程作业占实验的 $20 \%$ 分数。参加联合实验的同学也需要完成编程实验（得到这一部分满分）。每个实验占四分之一的编程作业分数，每个实验的所有数据点均分 $5 \%$ 的分数。
 
 ## 真机评测
 
@@ -30,9 +30,9 @@
 必须实现的有：
 
 1. 转发功能，支持直连路由和间接路由，包括查表，TTL 减一，Checksum 更新并转到正确的 interface 出去。
-2. 周期性地向所有端口发送 RIP Response （设为 5s，而不是 RFC 要求的 30s），目标地址为 RIP 的组播地址。
+2. 周期性地向所有端口发送 RIP Response （**周期为 5s**，而不是 RFC 要求的 30s），目标地址为 RIP 的组播地址。
 3. 对收到的 RIP Request 有相应的 RIP Response 进行回复，目标地址为 RIP Request 的源地址。
-4. 实现水平分割（split horizon）和毒性反转（reverse poisoning），处理 metric=16 的情况。
+4. 实现水平分割（split horizon）和毒性反转（reverse poisoning），处理 RIP 种 `metric=16` 的情况。
 5. 收到 RIP Response 时，对路由表进行维护。
 6. 对 ICMP Echo Request 进行 ICMP Echo Reply 的回复。
 7. 在查不到路由表的时候，回复 ICMP Host Unreachable。

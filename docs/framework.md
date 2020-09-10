@@ -2,16 +2,24 @@
 
 这个框架主要分为两部分，一部分是硬件抽象层，即 HAL （Hardware Abstraction Layer），它提供了数个后端，可以在不修改用户代码的情况下把程序运行在不同的平台上；另一部分是四个编程作业题，它们对你所需要实现的路由器的几个关键功能进行了针对性的测试，采用文件输入输出的黑盒测试方法，在真机调试之前就可以进行解决很多问题。
 
-第一步是克隆本仓库：
+在 TanLab 上接受作业后，第一步是克隆本仓库（不要忘记先在 GitLab 上添加你的 SSH Key）：
 
 ```shell
-> git clone https://github.com/thu-cs-lab/Router-Lab.git
+> git clone git@git.tsinghua.edu.cn:network-2020/router-lab-xxx.git Router-Lab # 将 xxx 替换为你的用户名
 > cd Router-Lab
 ```
 
-如果到 GitHub 的网络情况不好，也可以从 `https://git.tsinghua.edu.cn/Router-Lab/Router-Lab.git` 克隆，我们会保证两个地址内容一致。
+如果原始框架代码有更新（届时会通过多种渠道通知），你可以如下合并这些更新：
 
-之后如果这个仓库的代码有什么更新，请运行 `git pull https://github.com/thu-cs-lab/Router-Lab.git` 进行更新。
+```shell
+git remote add upstream git@git.tsinghua.edu.cn:Router-Lab/Router-Lab.git
+git fetch upstream
+git merge upstream/master
+```
+
+!!! info
+    
+    所有的用户对于自己的作业仓库没有 force push 权限，所以请不要使用 rebase 来合并上游更新，平时也不要随意修改已经 push 的 commit。如果出现问题，请自行查询并使用 `git reflog` 解决。   
 
 ## 如何使用 HAL
 
