@@ -95,6 +95,10 @@ echo 1 > /proc/sys/net/ipv4/conf/all/forwarding
 
 想知道当前在哪个 netns 的话，可以执行 `ip netns identify` 命令。
 
+!!! attention "netns 环境和真实环境的不同"
+
+    由于 netns 是 Linux 里面隔离网络的一种技术，它会默认开启一些优化，比如跳过 checksum 的计算等等。所以，如果在里面直接运行你编写的路由器，很可能会把 checksum 错误的包转发出去，然后 Linux 在校验 checksum 的时候发现它是错的，而且是软件发出来的，它会选择丢弃，可能出现 TCP 连接失败的问题，详见 FAQ 中的相关讨论。
+
 ### 树莓派组网
 
 树莓派的 USB 网卡按照插拔的顺序，会在 `eth1-4` 开始分配，在实验的拓扑里，我们建议大家改成 `本机设备对端设备` 的名字格式，可以通过 `ip link set $old_name name $new_name` 修改名字，这样方便记忆和配置。每次插拔可能都需要重新修改，可以通过常见的工具来判断是否连接到了正确的设备上。
