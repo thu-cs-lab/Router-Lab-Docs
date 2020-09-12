@@ -1,4 +1,4 @@
-# 实验验收基础要求
+# 实验评测基础要求
 
 ![Topology](../img/topology_joint.png)
 
@@ -27,3 +27,4 @@
     1. tmux 使用方法网上可查，没有修改配置。
     2. Shell 提示符中会显示当前的 netns 。
     3. 部分脚本需要在 tmux 外运行。
+

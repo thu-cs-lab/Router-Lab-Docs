@@ -38,7 +38,7 @@ nav:
     - 模块设计: joint/modules.md
     - 数据通路: joint/datapath.md
     - 软硬件接口: joint/interface.md
-    - 验收要求: joint/check.md
+    - 实验评测: joint/check.md
   - 附录:
     - ip 命令: howto/ip.md
     - make 命令: howto/make.md
