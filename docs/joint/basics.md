@@ -39,7 +39,7 @@ Loopback 的意思是环回。在实验框架中，PHY/MAC 会不断接收以太
 
 !!! question
 
-    1. 如何处理 AXI-Stream 在发送时 ready 不连续为高的情况？
+    1. 如何处理 AXI-Stream 在发送时 `ready` 不连续为高的情况？
     2. Vivado 提供的不同仿真模式有什么区别？
     3. 如何查看 Timing 信息？
     4. 如果出现 WNS 为负数，应该做哪些事情？
