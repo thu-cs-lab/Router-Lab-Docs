@@ -12,9 +12,9 @@
 
     给它命令行参数 `-o ip.check_checksum:TRUE` `-o tcp.check_checksum:TRUE` 和 `-o udp.check_checksum:TRUE` 就可以打开它的校验功能。如果你使用 Wireshark，直接在 Protocol Preferences 中选择即可。
 
-!!! question "为啥要搞 HAL 啊，18 年让大家用 Linux 的 Raw Socket ，不也有人搞出来了吗？"
+!!! question "为啥要搞 HAL 啊，2018 年让大家用 Linux 的 Raw Socket ，不也有人搞出来了吗？"
 
-    我们认为 18 年的 Linux 的 Raw Socket 是比较古老而且需要同学编写很多冗余代码的一套 API，另外比较复杂的 Quagga 的交互接口也让很多同学遇到了困难，结果就是只有少数同学很顺利地完成了所有任务，一些同学在不理解这些 API 的工作方式的情况下直接拿代码来就用，出现一些问题后就一筹莫展，这是我们不希望看到的一种情况，况且这部分知识与网络原理课程关系不大，日后也基本不会接触。19 年我们采用的 `libpcap` 以一个更底层的方式进行收发，绕过了操作系统的 IP 层，这样可以避开 Raw Socket 的一些限制，不过也多了自行维护 ARP 的负担。同时今年新增了硬件路由器实验的组，为了把二者统一，我们设计了 HAL 库，它维护了 ARP 的信息，在 Linux 等平台下用 `libpcap`，在 Xilinx 平台下用 IP 核的寄存器，和 stdio 后端用于在线评测。我们期望通过这些方法减少大家的负担。
+    我们认为 2018 年的 Linux 的 Raw Socket 是比较古老而且需要同学编写很多冗余代码的一套 API，另外比较复杂的 Quagga 的交互接口也让很多同学遇到了困难，结果就是只有少数同学很顺利地完成了所有任务，一些同学在不理解这些 API 的工作方式的情况下直接拿代码来就用，出现一些问题后就一筹莫展，这是我们不希望看到的一种情况，况且这部分知识与网络原理课程关系不大，日后也基本不会接触。2019 年我们采用的 `libpcap` 以一个更底层的方式进行收发，绕过了操作系统的 IP 层，这样可以避开 Raw Socket 的一些限制，不过也多了自行维护 ARP 的负担。同时，2019 年新增了硬件路由器实验，为了把二者统一，我们设计了 HAL 库，它维护了 ARP 的信息，在 Linux 等平台下用 `libpcap`，在 Xilinx 平台下用 IP 核的寄存器，和 stdio 后端用于在线评测。我们期望通过这些方法减少大家的负担。
 
 !!! question "我没有趁手的 Linux 环境，我可以用 WSL 吗？"
 
@@ -34,9 +34,9 @@
 
 !!! question "这个实验怎么要用到怎么多工具啊？我好像都没学过，这不是为难我吗？"
 
-    实验所使用的大部分工具相信同学们在若干先前已经修过的课程中已经有所接触，如 Git（软件工程、编译原理）、Make（面向对象程序设计基础）、Python（程序设计训练）、SSH（高性能计算导论）等，只有 Wireshark 和 iproute2 才是完成此次实验需要额外学习的。Wireshark 能帮助同学们完成调试，iproute2 是管理 Linux 操作系统网络的必备工具，我们在下面的附录中提供了一份简短的使用说明。学习并掌握工具的使用方法会更有利于完成实验，这里不做强制要求。
+    实验所使用的大部分工具相信同学们在若干先前已经修过的课程中已经有所接触，如 Git（《软件工程》《编译原理》）、Make（《面向对象程序设计基础》）、Python（《程序设计训练》）、SSH（《高性能计算导论》）等，只有 Wireshark 和 iproute2 才是完成此次实验需要额外学习的。Wireshark 能帮助同学们完成调试，iproute2 是管理 Linux 操作系统网络的必备工具，我们在下面的附录中提供了一份简短的使用说明。学习并掌握工具的使用方法会更有利于完成实验，这里不做强制要求。
     
-    顺便提一句，物理系和工物系的小学期课程实验物理的大数据方法上课内容囊括了 Git、Make、Python、SSH 和 Linux 的使用，大家也都很好地完成了任务。身为计算机系的同学，更应该掌握这些生存必须的技能。如果有问题，欢迎随时咨询助教和身边的同学。
+    顺便提一句，物理系和工物系的小学期课程《实验物理的大数据方法》上课内容囊括了 Git、Make、Python、SSH 和 Linux 的使用，大家也都很好地完成了任务。身为计算机系的同学，更应该掌握这些生存必须的技能。如果有问题，欢迎随时咨询助教和身边的同学。
 
 !!! question "我听说过转发表这个概念，它和路由表是什么关系？"
 
@@ -48,7 +48,7 @@
 
 !!! question "我在树莓派写的可以工作的代码，放到我的 x86 电脑上跑怎么就不工作了呢？或者反过来，我在 x86 电脑上写的可以工作的代码，放到树莓派上怎么就不工作了呢？"
 
-    一个可能的原因是代码出现了 Undefined Behavior ，编译器在不同架构下编译出不同的代码，导致行为不一致。可以用 UBSan 来发现这种问题。在路由器代码里，一个很常见的 Undefined Behavior 就是对 32 位整数 shift 32 位，或者调用 `__builtin_clz(0)` 。
+    一个可能的原因是代码出现了 Undefined Behavior ，编译器在不同架构下编译出不同的代码，导致行为不一致。可以用 UBSan 来发现这种问题。在路由器代码里，一个很常见的 Undefined Behavior 就是对 32 位整数左移或右移 32 位，或者调用 `__builtin_clz(0)` 。
 
 !!! question "我用 ssh 连不上树莓派，有什么办法可以进行诊断吗？"
 
@@ -69,9 +69,9 @@
 !!! question "我想在 SHELL 里面随时看到我所在的 netns，有什么好办法吗"
 
     你可以用 `ip netns identify` 命令获取当前的 netns，将它加入 SHELL 的 `PS1` 或类似配置中即可。
-
+    
     下面是一个 `fish` 配置的例子，放到 `~/.config/fish/config.fish` 中：
-
+    
     ```shell
     function fish_prompt --description "Write out the prompt"
         set -l color_cwd
@@ -94,7 +94,7 @@
             case '*'
                 set prefix "("(ip netns identify)") "
         end
-
+    
         echo -n -s "$prefix" "$USER" @ (prompt_hostname) ' ' (set_color $color_cwd) (prompt_pwd) (set_color normal) "$suffix "
     end
     ```
