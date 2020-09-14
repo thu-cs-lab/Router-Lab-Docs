@@ -12,9 +12,15 @@
 如果原始框架代码有更新（届时会通过多种渠道通知），你可以如下合并这些更新：
 
 ```shell
-git remote add upstream git@git.tsinghua.edu.cn:Router-Lab/Router-Lab.git
-git fetch upstream
-git merge upstream/master
+> git remote add upstream git@git.tsinghua.edu.cn:Router-Lab/Router-Lab.git
+> git fetch upstream
+> git merge upstream/master
+```
+
+或者，更简单地，直接：
+
+```shell
+> git pull git@git.tsinghua.edu.cn:Router-Lab/Router-Lab.git master
 ```
 
 !!! info
