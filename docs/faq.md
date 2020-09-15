@@ -62,9 +62,13 @@
 
     树莓派可以提供一个统一的环境，而且对同学的电脑的系统和硬盘空间没有什么要求，而虚拟机和双系统都需要不少的硬盘空间。另外，虚拟机的网络配置比树莓派要更加麻烦，一些同学的电脑也会因为没有开启虚拟化或者 Hyper-V 的原因运行不了 VirtualBox 和 VMWare，三种主流的虚拟机软件都有一些不同，让配置变得很麻烦。同时，树莓派的成熟度和文档都比较好，网上有很多完善的资料，学习起来并不困难，硬件成本也不高。
 
-!!! question "我在 WSL 下编译 router，发现编译不通过，`checksum.cpp` 等几个 cpp 文件都不是合法的 cpp 代码。"
+!!! question "我在 WSL 下编译，发现编译不通过，`checksum.cpp` 等几个 cpp 文件都不是合法的 cpp 代码。"
 
-    这是因为在 Windows 里 git clone 的符号链接在 WSL 内看到的是普通文件，建议在 WSL 中进行 git clone 的操作，这样符号链接才是正确的。
+    对于 WSL1： 这是因为，在 Windows 里 git clone 创建的符号链接，在 WSL 内看到的是普通文件。建议在 WSL1 中进行 git clone 的操作，这样符号链接才是正确的。WSL1 和 Windows 的符号链接互不相通。
+
+    对于 WSL2：同样地，用 WSL2 内部的 git ，并且不要在 WSL2 和 Windows 的共享目录中进行。
+
+    更多讨论，见 [Symlinks in Windows 10](https://blogs.windows.com/windowsdeveloper/2016/12/02/symlinks-windows-10/) 和 [git-for-windows: Symbolic Links](https://github.com/git-for-windows/git/wiki/Symbolic-Links)
 
 !!! question "我想在 SHELL 里面随时看到我所在的 netns，有什么好办法吗"
 
