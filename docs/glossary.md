@@ -1,13 +1,13 @@
 # 名词解释
 
 apt
-: debian 发行版的包管理器
+: Debian 发行版的包管理器
 
 brd
 : broadcast 的缩写
 
 cmake
-: 一个编译构建系统，可以生成 make、vs 等可以构建的项目文件
+: 一个编译构建系统，可以生成 make、Visual Studio 等可以构建的项目文件
 
 debian
 : 一个操作系统及自由软件的发行版
@@ -30,7 +30,8 @@ iface
 interface
 : Linux 下的一个网口，可以是真实的，也可以是虚拟的
 
-iproute2: Linux 系统下一个网络管理工具
+iproute2
+: Linux 系统下一个网络管理工具
 
 journalctl
 : systemd 的查看服务日志的工具
@@ -54,7 +55,7 @@ pcap
 : 1. 是一种格式，存储了网络数据 2. 是一个库/工具，提供了从真实网卡上抓取网络数据包的途径
 
 pip
-: python 语言的包管理器
+: Python 语言的包管理器
 
 pyshark
 : 在 Python 中使用 tshark 的一个库
@@ -66,10 +67,10 @@ raw socket
 : Linux 提供的一套接口，可以抓取满足特定条件的数据包
 
 raspbian
-: 基于 debian 的针对树莓派的发行版
+: 基于 Debian 的针对树莓派的发行版
 
 router
-: 路由器，它主要的工作是在网络层上进行 IP 协议的转发。
+: 路由器，它主要的工作是在网络层上进行 IP 分组的转发。
 
 submodule
 : git 在一个仓库中包括另一个仓库的一种方法
@@ -90,7 +91,7 @@ tshark
 : Wireshark 的 CLI 版本，可以直接在命令行环境下运行
 
 ubuntu
-: 基于 debian 的以桌面应用为主的发行版
+: 基于 Debian 的以桌面应用为主的发行版
 
 windows
 : 微软公司的操作系统
@@ -99,5 +100,5 @@ wireshark
 : 一个用户友好的抓包工具，可以对抓到的数据进行深入的解析
 
 xilinx
-: 赛灵思公司，计算机组成原理课程使用的 FPGA 来自这个公司
+: 赛灵思公司，《计算机组成原理》课程使用的 FPGA 来自这个公司
 
