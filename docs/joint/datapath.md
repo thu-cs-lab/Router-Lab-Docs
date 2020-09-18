@@ -8,7 +8,7 @@
 
 实验者可以在与实验路由器相连的主机上使用 `arping` 命令来不断发送 ARP 请求，以便调试。除 ILA 外，实验者也可以把信号接到 LED 上进行观察。请注意，如果信号变化的频率过快，会导致 LED 闪烁过快，人眼是难以观察的。
 
-ARP 协议的更多细节请参见 RFC 826: An Ethernet Address Resolution Protocol。
+ARP 协议的更多细节请参见 [RFC 826: An Ethernet Address Resolution Protocol](https://tools.ietf.org/html/rfc826)。
 
 !!! question
 
@@ -48,11 +48,9 @@ ARP 协议的更多细节请参见 RFC 826: An Ethernet Address Resolution Proto
 
 另请阅读：
 
-1. RFC 1071: Computing the Internet Checksum
-
-2. RFC 1141: Incremental Updating of the Internet Checksum
-
-3. RFC 1624: Computation of the Internet Checksum via Incremental Update
+1. [RFC 1071: Computing the Internet Checksum](https://tools.ietf.org/html/rfc1071)
+2. [RFC 1141: Incremental Updating of the Internet Checksum](https://tools.ietf.org/html/rfc1141)
+3. [RFC 1624: Computation of the Internet Checksum via Incremental Update](https://tools.ietf.org/html/rfc1624)
 
 ## 转发引擎的功能测试和性能测试
 
