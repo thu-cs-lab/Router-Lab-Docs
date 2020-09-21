@@ -32,6 +32,13 @@ protocol static {
     route 1.2.3.4/32 via "网口名称"; # 可以手动添加一个静态路由方便调试，只有在这个网口存在并且为 UP 时才生效
 }
 
+protocol direct {
+    ipv4;
+    # 把网口上的直连路由导入到路由协议中
+    interface "网口名称";
+}
+
+
 protocol rip {
     ipv4 {
         import all;
@@ -70,6 +77,11 @@ protocol kernel {
 
 protocol static {
     route 1.2.3.4/32 via "网口名称"; # 可以手动添加一个静态路由方便调试，只有在这个网口存在并且为 UP 时才生效
+}
+
+protocol direct {
+    # 把网口上的直连路由导入到路由协议中
+    interface "网口名称";
 }
 
 protocol rip {
