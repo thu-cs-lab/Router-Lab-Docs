@@ -31,14 +31,14 @@
 
 在 `HAL` 目录中，是完整的 HAL 的源代码。它包括一个头文件 `router_hal.h` 和若干后端的源代码。
 
-如果你有过使用 CMake 的经验，那么建议你采用 CMake 把 HAL 和你的代码链接起来。编译的时候，需要选择 HAL 的后端，可供选择的一共有：
+如果你有过使用 CMake 的经验，那么你可以采用 CMake 把 HAL 和你的代码链接起来。需要注意的是，编程作业有单独的 Makefile，所以不需要使用 CMake 进行配置。编译的时候，需要选择 HAL 的后端，可供选择的一共有：
 
 1. Linux: 用于 Linux 系统，基于 libpcap，发行版一般会提供 `libpcap-dev` 或类似名字的包，安装后即可编译。
 2. macOS: 用于 macOS 系统，同样基于 libpcap，安装方法类似于 Linux 。
 3. stdio: 直接用标准输入输出，也是采用 pcap 格式，按照 VLAN 号来区分不同 interface。
 4. Xilinx: 在 Xilinx FPGA 上的一个实现，中间涉及很多与设计相关的代码，并不通用，仅作参考，对于想在 FPGA 上实现路由器的组有一定的参考作用。
 
-后端的选择方法如下（在 Router-Lab 目录下执行）：
+编程作业采用的是 stdio 后端，而实现的路由器采用的是 Linux 后端。后端的选择方法如下（在 Router-Lab 目录下执行）：
 
 ```bash
 mkdir build
