@@ -23,7 +23,7 @@
 > git pull git@git.tsinghua.edu.cn:Router-Lab/Router-Lab.git master
 ```
 
-!!! info
+!!! info "注意更新方式"
     
     所有的用户对于自己的作业仓库没有 force push 权限，所以请不要使用 rebase 来合并上游更新，平时也不要随意修改已经 push 的 commit。如果出现问题，请自行查询并使用 `git reflog` 解决。   
 

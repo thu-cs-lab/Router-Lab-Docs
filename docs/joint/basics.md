@@ -11,7 +11,7 @@
 * 接收接口（RX）使用 `id` 标识源接口
 * 发送接口（TX）使用 `dest` 标识目标接口
 
-!!! question
+!!! question "思考"
 
     1. AXI-Stream 什么情况下传输一拍的数据（Data Beat）？
     2. 握手是通过哪些信号完成的，握手的信号之间有什么依赖关系？
@@ -21,7 +21,7 @@
 
 在本节中，实验者需要熟悉 IP 和 ARP 协议的基本内容以及路由器的功能和结构，然后使用 Linux 系统搭建一个网络，用 Linux 自带的转发功能，学会用 tcpdump 和 Wireshark 进行抓包分析，尝试使用 Scapy 进行发包实验。
 
-!!! question
+!!! question "思考"
 
     1. 路由器一般包含哪些模块？本实验需要实现哪些模块？
     2. 路由器需要转发 ARP 报文吗？
@@ -37,7 +37,7 @@ Loopback 的意思是环回。在实验框架中，PHY/MAC 会不断接收以太
 
 如果代码在实验板上工作不正常，实验者需要了解 ILA（Integrated Logic Analyzer，Xilinx FPGA 的片内逻辑分析仪）的使用方式，从 AXI-Stream 的接收端开始检查是否收到正确的以太网帧，然后按照数据流的顺序依次检查到 AXI-Stream 的发送端。这一过程可能会比较繁琐，但实验者一定要耐心学会硬件调试的方法，如果出现 Critical Warning 必须要关注。此外，对于有用的信号，仿真中不应该出现 X 和 Z。
 
-!!! question
+!!! question "思考"
 
     1. 如何处理 AXI-Stream 在发送时 `ready` 不连续为高的情况？
     2. Vivado 提供的不同仿真模式有什么区别？

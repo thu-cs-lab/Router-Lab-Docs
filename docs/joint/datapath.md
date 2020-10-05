@@ -10,7 +10,7 @@
 
 ARP 协议的更多细节请参见 [RFC 826: An Ethernet Address Resolution Protocol](https://tools.ietf.org/html/rfc826)。
 
-!!! question
+!!! question "思考"
 
     1. 以太网帧的 EtherType 在哪个位置？ARP 协议对应的 EtherType 是多少？
     2. 操作系统一般会在什么情况下发送 ARP 报文到路由器？
@@ -25,7 +25,7 @@ ARP 协议的更多细节请参见 [RFC 826: An Ethernet Address Resolution Prot
 
 如果实现正确，实验者就可以通过 `arping` 得到稳定的低延迟的回复了。
 
-!!! question
+!!! question "思考"
 
     1. 什么样的 ARP 报文不需要回复？
     2. 如何在构造 ARP 回复和 Loopback 逻辑二者之间进行选择？
@@ -38,7 +38,7 @@ ARP 协议的更多细节请参见 [RFC 826: An Ethernet Address Resolution Prot
 
 实验者需要在仿真中仔细观察转发表和 ARP 缓存查询的结果，以及以太网帧更新后的内容，并分析各个字段是否正确，主要为出接口编号、目标 MAC 地址、IP 分组头部 TTL 以及校验和等字段。若实验者认为这些字段正确，可以进一步尝试使用硬编码的转发表，搭建一个测试网络，用两台主机互相 ping，同时抓包查看具体情况。此时，ILA 会比较有用，实验者可以利用其查看转发引擎中间每一步的情况。另外，建议实验者使用 Linux 系统进行测试，因为它可以关掉许多不相关的流量，让调试变得更加方便。
 
-!!! question
+!!! question "思考"
 
     1. 如果在转发表中没有查到下一跳信息，应如何处理？
     2. 如果在 ARP 缓存中没有查到对应的 MAC 地址，应如何处理？
@@ -63,7 +63,7 @@ ARP 协议的更多细节请参见 [RFC 826: An Ethernet Address Resolution Prot
 
 性能测试主要为，通过 iperf3 进行测速，如果出现速度突然降到零并且后续 ping 测试失败的情况，一般说明转发引擎部分逻辑不够鲁棒。此时，实验者可以通过 ILA 查看转发引擎内部状态，找到出问题的部分；实验者也可以在 testbench 中增加以太网帧发送频率，模拟性能测试，然后寻找问题。
 
-!!! question
+!!! question "思考"
 
     1. PHY/MAC 提供的 AXI-Stream 的接收端没有 `ready` 信号，意味着发送方需要时刻准备好接收数据。请检查实验框架，了解如何实现缓冲区。
     2. 有时会发生冲突而不得不丢包。请检查实验框架，了解 AXI-Stream 如何完整地丢弃一个以太网帧。
