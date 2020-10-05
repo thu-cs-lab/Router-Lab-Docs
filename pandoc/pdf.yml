@@ -1,5 +1,4 @@
 from: markdown+grid_tables+table_captions
-to: pdf
 verbosity: WARNING
 
 variables:
@@ -32,7 +31,34 @@ variables:
     \setlist[deepenum,9]{label=(\roman*)}
     \renewenvironment{enumerate}{\begin{deepenum}}{\end{deepenum}}
 
+    \definecolor{codegreen}{rgb}{0,0.6,0}
+    \definecolor{codegray}{rgb}{0.5,0.5,0.5}
+    \definecolor{codepurple}{rgb}{0.58,0,0.82}
+
+    \lstset{
+      commentstyle=\color{codegreen},
+      keywordstyle=\color{magenta},
+      numberstyle=\tiny\color{codegray},
+      stringstyle=\color{codepurple},
+      basicstyle=\ttfamily,
+      prebreak=\raisebox{0ex}[0ex][0ex]{\ensuremath{\hookleftarrow}},
+      columns=fullflexible,
+      keepspaces=true,
+      showspaces=false,
+      showtabs=false,
+      breaklines=true,
+      showstringspaces=false,
+      breakatwhitespace=true,
+      frame=single,
+      framesep=3pt,
+      xleftmargin=12pt,
+      tabsize=4,
+      captionpos=b,
+      numbers=left
+    }
+
 pdf-engine: xelatex
 standalone: true
 table-of-contents: true
-listings: false
+listings: true
+

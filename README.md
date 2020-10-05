@@ -24,11 +24,17 @@ mkdocs build --clean # 生成于 site/ 文件夹中
 
 ## 生成离线版
 
-生成 PDF 和 DOCX 版本需要 [`mkdocs-combine`](https://github.com/twardoch/mkdocs-combine) 的支持。首先安装该插件，而后运行：
+生成 PDF 和 DOCX 版本需要（经过修改的） [`mkdocs-combine`](https://github.com/Harry-Chen/mkdocs-combine) 插件的支持。首先安装插件：
+
+```bash
+pip3 install git+https://github.com/Harry-Chen/mkdocs-combine.git
+```
+
+而后运行：
 
 ```bash
 make docx
 make pdf
 ```
 
-即可在 `generated` 目录下获得生成的相应文件。
+即可在 `generated` 目录下获得相应格式的文件。
