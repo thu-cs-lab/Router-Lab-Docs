@@ -4,7 +4,7 @@
 
 ## ARP 报文接收
 
-本节中，实验者需要在 Loopback 的基础上，对收到的以太网帧进行解析，判断其 EtherType。如果该帧是一个 ARP 报文，则提取出发送者的 MAC 地址以及 IP 地址，然后更新或插入到 ARP 缓存中。实现完成后，实验者可以使用 ILA 在实验板上进行进行观察。
+本节中，实验者需要在 Loopback 的基础上，对收到的以太网帧进行解析，判断其 EtherType。如果该帧是一个 ARP 报文，则提取出发送者的 MAC 地址以及 IP 地址，然后更新或插入到 ARP 缓存中。实现完成后，实验者可以通过仿真来进行测试，然后使用 ILA 在实验板上进行观察。
 
 实验者可以在与实验路由器相连的主机上使用 `arping` 命令来不断发送 ARP 请求，以便调试。除 ILA 外，实验者也可以把信号接到 LED 上进行观察。请注意，如果信号变化的频率过快，会导致 LED 闪烁过快，人眼是难以观察的。
 
@@ -50,7 +50,7 @@ ARP 协议的更多细节请参见 [RFC 826: An Ethernet Address Resolution Prot
 
 1. [RFC 1071: Computing the Internet Checksum](https://tools.ietf.org/html/rfc1071)
 2. [RFC 1141: Incremental Updating of the Internet Checksum](https://tools.ietf.org/html/rfc1141)
-3. [RFC 1624: Computation of the Internet Checksum via Incremental Update](https://tools.ietf.org/html/rfc1624)
+3. [**RFC 1624: Computation of the Internet Checksum via Incremental Update**](https://tools.ietf.org/html/rfc1624)
 
 ## 转发引擎的功能测试和性能测试
 
