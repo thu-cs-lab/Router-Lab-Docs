@@ -21,3 +21,14 @@ python3 -m pip install --user -r requirements.txt # 安装 Python 依赖包
 mkdocs serve # 直接在本地 serve，或者：
 mkdocs build --clean # 生成于 site/ 文件夹中
 ```
+
+## 生成离线版
+
+生成 PDF 和 DOCX 版本需要 [`mkdocs-combine`](https://github.com/twardoch/mkdocs-combine) 的支持。首先安装该插件，而后运行：
+
+```bash
+make docx
+make pdf
+```
+
+即可在 `generated` 目录下获得生成的相应文件。

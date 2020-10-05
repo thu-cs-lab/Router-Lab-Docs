@@ -1,0 +1,6 @@
+from: markdown+grid_tables+table_captions
+to: docx
+verbosity: WARNING
+
+standalone: true
+table-of-contents: true
