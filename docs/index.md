@@ -7,6 +7,11 @@
     
     如需使用授权，可通过 shengqi dot chen at tuna dot tsinghua dot edu dot cn 联系作者。作者保留一切追究侵权责任的权利。
 
+!!! tip "推荐查看在线版"
+
+    推荐查看本文档的在线版（<https://lab.cs.tsinghua.edu.cn/router/doc/>)，而非 PDF 或 Word 版本。
+    离线版本的显示效果可能不佳，并且无法获得实时的更新。
+
 !!! tip "确认实验内容"
 
     如果你参加的是硬件实验组，请先阅读上面菜单的“计网联合实验”，然后在合适的时机再阅读这份文档。
