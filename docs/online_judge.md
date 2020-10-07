@@ -10,7 +10,7 @@
 
 !!! attention "DDL"
 
-    截止时间是针对 push 时间来说的，所以请勿在 DDL 前修改代码而不 Push，只有在 DDL 之前 Push 到 GitLab 的代码的才有效。如果出现了因为 GitLab 自身问题导致超过 DDL 的，请联系助教。
+    截止时间是针对 GitLab 上 CI 评测时间来说的，其中评测的时间很短，评测的时间约等于你 Push 提交代码的时间。所以请勿在 DDL 前修改代码而不 Push，只有在 DDL 之前 Push 到 GitLab 的代码的才有效。如果出现了因为 GitLab 自身问题导致超过 DDL 的，请联系助教。
 
 对于同学提交的作业，利用 GitLab CI，在仓库中设置了 `.gitlab-ci.yml` 文件，评测的流程：
 
