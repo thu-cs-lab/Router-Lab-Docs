@@ -103,6 +103,6 @@
     end
     ```
 
-!!! question "用 CMake 编译的时候，出现 CMake Error？"
+!!! question "用 CMake 编译的时候，出现 CMake Error：if given arguments STREQUAL EMCC"
 
-    一般来说是你使用的 CMake 版本太老了（已知 3.10 版本会出现错误），请更新一下 CMake 版本再尝试。
+    你可能直接在 Example 目录下使用 CMake 了。Example 是 Router-Lab 的子项目，不能单独使用。
