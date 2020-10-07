@@ -102,3 +102,7 @@
         echo -n -s "$prefix" "$USER" @ (prompt_hostname) ' ' (set_color $color_cwd) (prompt_pwd) (set_color normal) "$suffix "
     end
     ```
+
+!!! question "用 CMake 编译的时候，出现 CMake Error？"
+
+    一般来说是你使用的 CMake 版本太老了（已知 3.10 版本会出现错误），请更新一下 CMake 版本再尝试。
