@@ -86,9 +86,9 @@ R3:
     1. Metric 计算和更新方式不正确或者不在 [1,16] 的范围内
     2. 没有正确处理 RIP Response 特别是 nexthop=0 的处理和 metric=16 的处理，参考 [RFC 2453 Section 4.4 Next Hop](https://tools.ietf.org/html/rfc2453#section-4.4) 和 [RFC 2453 Section 3.9.2 Response Messages](https://tools.ietf.org/html/rfc2453#page-26)
     3. 转发的时候查表 not found ，一般情况是路由表出错，或者是查表算法的问题
-    4. 更新路由表的时候，查询应该用精确匹配，但是错误地使用了最长前缀长度匹配
+    4. 更新路由表的时候，查询应该用精确匹配，但是错误地使用了最长前缀匹配
     5. 没有对所有发出的 RIP Response 正确地实现水平分割
-    6. 端序不正确，可以通过 Wireshark 看出
+    6. 字节序不正确，可以通过 Wireshark 看出
 
 ??? example "可供参考的例子"
 
