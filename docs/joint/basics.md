@@ -24,6 +24,7 @@
 * 发送接口（TX）使用 `dest` 标识目标接口
 
 由于 AXI-Stream 协议较常用，Vivado 开发环境中提供了若干 AXI-Stream 相关 IP 核，统称为 AXI-Stream 基础设施，主要包括如下 IP 核：
+
 * Data Width Converter：变换 AXI-Stream 的数据宽度
 * Clock Converter：转换 AXI-Stream 的时钟
 * Data FIFO：FIFO 缓冲区，同时也有转换时钟的功能
