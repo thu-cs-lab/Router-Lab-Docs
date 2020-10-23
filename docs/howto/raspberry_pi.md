@@ -2,6 +2,8 @@
 
 网上有很多现成的详细的教程，这里还是简单地描述一遍过程，一些细节如果有不一样的地方，请查阅其他文档或者咨询助教。
 
+## Raspberry Pi OS 安装
+
 首先下载 Raspberry Pi OS （原 Raspbian） 的镜像文件，推荐从 [TUNA 镜像地址](https://mirrors.tuna.tsinghua.edu.cn/raspberry-pi-os-images/raspios_arm64/images/raspios_arm64-2020-08-24/2020-08-20-raspios-buster-arm64.zip) 下载。下载完成后会得到一个 zip 格式的压缩包，解压后得到 img 文件。接着使用镜像烧录工具（如 Balena Etcher）把 img 文件写入到 SD 卡中。这个时候你的电脑上应该有一个名为 boot 的盘符，进入它的根目录，新建一个名为 `ssh` 的空文件，注意不要有后缀，它的功能是让树莓派自动启动 SSH 服务器。给树莓派插入 SD 卡，接通电源，应该可以看到红灯常亮，绿灯闪烁，表示正在读取 SD 卡。
 
 接着，拿一条网线，连接你的电脑（或者路由器）和树莓派的网口，这时候应该可以看到网口下面的状态灯亮起。以电脑为例，请打开网络共享（[macOS 参考 1](https://support.apple.com/zh-cn/guide/mac-help/mchlp1540/mac)，[macOS 参考 2](https://medium.com/@tzhenghao/how-to-ssh-into-your-raspberry-pi-with-a-mac-and-ethernet-cable-636a197d055)，[Linux 参考](https://help.ubuntu.com/community/Internet/ConnectionSharing)，[Windows 参考 1](https://answers.microsoft.com/en-us/windows/forum/windows_10-networking/internet-connection-sharing-in-windows-10/f6dcac4b-5203-4c98-8cf2-dcac86d98fb9)，[Windows 参考 2](https://raspberrypi.stackexchange.com/questions/11684/how-can-i-connect-my-pi-directly-to-my-pc-and-share-the-internet-connection) ），让树莓派可以上网，然后要找到树莓派分配到的 IP 地址，可以用 `arp -a` 命令列出各个网口上通过 ARP 发现过的设备，找到其中的树莓派的 IP 地址。记住它，然后用 SSH 的客户端，如 `ssh pi@$raspi_addr` ，其中 `$raspi_addr` 是树莓派的 IP 地址，如 `ssh pi@192.168.2.5` ，密码是 raspberry ，应该就可以登录进去了：
@@ -38,6 +40,8 @@ PING www.d.tsinghua.edu.cn (166.111.4.100) 56(84) bytes of data.
 4 packets transmitted, 4 received, 0% packet loss, time 7ms
 rtt min/avg/max/mdev = 71.744/110.426/148.365/27.896 ms
 ```
+
+## 框架使用
 
 这时候可以克隆下本仓库（如果提示找不到 `git` 可以通过 `sudo apt install git` 解决）：
 
@@ -76,6 +80,8 @@ Wrong Answer (showing only first 1 packets):
 Running './checksum < data/checksum_input4.pcap > data/checksum_user4.out'
 Passed: 2/4
 ```
+
+## 网络配置
 
 然后你可以插上 USB 网卡，然后用 `ip` 命令来看它的情况：
 
@@ -161,13 +167,15 @@ Data: 45 00 04 CE 04 D5 00 00 FF 11 F9 38 C0 A8 17 6D E0 00 00 FB 14 E9 14 E9 04
 
 如果这一步失败了，可能是你的 USB 网卡对应的网口名称并不是 eth1-4 ，这时候你可以编辑 `HAL/src/linux/platform/standard.h`，选择一个无用的网口名称替换掉，然后重新编译。
 
-如果你想基于 `Homework/router` 来实现最终的路由器，在完成作业题后，到 `Homework/router` 目录下修改代码、编译并运行即可：
+## 路由器实验
+
+本次实验中要基于 `Homework/router` 实现最终的路由器，在完成作业题后，到 `Homework/router/r2` 目录下修改代码、编译并运行即可：
 
 ```bash
-pi@raspberrypi:~/Router-Lab $ cd Homework/router/
-pi@raspberrypi:~/Router-Lab/Homework/router $ make
+pi@raspberrypi:~/Router-Lab $ cd Homework/router/r2/
+pi@raspberrypi:~/Router-Lab/Homework/router/r2 $ make
 ...
-pi@raspberrypi:~/Router-Lab/Homework/router $ sudo ./router
+pi@raspberrypi:~/Router-Lab/Homework/router/r2 $ sudo ./router
 HAL_Init: found MAC addr of interface eth1
 HAL_Init: pcap capture enabled for eth1
 HAL_Init: pcap capture disabled for eth2, either the interface does not exist or permission is denied
@@ -178,3 +186,9 @@ Timer
 Timer
 Timer
 ```
+
+如果你要的路由器要运行在 R1 或者 R3 上，则到对应目录下进行 make，并注意运行的是正确的路由器程度。
+
+## 路由器软件开发
+
+由于路由器实验需要 Linux 环境，如果你的工作环境没有 Linux，建议安装 Visual Studio Code，在配置好 SSH 后，用 Remote - SSH 插件连接到树莓派上进行开发。
