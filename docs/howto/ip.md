@@ -1,6 +1,6 @@
 # `ip` 命令的使用
 
-在本文中几次提到了 `ip` 命令的使用，它的全名为 iproute2，是当前管理 Linux 操作系统网络最常用的命令之一。需要注意的是，涉及到更改的命令都需要 root 权限，所以需要在命令前加一个 `sudo` （注意空格）表示用 root 权限运行。
+在本文中几次提到了 `ip` 命令的使用，它的全名为 iproute2，是当前管理 Linux 操作系统网络最常用的命令之一。需要注意的是，涉及到更改的命令都需要 root 权限，所以需要在命令前加一个 `sudo ` （注意空格）表示用 root 权限运行。
 
 ## `ip a` 子命令
 
@@ -50,14 +50,14 @@ default via 1.2.3.1 dev enp14s0 proto static
 我们也在上文中数次用了类似的语法表示一个路由表。每一项的格式如下：
 
 ```text
-ip/prefix dev interface scope link 表示在这个子网中，所有的 IP 都是直连可达
-ip/prefix via another_ip dev interface 表示去往目标子网的 IP 包，下一跳都是 another_ip ，通过 interface 出去
+ip/prefix dev interface scope link 是一条直连路由，表示在这个子网中，所有的 IP 地址都通过 interface 直连可达
+ip/prefix via another_ip dev interface 表示去往目标子网的 IP 分组，下一跳 IP 地址都是 another_ip ，通过 interface 出去
 default via another_ip dev interface 这里 default 代表 0.0.0.0/0 ，其实是上一种格式
 ```
 
 至于一些额外的类似 `proto static` `proto kernel` `src 1.2.3.4` 的内容可以直接忽略。
 
-如果要修改的话，可以用 `ip route add` 接上你要添加的表项，相应地 `ip route del` 就是删除。如果要删掉上面的默认路由，可以用 `ip route del default via 1.2.3.1 dev enp14s0` 实现。
+如果要修改的话，可以用 `ip route add` 接上你要添加的表项，相应地 `ip route del` 就是删除。例如，如果要删掉上面的默认路由，可以用 `ip route del default via 1.2.3.1 dev enp14s0` 实现。此外，值得注意的是，网络一般是双向的，在某台主机上添加去往另一个主机或子网的路由后，需要在目标主机或目标子网的路由器上添加回到这台主机的路由。此时，网络才能进行双向通信。
 
 ## `ip netns` 子命令
 
