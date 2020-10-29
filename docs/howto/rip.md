@@ -4,6 +4,8 @@
 
 ## BIRD v2.0 配置
 
+[BIRD v2.0 官方配置文档](https://bird.network.cz/?get_doc&f=bird.html&v=20)
+
 ```conf
 # log "bird.log" all; # 可以将 log 输出到文件中
 # debug protocols all; # 如果要更详细的信息，可以打开这个
@@ -54,6 +56,8 @@ protocol rip {
 
 ## BIRD v1.6 配置
 
+[BIRD v1.6 官方配置文档](https://bird.network.cz/?get_doc&f=bird.html&v=16)
+
 ```conf
 # log "bird.log" all; # 可以将 log 输出到文件中
 # debug protocols all; # 如果要更详细的信息，可以打开这个
@@ -96,6 +100,8 @@ protocol rip {
 ```
 
 </details>
+
+## 配置使用方式
 
 这里的网口名字对应你连接到路由器的网口，也要配置一个固定的 IP 地址，需要和路由器对应网口的 IP 在同一个网段内。配置固定 IP 地址的命令格式为 `ip a add IP地址/前缀长度 dev 网口名称`，你可以用 `ip a` 命令看到所有网口的信息。
 

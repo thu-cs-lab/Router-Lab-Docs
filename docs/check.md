@@ -176,7 +176,7 @@ default via 192.168.5.2 dev pc2r3
 ??? tip "提升转发性能的方法"
 
     1. 去掉转发时的调试输出
-    2. 增量更新 Checksum，[参考](https://tools.ietf.org/html/rfc1624)
+    2. 增量更新 Checksum，[参考 RFC 1624](https://tools.ietf.org/html/rfc1624)
     3. 优化路由表查询算法
 
 ??? tip "支持较大路由表的方法"

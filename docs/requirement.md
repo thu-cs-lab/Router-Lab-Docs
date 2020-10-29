@@ -38,10 +38,10 @@
 必须实现的有：
 
 1. 转发功能，支持直连路由和间接路由，包括查表，TTL 减一，Checksum 更新并转到正确的 interface 出去。
-2. 周期性地向所有端口发送 RIP Response （**周期为 5s**，而不是 RFC 要求的 30s），目标地址为 RIP 的组播地址。
+2. 周期性地向所有端口发送 RIP Response （**周期为 5s**，而不是 [RFC 2453 Section 3.8 Timers](https://tools.ietf.org/html/rfc2453#section-3.8) 要求的 30s），目标地址为 RIP 的组播地址。
 3. 对收到的 RIP Request 生成 RIP Response 进行回复，目标地址为 RIP Request 的源地址。
 4. 实现水平分割（split horizon）和毒性反转（reverse poisoning），处理 RIP 中 `metric=16` 的情况。
-5. 收到 RIP Response 时，对路由表进行维护，注意 RIP 中 `nexthop=0` 的含义。
+5. 收到 RIP Response 时，对路由表进行维护，注意 RIP 中 `nexthop=0` 的含义，见 [RFC 2453 Section 4.4 Next Hop](https://tools.ietf.org/html/rfc2453#section-4.4)。
 6. 对 ICMP Echo Request 进行 ICMP Echo Reply 的回复。
 7. 在查不到路由表的时候，回复 ICMP Destination Unreachable (network unreachable)。
 8. 在 TTL 减为 0 时，回复 ICMP Time Exceeded (time to live exceeded in transit)。

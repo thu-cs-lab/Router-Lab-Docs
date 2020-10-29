@@ -1,6 +1,12 @@
 # `ip` 命令的使用
 
-在本文中几次提到了 `ip` 命令的使用，它的全名为 iproute2，是当前管理 Linux 操作系统网络最常用的命令之一。需要注意的是，涉及到更改的命令都需要 root 权限，所以需要在命令前加一个 `sudo ` （注意空格）表示用 root 权限运行。
+在本文中几次提到了 `ip` 命令的使用，它的全名为 iproute2，是当前管理 Linux 操作系统网络最常用的命令之一。需要注意的是，涉及到更改的命令都需要 root 权限，所以需要在命令前加一个 `sudo 命令` （注意空格）表示用 root 权限运行。
+
+以下是一些网络上的 ip 命令的使用帮助：
+
+[How To Use IPRoute2 Tools to Manage Network Configuration on a Linux VPS](https://www.digitalocean.com/community/tutorials/how-to-use-iproute2-tools-to-manage-network-configuration-on-a-linux-vps)
+
+[IPROUTE2 Utility Suite Howto](http://www.policyrouting.com/iproute2.doc.html)
 
 ## `ip a` 子命令
 
