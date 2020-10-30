@@ -8,9 +8,9 @@
 
 [IPROUTE2 Utility Suite Howto](http://www.policyrouting.com/iproute2.doc.html)
 
-## `ip a` 子命令
+## `ip addr` 子命令
 
-第一个比较重要的子命令是 `ip a`，它是 `ip addr` 的简写，意思是列出所有网口信息和地址信息，如：
+第一个比较重要的子命令是 `ip addr`，其简写为 `ip a` ，意思是列出所有网口信息和地址信息，如：
 
 ```text
 2: enp14s0: <BROADCAST,MULTICAST> mtu 1500 qdisc noop state DOWN group default qlen 1000
@@ -36,17 +36,17 @@
 
 需要注意的是，在运行你实现的路由器的时候，请不要在相关的网口上配置 IP 地址，因为 HAL 绕过了 Linux 网络栈，如果你配置了 IP 地址，在 Linux 和路由器的双重作用下可能有意外的效果。
 
-## `ip l` 子命令
+## `ip link` 子命令
 
-第二个重要的子命令是 `ip l`，是 `ip link` 的简写，一般直接使用 `ip link set $interface up` 和 `ip link set $interface down` 来让一个 `DOWN` 的网口变成 `UP`，也可以反过来让一个 `UP` 的网口变成 `DOWN`。注意，在一些情况下（例如网线没插等等），它可能会失败。
+第二个重要的子命令是 `ip link`，其简写为 `ip l` ，一般直接使用 `ip link set $interface up` 和 `ip link set $interface down` 来让一个 `DOWN` 的网口变成 `UP`，也可以反过来让一个 `UP` 的网口变成 `DOWN`。注意，在一些情况下（例如网线没插等等），它可能会失败。
 
 此外，还可以用 `ip l set $interface netns $netns_name` 来把一个网口挪到目的的 netns 中。通畅情况下，我们都是先创建好 interface，再用这种方法把它移动到特定的 netns 中。
 
 另外，在创建 veth 的时候，使用的命令是 `ip link add $name1 type veth peer name $name2`，它会创建一对 interface，分别叫做 $name1 和 $name2，所有从 $name1 发出的流量都可以在 $name2 收到，反之亦然。可以理解成一根虚拟的网线，两端分别是 $name1 和 $name2。
 
-## `ip r` 子命令
+## `ip route` 子命令
 
-第三个重要的子命令是 `ip r`，是 `ip route` 的简写，它会显示 Linux 系统中的路由表：
+第三个重要的子命令是 `ip route`，其简写为 `ip r` ，它会显示 Linux 系统中的路由表：
 
 ```text
 default via 1.2.3.1 dev enp14s0 proto static
