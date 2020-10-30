@@ -2,7 +2,8 @@
 
 网上可以找到的比较好的 make 教程：
 
-[A Simple Makefile Tutorial](https://www.cs.colby.edu/maxwell/courses/tutorials/maketutor/)
+* [Make 命令教程](https://www.ruanyifeng.com/blog/2015/02/make.html)
+* [A Simple Makefile Tutorial](https://www.cs.colby.edu/maxwell/courses/tutorials/maketutor/)
 
 `make` 命令的功能就是按照 Makefile 中编写的规则来生成一些文件，这些文件之间会有依赖的关系，`make` 会安装依赖关系增量地进行生成，达到编译一个完整的程序的目的。下面以 `Homework/router/Makefile` 举例说明：
 
