@@ -30,7 +30,6 @@ nav:
     - 实验思路: experiment_hint.md
     - 验收要求: check.md
     - FAQ: faq.md
-    - 名词解释: glossary.md
   - 计网联合实验:
     - 总述: joint/index.md
     - 开始实验: joint/basics.md
@@ -44,6 +43,7 @@ nav:
     - 树莓派使用: howto/raspberry_pi.md
     - 调试方法: howto/debug.md
     - RIP 调试: howto/rip.md
+    - 名词解释: glossary.md
 
 extra_javascript:
   - 'https://cdn.jsdelivr.net/npm/mathjax@2.7.0/MathJax.js?config=TeX-MML-AM_CHTML'
