@@ -141,8 +141,8 @@ R3:
 2. 等待 RIP 协议运行一段时间，一分钟后进行评测。
 3. 在 PC1 上 `ping 192.168.5.1` 若干次，在 PC2 上 `ping 192.168.1.2` 若干次，测试 ICMP 连通性。
 4. 在 PC1 和 PC2 上各监听 80 端口，各自通过 nc 访问对方，测试 TCP 连通性。
-5. 在 PC1 上 `ping 192.168.5.1 -t 1`，应当出现 `Time to live exceeded` 的响应，再把 TTL 改成 2 和 3，测试三个路由器的 TTL=0 的处理，再反过来从 PC2 上 `ping 192.168.1.2 -t 1`，再把 TTL 改成 2 和 3 。
-6. 在 PC1 上 `ping 192.168.233.233`，应当出现 `Destination Net Unreachable`，在 PC2 上 `ping 192.168.233.233` 亦然。
+5. 在 PC1 上 `ping 192.168.5.1 -t 1`，应当出现 `Time to live exceeded` 的响应（R1 发给 PC1），再把 TTL 改成 2 （R2 发给 PC1） 和 3（R3 发给 PC1），测试三个路由器的 TTL=0 的处理，再反过来从 PC2 上 `ping 192.168.1.2 -t 1`，也应当出现 `Time to live exceeded` 的响应（R3 发给 PC2），再把 TTL 改成 2 （R2 发给 PC2） 和 3 （R1 发给 PC2） 。
+6. 在 PC1 上 `ping 192.168.233.233`，应当出现 `Destination Net Unreachable`（R1 发给 PC1），在 PC2 上 `ping 192.168.233.233` 亦然（R3 发给 PC2）。
 7. 在 PC2 上运行 `iperf3 -s`，在 PC1 上运行 `iperf3 -c 192.168.5.1 -O 5 -P 10`，按照 Bitrate 给出分数，测试转发的效率。
 8. 在 PC2 上运行 `iperf3 -s`，在 PC1 上运行 `iperf3 -c 192.168.5.1 -u -l 16 -t 5 -b 1G -O 5`，按照接收方实际收到的 Datagram 数量（即 Total Datagram 减去 Lost）给出分数，测试转发的效率。
 9. 小规模路由表压力测试：在 PC1 上开启 bird，配置 192.168.20.0/24 ~ 192.168.255.0/24 共两百多条新的路由，在 PC1 上配置 192.168.20.1 和 192.168.255.1 的地址，从 PC2 ping 这两个地址成功。
