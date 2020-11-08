@@ -28,7 +28,6 @@ nav:
     - 开始实验: begin.md
     - 本地测试: local_test.md
     - 在线测试: online_judge.md
-    - 实验思路: experiment_hint.md
     - 验收流程: check.md
     - 框架使用: framework.md
     - FAQ: faq.md
