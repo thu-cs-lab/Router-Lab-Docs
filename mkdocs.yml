@@ -29,8 +29,8 @@ nav:
     - 本地测试: local_test.md
     - 在线测试: online_judge.md
     - 实验思路: experiment_hint.md
+    - 验收流程: check.md
     - 框架使用: framework.md
-    - 验收要求: check.md
     - FAQ: faq.md
   - 计网联合实验:
     - 总述: joint/index.md
