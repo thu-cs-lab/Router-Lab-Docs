@@ -10,7 +10,7 @@
    1. R2：检查你的路由表和路由表的查询结果
    2. 其他：用 `ip r` 命令看有没有 ICMP 目的地址应该匹配上的正确路由，如果没有那就是 RIP 协议还有问题
       1. 如果怀疑 RIP 协议有问题，那就在 r1r2 和 r2r3 上抓包，着重注意源地址是 192.168.3.2 和 192.168.4.1 （即 R2 发出的）的 RIP Response 包，检查以下几点：
-         1. IP 头和 UDP 头的长度和下面的 RIP Entry 数量要匹配
+         1. IP 分组头部和 UDP 头部的长度字段与下面的 RIP Entry 数量要匹配
          2. IP Header Checksum 和 UDP Checksum
          3. RIP 的 Version 为 2
          4. RIP Entry 数量需要在 [1,25] 的范围内
