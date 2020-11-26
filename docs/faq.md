@@ -106,3 +106,7 @@
 !!! question "用 CMake 编译的时候，出现 CMake Error：if given arguments STREQUAL EMCC"
 
     你可能直接在 Example 目录下使用 CMake 了。Example 是 Router-Lab 的子项目，不能单独使用。
+
+!!! question "我用 netns 和 veth 搭建好了网络，路由器也写好了， RIP 可以通，但 ICMP 到 R1 以后就不转发了，R1 上运行的是 BIRD，这是为什么呢？"
+
+    BIRD 只负责路由协议，它会把学习到的路由协议和 Linux 的路由表进行同步，并不会做转发的功能。为了打开 Linux 自带的转发功能，需要运行 `ip netns exec R1 sh -c "echo 1 > /proc/sys/net/ipv4/conf/all/forwarding"` 命令，在 R1 netns 下把所有接口的 IPv4 的转发打开。但请注意，运行自己编写的路由器的 netns 中不需要 Linux 自带的转发功能，可以把 1 改成 0 以关闭转发功能。
