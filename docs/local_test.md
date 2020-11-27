@@ -95,7 +95,7 @@ ip netns exec R1 sh -c "echo 1 > /proc/sys/net/ipv4/conf/all/forwarding"
 
 你可以在作业仓库的 `Setup/netns` 目录下找到模拟评测环境的脚本，你需要先尝试阅读并理解里面的脚本代码， **在理解脚本代码** 后再执行并在里面运行自己的程序。需要注意的是，这些脚本并没有配置 Linux 的转发功能，你可以按照需求自行添加。
 
-想知道当前在哪个 netns 的话，可以执行 `ip netns identify` 命令。
+想知道当前在哪个 netns 的话，可以执行 `ip netns identify` 命令。可以参考 FAQ 里面的方法把 netns 加入到 shell 的 prompt 中，这样会方便自己的调试。
 
 !!! attention "netns 环境和真实环境的不同"
 
