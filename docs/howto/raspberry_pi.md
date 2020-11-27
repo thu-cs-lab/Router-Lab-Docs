@@ -10,7 +10,7 @@
 
 接着，拿一条网线，连接你的电脑（或者路由器）和树莓派的网口，这时候应该可以看到网口下面的状态灯亮起。以电脑为例，请打开网络共享（[macOS 参考 1](https://support.apple.com/zh-cn/guide/mac-help/mchlp1540/mac)，[macOS 参考 2](https://medium.com/@tzhenghao/how-to-ssh-into-your-raspberry-pi-with-a-mac-and-ethernet-cable-636a197d055)，[Linux 参考](https://help.ubuntu.com/community/Internet/ConnectionSharing)，[Windows 参考 1](https://answers.microsoft.com/en-us/windows/forum/windows_10-networking/internet-connection-sharing-in-windows-10/f6dcac4b-5203-4c98-8cf2-dcac86d98fb9)，[Windows 参考 2](https://raspberrypi.stackexchange.com/questions/11684/how-can-i-connect-my-pi-directly-to-my-pc-and-share-the-internet-connection) ），让树莓派可以上网。需要注意的是，如果共享的网络使用 802.1X 认证（例如 Tsinghua-Secure 和 eduroam），可能会共享失败，请切换到其他网络，包括手机热点。
 
-接着，我们要找到树莓派分配到的 IP 地址，可以用 `arp -a` 命令列出各个网口上通过 ARP 发现过的设备，找到其中的树莓派的 IP 地址。一个寻找树莓派 IP 地址的方法是，先找到连接树莓派的网络接口，看看自己电脑上在这个接口的 IP 地址是多少，在 ARP 表里找一个和它相近但又不一样的 IP 地址，就很可能是要找的 IP 地址。另一种办法是，如果是在支持 mDNS 的系统上，可以试试 `ping raspberrypi.local`，看是否能解析出 IP 地址。
+接着，我们要找到树莓派分配到的 IP 地址，可以用 `arp -a` 命令列出各个网口上通过 ARP 发现过的设备，找到其中的树莓派的 IP 地址。一个寻找树莓派 IP 地址的方法是，先找到连接树莓派的网络接口，看看自己电脑上在这个接口的 IP 地址是多少，在 ARP 表里找一个和它相近但又不一样的 IP 地址，就很可能是要找的 IP 地址。另一种办法是，如果是在支持 mDNS 的系统上，可以试试 `ping raspberrypi.local`（或者 IPv6-only `ping -6 raspberrypi.local`），看是否能解析出 IP 地址。
 
 找到树莓派的 IP 地址以后，用 SSH 的客户端进行访问，如 `ssh pi@$raspi_addr` ，其中 `$raspi_addr` 是树莓派的 IP 地址，如 `ssh pi@192.168.2.5` ，密码是 raspberry ，应该就可以登录进去了：
 
