@@ -42,9 +42,9 @@
 3. 对收到的 RIP Request 生成 RIP Response 进行回复，目标地址为 RIP Request 的源地址。
 4. 实现水平分割（split horizon）和毒性反转（reverse poisoning），处理 RIP 中 `metric=16` 的情况。
 5. 收到 RIP Response 时，对路由表进行维护，注意 RIP 中 `nexthop=0` 的含义，见 [RFC 2453 Section 4.4 Next Hop](https://tools.ietf.org/html/rfc2453#section-4.4)。
-6. 对 ICMP Echo Request 进行 ICMP Echo Reply 的回复。
-7. 在查不到路由表的时候，回复 ICMP Destination Unreachable (network unreachable)。
-8. 在 TTL 减为 0 时，回复 ICMP Time Exceeded (time to live exceeded in transit)。
+6. 对 ICMP Echo Request 进行 ICMP Echo Reply 的回复，见 [RFC 792 Echo or Echo Reply Message](https://tools.ietf.org/html/rfc792)。
+7. 在查不到路由表的时候，回复 ICMP Destination Unreachable (network unreachable)，见 [RFC792 Destination Unreachable Message](https://tools.ietf.org/html/rfc792)。
+8. 在 TTL 减为 0 时，回复 ICMP Time Exceeded (time to live exceeded in transit)，见 [RFC792 Time Exceeded Message](https://tools.ietf.org/html/rfc792)。
 9. 在发送的 RIP Response 出现不止 25 条 Entry 时拆分。
 
 可选实现的有（不加分，但对调试有帮助）：
