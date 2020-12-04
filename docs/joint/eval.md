@@ -1,4 +1,4 @@
-# 实验评测方法
+# 实验评测技术方案
 
 ![Topology](../img/topology_joint.png)
 
