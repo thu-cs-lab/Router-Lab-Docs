@@ -110,3 +110,7 @@
 !!! question "我用 netns 和 veth 搭建好了网络，路由器也写好了， RIP 可以通，但 ICMP 到 R1 以后就不转发了，R1 上运行的是 BIRD，这是为什么呢？"
 
     BIRD 只负责路由协议，它会把学习到的路由协议和 Linux 的路由表进行同步，并不会做转发的功能。为了打开 Linux 自带的转发功能，需要运行 `ip netns exec R1 sh -c "echo 1 > /proc/sys/net/ipv4/conf/all/forwarding"` 命令，在 R1 netns 下把所有接口的 IPv4 的转发打开。但请注意，运行自己编写的路由器的 netns 中不需要 Linux 自带的转发功能，可以把 1 改成 0 以关闭转发功能。
+
+!!! question "我用在本地用 netns 和 veth 搭建好了网络，也可以完成所要求的测试，但是在在线评测的时候一个都不过，这可能是为什么呢？"
+
+    除了检查一下上面提到的 netns 与真实网络的区别以外，并且排除代码的各种问题后，还可以检查一下，RIP 协议的组播 MAC 地址是否正确填写。
