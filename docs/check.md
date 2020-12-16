@@ -180,8 +180,6 @@ default via 192.168.5.2 dev pc2r3
 
 初始情况下 R1 R2 R3 都只有对应的直连路由，只有在正确地运行 RIP 协议后，才能从 PC1 ping 通 PC2 。
 
-对于路由表的压力测试，可以在 PC1 上使用 `Setup/bird1.conf` 作为 BIRD 的设置来启动 BIRD，如果你在 netns 中或者非树莓派的环境使用，可能需要修改 `Setup/bird1.conf` 和 `Setup/conf-part{9,10}.conf` 相关的网卡名字，并保证网卡处于 UP 状态。这个配置文件中有三个 part，分别对应上面流程中的 9 10 三步，可以通过 `sudo birdc disable part9` 和 `sudo birdc enable part10` 来启用/禁用某一组路由表，路由表的具体内容见 `conf-part{9,10}.conf` 文件。想要查看 BIRD 是否配置正确，可以运行 `sudo birdc show route` 来查看 BIRD 的完整路由表。
-
 ??? warning "容易出错的地方"
 
     1. 自己或者队友的水平分割实现的不正确
