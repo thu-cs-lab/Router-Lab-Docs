@@ -1,7 +1,7 @@
 site_name: Router Lab 实验文档
 site_description: 'Documentation for Router Lab'
 site_author: 'Router Lab Developers'
-copyright: 'Copyright &copy; 2019-2020 Department of Computer Science and Technology, Tsinghua University. All Rights Reserved.'
+copyright: 'Copyright &copy; 2019-2021 Department of Computer Science and Technology, Tsinghua University. All Rights Reserved.'
 
 theme: 
   name: 'material'
@@ -21,7 +21,7 @@ extra:
   pagetime: 'on'
 
 nav:
-  - 网络原理实验:
+  - 计算机网络原理软件实验:
     - 总述: index.md
     - 准备工作: preparation.md
     - 课程要求: requirement.md
