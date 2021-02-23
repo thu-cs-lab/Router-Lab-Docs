@@ -21,7 +21,7 @@ extra:
   pagetime: 'on'
 
 nav:
-  - 计算机网络原理软件实验:
+  - 《计算机网络原理》软件实验:
     - 总述: index.md
     - 准备工作: preparation.md
     - 课程要求: requirement.md
