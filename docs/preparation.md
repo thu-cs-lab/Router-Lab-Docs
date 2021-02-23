@@ -17,7 +17,7 @@
 完成该实验需要一定的 **Git、Make、SSH、Shell、Python3 和 Linux** 的使用知识。如果你是大三或之后选的课程，那么你应该已经在《软件工程》《编译原理》《程序设计训练》等课程中学到了相应的支持。如果你是大一大二选的课程，可以参考以下的教程进行预习：
 
 - Git: [简明指南](https://rogerdudler.github.io/git-guide/index.zh.html) [Git教程](https://www.liaoxuefeng.com/wiki/896043488029600) [缺失的一课](https://missing-semester-cn.github.io/2020/version-control/) [助教编写的 Git 速查文档](https://circuitcoder.github.io/Orange-ECC/ecc/git/)
-- Make: 见附录
+- Make: 见[附录](/router/doc/howto/make/)
 - SSH: [GitLab SSH 配置（注意用的是 git.tsinghua.edu.cn 而不是 gitlab.com）](https://www.yiibai.com/gitlab/gitlab_ssh_key_setup.html)
 - Shell: [缺失的一课](https://missing-semester-cn.github.io/2020/command-line/)
 - Linux: [USTC LUG Linux 101 在线讲义](https://101.lug.ustc.edu.cn/)
