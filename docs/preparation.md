@@ -42,6 +42,6 @@
 
 ```bash
 > brew install git cmake python3
-> brew cask install wireshark
+> brew install --cask wireshark
 > pip3 install pyshark
 ```
