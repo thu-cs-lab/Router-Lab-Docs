@@ -11,8 +11,8 @@ theme:
     logo: material/router
     repo: fontawesome/brands/github
   features:
-    - navigation.tabs
-    - navigation.instant
+    # - navigation.tabs
+    # - navigation.instant
 
 repo_name: 'thu-cs-lab/Router-Lab-Docs'
 repo_url: 'https://github.com/thu-cs-lab/Router-Lab-Docs'
