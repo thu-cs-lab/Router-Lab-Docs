@@ -21,3 +21,4 @@
             4. IP Address & ~Mask == 0
             5. Nexthop 要么为 0 ，要么和 IP 源地址在同一个网段
             6. Metric 在 [1,16] 的范围内
+      2. 检查一下 BIRD 是否开启，并且在 r1r2 r2r3 上可以抓到 BIRD 发出的 RIP 包
