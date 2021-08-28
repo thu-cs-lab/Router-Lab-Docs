@@ -12,7 +12,7 @@
 
 ## 实验框架
 
-ThinRouter 的样例工程在 [https://git.tsinghua.edu.cn/tanlabs-public/tanlabs](https://git.tsinghua.edu.cn/tanlabs-public/tanlabs) ，克隆后就可以得到一个样例工程，这是实验者可以使用的实验框架，部分实验逻辑和引脚约束已经提供好。实验者可以阅读实验框架中的注释来获得更多信息。此外，实验者也可以不使用提供的实验框架，从零开始设计与实现。
+ThinRouter 的样例工程在 [https://git.tsinghua.edu.cn/tanlabs-public/tanlabs](https://git.tsinghua.edu.cn/tanlabs-public/tanlabs) （[GitHub镜像](https://github.com/thu-cs-lab/tanlabs)），克隆后就可以得到一个样例工程，这是实验者可以使用的实验框架，部分实验逻辑和引脚约束已经提供好。实验者可以阅读实验框架中的注释来获得更多信息。此外，实验者也可以不使用提供的实验框架，从零开始设计与实现。
 
 如果实验框架原始代码有更新（届时助教会通过多种渠道通知），实验者可以按照如下命令合并这些更新：
 
