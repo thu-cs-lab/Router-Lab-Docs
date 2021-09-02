@@ -16,10 +16,10 @@
 
 目前，一共包括四个编程实验如下：
 
-- `checksum`：计算 IP Checksum
-- `forwarding`：进行转发的 IP 头更新
+- `eui64`：基于 EUI64 构造 IPv6 Link Local 地址
+- `internet-checksum`：进行 UDP 和 ICMPv6 的校验和检验和计算
 - `lookup`：路由表的查询
-- `protocol`：RIP 协议的处理
+- `protocol`：RIPng 协议的处理
 
 你需要在 [TanLabs](https://lab.cs.tsinghua.edu.cn/tan/) 上登录，并且在网站上创建属于你的作业 GitLab 仓库。你需要使用 Git 往你的作业仓库中提交的你的代码，然后在 TanLabs 查看评测结果。评测的流程和要求详见 TanLabs 网站上的说明。
 
@@ -37,25 +37,24 @@
 
 必须实现的有：
 
-1. 转发功能，支持直连路由和间接路由，包括查表，TTL 减一，Checksum 更新并转到正确的 interface 出去。
-2. 周期性地向所有端口发送 RIP Response （**周期为 5s**，而不是 [RFC 2453 Section 3.8 Timers](https://tools.ietf.org/html/rfc2453#section-3.8) 要求的 30s），目标地址为 RIP 的组播地址。
-3. 对收到的 RIP Request 生成 RIP Response 进行回复，目标地址为 RIP Request 的源地址。
-4. 实现水平分割（split horizon）和毒性反转（reverse poisoning），处理 RIP 中 `metric=16` 的情况。
-5. 收到 RIP Response 时，对路由表进行维护，注意 RIP 中 `nexthop=0` 的含义，见 [RFC 2453 Section 4.4 Next Hop](https://tools.ietf.org/html/rfc2453#section-4.4)。
-6. 对 ICMP Echo Request 进行 ICMP Echo Reply 的回复，见 [RFC 792 Echo or Echo Reply Message](https://tools.ietf.org/html/rfc792)。
-7. 在查不到路由表的时候，回复 ICMP Destination Unreachable (network unreachable)，见 [RFC792 Destination Unreachable Message](https://tools.ietf.org/html/rfc792)。
-8. 在 TTL 减为 0 时，回复 ICMP Time Exceeded (time to live exceeded in transit)，见 [RFC792 Time Exceeded Message](https://tools.ietf.org/html/rfc792)。
-9. 在发送的 RIP Response 出现不止 25 条 Entry 时拆分。
+1. 转发功能，支持直连路由和间接路由，包括 Hop Limit 减一，查表并向正确的 interface 发送出去。
+2. 周期性地向所有端口发送 RIPng Response（**周期为 5s**，而不是 [RFC 2080 Section 2.3 Timers](https://www.rfc-editor.org/rfc/rfc2080.html#section-2.3) 要求的 30s），目标地址为 RIPng 的组播地址。
+3. 对收到的 RIPng Request 生成 RIPng Response 进行回复，目标地址为 RIPng Request 的源地址。
+4. 实现水平分割（split horizon）和毒性反转（reverse poisoning）。
+5. 收到 RIPng Response 时，对路由表进行维护，处理 RIPng 中 `metric=16` 的情况。
+6. 对 ICMPv6 Echo Request 进行 ICMPv6 Echo Reply 的回复，见 [RFC 4443 Echo Reply Message](https://datatracker.ietf.org/doc/html/rfc4443#section-4.2)。
+7. 在查不到路由表的时候，回复 ICMPv6 Destination Unreachable (network unreachable)，见 [RFC 4443 Section 3.1 Destination Unreachable Message](https://datatracker.ietf.org/doc/html/rfc4443#section-3.1)。
+8. 在 TTL 减为 0 时，回复 ICMPv6 Time Exceeded (hop limit exceeded in transit)，见 [RFC 4443 Section 3.3 Time Exceeded Message](https://datatracker.ietf.org/doc/html/rfc4443#section-3.3)。
+9. 在发送的 RIPng Response 时大小超过 MTU 时进行拆分。
 
 可选实现的有（不加分，但对调试有帮助）：
 
 1. 定期或者在更新的时候向 stdout/stderr 打印最新的 RIP 路由表。
-2. 在路由表出现更新的时候立即发送 RIP Response（完整或者增量），目标地址为 RIP 的组播地址，可以加快路由表的收敛速度。
+2. 在路由表出现更新的时候立即发送 RIPng Response（完整或者增量），目标地址为 RIPng 的组播地址，可以加快路由表的收敛速度。
 3. 路由的失效（Invalid）和删除（Flush）计时器。
-4. 程序启动时向所有 interface 发送 RIP Request，目标地址为 RIP 的组播地址。
+4. 程序启动时向所有 interface 发送 RIPng Request，目标地址为 RIP 的组播地址。
 
 不需要实现的有：
 
-1. ARP 的处理。
-2. IGMP 的处理。
-3. interface 状态的跟踪（UP/DOWN 切换）。
+1. NDP 的处理。
+2. interface 状态的跟踪（UP/DOWN 切换）。
