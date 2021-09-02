@@ -8,17 +8,13 @@
 4. 如果进入的包格式是错的，那出问题的点是这个点的前一个，一般来说前一个就是 R2，这种情况一般是转发的时候 Checksum 更新有问题；如果前一个不是 R2，并且你采用了 netns ，请在 FAQ 中找到相应的问题。
 5. 如果进入的包格式是对的，如果这个点是：
    1. R2：检查你的路由表和路由表的查询结果
-   2. 其他：用 `ip r` 命令看有没有 ICMP 目的地址应该匹配上的正确路由，如果没有那就是 RIP 协议还有问题
-      1. 如果怀疑 RIP 协议有问题，那就在 r1r2 和 r2r3 上抓包，着重注意源地址是 192.168.3.2 和 192.168.4.1 （即 R2 发出的）的 RIP Response 包，检查以下几点：
-         1. IP 分组头部和 UDP 头部的长度字段与下面的 RIP Entry 数量要匹配
-         2. IP Header Checksum 和 UDP Checksum
-         3. RIP 的 Version 为 2
-         4. RIP Entry 数量需要在 [1,25] 的范围内
-         5. 对于每条 RIP Entry：
-            1. Address Family = 2
-            2. Route Tag = 0
-            3. Mask 的二进制要么全是 1，要么全是 0，要么是连续的 1 接着连续的 0
-            4. IP Address & ~Mask == 0
-            5. Nexthop 要么为 0 ，要么和 IP 源地址在同一个网段
-            6. Metric 在 [1,16] 的范围内
-      2. 检查一下 BIRD 是否开启，并且在 r1r2 r2r3 上可以抓到 BIRD 发出的 RIP 包
+   2. 其他：用 `ip -6 r` 命令看有没有 ICMP 目的地址应该匹配上的正确路由，如果没有那就是 RIP 协议还有问题
+      1. 如果怀疑 RIP 协议有问题，那就在 r1r2 和 r2r3 上抓包，着重注意源地址是 fd00::3:2 和 fd00::4:1（即 R2 发出的）的 RIP Response 包，检查以下几点：
+         1. IPv6 分组头部和 UDP 头部的长度字段与下面的 RIPng Entry 数量要匹配
+         2. UDP Checksum 是否正确
+         3. RIPng 的 Version 和 Command 是否正确
+         4. 对于每条 RIPng Entry：
+            1. Prefix 中只有前 Prefix len 位数可能出现 1
+            2. 当 Metric != 0xFF 时，检查 Metric 是否在 [1, 16] 的范围内
+            2. 检查一下是否正确实现了水平分割和毒性反转
+      2. 检查一下 BIRD 是否开启，并且在 r1r2 r2r3 上可以抓到 BIRD 发出的 RIPng 包

@@ -32,7 +32,7 @@
 
 这代表它有一个 IPv4 地址 1.2.3.4 和一个 IPv6 地址 2404:f000::233，其表示方法为 CIDR，即地址和前缀长度。
 
-如果要给网口配置一个 IP 地址，命令为 `ip addr add $addr/$prefix_len dev $interface` 其中 $addr $prefix_len $interface 是需要你填入的，比如对于上面这个例子，可能之前执行过 `ip addr add 1.2.3.4/26 dev enp14s0` 。删除只要把 add 换成 del 即可。
+如果要给网口配置一个 IP 地址，命令为 `ip addr add $addr/$prefix_len dev $interface` 其中 $addr $prefix_len $interface 是需要你填入的，比如对于上面这个例子，可能之前执行过 `ip addr add 1.2.3.4/26 dev enp14s0` 和 `ip addr add 2402:f000::223/128 dev enp14s0`。删除只要把 add 换成 del 即可。
 
 需要注意的是，在运行你实现的路由器的时候，请不要在相关的网口上配置 IP 地址，因为 HAL 绕过了 Linux 网络栈，如果你配置了 IP 地址，在 Linux 和路由器的双重作用下可能有意外的效果。
 
@@ -46,11 +46,18 @@
 
 ## `ip route` 子命令
 
-第三个重要的子命令是 `ip route`，其简写为 `ip r` ，它会显示 Linux 系统中的路由表：
+第三个重要的子命令是 `ip route`，其简写为 `ip r` ，它会显示 Linux 系统中的 IPv4 路由表：
 
 ```text
 default via 1.2.3.1 dev enp14s0 proto static
 1.2.3.0/26 dev enp14s0 proto kernel scope link src 1.2.3.4
+```
+
+如果要查看 IPv6 的路由表，运行 `ip -6 r`：
+
+```text
+default via fe80::aaaa:aaff:feaa:aaaa dev enp14s0 proto ra metric 1024 expires 159sec hoplimit 64 pref medium
+fe80::/64 dev enp14s0 proto kernel metric 256 pref medium
 ```
 
 我们也在上文中数次用了类似的语法表示一个路由表。每一项的格式如下：
@@ -58,7 +65,7 @@ default via 1.2.3.1 dev enp14s0 proto static
 ```text
 ip/prefix dev interface scope link 是一条直连路由，表示在这个子网中，所有的 IP 地址都通过 interface 直连可达
 ip/prefix via another_ip dev interface 表示去往目标子网的 IP 分组，下一跳 IP 地址都是 another_ip ，通过 interface 出去
-default via another_ip dev interface 这里 default 代表 0.0.0.0/0 ，其实是上一种格式
+default via another_ip dev interface 这里 default 代表 0.0.0.0/0 或者 ::/0，其实是上一种格式，表示一条前缀长度为 0 的路由
 ```
 
 至于一些额外的类似 `proto static` `proto kernel` `src 1.2.3.4` 的内容可以直接忽略。
