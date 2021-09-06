@@ -9,10 +9,12 @@
 总体而言，实验者至少需要实现 NDP 报文的以下处理，以便与其他网络节点互联互通：
 
 * 组播 Neighbor Solicitation 发送：已知下一跳的 IP 地址，但需要查询其 MAC 地址。
-* 组播 Neighbor Solicitation 接收与处理：其他节点需要查询当前节点的 MAC 地址；或者其他节点正在针对该 IP 地址进行重复地址检测（Duplicate Address Detection，DAD），此时 NDP 报文的源地址为未指定地址。其中，实验者可以不实现对于后一种情况的处理。
+* 组播 Neighbor Solicitation 接收与处理：其他节点需要查询当前节点的 MAC 地址；或者其他节点正在针对该 IP 地址进行重复地址检测（Duplicate Address Detection，DAD），此时 NDP 报文的源地址为未指定地址。其中，实验者可以不实现对于后一种情况的处理，但是需要正确地丢弃这样的报文。
 * 单播 Neighbor Solicitation 接收与处理：其他节点正在针对该 IP 地址进行邻居不可达检测（Neighbor Unreachability Detection，NUD）。顺便指出，本实验中，实验者可以不实现单播 Neighbor Solicitation 的发送，即可以不主动进行 NUD，但是需要响应 NUD。
-* Neighbor Advertisement 发送：上述 Neighbor Solicitation 触发的 Neighbor Advertisement。
-* Neighbor Advertisement 接收与处理：当前节点发出的组播 Neighbor Solicitation 得到了响应。
+* 单播 Neighbor Advertisement 发送：上述源地址不为未指定地址的 Neighbor Solicitation 触发的 Neighbor Advertisement。
+* 单播 Neighbor Advertisement 接收与处理：当前节点发出的组播 Neighbor Solicitation 得到了响应。
+* 组播 Neighbor Advertisement 发送：上述源地址为未指定地址的 Neighbor Solicitation 触发的 Neighbor Advertisement，实验者可以不实现对于这种情况的处理。
+* 组播 Neighbor Advertisement 接收与处理：其他节点为了响应源地址为未指定地址的 Neighbor Solicitation 而发出的 Neighbor Advertisement，由于其为组播，被当前节点接收。实验者需要正确地丢弃这样的报文。
 
 特别地，实验者可以不实现邻居缓存表项的状态维护（Neighbor Cache Entry States）。此外，实验者可以不实现对于任播（anycast）地址，包括子网路由器任播地址（Subnet-Router anycast address）的 Neighbor Solicitation 的接收与处理。
 
@@ -20,7 +22,7 @@
 
 ### NDP 报文接收
 
-与 Loopback 不同，在本节中，实验者需要对收到的以太网帧进行解析，判断其 EtherType。如果该帧是一个 NDP 报文，则实验者需要提取出发送者的 MAC 地址以及 IP 地址，然后更新或插入到邻居缓存中。此处的更新是指，当邻居缓存中存在对应 IP 地址的条目时，更新其 MAC 地址，当不存在时，不进行其他操作；插入是指，当邻居缓存中存在对应 IP 地址的条目时，更新其 MAC 地址，当不存在时，插入该 IP 地址和 MAC 地址的对应关系。当处理完成后，实验者即可将此 NDP 报文丢弃。实现完成后，实验者可以通过仿真来进行测试，然后使用 ILA 在实验板上进行观察。
+与 Loopback 不同，在本节中，实验者需要对收到的以太网帧进行解析，判断其 EtherType。如果该帧是一个合法的 NDP 报文，则实验者需要提取出发送者的 MAC 地址以及 IP 地址，然后更新或插入到邻居缓存中。此处的更新是指，当邻居缓存中存在对应 IP 地址的条目时，更新其 MAC 地址，当不存在时，不进行其他操作；插入是指，当邻居缓存中存在对应 IP 地址的条目时，更新其 MAC 地址，当不存在时，插入该 IP 地址和 MAC 地址的对应关系。当处理完成后，实验者即可将此 NDP 报文丢弃。实现完成后，实验者可以通过仿真来进行测试，然后使用 ILA 在实验板上进行观察。
 
 实验者可以在与实验路由器相连的主机上使用 `sudo ndisc6 <目标地址> <网络接口>` 命令来发送 Neighbor Solicitation，以便调试。除 ILA 外，实验者也可以尝试把信号接到 LED 上进行观察。请注意，如果信号变化的频率过快，会导致 LED 闪烁过快，人眼是难以观察的。
 
@@ -28,9 +30,10 @@
 
     1. 以太网帧的 EtherType 在哪个位置？IPv6 协议对应的 EtherType 是多少？
     2. IPv6 分组头部的 next header 在哪个位置？NDP 协议对应的 next header 是多少？
-    3. 操作系统一般会在什么情况下发送 NDP 报文到路由器？
-    4. 如何向操作系统添加一条指向实验路由器的路由表项？
-    5. 何时 **更新** NDP 缓存表项？何时 **插入** NDP 缓存表项？
+    3. 如何判断一个 NDP 报文是否合法？
+    4. 操作系统一般会在什么情况下发送 NDP 报文到路由器？
+    5. 如何向操作系统添加一条指向实验路由器的路由表项？
+    6. 何时 **更新** NDP 缓存表项？何时 **插入** NDP 缓存表项？
 
 ### Neighbor Advertisement 发送
 
@@ -40,7 +43,7 @@
 
 !!! question "思考"
 
-    1. 在构造 Neighbor Advertisement 时，以太网帧头部、IPv6 分组头部以及 NDP 报文的各个字段（如源 MAC 地址等）应当如何填写？
+    1. 在构造 Neighbor Advertisement 时，以太网帧头部、IPv6 分组头部、NDP 报文的各个字段以及选项（如源 MAC 地址等）应当如何填写？
 
 ## 路由查询和转发
 

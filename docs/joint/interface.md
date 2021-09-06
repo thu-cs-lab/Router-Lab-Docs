@@ -42,4 +42,4 @@
 
 然后，实验者可以开始实现 RIP 路由协议，同时通过设计好的软硬件接口来收发 RIP 报文、更新转发表以及操作 ARP 缓存。此时，建议实验者参考软件路由器实验文档（上面菜单的“网络原理实验”）中的相关内容。
 
-另请参见：[RFC 2453: RIP Version 2](https://tools.ietf.org/html/rfc2453)
+另请参见：[RFC 2080: RIPng for IPv6](https://datatracker.ietf.org/doc/html/rfc2080)
