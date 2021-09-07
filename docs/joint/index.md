@@ -34,7 +34,7 @@ ThinRouter 的样例工程在 [https://git.tsinghua.edu.cn/tanlabs-public/tanlab
 * 熟悉 FPGA 如何处理 IP 分组，解决实际问题
 * 进一步锻炼系统能力
 * 获得不一样的人生体验
-* 可能获得额外的分数
+* 可能获得更有竞争力的成绩
 
 ## 本文档用词
 
