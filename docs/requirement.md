@@ -31,7 +31,7 @@
 
 对于路由器功能和评测的要求，详见 “验收要求” 文档。
 
-真机评测占实验的 80% 分数。个人评测和组队评测各占 *真机评测* 分数的一半。需要在 TanLabs 上标记你的最终评测，每次评测会显示各项评测的原始结果，不提供分数。
+真机评测占实验的 80% 分数。个人评测和组队评测各占 *真机评测* 分数的一半（即各占 40%）。你需要在 TanLabs 上标记你的最终评测，每次评测会显示各项评测的原始结果，但不提供分数。
 
 ## 路由器功能实现的要求
 
@@ -43,9 +43,9 @@
 4. 实现水平分割（split horizon）和毒性反转（reverse poisoning）。
 5. 收到 RIPng Response 时，对路由表进行维护，处理 RIPng 中 `metric=16` 的情况。
 6. 对 ICMPv6 Echo Request 进行 ICMPv6 Echo Reply 的回复，见 [RFC 4443 Echo Reply Message](https://datatracker.ietf.org/doc/html/rfc4443#section-4.2)。
-7. 在接受到 IPv6 packet，按照目的地址在路由表中查找不到路由的时候，回复 ICMPv6 Destination Unreachable (network unreachable)，见 [RFC 4443 Section 3.1 Destination Unreachable Message](https://datatracker.ietf.org/doc/html/rfc4443#section-3.1)。
-8. 在 Hop Limit 减为 0 时，回复 ICMPv6 Time Exceeded (hop limit exceeded in transit)，见 [RFC 4443 Section 3.3 Time Exceeded Message](https://datatracker.ietf.org/doc/html/rfc4443#section-3.3)。
-9. 在发送的 RIPng Response 时大小超过 MTU 时进行拆分。
+7. 在接受到 IPv6 packet，按照目的地址在路由表中查找不到路由的时候，回复 ICMPv6 Destination Unreachable (No route to destination)，见 [RFC 4443 Section 3.1 Destination Unreachable Message](https://datatracker.ietf.org/doc/html/rfc4443#section-3.1)。
+8. 在 Hop Limit 减为 0 时，回复 ICMPv6 Time Exceeded (Hop limit exceeded in transit)，见 [RFC 4443 Section 3.3 Time Exceeded Message](https://datatracker.ietf.org/doc/html/rfc4443#section-3.3)。
+9. 在发送的 RIPng Response 大小超过 MTU 时进行拆分。
 
 可选实现的有（不加分，但对调试有帮助）：
 
