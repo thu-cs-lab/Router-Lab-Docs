@@ -54,7 +54,7 @@
 
     可以拿 HDMI 线把树莓派接到显示器上，然后插上 USB 的键盘和鼠标，登录进去用 `ip` 命令看它的网络情况。网络连接方面，可以用网线连到自己的电脑或者宿舍路由器上，也可以连接到 Wi-Fi 。如果没有显示器，也可以用 USB 转串口，把串口接到树莓派对应的引脚上。
 
-!!! question "我在 macOS 上安装了 Wireshark，但是报错找不到 tshark ？"
+!!! question "我在 macOS 上安装了 Wireshark，但是报错找不到 tshark？"
 
     tshark 可能被安装到了 /Applications/Wireshark.app/Contents/MacOS/tshark 路径下，如果存在这个文件，把目录放到 PATH 环境变量里就可以了。
 

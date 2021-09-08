@@ -52,3 +52,6 @@
 * @Konano
 * @nzh63
 * @linusboyle
+* @Cydiater
+* @Anillc
+* @prnake

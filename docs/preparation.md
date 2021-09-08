@@ -19,7 +19,7 @@
 - Git: [简明指南](https://rogerdudler.github.io/git-guide/index.zh.html) [Git教程](https://www.liaoxuefeng.com/wiki/896043488029600) [缺失的一课](https://missing-semester-cn.github.io/2020/version-control/) [助教编写的 Git 速查文档](https://circuitcoder.github.io/Orange-ECC/ecc/git/) [Git Cheatsheet](https://education.github.com/git-cheat-sheet-education.pdf)
 - Make: 见[附录](/router/doc/howto/make/)
 - SSH: [GitLab SSH 配置（注意用的是 git.tsinghua.edu.cn 而不是 gitlab.com）](https://www.yiibai.com/gitlab/gitlab_ssh_key_setup.html)
-- Shell: [缺失的一课](https://missing-semester-cn.github.io/2020/command-line/) [Command Line Cheetsheet](https://threenine.co.uk/download/1846/)
+- Shell: [缺失的一课](https://missing-semester-cn.github.io/2020/command-line/) [Command Line Cheatsheet](https://threenine.co.uk/download/1846/)
 - Linux: [USTC LUG Linux 101 在线讲义](https://101.lug.ustc.edu.cn/)
 
 其中特别推荐 [计算机教育中缺失的一课](https://missing-semester-cn.github.io/)。

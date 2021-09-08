@@ -13,7 +13,6 @@
 1. Linux: 用于 Linux 系统，基于 libpcap，发行版一般会提供 `libpcap-dev` 或类似名字的包，安装后即可编译。
 2. macOS: 用于 macOS 系统，同样基于 libpcap，安装方法类似于 Linux 。
 3. stdio: 直接用标准输入输出，也是采用 pcap 格式，按照 VLAN 号来区分不同 interface。
-4. Xilinx: 在 Xilinx FPGA 上的一个实现，中间涉及很多与设计相关的代码，并不通用，仅作参考，对于想在 FPGA 上实现路由器的组有一定的参考作用。
 
 编程作业采用的是 stdio 后端，而实现的路由器采用的是 Linux 后端。后端的选择方法如下（在 Router-Lab 目录下执行）：
 
@@ -28,7 +27,7 @@ make # 编译 HAL 库和所有 Example
 
 其它后端类似设置即可。
 
-如果你不想用 CMake ，你可以直接把 `router_hal.h` 放到你的 Header Include Path 中，然后把对应后端的文件（如 `HAL/src/linux/router_hal.cpp`）编译并链接进你的程序，同时在编译选项中写 `-DROUTER_BACKEND_LINUX` （即 ROUTER_BACKEND_ 加上后端的大写形式）。可以参考 `Homework/checksum/Makefile` 中相关部分。
+如果你不想用 CMake ，你可以直接把 `router_hal.h` 放到你的 Header Include Path 中，然后把对应后端的文件（如 `HAL/src/linux/router_hal.cpp`）编译并链接进你的程序，同时在编译选项中写 `-DROUTER_BACKEND_LINUX` （即 ROUTER_BACKEND_ 加上后端的大写形式）。可以参考 `Homework/internet-checksum/Makefile` 中相关部分。
 
 在这个时候，你应该可以通过 HAL 的编译。
 
@@ -47,12 +46,12 @@ HAL 即 Hardware Abstraction Layer 硬件抽象层，顾名思义，是隐藏了
 
 1. `HAL_Init`: 使用 HAL 库的第一步，**必须调用且仅调用一次**，需要提供每个网口上绑定的 IP 地址，第一个参数表示是否打开 HAL 的测试输出，十分建议在调试的时候打开它
 2. `HAL_GetTicks`：获取从启动到当前时刻的毫秒数
-3. `HAL_ArpGetMacAddress`：从 ARP 表中查询 IPv4 地址对应的 MAC 地址，在找不到的时候会发出 ARP 请求
+3. `HAL_GetNeighborMacAddress`：从 NDP 表中查询 IPv6 地址对应的 MAC 地址，在找不到的时候会发出 NDP 请求
 4. `HAL_GetInterfaceMacAddress`：获取指定网口上绑定的 MAC 地址
 5. `HAL_ReceiveIPPacket`：从指定的若干个网口中读取一个 IPv4 报文，并得到源 MAC 地址和目的 MAC 地址等信息；它还会在内部处理 ARP 表的更新和响应，需要定期调用
 6. `HAL_SendIPPacket`：向指定的网口发送一个 IPv4 报文
 
-这些函数的定义和功能都在 `router_hal.h` 详细地解释了，请阅读函数前的文档。为了易于调试，HAL 没有实现 ARP 表的老化，你可以自己在代码中实现，并不困难。
+这些函数的定义和功能都在 `router_hal.h` 详细地解释了，请阅读函数前的文档。为了易于调试，HAL 没有实现 NDP 表的老化，你可以自己在代码中实现，并不困难。
 
 你可以利用 HAL 本身的调试输出，只需要在运行 `HAL_Init` 的时候设置 `debug` 标志 ，你就可以在 stderr 上看到一些有用的输出。
 
@@ -64,7 +63,7 @@ HAL 即 Hardware Abstraction Layer 硬件抽象层，顾名思义，是隐藏了
     2. Broadcaster：一个粗糙的“路由器”，把在每个网口上收到的 IP 包又转发到所有网口上
     3. Capture：仅把抓到的 IP 包原样输出
 
-    如果你使用 CMake，可以从上面编译 HAL 库的部分找到编译这三个例子的方法。如果不想使用 CMake，可以基于 `Homework/checksum/Makefile` 修改出适合例子的 Makefile 。它们可能都需要 root 权限运行，并在运行的时候你可以打开 Wireshark 等抓包工具研究它的具体行为。
+    如果你使用 CMake，可以从上面编译 HAL 库的部分找到编译这三个例子的方法。如果不想使用 CMake，可以基于 `Homework/internet-checksum/Makefile` 修改出适合例子的 Makefile 。它们可能都需要 root 权限运行，并在运行的时候你可以打开 Wireshark 等抓包工具研究它的具体行为。
 
     这些例子可以用于检验环境配置是否正确，如 Linux 下网卡名字的配置、是否编译成功等等。比如在上面的 Shell 程序中输入 `mac 0` `mac 1` `mac 2` 和 `mac 3`，它会输出对应网口的 MAC 地址，如果输出的数据和你用 `ip l`（macOS 可以用 `ifconfig`） 看到的内容一致，那基本说明你配置没有问题了。
 
