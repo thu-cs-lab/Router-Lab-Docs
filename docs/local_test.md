@@ -7,36 +7,36 @@
 有这些目录：
 
 ```text
-checksum：计算校验和
-forwarding：转发逻辑
+eui64：生成 IPv6 Link Local 地址
+internet-checksum：计算校验和
 lookup：路由表查询和更新
-protocol：RIP 协议解析和封装
+protocol：RIPng 协议解析和封装
 ```
 
-每个题目都有类似的结构（以 `checksum` 为例）：
+每个题目都有类似的结构（以 `internet-checksum` 为例）：
 
 ```text
 data：数据所在的目录
 checksum.cpp：你需要修改的地方
 grade.py：一个简单的评分脚本，它会编译并运行你的代码，进行评测
 main.cpp：用于评测的交互库，你不需要修改它
-Makefile：用于编译并链接 HAL 、交互库和你实现的代码
+Makefile：用于编译并链接 HAL、交互库和你实现的代码
 README.md：题目的要求
 ```
 
-使用方法（在 Homework/checksum 目录下执行）：
+使用方法（在 Homework/internet-checksum 目录下执行）：
 
 ```bash
-pip install pyshark # 仅第一次，一些平台下要用 pip3 install pyshark
+pip3 install pyshark # 仅第一次
 # 修改 checksum.cpp
 make # 编译，得到可以执行的 checksum
 ./checksum < data/checksum_input1.pcap # 你可以手动运行来看效果
 make grade # 也可以运行评分脚本，实际上就是运行python3 grade.py
 ```
 
-上述命令会对每组数据运行你的程序，然后比对输出。如果输出与预期不一致，它会把出错的那一个数据以 Wireshark 的类似格式打印出来，并且用 diff 工具把你的输出和答案输出的不同显示出来。
+上述命令会对每组数据运行你的程序，然后比对输出。如果输出与预期不一致，它会用 diff 工具把你的输出和答案输出的不同显示出来。
 
-这里很多输入数据的格式是 PCAP ，它是一种常见的保存网络流量的格式，它可以用 Wireshark 软件打开来查看它的内容，也可以自己按照这个格式造新的数据。需要注意的是，为了区分一个以太网帧到底来自哪个虚拟的网口，我们所有的 PCAP 输入都有一个额外的 VLAN 头，VLAN 0-3 分别对应虚拟的 0-3 ，虽然实际情况下不应该用 VLAN 0，但简单起见就直接映射了。
+这里很多输入数据的格式是 PCAP，它是一种常见的保存网络流量的格式，它可以用 Wireshark 软件打开来查看它的内容，也可以自己按照这个格式造新的数据。需要注意的是，为了区分一个以太网帧到底来自哪个虚拟的网口，我们所有的 PCAP 输入都有一个额外的 VLAN 头，VLAN 0-3 分别对应虚拟的 0-3 号网口，虽然实际情况下不应该用 VLAN 0，但简单起见就直接映射了。
 
 !!! attention "GitLab CI 评测"
 
@@ -44,7 +44,7 @@ make grade # 也可以运行评分脚本，实际上就是运行python3 grade.py
 
 ## 路由器测试
 
-为了方便路由器的调试，我们给大家提供树莓派，用来自己搭建网络拓扑，在上面运行自己的程序并且调试。自己测试的时候，大概有两种办法：
+为了方便路由器的调试，我们给大家提供树莓派，用来自己搭建网络拓扑，在上面运行自己的程序并且调试。自己测试的时候，有两种办法：
 
 1. netns 或虚拟机：可以在一个设备里模拟完整的网络拓扑，好处是只需要一个设备，坏处是配置起来比较麻烦，而且有一些细节上和实际设备不一样，特别是 ethtool 相关的一些设置。
 2. 多设备联调：可以找你的队友或者舍友一起合作搭建一个由树莓派和笔记本连起来的调试网络。
@@ -107,4 +107,4 @@ ip netns exec R1 sh -c "echo 1 > /proc/sys/net/ipv4/conf/all/forwarding"
 
 树莓派的 USB 网卡按照插拔的顺序，会在 `eth1-4` 开始分配，在实验的拓扑里，我们建议大家改成 `本机设备对端设备` 的名字格式，可以通过 `ip link set $old_name name $new_name` 修改名字，这样方便记忆和配置。每次插拔可能都需要重新修改，可以通过常见的工具来判断是否连接到了正确的设备上。
 
-在 `Setup/rpi` 目录下存放了可供参考的在树莓派的 R1 和 R3 上配置的脚本，还有恢复它的改动的脚本，注意它采用了树莓派中管理网络的 dhcpcd 进行地址的配置，所以可能不适用于树莓派以外的环境。 如果运行过配置脚本，如果要恢复环境，运行恢复脚本 `Setup/restore.sh` 即可，也可以手动删除 `/etc/dhcpcd.conf` 最后的几行内容然后用 `sudo systemctl restart dhcpcd` 来重启 dhcpcd 。简单起见，它采用了 netns 来模拟 PC1 和 PC2，这样只需要两个树莓派就可以进行调试。
+在 `Setup/rpi` 目录下存放了可供参考的在树莓派的 R1 和 R3 上配置的脚本，还有恢复它的改动的脚本，注意它采用了树莓派中管理网络的 dhcpcd 进行地址的配置，所以可能不适用于树莓派以外的环境。 如果运行过配置脚本，如果要恢复环境，运行恢复脚本 `Setup/restore.sh` 即可，也可以手动删除 `/etc/dhcpcd.conf` 最后的几行内容然后用 `sudo systemctl restart dhcpcd` 来重启 dhcpcd。简单起见，它采用了 netns 来模拟 PC1 和 PC2，这样只需要两个树莓派就可以进行调试。

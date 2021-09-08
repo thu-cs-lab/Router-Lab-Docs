@@ -43,18 +43,18 @@
 4. 实现水平分割（split horizon）和毒性反转（reverse poisoning）。
 5. 收到 RIPng Response 时，对路由表进行维护，处理 RIPng 中 `metric=16` 的情况。
 6. 对 ICMPv6 Echo Request 进行 ICMPv6 Echo Reply 的回复，见 [RFC 4443 Echo Reply Message](https://datatracker.ietf.org/doc/html/rfc4443#section-4.2)。
-7. 在查不到路由表的时候，回复 ICMPv6 Destination Unreachable (network unreachable)，见 [RFC 4443 Section 3.1 Destination Unreachable Message](https://datatracker.ietf.org/doc/html/rfc4443#section-3.1)。
-8. 在 TTL 减为 0 时，回复 ICMPv6 Time Exceeded (hop limit exceeded in transit)，见 [RFC 4443 Section 3.3 Time Exceeded Message](https://datatracker.ietf.org/doc/html/rfc4443#section-3.3)。
+7. 在接受到 IPv6 packet，按照目的地址在路由表中查找不到路由的时候，回复 ICMPv6 Destination Unreachable (network unreachable)，见 [RFC 4443 Section 3.1 Destination Unreachable Message](https://datatracker.ietf.org/doc/html/rfc4443#section-3.1)。
+8. 在 Hop Limit 减为 0 时，回复 ICMPv6 Time Exceeded (hop limit exceeded in transit)，见 [RFC 4443 Section 3.3 Time Exceeded Message](https://datatracker.ietf.org/doc/html/rfc4443#section-3.3)。
 9. 在发送的 RIPng Response 时大小超过 MTU 时进行拆分。
 
 可选实现的有（不加分，但对调试有帮助）：
 
 1. 定期或者在更新的时候向 stdout/stderr 打印最新的 RIP 路由表。
-2. 在路由表出现更新的时候立即发送 RIPng Response（完整或者增量），目标地址为 RIPng 的组播地址，可以加快路由表的收敛速度。
+2. 在路由表出现更新的时候立即发送 RIPng Response（完整或者增量），可以加快路由表的收敛速度。
 3. 路由的失效（Invalid）和删除（Flush）计时器。
-4. 程序启动时向所有 interface 发送 RIPng Request，目标地址为 RIP 的组播地址。
+4. 程序启动时向所有 interface 发送 RIPng Request。
 
 不需要实现的有：
 
-1. NDP 的处理。
+1. NDP 的处理，已经在 HAL 中实现。
 2. interface 状态的跟踪（UP/DOWN 切换）。
