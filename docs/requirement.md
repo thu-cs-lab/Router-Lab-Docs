@@ -51,7 +51,7 @@
 
 1. 定期或者在更新的时候向 stdout/stderr 打印最新的 RIP 路由表。
 2. 在路由表出现更新的时候立即发送 RIPng Response（完整或者增量），可以加快路由表的收敛速度。
-3. 路由的失效（Timeout）和删除（Garbage Collection）计时器。
+3. 路由的超时（Timeout）和垃圾回收（Garbage Collection）定时器。
 4. 程序启动时向所有 interface 发送 RIPng Request。
 
 不需要实现的有：
