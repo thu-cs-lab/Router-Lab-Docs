@@ -38,7 +38,7 @@ make # 编译 HAL 库和所有 Example
 HAL 即 Hardware Abstraction Layer 硬件抽象层，顾名思义，是隐藏了一些底层细节，简化同学的代码设计。它有以下几点的设计：
 
 1. 所有函数都设计为仅在单线程运行，不支持并行
-2. 从 IP 层开始暴露给用户，由框架处理 ARP 和收发以太网帧的具体细节
+2. 从 IP 层开始暴露给用户，由框架处理 NDP 和收发以太网帧的具体细节
 3. 采用轮询的方式进行 IP 报文的收取
 4. 尽量用简单的方法实现，而非追求极致性能
 
@@ -48,7 +48,7 @@ HAL 即 Hardware Abstraction Layer 硬件抽象层，顾名思义，是隐藏了
 2. `HAL_GetTicks`：获取从启动到当前时刻的毫秒数
 3. `HAL_GetNeighborMacAddress`：从 NDP 表中查询 IPv6 地址对应的 MAC 地址，在找不到的时候会发出 NDP 请求
 4. `HAL_GetInterfaceMacAddress`：获取指定网口上绑定的 MAC 地址
-5. `HAL_ReceiveIPPacket`：从指定的若干个网口中读取一个 IPv4 报文，并得到源 MAC 地址和目的 MAC 地址等信息；它还会在内部处理 ARP 表的更新和响应，需要定期调用
+5. `HAL_ReceiveIPPacket`：从指定的若干个网口中读取一个 IPv4 报文，并得到源 MAC 地址和目的 MAC 地址等信息；它还会在内部处理 NDP 表的更新和响应，需要定期调用
 6. `HAL_SendIPPacket`：向指定的网口发送一个 IPv4 报文
 
 这些函数的定义和功能都在 `router_hal.h` 详细地解释了，请阅读函数前的文档。为了易于调试，HAL 没有实现 NDP 表的老化，你可以自己在代码中实现，并不困难。
@@ -59,7 +59,7 @@ HAL 即 Hardware Abstraction Layer 硬件抽象层，顾名思义，是隐藏了
 
     仅通过这些函数，就可以实现一个软路由。我们在 `Example` 目录下提供了一些例子，它们会告诉你 HAL 库的一些基本使用范式：
 
-    1. Shell：提供一个可交互的 shell ，可能需要用 root 权限运行，展示了 HAL 库几个函数的使用方法，可以输出当前的时间，查询 ARP 表，查询端口的 MAC 地址，进行一次抓包并输出它的内容，向网口写随机数据等等；它需要 `libncurses-dev` 和 `libreadline-dev` 两个额外的包来编译
+    1. Shell：提供一个可交互的 shell ，可能需要用 root 权限运行，展示了 HAL 库几个函数的使用方法，可以输出当前的时间，查询 NDP 表，查询端口的 MAC 地址，进行一次抓包并输出它的内容，向网口写随机数据等等；它需要 `libncurses-dev` 和 `libreadline-dev` 两个额外的包来编译
     2. Broadcaster：一个粗糙的“路由器”，把在每个网口上收到的 IP 包又转发到所有网口上
     3. Capture：仅把抓到的 IP 包原样输出
 
