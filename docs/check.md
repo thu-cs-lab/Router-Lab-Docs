@@ -165,7 +165,7 @@ fd00::9:0/112 via fd00::4:1 dev r3r2
 
 1. 在 PC1 上运行 BIRD，使用的配置是 `Setup/part9to11/bird1.conf`：`sudo ip netns exec PC1 bird -c bird1.conf -s bird1.ctl -d`
 2. 接着，在 PC1 上把 lo 网络接口配置起来：`sudo ip netns exec PC1 ip l set lo up`
-3. 配置第 9 步指定的 IP 地址：`sudo ip netns exec PC1 ip a add 192.168.20.1/32 dev pc1r1`，其他依此类推
+3. 配置第 9 步指定的 IP 地址：`sudo ip netns exec PC1 ip a add fd00::14:1/128 dev pc1r1`，其他依此类推
 4. 启用 part9 的配置：`sudo birdc -s bird1.ctl enable part9`
 5. 此时应该可以看到 part9 的配置已经启用，可以在 PC2 上进行 ping 的测试了
 6. 按照同样的方法，完成第 10 步和第 11 步的测试
@@ -174,11 +174,11 @@ PC1 和 PC2 的路由：
 
 ```text
 PC1:
-default via 192.168.1.1 dev pc1r1
-192.168.1.0/24 dev pc1r1 scope link
+default via fd00::1:1 dev pc1r1
+fd00::1:0/112 dev pc1r1 scope link
 PC2:
-default via 192.168.5.2 dev pc2r3
-192.168.5.0/24 dev pc2r3 scope link
+default via fd00::5:2 dev pc2r3
+fd00::5:0/112 dev pc2r3 scope link
 ```
 
 初始情况下 R1 R2 R3 都只有对应的直连路由，只有在正确地运行 RIP 协议后，才能从 PC1 ping 通 PC2 。
