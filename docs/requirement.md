@@ -58,3 +58,20 @@
 
 1. NDP 的处理，已经在 HAL 中实现。
 2. interface 状态的跟踪（UP/DOWN 切换）。
+
+## 路由器的工作流程
+
+`Homework/router/main.cpp` 已经实现了路由器的框架，其中有一部分需要同学来填写。它的主要流程如下：
+
+	1. 初始化路由表，加入直连路由
+	2. 进入路由器主循环
+	3. 如果距离上一次发送已经超过了 5 秒，就发送完整的路由表到所有的接口
+	4. 接受 IPv6 分组，如果没有收到就跳到第 2 步
+	5. 检查 IPv6 分组的完整性和正确性
+	6. 判断 IPv6 分组需要转发还是进入 RIPng/ICMPv6 协议处理
+	7. 如果是 RIPng 分组，如果是 Request，就构造对应的 Response；如果是 Response，按照条目更新路由表
+	8. 如果是 ICMPv6 分组，如果是 Echo Request，就回复 Echo Reply
+	9. 如果这个分组要转发，判断 Hop Limit，如果小于或等于 1，就回复 ICMP Time Exceeded
+	10. 如果 Hop Limit 正常，查询路由表，如果找到了，就转发给下一跳
+	11. 如果不在路由表中，就回复 ICMP Destination Unreachable
+	12. 跳到第 2 步进入下一次循环处理
