@@ -48,8 +48,8 @@ HAL 即 Hardware Abstraction Layer 硬件抽象层，顾名思义，是隐藏了
 2. `HAL_GetTicks`：获取从启动到当前时刻的毫秒数
 3. `HAL_GetNeighborMacAddress`：从 NDP 表中查询 IPv6 地址对应的 MAC 地址，在找不到的时候会发出 NDP 请求
 4. `HAL_GetInterfaceMacAddress`：获取指定网口上绑定的 MAC 地址
-5. `HAL_ReceiveIPPacket`：从指定的若干个网口中读取一个 IPv4 报文，并得到源 MAC 地址和目的 MAC 地址等信息；它还会在内部处理 NDP 表的更新和响应，需要定期调用
-6. `HAL_SendIPPacket`：向指定的网口发送一个 IPv4 报文
+5. `HAL_ReceiveIPPacket`：从指定的若干个网口中读取一个 IPv6 报文，并得到源 MAC 地址和目的 MAC 地址等信息；它还会在内部处理 NDP 表的更新和响应，需要定期调用
+6. `HAL_SendIPPacket`：向指定的网口发送一个 IPv6 报文
 
 这些函数的定义和功能都在 `router_hal.h` 详细地解释了，请阅读函数前的文档。为了易于调试，HAL 没有实现 NDP 表的老化，你可以自己在代码中实现，并不困难。
 
