@@ -1,6 +1,6 @@
 # 开始实验
 
-在 TanLabs 上接受作业后，第一步是克隆本仓库（不要忘记先在 GitLab 上添加你的 SSH Key）：
+在 TANLabs 上接受作业后，第一步是克隆本仓库（不要忘记先在 GitLab 上添加你的 SSH Key）：
 
 ```shell
 > git clone git@git.tsinghua.edu.cn:network-2022fall/router-lab-xxx.git Router-Lab # 将 xxx 替换为你的用户名

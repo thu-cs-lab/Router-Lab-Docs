@@ -8,7 +8,7 @@
 2. Debian 10 及更新
 3. Raspberry Pi OS 10 及更新
 
-如果你用的是 Windows 系统，你可以 WSL 2/虚拟机/领取的树莓派上进行以下所有相关的操作。请注意，MinGW 也是不支持的。
+如果你用的是 Windows 系统，你可以 WSL 2/虚拟机/领取的树莓派上进行以下所有相关的操作。请注意，MinGW 和 Cygwin 也是不支持的。
 
 另外，编程作业部分因为不涉及到 Linux 的 API，故支持的系统更多，包括 macOS。
 
