@@ -7,6 +7,14 @@
 > cd Router-Lab
 ```
 
+修改代码后，使用 git 提交：
+
+```shell
+> git add .
+> git commit -m "Describe what you have done here"
+> git push origin master
+```
+
 如果原始框架代码有更新（届时会通过多种渠道通知），你可以如下合并这些更新：
 
 ```shell
