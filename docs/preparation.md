@@ -14,7 +14,7 @@
 
 ## 知识储备
 
-完成该实验需要一定的 **Git、Make、SSH、Shell、Python3 和 Linux** 的使用知识。如果你是大三或之后选的课程，那么你应该已经在《软件工程》《编译原理》《程序设计训练》等课程中学到了相应的支持。如果你是大一大二选的课程，可以参考以下的教程进行预习：
+完成该实验需要一定的 **Git、Make、SSH、Shell、Python3 和 Linux** 的使用知识。如果你是大三或之后选的课程，那么你应该已经在《程序设计基础》《程序设计训练》《软件工程》《编译原理》等课程中学到了相应的知识。如果你是大一大二选的本课程，可以参考以下的教程进行预习：
 
 - Git: [简明指南](https://rogerdudler.github.io/git-guide/index.zh.html) [Git教程](https://www.liaoxuefeng.com/wiki/896043488029600) [缺失的一课](https://missing-semester-cn.github.io/2020/version-control/) [助教编写的 Git 速查文档](https://circuitcoder.github.io/Orange-ECC/ecc/git/) [Git Cheatsheet](https://education.github.com/git-cheat-sheet-education.pdf)
 - Make: 见[附录](/router/doc/howto/make/)
