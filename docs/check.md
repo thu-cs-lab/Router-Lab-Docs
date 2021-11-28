@@ -57,7 +57,7 @@ fd00::8:0/112 via fd00::3:2 dev r1r2
 fd00::9:0/112 via fd00::3:2 dev r1r2
 R3:
 fd00::1:0/112 via fd00::4:1 dev r3r2
-fd00::1:0/112 via fd00::4:1 dev r3r2
+fd00::3:0/112 via fd00::4:1 dev r3r2
 fd00::4:0/112 dev r3r2 scope link
 fd00::5:0/112 dev r3pc2 scope link
 fd00::8:0/112 via fd00::4:1 dev r3r2
