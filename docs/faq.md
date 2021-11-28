@@ -118,3 +118,7 @@
 !!! question "我的程序在真机评测中，stdout 显示是空的，即使我程序一开始就输出了内容？"
 
     这一般是因为程序在评测过程中异常退出，写入到 stdout 的数据因为在缓存中，所以没有写入到文件中，评测系统取到的文件就是空白的。
+
+!!! question "运行 BIRD 的时候，显示 Cannot create control socket bird-r1.ctl: Operation not supported"
+
+    如果是在 WSL 里面运行 BIRD，由于 WSL 共享目录的文件系统不支持 unix socket，所以 BIRD 创建 control socket 会失败。解决方法有两种：1) 把整个 Router-Lab 目录挪到 HOME 下面 2) 参数 `-s bird-r1.ctl` 改为 `-s ~/bird-r1.ctl`
