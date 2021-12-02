@@ -161,12 +161,12 @@ fd00::9:0/112 via fd00::4:1 dev r3r2
 
 在过程中，如果路由器程序崩溃退出，后续的测试项目都会失败。在实验平台上，可以看到功能和性能的原始评测结果，不公布最终成绩。
 
-对于第 9 步到第 11 步，在实验框架最新版的 `Setup/part9to11` 目录下有对应的配置文件。为了进行第 9 步到第 11 步的评测，需要：
+对于第 9 步到第 11 步，在实验框架最新版的 `Setup/part9to11` 目录下有对应的配置文件。为了进行第 9 步到第 11 步的评测（以 BIRD v1.6 为例子），需要：
 
-1. 在 PC1 上运行 BIRD，使用的配置是 `Setup/part9to11/bird1.conf`：`sudo ip netns exec PC1 bird -c bird1.conf -s bird1.ctl -d`
+1. 在 PC1 上运行 BIRD，使用的配置是 `Setup/part9to11/bird-pc1.conf`：`sudo ip netns exec PC1 bird6 -c bird-pc1.conf -s bird-pc1.ctl -d`
 2. 接着，在 PC1 上把 lo 网络接口配置起来：`sudo ip netns exec PC1 ip l set lo up`
 3. 配置第 9 步指定的 IP 地址：`sudo ip netns exec PC1 ip a add fd00::14:1/128 dev pc1r1`，其他依此类推
-4. 启用 part9 的配置：`sudo birdc -s bird1.ctl enable part9`
+4. 启用 part9 的配置：`sudo birdc -s bird-pc1.ctl enable part9`
 5. 此时应该可以看到 part9 的配置已经启用，可以在 PC2 上进行 ping 的测试了
 6. 按照同样的方法，完成第 10 步和第 11 步的测试
 
