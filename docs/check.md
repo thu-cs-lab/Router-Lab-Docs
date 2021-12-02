@@ -201,6 +201,6 @@ fd00::5:0/112 dev pc2r3 scope link
 
 ??? tip "支持较大路由表的方法"
 
-    1. 发送 RIP Response 时按照 25 条为一组进行切分
+    1. 发送 RIPng Response 时按照 RFC 2080 要求进行切分
     2. 完善路由表更新算法
     3. 完善路由表查询算法
