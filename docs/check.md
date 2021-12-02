@@ -102,12 +102,10 @@ fd00::9:0/112 via fd00::4:1 dev r3r2
 
 ??? example "可供参考的例子"
 
-    我们提供了 [`host0.pcap`](static/host0.pcap) 和 [`host1.pcap`](static/host1.pcap) （可点击文件名下载）这两个文件，分别是在 R1 和 R3 抓包的结果，模拟了实验的过程：
+    我们提供了 [`r1.pcap`](static/r1.pcap) 和 [`r3.pcap`](static/r3.pcap) （可点击文件名下载）这两个文件，分别是在 R1 和 R3 抓包的结果，模拟了实验的过程：
 
     1. 开启 R1 R3 上的 BIRD 和 R2 上运行的路由器实现
     2. 使用 ping 进行了若干次连通性测试
-
-    注意，这个例子中，路由器只实现了 split horizon，没有实现 reverse poisoning，你的实现不需要和它完全一样。Split horizon 的实现方法见 [RFC2452 3.4.3 Split horizon 第一段](https://tools.ietf.org/html/rfc2453#page-15)。
 
     举个例子，从 PC1 到 PC2 进行 ping 连通性测试的网络活动（忽略 RIP）：
 
