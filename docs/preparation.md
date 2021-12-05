@@ -32,7 +32,7 @@
 
 ```bash
 > sudo apt update
-> sudo apt install git make cmake python3 python3-pip libpcap-dev libreadline-dev libncurses-dev wireshark tshark iproute2 g++
+> sudo apt install git make cmake python3 python3-pip libpcap-dev libreadline-dev libncurses-dev wireshark tshark iproute2 g++ bird
 > pip3 install pyshark
 ```
 
