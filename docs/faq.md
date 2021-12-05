@@ -122,3 +122,7 @@
 !!! question "运行 BIRD 的时候，显示 Cannot create control socket bird-r1.ctl: Operation not supported"
 
     如果是在 WSL 里面运行 BIRD，由于 WSL 共享目录的文件系统不支持 unix socket，所以 BIRD 创建 control socket 会失败。解决方法有两种：1) 把整个 Router-Lab 目录挪到 HOME 下面 2) 参数 `-s bird-r1.ctl` 改为 `-s ~/bird-r1.ctl`
+
+!!! question "在 CI 上提交的时候，报错 BAD signature"
+
+    这是因为实验仓库对 `.gitlab-ci.yml` 做了签名检查，如果误修改了这个文件或者经过了换行符的变化（比如在 Windows Git clone 的仓库又在 WSL 里打开），请克隆模板仓库，然后用模板仓库中的文件覆盖自己仓库里的文件。
