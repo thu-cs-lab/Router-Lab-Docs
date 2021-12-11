@@ -1,0 +1,57 @@
+## 编程实现
+
+实验的第一阶段是编程作业。在仓库的 `Homework` 目录下有四个编程作业，每个作业中有评分脚本，通过数据测试你的路由器中核心功能的实现。你需要在被标记 TODO 的函数中补全它的功能，通过测试后，就可以更容易地完成后续的路由器实现。
+
+四个编程作业需要实现的功能：
+
+```text
+eui64：生成 IPv6 Link Local 地址
+internet-checksum：计算校验和
+lookup：路由表查询和更新
+protocol：RIPng 协议解析和封装
+```
+
+每个题目都有类似的结构（以 `internet-checksum` 为例）：
+
+```text
+data：数据所在的目录
+checksum.h：头文件，记录了函数的输入输出和功能
+checksum.cpp：你需要修改的地方
+grade.py：一个简单的评分脚本，它会编译并运行你的代码，进行评测
+main.cpp：用于评测的交互库，你不需要修改它
+Makefile：用于编译并链接 HAL、交互库和你实现的代码
+README.md：题目的要求
+```
+
+首先阅读 README.md 和头文件，理解要如何实现功能。接着，在本地运行下面的命令进行测试（在 Homework/internet-checksum 目录下执行）：
+
+```bash
+pip3 install pyshark # 仅第一次
+# 修改 checksum.cpp
+make # 编译，得到可以执行的 checksum
+./checksum < data/checksum_input1.pcap # 你可以手动运行来看效果
+make grade # 也可以运行评分脚本，实际上就是运行 python3 grade.py
+```
+
+上述命令会对每组数据运行你的程序，然后比对输出。如果输出与预期不一致，它会用 diff 工具把你的输出和答案输出的不同显示出来。
+
+其中部分作业的输入数据的格式是 PCAP，它是一种常见的保存网络流量的格式，它可以用 Wireshark 软件打开来查看它的内容，也可以自己按照这个格式造新的数据。需要注意的是，为了区分一个以太网帧到底来自哪个虚拟的网口，我们所有的 PCAP 输入都有一个额外的 VLAN 头，VLAN 0-3 分别对应虚拟的 0-3 号网口，虽然实际情况下不应该用 VLAN 0，但简单起见就直接映射了。
+
+## 评测流程
+
+同学在 TANLabs 上创建好自己的作业仓库后，就可以往自己的仓库提交自己的代码更新。对于每次 `git push`，GitLab CI 都会进行评测，然后把评测结果推送到 TANLabs 上，然后你就可以在 TANLabs 上看到最新的评测信息。GitLab CI 会进行和本地一样的测试（有兴趣可以查看项目根目录中的 `.gitlab-ci.yml`），数据也完全一致。你提交的代码会用于判断你掌握的程度和代码查重。一般来说，你只需要修改每个编程作业题的源文件，其他文件不需要编辑。如果你有编辑的需求，为了防止影响评测的结果，请找助教确认。需要注意的是，`master` 分支是受保护的，你不能进行 Force Push，并且最终成绩的评测也必须是 `master` 分支上的。
+
+!!! attention "DDL"
+
+    截止时间是针对 GitLab 上 CI 评测时间来说的，其中评测的时间很短，评测的时间约等于你 Push 提交代码的时间。所以请勿在 DDL 前修改代码而不 Push，只有在 DDL 之前 Push 到 GitLab 的代码的才有效。如果出现了因为 GitLab 自身问题导致超过 DDL 的，请联系助教。
+
+!!! attention "GitLab CI 评测"
+
+    当你用 Git 把代码提交到 GitLab 上的时候，GitLab 会按照仓库内的 `.gitlab-ci.yml` 设置的脚本进行编译和评测，它会调用上面提到的本地评测脚本。如果出现了本地评测成功，在线评测失败的情况，请先阅读 FAQ 排查常见问题，排查无果请联系助教。但请不要擅自修改 `.gitlab-ci.yml`，严禁 **攻击** 评测系统。
+
+对于同学提交的作业，利用 GitLab CI，在仓库中设置了 `.gitlab-ci.yml` 文件，评测的流程：
+
+1. 同学修改代码，通过 GitLab CI 编译和评测
+2. 评测结果保留在 GitLab 的 Artifacts 中
+3. 评测完成时，通过 WebHook 通知 TANLabs，TANLabs 从 GitLab 取回评测结果
+4. 同学在 TANLabs 上浏览评测信息，选择作为最终成绩的评测结果

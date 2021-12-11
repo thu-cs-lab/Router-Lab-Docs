@@ -22,13 +22,14 @@ extra:
 
 nav:
   - 《计算机网络原理》软件实验:
-    - 总述: index.md
-    - 准备工作: preparation.md
+    - 实验总述: index.md
     - 课程要求: requirement.md
+    - 准备工作: preparation.md
     - 开始实验: begin.md
-    - 本地测试: local_test.md
-    - 在线测试: online_judge.md
-    - 抄袭与查重: plagiarism.md
+    - 第一阶段: first_stage.md
+    - 第二阶段: second_stage.md
+    - 第三阶段: third_stage.md
+    - 抄袭查重: plagiarism.md
     - 验收流程: check.md
     - 框架使用: framework.md
     - FAQ: faq.md
@@ -45,7 +46,6 @@ nav:
     - make 命令: howto/make.md
     - 树莓派使用: howto/raspberry_pi.md
     - 调试方法: howto/debug.md
-    - RIP 调试: howto/rip.md
     - 名词解释: glossary.md
 
 extra_javascript:
