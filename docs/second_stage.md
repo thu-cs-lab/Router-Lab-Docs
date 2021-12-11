@@ -247,11 +247,11 @@ ip netns exec net1 ip addr add 10.1.1.2/24 dev veth-net1
 
 在 `Setup/rpi` 目录下存放了可供参考的在树莓派的 R1 和 R3 上配置的脚本，还有恢复它的改动的脚本，注意它采用了树莓派中管理网络的 dhcpcd 进行地址的配置，所以可能不适用于树莓派以外的环境。 如果运行过配置脚本，如果要恢复环境，运行恢复脚本 `Setup/restore.sh` 即可，也可以手动删除 `/etc/dhcpcd.conf` 最后的几行内容然后用 `sudo systemctl restart dhcpcd` 来重启 dhcpcd。简单起见，它采用了 netns 来模拟 PC1 和 PC2，这样只需要两个树莓派就可以进行调试。
 
-## 软件配置
+### 软件配置
 
 我们实现的路由器实际上包括两部分功能：IPv6 分组转发和路由协议。在第二阶段中，自己写的路由器运行在 R2 上，而 R1 R3 都需要运行标准的路由器。那么，在 Linux 环境中，为了实现路由器的功能，需要下面两个部分：分组转发和路由协议。
 
-### 分组转发
+#### 分组转发
 
 为了打开 Linux 的转发功能（例如 R1 和 R3），需要用 root 身份运行下面的命令（重启后失效）：
 
@@ -267,13 +267,13 @@ echo 1 > /proc/sys/net/ipv4/conf/all/forwarding
 ip netns exec R1 sh -c "echo 1 > /proc/sys/net/ipv4/conf/all/forwarding"
 ```
 
-### 路由协议
+#### 路由协议
 
 为了实现路由协议，需要运行 BIRD。我们提供一个 BIRD（BIRD Internet Routing Daemon，安装方法 `apt install bird`）的参考配置，以 Debian 为例，如下修改文件 `/etc/bird.conf` 即可。
 
 需要注意的是，BIRD v1.6 中，为了 IPv6 版本的 BIRD 叫做 `bird6`，而 IPv4 版本的 BIRD 叫做 `bird`；在 BIRD v2.0 中，两个版本合并了，因此都是 `bird`。
 
-#### BIRD v2.0 配置
+##### BIRD v2.0 配置
 
 [BIRD v2.0 官方配置文档](https://bird.network.cz/?get_doc&f=bird.html&v=20)
 
@@ -324,7 +324,7 @@ protocol rip ng {
 }
 ```
 
-#### BIRD v1.6 配置
+##### BIRD v1.6 配置
 
 [BIRD v1.6 官方配置文档](https://bird.network.cz/?get_doc&f=bird.html&v=16)
 
@@ -370,7 +370,7 @@ protocol rip {
 
 </details>
 
-#### 配置使用
+##### 配置使用
 
 这里的网口名字对应你连接到路由器的网口，也要配置一个固定的 IP 地址，需要和路由器对应网口的 IP 在同一个网段内。配置固定 IP 地址的命令格式为 `ip a add IP地址/前缀长度 dev 网口名称`，你可以用 `ip a` 命令看到所有网口的信息。
 
@@ -384,7 +384,7 @@ protocol rip {
 
 对于一条静态路由（如 `route a:b:c:d::/64 via "abcd"`），它只有在 `abcd` 处于 UP 状态时才会生效，如果你只是想让 BIRD 向外宣告这一条路由，可以用 `lo`（本地环回）代替 `abcd` 并且运行 `ip l set lo up`。你可以用 `birdc6 show route` 来确认这件事情。
 
-## 快捷脚本
+### 快捷脚本
 
 实验仓库中，在 `Setup/netns` 目录下提供了在 netns 环境下的 BIRD 配置，你可以参考里面的进行配置。
 
