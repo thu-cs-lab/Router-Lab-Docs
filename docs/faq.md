@@ -126,3 +126,7 @@
 !!! question "在 CI 上提交的时候，报错 BAD signature"
 
     这是因为实验仓库对 `.gitlab-ci.yml` 做了签名检查，如果误修改了这个文件或者经过了换行符的变化（比如在 Windows Git clone 的仓库又在 WSL 里打开），请克隆模板仓库，然后用模板仓库中的文件覆盖自己仓库里的文件。
+
+!!! question "运行路由器时报错 no viable interfaces open for capture"
+
+    这是因为路由器程序找不到对应的 interface。可能的原因有：1）没有用 root 权限运行；2）运行在错误的 netns 或者 netns 和路由器 r1-r3 不匹配；3) 没有正确配置 netns 或其他虚拟网络环境
