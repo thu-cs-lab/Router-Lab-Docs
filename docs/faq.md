@@ -117,7 +117,7 @@
 
 !!! question "我的程序在真机评测中，stdout 显示是空的，即使我程序一开始就输出了内容？"
 
-    这一般是因为程序在评测过程中异常退出，写入到 stdout 的数据因为在缓存中，所以没有写入到文件中，评测系统取到的文件就是空白的。
+    这一般是因为程序在评测过程中异常退出，或者输出的内容没有达到缓冲区的大小，此时写入到 stdout 的数据在缓存中，没有写入到文件中，评测系统取到的文件就是空白的。解决方法是在输出到标准输出（比如 `printf`）的时候，调用 `fflush(stdout)` 来强制清空缓冲区，把输出内容写入到文件。
 
 !!! question "运行 BIRD 的时候，显示 Cannot create control socket bird-r1.ctl: Operation not supported"
 
