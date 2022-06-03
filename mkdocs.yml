@@ -89,3 +89,7 @@ markdown_extensions:
       custom_checkbox: true
   - pymdownx.tilde
 
+extra:
+  analytics:
+    provider: google
+    property: G-69YPS2LP7R
