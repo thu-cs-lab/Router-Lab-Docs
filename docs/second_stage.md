@@ -37,7 +37,7 @@
 9. 如果这个分组要转发，判断 Hop Limit，如果小于或等于 1，就回复 ICMP Time Exceeded
 10. 如果 Hop Limit 正常，查询路由表，如果找到了，就转发给下一跳
 11. 如果不在路由表中，就回复 ICMP Destination Unreachable
-12. 跳到第 2 步进入下一次循环处理
+12. 跳到第 2 步，进入下一次循环处理
 
 也可以见下面的流程图：
 
