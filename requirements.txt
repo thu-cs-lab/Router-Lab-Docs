@@ -1,5 +1,0 @@
-mkdocs==1.2.4
-mkdocs-material==8.2.1
-mkdocs-git-revision-date-localized-plugin==1.0.0
-mkdocs-git-authors-plugin==0.6.4
-nltk>=3.7
