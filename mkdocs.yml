@@ -47,11 +47,11 @@ nav:
     - 软硬件接口: joint/interface.md
     - 实验评测: joint/eval.md
   - 附录:
-    - ip 命令: howto/ip.md
-    - make 命令: howto/make.md
-    - 树莓派使用: howto/raspberry_pi.md
-    - 调试方法: howto/debug.md
-    - 名词解释: glossary.md
+    - ip 命令: appendix/ip.md
+    - make 命令: appendix/make.md
+    - 树莓派使用: appendix/raspberry_pi.md
+    - 调试方法: appendix/debug.md
+    - 名词解释: appendix/glossary.md
 
 extra_javascript:
   - 'https://cdn.jsdelivr.net/npm/mathjax@2.7.0/MathJax.js?config=TeX-MML-AM_CHTML'
