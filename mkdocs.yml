@@ -29,7 +29,11 @@ nav:
     - 理论复习: software/theory.md
     - 开始实验: software/begin.md
     - 第一阶段: software/first_stage.md
-    - 第二阶段: software/second_stage.md
+    - 第二阶段:
+      - 总述: software/second_stage.md
+      - RIPng: software/second_stage/ripng.md
+      - DHCPv6: software/second_stage/dhcpv6.md
+      - TFTP: software/second_stage/tftp.md
     - 第三阶段: software/third_stage.md
     - 抄袭查重: software/plagiarism.md
     - 框架使用: software/framework.md
