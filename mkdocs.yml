@@ -32,9 +32,18 @@ nav:
     - 第一阶段: software/first_stage.md
     - 第二阶段:
       - 总述: software/second_stage.md
-      - RIPng: software/second_stage/ripng.md
-      - DHCPv6: software/second_stage/dhcpv6.md
-      - TFTP: software/second_stage/tftp.md
+      - RIPng:
+        - 总述: software/second_stage/ripng_overview.md
+        - 评测: software/second_stage/ripng_evaluation.md
+        - 调试: software/second_stage/ripng_debug.md
+      - DHCPv6:
+        - 总述: software/second_stage/dhcpv6_overview.md
+        - 评测: software/second_stage/dhcpv6_evaluation.md
+        - 调试: software/second_stage/dhcpv6_debug.md
+      - TFTP:
+        - 总述: software/second_stage/tftp_overview.md
+        - 评测: software/second_stage/tftp_evaluation.md
+        - 调试: software/second_stage/tftp_debug.md
     - 第三阶段: software/third_stage.md
     - 抄袭查重: software/plagiarism.md
     - 框架使用: software/framework.md
