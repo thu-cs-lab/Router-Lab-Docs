@@ -71,7 +71,7 @@ digraph G {
     
     
     lookup [
-        label = "按照目的地址查询路由表",
+        label = "按照目的 IPv6 地址查询路由表",
         shape = rect
     ];
     
@@ -85,19 +85,12 @@ digraph G {
     lookup -> nexthop_found;
     
     check_mac [
-        label = "NDP 表中是否有下一跳 MAC 地址",
+        label = "ND 表中是否有下一跳 MAC 地址",
         shape = diamond
     ];
     
-    destination_unreachable [
-        label = "发送 ICMPv6 Destination Unreachable 消息",
-        shape = rect
-    ];
-    
-    nexthop_found:e -> destination_unreachable:w[label = "否"];
-    destination_unreachable -> loop_end;
-    
-    nexthop_found:s -> check_mac:n[label = "是"];
+    nexthop_found -> loop_end;
+    nexthop_found -> check_mac[label = "是"];
     check_mac -> forward[label = "是"];
         
     forward [
@@ -121,23 +114,6 @@ digraph G {
     ];
     
     check_ripng -> check_request[label = "是"];
-    check_ripng -> check_echo_request[label = "否"];
-    
-    check_echo_request [
-        label = "是否 ICMPv6 Echo Request",
-        shape = diamond
-    ];
-    
-    reply_echo [
-        label = "发送 ICMPv6 Echo Reply 消息",
-        shape = rect
-    ];
-    
-    check_echo_request -> reply_echo[label = "是"];
-    check_echo_request -> loop_end[label = "否"];
-    reply_echo -> loop_end;
-    
-    
     check_ripng -> loop_end[label = "否"];
     
     handle_request [
