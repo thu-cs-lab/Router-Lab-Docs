@@ -64,7 +64,7 @@ fe80::/64 dev enp14s0 proto kernel metric 256 pref medium
 
 ```text
 ip/prefix dev interface scope link 是一条直连路由，表示在这个子网中，所有的 IP 地址都通过 interface 直连可达
-ip/prefix via another_ip dev interface 表示去往目标子网的 IP 分组，下一跳 IP 地址都是 another_ip ，通过 interface 出去
+ip/prefix via another_ip dev interface 表示去往目标子网的 IP 分组，下一跳 IP 地址都是 another_ip，通过 interface 出去
 default via another_ip dev interface 这里 default 代表 0.0.0.0/0 或者 ::/0，其实是上一种格式，表示一条前缀长度为 0 的路由
 ```
 

@@ -46,8 +46,8 @@ make grade # 也可以运行评分脚本，实际上就是运行 python3 grade.p
 
     macOS 系统下部分网络相关的结构体实现与 Linux 有区别，可能会导致云端编译错误。为了解决兼容性的问题，macOS 平台使用宏定义实现了与 Linux 通用的写法，请使用通用的写法避免编译错误。
     具体体现为：
-    按照字节访问 MAC 地址(结构体 `ether_addr`)，请使用 `mac->ether_addr_octet`，而不是 `mac->octet`。
-    按照字节访问 IPv6 地址(结构体 `in6_addr`)，请使用 `ip6->s6_addr`，而不是`ip6->__u6_addr8、ip6->__u6_addr16、ip6->__u6_addr32`。
+    按照字节访问 MAC 地址 (结构体 `ether_addr`)，请使用 `mac->ether_addr_octet`，而不是 `mac->octet`。
+    按照字节访问 IPv6 地址 (结构体 `in6_addr`)，请使用 `ip6->s6_addr`，而不是`ip6->__u6_addr8、ip6->__u6_addr16、ip6->__u6_addr32`。
 
 !!! attention "HONOR CODE"
 

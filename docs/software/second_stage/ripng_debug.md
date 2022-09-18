@@ -78,7 +78,7 @@ protocol rip ng {
     };
     debug all;
     interface "网口名称" { # 网口名称必须存在，否则 BIRD 会直接退出
-        update time 5; # 5秒一次更新，方便调试
+        update time 5; # 5 秒一次更新，方便调试
     };
 }
 ```
@@ -122,7 +122,7 @@ protocol rip {
     export all;
     debug all;
     interface "网口名称" { # 网口名称必须存在，否则 BIRD 会直接退出
-        update time 5; # 5秒一次更新，方便调试
+        update time 5; # 5 秒一次更新，方便调试
     };
 }
 ```

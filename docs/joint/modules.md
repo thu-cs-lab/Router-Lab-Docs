@@ -33,7 +33,7 @@ IP 分组转发的依据是转发表。路由器需要使用 IP 分组头部的�
 !!! question "思考"
 
     1. 为什么要重视 testbench？
-    2. 实验板上 BRAM 、 LUTRAM 和 SRAM 资源大致容量如何？
+    2. 实验板上 BRAM、LUTRAM 和 SRAM 资源大致容量如何？
     3. BRAM 和 SRAM 的延迟谁更低？
     4. FPGA 片内都提供了哪几种 RAM？Latency 的配置会有哪些影响？
     5. LUTRAM 与 BRAM 的区别如何？

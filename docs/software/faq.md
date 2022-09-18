@@ -2,9 +2,9 @@
 
 !!! question "我用的是纯命令行环境，没有 Wireshark 图形界面可以用，咋办？"
 
-    你可以用 tcpdump 代替 Wireshark，它的特点是一次性输出所有内容；或者用 tshark，是 Wireshark 官方的 CLI 版本；也可以用 termshark ，它是 Wireshark 的 TUI 版，操作方式和 Wireshark 是一致的。比较常用的 tshark 用法是 `sudo tshark -i [interface_name] -V -l [filter]` ，其中 `interface_name` 是网卡名字，如 `eth0` ，`-V` 表示打印出解析树， `-l` 表示关闭输出缓冲， `[filter]` 表示过滤，常见的有 `arp` `ip` `icmp` `ip6` `icmp6` 等等。
+    你可以用 tcpdump 代替 Wireshark，它的特点是一次性输出所有内容；或者用 tshark，是 Wireshark 官方的 CLI 版本；也可以用 termshark，它是 Wireshark 的 TUI 版，操作方式和 Wireshark 是一致的。比较常用的 tshark 用法是 `sudo tshark -i [interface_name] -V -l [filter]` ，其中 `interface_name` 是网卡名字，如 `eth0` ，`-V` 表示打印出解析树， `-l` 表示关闭输出缓冲， `[filter]` 表示过滤，常见的有 `arp` `ip` `icmp` `ip6` `icmp6` 等等。
 
-!!! question "运行 `grade.py` 的时候，提示找不到 tshark ，怎么办？"
+!!! question "运行 `grade.py` 的时候，提示找不到 tshark，怎么办？"
 
     用你的包管理器安装 wireshark 或者 tshark 都行。如果你在使用 Windows，需要注意 Windows 版的 Wireshark 和 WSL 内部的 Wireshark 是需要分别安装的。
 
@@ -12,25 +12,25 @@
 
     给它命令行参数 `-o ip.check_checksum:TRUE` `-o tcp.check_checksum:TRUE` 和 `-o udp.check_checksum:TRUE` 就可以打开它的校验功能。如果你使用 Wireshark，直接在 Protocol Preferences 中选择即可。
 
-!!! question "为啥要搞 HAL 啊，2018 年让大家用 Linux 的 Raw Socket ，不也有人搞出来了吗？"
+!!! question "为啥要搞 HAL 啊，2018 年让大家用 Linux 的 Raw Socket，不也有人搞出来了吗？"
 
     我们认为 2018 年的 Linux 的 Raw Socket 是比较古老而且需要同学编写很多冗余代码的一套 API，另外比较复杂的 Quagga 的交互接口也让很多同学遇到了困难，结果就是只有少数同学很顺利地完成了所有任务，一些同学在不理解这些 API 的工作方式的情况下直接拿代码来就用，出现一些问题后就一筹莫展，这是我们不希望看到的一种情况，况且这部分知识与网络原理课程关系不大，日后也基本不会接触。2019 年我们采用的 `libpcap` 以一个更底层的方式进行收发，绕过了操作系统的 IP 层，这样可以避开 Raw Socket 的一些限制，不过也多了自行维护 ARP 的负担。同时，2019 年新增了硬件路由器实验，为了把二者统一，我们设计了 HAL 库，它维护了 ARP 的信息，在 Linux 等平台下用 `libpcap`，在 Xilinx 平台下用 IP 核的寄存器，和 stdio 后端用于在线评测。我们期望通过这些方法减少大家的负担。
 
 !!! question "我没有趁手的 Linux 环境，我可以用 WSL 吗？"
 
-    由于 WSL1 没有实现 pcap ，如果使用 Linux 后端，即使 sudo 运行也会报告找不到可以抓包的网口，所以你只能用文件后端进行测试。如果你使用 WSL2，应当可以正常的使用 Linux 后端的所有功能（但不保证没有问题）。
+    由于 WSL1 没有实现 pcap，如果使用 Linux 后端，即使 sudo 运行也会报告找不到可以抓包的网口，所以你只能用文件后端进行测试。如果你使用 WSL2，应当可以正常的使用 Linux 后端的所有功能（但不保证没有问题）。
 
 !!! question "有时候会出现 `pcap_inject failed with send: Message too long` ，这是什么情况？"
 
-    这一般是因为传给 `HAL_SendIPPacket` 的长度参数大于网口的 MTU，请检查你传递的参数是否正确。需要注意的是，在一些情况下，在 Linux 后端中， `HAL_ReceiveIPPacket` 有时候会返回一个长度大于 MTU 的包，这是 TSO (TCP Segment Offload) 或者类似的技术导致的（在网卡中若干个 IP 包被合并为一个）。你可以用 `ethtool -K 网口名称 tso off` 来尝试关闭 TSO ，然后在 `ethtool -k 网口名称` 的输出中找到 `tcp-segmentation-offload: on/off` 确认一下是否成功关闭。另外，有的网卡的设置是 `generic-receive-offload`，相应地，用 `ethtool -K 网口名称 generic-receive-offload off` 关闭即可。
+    这一般是因为传给 `HAL_SendIPPacket` 的长度参数大于网口的 MTU，请检查你传递的参数是否正确。需要注意的是，在一些情况下，在 Linux 后端中， `HAL_ReceiveIPPacket` 有时候会返回一个长度大于 MTU 的包，这是 TSO (TCP Segment Offload) 或者类似的技术导致的（在网卡中若干个 IP 包被合并为一个）。你可以用 `ethtool -K 网口名称 tso off` 来尝试关闭 TSO，然后在 `ethtool -k 网口名称` 的输出中找到 `tcp-segmentation-offload: on/off` 确认一下是否成功关闭。另外，有的网卡的设置是 `generic-receive-offload`，相应地，用 `ethtool -K 网口名称 generic-receive-offload off` 关闭即可。
 
 !!! question "RIP 协议用的是组播地址，但组播是用 IGMP 协议进行维护的，这个框架是怎么解决这个问题的？"
 
     在 Linux 和 macOS 后端的 `HAL_Init` 函数中，它会向所有网口都发一份 `IGMP Membership Join group 224.0.0.9` 表示本机进入了 RIP 协议的对应组播组之中。为了简化流程，退出时不会发送 Leave Group 的消息，你可以选择手动发送。
 
-!!! question "我通过 `veth` 建立了两个 netns 之间的连接，路由器也写好了， RIP 可以通， ICMP 也没问题，但就是 TCP 不工作，抓包也能看到 SYN 但是看不到 SYN+ACK ，这是为啥？"
+!!! question "我通过 `veth` 建立了两个 netns 之间的连接，路由器也写好了，RIP 可以通，ICMP 也没问题，但就是 TCP 不工作，抓包也能看到 SYN 但是看不到 SYN+ACK，这是为啥？"
 
-    这是因为 Linux 对于网卡有 TX Offload 机制，对于传输层协议的 Checksum 可以交由硬件计算；因此在经过 `veth` 转发时，TCP Checksum 一般是不正确的，这有可能引起一些问题。解决方案和上面类似，用 `ethtool -K veth名称 tx off` 即可，注意 veth 的两侧都要配置。
+    这是因为 Linux 对于网卡有 TX Offload 机制，对于传输层协议的 Checksum 可以交由硬件计算；因此在经过 `veth` 转发时，TCP Checksum 一般是不正确的，这有可能引起一些问题。解决方案和上面类似，用 `ethtool -K veth 名称 tx off` 即可，注意 veth 的两侧都要配置。
 
 !!! question "这个实验怎么要用到怎么多工具啊？我好像都没学过，这不是为难我吗？"
 
@@ -44,15 +44,15 @@
 
 !!! question "树莓派和计算机组成原理用的板子有什么区别？"
 
-    树莓派就是一个小型的计算机，只不过指令集是 ARM ，其余部分用起来和笔记本电脑没有本质区别；计算机组成原理的板子核心是 FPGA ，你需要编写 Verilog 代码对它进行编程。
+    树莓派就是一个小型的计算机，只不过指令集是 ARM，其余部分用起来和笔记本电脑没有本质区别；计算机组成原理的板子核心是 FPGA，你需要编写 Verilog 代码对它进行编程。
 
 !!! question "我在树莓派写的可以工作的代码，放到我的 x86 电脑上跑怎么就不工作了呢？或者反过来，我在 x86 电脑上写的可以工作的代码，放到树莓派上怎么就不工作了呢？或者我本地评测通过的代码，在线为什么不通过呢？"
 
-    一个可能的原因是代码出现了 Undefined Behavior ，编译器在不同环境下编译出不同的代码，导致行为不一致。可以用 UBSan 来发现这种问题。在路由器代码里，一个很常见的 Undefined Behavior 就是对 32 位整数左移或右移 32 位，或者调用 `__builtin_clz(0)`，或者更常见的未初始化变量、数组越界等等。
+    一个可能的原因是代码出现了 Undefined Behavior，编译器在不同环境下编译出不同的代码，导致行为不一致。可以用 UBSan 来发现这种问题。在路由器代码里，一个很常见的 Undefined Behavior 就是对 32 位整数左移或右移 32 位，或者调用 `__builtin_clz(0)`，或者更常见的未初始化变量、数组越界等等。
 
 !!! question "我用 ssh 连不上树莓派，有什么办法可以进行诊断吗？"
 
-    可以拿 HDMI 线把树莓派接到显示器上，然后插上 USB 的键盘和鼠标，登录进去用 `ip` 命令看它的网络情况。网络连接方面，可以用网线连到自己的电脑或者宿舍路由器上，也可以连接到 Wi-Fi 。如果没有显示器，也可以用 USB 转串口，把串口接到树莓派对应的引脚上。
+    可以拿 HDMI 线把树莓派接到显示器上，然后插上 USB 的键盘和鼠标，登录进去用 `ip` 命令看它的网络情况。网络连接方面，可以用网线连到自己的电脑或者宿舍路由器上，也可以连接到 Wi-Fi。如果没有显示器，也可以用 USB 转串口，把串口接到树莓派对应的引脚上。
 
 !!! question "我在 macOS 上安装了 Wireshark，但是报错找不到 tshark？"
 
@@ -64,9 +64,9 @@
 
 !!! question "我在 WSL 下编译，发现编译不通过，`checksum.cpp` 等几个 cpp 文件都不是合法的 cpp 代码。"
 
-    对于 WSL1： 这是因为，在 Windows 里 git clone 创建的符号链接，在 WSL 内看到的是普通文件。建议在 WSL1 中进行 git clone 的操作，这样符号链接才是正确的。WSL1 和 Windows 的符号链接互不相通。
+    对于 WSL1：这是因为，在 Windows 里 git clone 创建的符号链接，在 WSL 内看到的是普通文件。建议在 WSL1 中进行 git clone 的操作，这样符号链接才是正确的。WSL1 和 Windows 的符号链接互不相通。
 
-    对于 WSL2：同样地，用 WSL2 内部的 git ，并且不要在 WSL2 和 Windows 的共享目录中进行。
+    对于 WSL2：同样地，用 WSL2 内部的 git，并且不要在 WSL2 和 Windows 的共享目录中进行。
 
     更多讨论，见 [Symlinks in Windows 10](https://blogs.windows.com/windowsdeveloper/2016/12/02/symlinks-windows-10/) 和 [git-for-windows: Symbolic Links](https://github.com/git-for-windows/git/wiki/Symbolic-Links)
 
@@ -107,7 +107,7 @@
 
     你可能直接在 Example 目录下使用 CMake 了。Example 是 Router-Lab 的子项目，不能单独使用。
 
-!!! question "我用 netns 和 veth 搭建好了网络，路由器也写好了， RIP 可以通，但 ICMP 到 R1 以后就不转发了，R1 上运行的是 BIRD，这是为什么呢？"
+!!! question "我用 netns 和 veth 搭建好了网络，路由器也写好了，RIP 可以通，但 ICMP 到 R1 以后就不转发了，R1 上运行的是 BIRD，这是为什么呢？"
 
     BIRD 只负责路由协议，它会把学习到的路由协议和 Linux 的路由表进行同步，并不会做转发的功能。为了打开 Linux 自带的转发功能，需要运行 `ip netns exec R1 sh -c "echo 1 > /proc/sys/net/ipv4/conf/all/forwarding"` 命令，在 R1 netns 下把所有接口的 IPv4 的转发打开。但请注意，运行自己编写的路由器的 netns 中不需要 Linux 自带的转发功能，可以把 1 改成 0 以关闭转发功能。
 

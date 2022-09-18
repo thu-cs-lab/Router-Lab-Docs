@@ -10,7 +10,7 @@
 2. 等待 RIP 协议运行一段时间，一分钟后进行评测。
 3. 在 PC1 上 `ping fd00::5:1` 若干次，在 PC2 上 `ping fd00::1:2` 若干次，测试 ICMP 连通性。
 4. 在 PC1 和 PC2 上各监听 80 端口，各自通过 nc 访问对方，测试 TCP 连通性。
-5. 在 PC1 上 `ping fd00::5:1 -t 1`，应当出现 `Time exceeded` 的响应（R1 发给 PC1），再把 HLim 改成 2 （R2 发给 PC1） 和 3（R3 发给 PC1），测试三个路由器的 HLim=0 的处理，再反过来从 PC2 上 `ping fd00::1:2 -t 1`，也应当出现 `Time exceeded` 的响应（R3 发给 PC2），再把 HLim 改成 2 （R2 发给 PC2） 和 3 （R1 发给 PC2） 。
+5. 在 PC1 上 `ping fd00::5:1 -t 1`，应当出现 `Time exceeded` 的响应（R1 发给 PC1），再把 HLim 改成 2（R2 发给 PC1）和 3（R3 发给 PC1），测试三个路由器的 HLim=0 的处理，再反过来从 PC2 上 `ping fd00::1:2 -t 1`，也应当出现 `Time exceeded` 的响应（R3 发给 PC2），再把 HLim 改成 2（R2 发给 PC2）和 3（R1 发给 PC2） 。
 6. 在 PC1 上 `ping fd00::233:233`，应当出现 `Destination Net Unreachable`（R1 发给 PC1），在 PC2 上 `ping fd00::233:233` 亦然（R3 发给 PC2）。
 7. 在 PC2 上运行 `iperf3 -s`，在 PC1 上运行 `iperf3 -c fd00::5:1 -O 5 -P 10`，按照 Bitrate 给出分数，测试转发的效率。
 8. 在 PC2 上运行 `iperf3 -s`，在 PC1 上运行 `iperf3 -c fd00::5:1 -u -l 16 -t 5 -b 1G -O 5`，按照接收方实际收到的 Datagram 数量每秒（即 Total Datagram 减去 Lost，再除以时间）给出分数，测试转发的效率。
@@ -42,7 +42,7 @@ default via fd00::5:2 dev pc2r3
 fd00::5:0/112 dev pc2r3 scope link
 ```
 
-初始情况下 R1 R2 R3 都只有对应的直连路由，只有在正确地运行 RIP 协议后，才能从 PC1 ping 通 PC2 。
+初始情况下 R1 R2 R3 都只有对应的直连路由，只有在正确地运行 RIP 协议后，才能从 PC1 ping 通 PC2。
 
 ??? warning "容易出错的地方"
 

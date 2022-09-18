@@ -2,7 +2,7 @@
 
 ??? tip "CIDR 表示方法"
 
-    下面多次用到了 CIDR 的表示方法，格式是 ipv6_addr/len ，可能表示以下两种意义之一：
+    下面多次用到了 CIDR 的表示方法，格式是 ipv6_addr/len，可能表示以下两种意义之一：
 
     1. 地址是 ipv6_addr，并且最高 len 位和 ipv6_addr 相同的 IPv6 地址都在同一个子网中，常见于对于一个网口的 IP 地址的描述。如 `fd00::a:b/112` 表示 `fd00::a:b` 的地址，同一个子网的地址只有最后 16 位可以不同。
     2. 描述一个地址段，此时 ipv6_addr 除了最高 len 位都为零，表示一个 IP 地址范围，常见于路由表。如 `fd00::a:b/112` 表示从 `fd00::a:0` 到 `fd00::a:ffff` 的地址范围。
@@ -59,7 +59,7 @@ fd00::9:0/112 via fd00::4:1 dev r3r2
 2. 等待 RIPng 协议运行一段时间，一分钟后正式开始评测。
 3. （15% 分数）测试转发 ICMPv6：在 PC1 上 `ping fd00::5:1` 若干次，在 PC2 上 `ping fd00::1:2` 若干次，测试 ICMP 连通性。
 4. （20% 分数）测试转发 TCP：在 PC1 和 PC2 上各监听 80 端口（`sudo nc -6 -l -p 80`），各自通过 nc 访问对方（`nc $remote_ip 80`），测试 TCP 连通性。
-5. （15% 分数）测试 HopLimit=0 时的处理：在 PC1 上 `ping fd00::5:1 -t 2`，应当出现 `Time Exceeded` 的 ICMPv6 响应，从 PC2 同样地运行 `ping fd00::1:2 -t 2`。
+5. （15% 分数）测试 HopLimit 降为 0 时的处理：在 PC1 上 `ping fd00::5:1 -t 2`，应当出现 `Time Exceeded` 的 ICMPv6 响应，从 PC2 同样地运行 `ping fd00::1:2 -t 2`。
 6. （30% 分数）判断路由表正误：导出 R1 和 R3 上 系统的路由表（运行 `ip -6 route`），和答案进行比对。
 7. （20% 分数）测试转发性能：在 PC2 上运行 `iperf3 -s`，在 PC1 上运行 `iperf3 -c fd00::5:1 -O 5 -P 10`，按照 Bitrate 给出分数，测试转发的效率。
 
@@ -100,15 +100,15 @@ $$
 
     1. PC1 要 ping fd00::5:1，查询路由表得知下一跳是 fd00::1:1。
     2. 假如 PC1 还不知道 fd00::1:1 的 MAC 地址，则发送 NDP 请求（通过 pc1r1）询问 fd00::1:1 的 MAC 地址。
-    3. R1 接收到 NDP 请求，回复 MAC 地址（r1pc1）给 PC1 （通过 r1pc1）。
-    4. PC1 把 ICMPv6 包发给 R1 ，目标 MAC 地址为上面 NDP 请求里回复的 MAC 地址，即 R1 的 MAC 地址（r1pc1）。
+    3. R1 接收到 NDP 请求，回复 MAC 地址（r1pc1）给 PC1（通过 r1pc1）。
+    4. PC1 把 ICMPv6 包发给 R1，目标 MAC 地址为上面 NDP 请求里回复的 MAC 地址，即 R1 的 MAC 地址（r1pc1）。
     5. R1 接收到 IP 包，查询路由表得知下一跳是 fd00::3:2，假如它已经知道 fd00::3:2 的 MAC 地址。
     6. R1 把 IP 包外层的源 MAC 地址改为自己的 MAC 地址（r1r2），目的 MAC 地址改为 fd00::3:2 的 MAC 地址（R2 的 r2r1），发给 R2（通过 r1r2）。
     7. R2 接收到 IP 包，查询路由表得知下一跳是 fd00::4:2，假如它不知道 fd00::4:2 的 MAC 地址，所以丢掉这个 IP 包。
     8. R2 发送 NDP 请求（通过 r2r3）询问 fd00::4:2 的 MAC 地址。
     9. R3 接收到 NDP 请求，回复 MAC 地址（r3r2）给 R2（通过 r3r2）。
     10. PC1 继续 ping fd00::5:1，查询路由表得知下一跳是 fd00::1:1。
-    11. PC1 把 ICMPv6 包发给 R1 ，目标 MAC 地址为 fd00::1:1 对应的 MAC 地址，源 MAC 地址为 fd00::1:2 对应的 MAC 地址。
+    11. PC1 把 ICMPv6 包发给 R1，目标 MAC 地址为 fd00::1:1 对应的 MAC 地址，源 MAC 地址为 fd00::1:2 对应的 MAC 地址。
     12. R1 查表后把 ICMPv6 包发给 R2，目标 MAC 地址为 fd00::3:2 对应的 MAC 地址，源 MAC 地址为 fd00::3:2 对应的 MAC 地址。
     13. R2 查表后把 ICMPv6 包发给 R3，目标 MAC 地址为 fd00::4:2 对应的 MAC 地址，源 MAC 地址为 fd00::4:1 对应的 MAC 地址。
     14. R3 查表后把 ICMPv6 包发给 PC2，目标 MAC 地址为 fd00::5:1 对应的 MAC 地址，源 MAC 地址为 fd00::5:2 对应的 MAC 地址。
@@ -122,7 +122,7 @@ $$
 ??? tip "在线评测的原理"
 
     实验团队部署了树莓派集群，对于一次个人的真机评测，会分配三个树莓派和两个 VLAN，分别对应 PC1/R1、R2 和 R3/PC2，两个 VLAN 分别对应 R1-R2 和 R2-R3，使用 veth 连接 PC1-R1 和 R3-PC2。
-    接着，在 R1 和 R3 对应的树莓派上进行各种配置，包括 netns、veth、forwarding 和 ethtool（关闭 generic-receive-offload） 的设置。在 R1 和 R3 上运行 BIRD，在 R2 上下载静态编译好的路由器程序，在容器里运行。接着，就按照上面所述的测试命令一条一条进行。
+    接着，在 R1 和 R3 对应的树莓派上进行各种配置，包括 netns、veth、forwarding 和 ethtool（关闭 generic-receive-offload）的设置。在 R1 和 R3 上运行 BIRD，在 R2 上下载静态编译好的路由器程序，在容器里运行。接着，就按照上面所述的测试命令一条一条进行。
 
     特别地，为了安全，程序运行在单独的 chroot 和 user 中，并且限制了 capability。同时为了保证性能的稳定性，把进程绑定到了一个 CPU 核上。另外，为了提升性能，我们把 CPU Scaling Governor 设为 performance，让树莓派在不打开超频的条件下在最大主频下运行。
 

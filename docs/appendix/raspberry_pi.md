@@ -6,13 +6,13 @@
 
 ## Raspberry Pi OS 安装
 
-首先下载 Raspberry Pi OS （原 Raspbian） 的镜像文件，推荐从 [TUNA 镜像地址](https://mirrors.tuna.tsinghua.edu.cn/raspberry-pi-os-images/raspios_arm64/images/raspios_arm64-2020-08-24/2020-08-20-raspios-buster-arm64.zip) 下载。下载完成后会得到一个 zip 格式的压缩包，解压后得到 img 文件。接着使用镜像烧录工具（如 Balena Etcher）把 img 文件写入到 SD 卡中。这个时候你的电脑上应该有一个名为 boot 的盘符，进入它的根目录，新建一个名为 `ssh` 的空文件，注意不要有后缀，它的功能是让树莓派自动启动 SSH 服务器。给树莓派插入 SD 卡，接通电源，应该可以看到红灯常亮，绿灯闪烁，表示正在读取 SD 卡。
+首先下载 Raspberry Pi OS（原 Raspbian）的镜像文件，推荐从 [TUNA 镜像地址](https://mirrors.tuna.tsinghua.edu.cn/raspberry-pi-os-images/raspios_arm64/images/raspios_arm64-2020-08-24/2020-08-20-raspios-buster-arm64.zip) 下载。下载完成后会得到一个 zip 格式的压缩包，解压后得到 img 文件。接着使用镜像烧录工具（如 Balena Etcher）把 img 文件写入到 SD 卡中。这个时候你的电脑上应该有一个名为 boot 的盘符，进入它的根目录，新建一个名为 `ssh` 的空文件，注意不要有后缀，它的功能是让树莓派自动启动 SSH 服务器。给树莓派插入 SD 卡，接通电源，应该可以看到红灯常亮，绿灯闪烁，表示正在读取 SD 卡。
 
 接着，拿一条网线，连接你的电脑（或者路由器）和树莓派的网口，这时候应该可以看到网口下面的状态灯亮起。以电脑为例，请打开网络共享（[macOS 参考 1](https://support.apple.com/zh-cn/guide/mac-help/mchlp1540/mac)，[macOS 参考 2](https://medium.com/@tzhenghao/how-to-ssh-into-your-raspberry-pi-with-a-mac-and-ethernet-cable-636a197d055)，[Linux 参考](https://help.ubuntu.com/community/Internet/ConnectionSharing)，[Windows 参考 1](https://answers.microsoft.com/en-us/windows/forum/windows_10-networking/internet-connection-sharing-in-windows-10/f6dcac4b-5203-4c98-8cf2-dcac86d98fb9)，[Windows 参考 2](https://raspberrypi.stackexchange.com/questions/11684/how-can-i-connect-my-pi-directly-to-my-pc-and-share-the-internet-connection) ），让树莓派可以上网。需要注意的是，如果共享的网络使用 802.1X 认证（例如 Tsinghua-Secure 和 eduroam），可能会共享失败，请切换到其他网络，包括手机热点。
 
 接着，我们要找到树莓派分配到的 IP 地址，可以用 `arp -a` 命令列出各个网口上通过 ARP 发现过的设备，找到其中的树莓派的 IP 地址。一个寻找树莓派 IP 地址的方法是，先找到连接树莓派的网络接口，看看自己电脑上在这个接口的 IP 地址是多少，在 ARP 表里找一个和它相近但又不一样的 IP 地址，就很可能是要找的 IP 地址。另一种办法是，如果是在支持 mDNS 的系统上，可以试试 `ping raspberrypi.local`（或者 IPv6-only `ping -6 raspberrypi.local`），看是否能解析出 IP 地址。
 
-找到树莓派的 IP 地址以后，用 SSH 的客户端进行访问，如 `ssh pi@$raspi_addr` ，其中 `$raspi_addr` 是树莓派的 IP 地址，如 `ssh pi@192.168.2.5` ，密码是 raspberry ，应该就可以登录进去了：
+找到树莓派的 IP 地址以后，用 SSH 的客户端进行访问，如 `ssh pi@$raspi_addr` ，其中 `$raspi_addr` 是树莓派的 IP 地址，如 `ssh pi@192.168.2.5` ，密码是 raspberry，应该就可以登录进去了：
 
 ```bash
 $ ssh pi@192.168.2.5
@@ -173,7 +173,7 @@ Data: 45 00 04 CE 04 D5 00 00 FF 11 F9 38 C0 A8 17 6D E0 00 00 FB 14 E9 14 E9 04
 
 可以看到，HAL 成功获取了 eth1 的 MAC 地址信息，并且从中抓取到了数据。当你插上更多 USB 网卡的时候，可以获取到 eth2 eth3 eth4 的 MAC 地址信息，也能从它们收发以太网帧。
 
-如果这一步失败了，可能是你的 USB 网卡对应的网口名称并不是 eth1-4 ，这时候你可以编辑 `HAL/src/linux/platform/standard.h`，选择一个无用的网口名称替换掉，然后重新编译。
+如果这一步失败了，可能是你的 USB 网卡对应的网口名称并不是 eth1-4，这时候你可以编辑 `HAL/src/linux/platform/standard.h`，选择一个无用的网口名称替换掉，然后重新编译。
 
 ## 路由器实验
 
