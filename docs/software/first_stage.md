@@ -9,24 +9,20 @@
 
 四个编程作业需要实现的功能：
 
-```text
-eui64：生成 IPv6 Link Local 地址
-internet-checksum：计算校验和
-lookup：路由表查询和更新
-protocol：RIPng 协议解析和封装
-```
+- eui64：生成 IPv6 Link Local 地址
+- internet-checksum：计算校验和
+- lookup：路由表查询和更新
+- protocol：RIPng 协议解析和封装
 
 每个题目都有类似的结构（以 `internet-checksum` 为例）：
 
-```text
-data：数据所在的目录
-checksum.h：头文件，记录了函数的输入输出和功能
-checksum.cpp：你需要修改的地方
-grade.py：一个简单的评分脚本，它会编译并运行你的代码，进行评测
-main.cpp：用于评测的交互库，你不需要修改它
-Makefile：用于编译并链接 HAL、交互库和你实现的代码
-README.md：题目的要求
-```
+- data：数据所在的目录
+- checksum.h：头文件，记录了函数的输入输出和功能
+- checksum.cpp：你需要修改的地方
+- grade.py：一个简单的评分脚本，它会编译并运行你的代码，进行评测
+- main.cpp：用于评测的交互库，你不需要修改它
+- Makefile：用于编译并链接 HAL、交互库和你实现的代码
+- README.md：题目的要求
 
 首先阅读 README.md 和头文件，理解要如何实现功能。接着，在本地运行下面的命令进行测试（在 Homework/internet-checksum 目录下执行）：
 

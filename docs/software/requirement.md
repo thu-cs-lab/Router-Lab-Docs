@@ -18,10 +18,10 @@ $$ S' = S \times \min(0.8, 0.95^D) $$
 
 目前，一共包括四个编程实验如下（总代码量约 200 行）：
 
-- `eui64`：基于 EUI64 构造 IPv6 Link Local 地址
-- `internet-checksum`：进行 UDP 和 ICMPv6 校验和的检验和计算
-- `lookup`：路由表的查询和更新
-- `protocol`：RIPng 协议的处理
+- `eui64`：基于 EUI64 构造 IPv6 Link Local 地址，代码量约 10 行
+- `internet-checksum`：进行 UDP 和 ICMPv6 校验和的检验和计算，代码量约 80 行
+- `lookup`：路由表的查询和更新，代码量约 60 行
+- `protocol`：RIPng 协议的处理，代码量约 70 行
 
 你需要在 [TANLabs](https://lab.cs.tsinghua.edu.cn/tan/) 上登录，并且在网站上创建属于你的作业 GitLab 仓库。你需要使用 Git 往你的作业仓库中提交的你的代码，然后在 TANLabs 查看评测结果。评测的流程和要求详见 TANLabs 网站上的说明。
 
@@ -41,12 +41,18 @@ $$ S' = S \times \min(0.8, 0.95^D) $$
 
 ### 实现 RIPng 协议路由器
 
-你需要基于编程作业的代码，修改 `Homework/router/main.cpp`，实现一个支持 RIPng 协议的路由器。总代码量约 200 行。
+你需要基于编程作业的代码，修改 `Homework/router/main.cpp`，实现一个支持 RIPng 协议的路由器。总代码量约 120 行。
+
+特点：理解难度较大，代码量较小。
 
 ### 实现 DHCPv6 协议路由器
 
 你需要基于编程作业的代码，修改 `Homework/dhcpv6/main.cpp`，实现一个支持 DHCPv6 协议的路由器。总代码量约 ?? 行。
 
+特点：理解难度较大，代码量较小。
+
 ### 实现 TFTP 协议的客户端和服务端
 
 你需要基于编程作业的代码，修改 `Homework/tftp/main.cpp`，实现一个 TFTP 协议的客户端和服务端。总代码量约 ?? 行。
+
+特点：理解难度较小，代码量较大。
