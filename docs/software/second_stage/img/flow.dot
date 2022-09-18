@@ -50,7 +50,7 @@ digraph G {
     ];
     
     check_ripng [
-        label = "是否是 RIPng 分组",
+        label = "是否是 RIPng 报文",
         shape = diamond
     ];
     
@@ -117,7 +117,7 @@ digraph G {
     check_ripng -> loop_end[label = "否"];
     
     handle_request [
-        label = "发送 RIPng Response 分组",
+        label = "发送 RIPng Response 报文",
         shape = rect
     ];
     

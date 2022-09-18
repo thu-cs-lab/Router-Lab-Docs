@@ -14,15 +14,15 @@
 1. 数据格式是怎么样的？
 2. UDP 端口号是？
 3. IPv6 源地址是？目的地址是？
-4. 接收到其他路由器的 RIPng 分组时，按照什么逻辑更新自己的路由表？
+4. 接收到其他路由器的 RIPng 报文时，按照什么逻辑更新自己的路由表？
 5. 如何表示路径无穷大？如何区分路径是因为不可达还是毒性反转产生的无穷大？
 6. 如何实现水平分割（Split Horizon）？如何实现毒性反转（Split Horizon with Poisoned Reverse）？这两个是什么关系？
 
 接着，阅读 [RFC 4443](https://datatracker.ietf.org/doc/html/rfc4443)，回答以下问题：
 
-1. PING 命令是如何通过 ICMPv6 协议实现的？为了支持 PING，需要主机响应什么类型的 ICMPv6 分组？
+1. PING 命令是如何通过 ICMPv6 协议实现的？为了支持 PING，需要主机响应什么类型的 ICMPv6 报文？
 2. ICMPv6 Echo Request 和 ICMPv6 Echo Reply 是如何对应起来的？
-3. 路由器在什么时候会发送 Time Exceeded 和 Destination Unreachable 类型的消息？发送的 ICMPv6 分组中，IPv6 源地址，目的地址，Hop Limit，ICMPv6 的 Payload 分别是什么？
+3. 路由器在什么时候会发送 Time Exceeded 和 Destination Unreachable 类型的消息？发送的 ICMPv6 报文中，IPv6 源地址，目的地址，Hop Limit，ICMPv6 的 Payload 分别是什么？
 
 ## 工作流程
 
@@ -34,8 +34,8 @@
 4. 接收 IPv6 分组，如果没有收到就跳到第 2 步；
 5. 检查 IPv6 分组的完整性和正确性；
 6. 判断 IPv6 分组目标是否是路由器：如果是，则进入 RIPng 协议处理；如果否，则要转发；
-7. 如果是 RIPng 分组，如果是 Request，就构造对应的 Response；如果是 Response，按照 Response 更新路由表；
-8. 如果这个分组要转发，判断 Hop Limit，如果小于或等于 1，就回复 ICMPv6 Time Exceeded；
+7. 如果是 RIPng 报文，如果是 Request，就构造对应的 Response；如果是 Response，按照 Response 更新路由表；
+8. 如果这个 IPv6 分组要转发，判断 Hop Limit，如果小于或等于 1，就回复 ICMPv6 Time Exceeded；
 9. 如果 Hop Limit 正常，查询路由表，如果找到了，就转发给下一跳，转发时检查 ND 表；
 10. 跳到第 2 步，进入下一次循环处理。
 
