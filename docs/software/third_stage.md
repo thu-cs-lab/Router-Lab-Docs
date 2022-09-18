@@ -50,7 +50,7 @@ fd00::5:0/112 dev pc2r3 scope link
     2. RIP 中有一些字段不符合要求
     3. USB 网卡的插入顺序不对
     4. 直连路由配置不正确
-    5. PC1 和 PC2 配置不正确，ICMP 包根本没有发给 R1 和 R3
+    5. PC1 和 PC2 配置不正确，ICMP 分组根本没有发给 R1 和 R3
     6. Windows 默认不响应 ICMP Echo Request，[解决方法](https://kb.iu.edu/d/aopy)
     7. BIRD 配置不正确，如网卡名称和实际情况对不上
 

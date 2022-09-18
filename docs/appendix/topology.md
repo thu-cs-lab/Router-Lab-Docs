@@ -44,6 +44,6 @@ ip netns exec net1 ip addr add 10.1.1.2/24 dev veth-net1
 
 !!! attention "netns 环境和真实环境的不同"
 
-    由于 netns 是 Linux 里面隔离网络的一种技术，它会默认开启一些优化，比如跳过 checksum 的计算等等。所以，如果在里面直接运行你编写的路由器，很可能会把 checksum 错误的包转发出去，然后 Linux 在校验 checksum 的时候发现它是错的，而且是软件发出来的，它会选择丢弃，可能出现 TCP 连接失败的问题，详见 FAQ 中的相关讨论。
+    由于 netns 是 Linux 里面隔离网络的一种技术，它会默认开启一些优化，比如跳过 checksum 的计算等等。所以，如果在里面直接运行你编写的路由器，很可能会把 checksum 错误的分组转发出去，然后 Linux 在校验 checksum 的时候发现它是错的，而且是软件发出来的，它会选择丢弃，可能出现 TCP 连接失败的问题，详见 FAQ 中的相关讨论。
 
 有兴趣的同学也可以尝试一下 [mininet](https://github.com/mininet/mininet) 工具来搭建基于 netns 的虚拟网络。
