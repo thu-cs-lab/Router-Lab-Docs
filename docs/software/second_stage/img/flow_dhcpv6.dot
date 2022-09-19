@@ -1,0 +1,143 @@
+digraph G {
+    
+    init [
+        label = "初始化路由表",
+        shape = rect
+    ];
+    
+    loop [
+        label = "循环开始",
+        shape = rect
+    ];
+    
+    init -> loop;
+    
+    loop -> recv;
+    
+    recv [
+        label = "是否接收到 IPv6 分组",
+        shape = diamond
+    ];
+    
+    recv -> loop_end [label = "否"];
+    
+    check [
+        label = "IPv6 分组是否完整",
+        shape = diamond
+    ];
+    
+    recv -> check [label = "是"];
+    check -> loop_end [label = "否"];
+    check -> type [label = "是"];
+    
+    type [
+        label = "判断分组目标是否是路由器",
+        shape = diamond
+    ];
+    
+    check_dhcpv6 [
+        label = "是否 DHCPv6 报文",
+        shape = diamond
+    ];
+    
+    type -> check_dhcpv6 [label = "是"];
+    type -> check_hlim [label = "否"];
+    
+    check_dhcpv6 -> check_dhcpv6_2[label = "是"];
+    check_dhcpv6 -> check_icmpv6[label = "否"];
+    
+    check_dhcpv6_2 [
+        label = "是否 DHCPv6 Solicit/Request 报文",
+        shape = diamond
+    ];
+    
+    check_hlim [
+        label = "判断 Hop Limit 是否 <= 1",
+        shape = diamond
+    ];
+    
+    time_exceeded [
+        label = "（可选）发送 ICMPv6 Time Exceeded 报文",
+        shape = rect
+    ];
+    check_hlim -> time_exceeded[label = "是"];
+    time_exceeded -> loop_end;
+    
+    
+    lookup [
+        label = "按照目的 IPv6 地址查询路由表",
+        shape = rect
+    ];
+    
+    check_hlim -> lookup[label = "否"];
+    
+    nexthop_found [
+        label = "是否找到下一跳",
+        shape = diamond
+    ]
+    
+    lookup -> nexthop_found;
+    
+    check_mac [
+        label = "ND 表中是否有下一跳 MAC 地址",
+        shape = diamond
+    ];
+
+    destination_unreachable [
+        label = "（可选）发送 ICMPv6 Destination Unreachable 消息",
+        shape = rect
+    ];
+    
+    nexthop_found -> destination_unreachable[label= "否"];
+    destination_unreachable -> loop_end;
+    
+    nexthop_found -> check_mac[label = "是"];
+    check_mac -> forward[label = "是"];
+        
+    forward [
+        label = "转发给下一跳",
+        shape = rect
+    ];
+    
+    forward -> loop_end;
+        
+    ndp [
+        label = "ND 查找下一跳 MAC 地址",
+        shape = rect
+    ]
+    
+    check_mac -> ndp[label = "否"];
+    ndp -> loop_end;
+        
+    check_icmpv6 [
+        label = "是否 ICMPv6 Router Solicitation 报文",
+        shape = diamond
+    ];
+    
+    check_dhcpv6_2 -> reply_dhcpv6[label = "是"];
+    check_dhcpv6_2 -> loop_end[label = "否"];
+    
+    check_icmpv6 -> reply_icmpv6[label = "是"];
+    check_icmpv6 -> loop_end[label = "否"];
+
+    reply_icmpv6 [
+        label = "发送 ICMPv6 Router Advertisement 报文";
+        shape = rect
+    ];
+    
+    reply_icmpv6 -> loop_end;
+
+    reply_dhcpv6 [
+        label = "发送 DHCPv6 Advertise/Reply 报文";
+        shape = rect
+    ];
+
+    reply_dhcpv6 -> loop_end;
+    
+    loop_end [
+        label = "循环结束",
+        shape = rect
+    ];
+    
+    loop_end -> loop;
+}

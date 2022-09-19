@@ -37,12 +37,12 @@
 7. 如果是 RIPng 报文，如果是 Request，就构造对应的 Response；如果是 Response，按照 Response 更新路由表；
 8. 如果是 ICMPv6 Echo Request 报文，则构造 ICMPv6 Echo Reply 响应；
 8. 如果这个 IPv6 分组要转发，判断 Hop Limit，如果小于或等于 1，就回复 ICMPv6 Time Exceeded；
-9. 如果 Hop Limit 正常，查询路由表，如果找到了，就转发给下一跳，转发时检查 ND 表；如果找不到匹配的路由表表项，则构造 ICMPv6 Destination Unreachable 响应；
+9. 如果 Hop Limit 正常，查询路由表，如果找到了，就转发给下一跳，转发时从 ND 表中获取下一跳 MAC 地址；如果找不到匹配的路由表表项，则构造 ICMPv6 Destination Unreachable 响应；
 10. 跳到第 2 步，进入下一次循环处理。
 
 也可以见下面的流程图：
 
-![](img/flow.png)
+![](img/flow_ripng.png)
 
 理解上面的工作流程后，尝试回答以下的问题：
 
@@ -65,7 +65,7 @@
 8. 在接受到 IPv6 packet，按照目的地址在路由表中查找不到路由的时候，回复 ICMPv6 Destination Unreachable (No route to destination)，见 [RFC 4443 Section 3.1 Destination Unreachable Message](https://datatracker.ietf.org/doc/html/rfc4443#section-3.1)。
 9. 在发送的 RIPng Response 大小超过 MTU 时进行拆分。
 
-可选实现的有（不加分，但对调试有帮助）：
+可选实现的有（不加分）：
 
 1. 定期或者在更新的时候向 stdout/stderr 打印最新的 RIP 路由表。
 2. 在路由表出现更新的时候立即发送 RIPng Response（完整或者增量），可以加快路由表的收敛速度。

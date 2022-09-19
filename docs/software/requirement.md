@@ -41,7 +41,7 @@ $$ S' = S \times \min(0.8, 0.95^D) $$
 
 ### 实现 RIPng 协议路由器
 
-你需要基于编程作业的代码，修改 `Homework/router/main.cpp`，实现一个支持 RIPng 协议的路由器。总代码量约 180 行。
+你需要基于编程作业的代码，修改 `Homework/router/main.cpp`，实现一个支持 RIPng 协议的路由器。总代码量约 185 行。
 
 特点：理解难度最大，代码量最小。
 
