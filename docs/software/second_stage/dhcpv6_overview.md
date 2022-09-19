@@ -1,13 +1,14 @@
-## DHCPv6 路由器
+## DHCPv6 服务器
 
-一个 DHCPv6 协议的路由器需要支持如下的功能：
+一个 DHCPv6 协议的服务器需要支持如下的功能：
 
 1. 利用 IPv6 ND 和 DHCPv6 协议给客户端分配动态的 IPv6 地址
-2. 按照固定的路由表，进行 IPv6 分组的转发
+
+支持 DHCPv6 协议的服务器加上框架提供的基于静态路由表的转发功能，就得到了支持 DHCPv6 协议的路由器。
 
 ## 协议理解
 
-在这一步，你需要实现一个 DHCPv6 协议的路由器。
+在这一步，你需要实现一个 DHCPv6 协议的服务器。
 
 客户端在尝试获取 IPv6 地址的时候，首先会通过 IPv6 ND（Neighbor Discovery）协议发送 RS（Router Solicitation）去寻找路由器，路由器向客户端发送 RA（Router Advertisement）表示自己是路由器，可以分配地址。那么，你需要首先阅读 [RFC 4861](https://www.rfc-editor.org/rfc/rfc4861)，理解其中关于 RS 的 RA 的部分，并能回答以下几个问题：
 
