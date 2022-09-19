@@ -41,13 +41,13 @@ $$ S' = S \times \min(0.8, 0.95^D) $$
 
 ### 实现 RIPng 协议路由器
 
-你需要基于编程作业的代码，修改 `Homework/router/main.cpp`，实现一个支持 RIPng 协议的路由器。总代码量约 120 行。
+你需要基于编程作业的代码，修改 `Homework/router/main.cpp`，实现一个支持 RIPng 协议的路由器。总代码量约 180 行。
 
 特点：理解难度较大，代码量较小。
 
 ### 实现 DHCPv6 协议路由器
 
-你需要基于编程作业的代码，修改 `Homework/dhcpv6/main.cpp`，实现一个支持 DHCPv6 协议的路由器。总代码量约 ?? 行。
+你需要基于编程作业的代码，修改 `Homework/dhcpv6/main.cpp`，实现一个支持 DHCPv6 协议的路由器。总代码量约 180 行。
 
 特点：理解难度较大，代码量较小。
 
