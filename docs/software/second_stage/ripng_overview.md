@@ -52,7 +52,7 @@
 
 ## 功能要求
 
-由于 RIPng/ICMPv6 协议完整实现比较复杂，我们只需要实现其中的一部分。必须实现的有：
+由于 RIPng/ICMPv6 协议完整实现比较复杂，你只需要实现其中的一部分。必须实现的有：
 
 1. 转发功能，支持直连路由和间接路由，包括 Hop Limit 减一，查表并向正确的 interface 发送出去。
 2. 周期性地向所有端口发送 RIPng Response（**周期为 5s**，而不是 [RFC 2080 Section 2.3 Timers](https://www.rfc-editor.org/rfc/rfc2080.html#section-2.3) 要求的 30s），目标地址为 RIPng 的组播地址。

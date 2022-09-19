@@ -40,7 +40,7 @@
 
 第二个重要的子命令是 `ip link`，其简写为 `ip l` ，一般直接使用 `ip link set $interface up` 和 `ip link set $interface down` 来让一个 `DOWN` 的网口变成 `UP`，也可以反过来让一个 `UP` 的网口变成 `DOWN`。注意，在一些情况下（例如网线没插等等），它可能会失败。
 
-此外，还可以用 `ip l set $interface netns $netns_name` 来把一个网口挪到目的的 netns 中。通常情况下，我们都是先创建好 interface，再用这种方法把它移动到特定的 netns 中。
+此外，还可以用 `ip l set $interface netns $netns_name` 来把一个网口挪到目的的 netns 中。通常情况下，都是先创建好 interface，再用这种方法把它移动到特定的 netns 中。
 
 另外，在创建 veth 的时候，使用的命令是 `ip link add $name1 type veth peer name $name2`，它会创建一对 interface，分别叫做 $name1 和 $name2，所有从 $name1 发出的流量都可以在 $name2 收到，反之亦然。可以理解成一根虚拟的网线，两端分别是 $name1 和 $name2。
 
@@ -60,7 +60,7 @@ default via fe80::aaaa:aaff:feaa:aaaa dev enp14s0 proto ra metric 1024 expires 1
 fe80::/64 dev enp14s0 proto kernel metric 256 pref medium
 ```
 
-我们也在上文中数次用了类似的语法表示一个路由表。每一项的格式如下：
+在上文中数次使用了类似的语法来表示一个路由表，其每一项的格式如下：
 
 ```text
 ip/prefix dev interface scope link 是一条直连路由，表示在这个子网中，所有的 IP 地址都通过 interface 直连可达
