@@ -63,7 +63,7 @@ digraph G {
     ];
     
     time_exceeded [
-        label = "发送 ICMPv6 Time Exceeded 消息",
+        label = "发送 ICMPv6 Time Exceeded 报文",
         shape = rect
     ];
     check_hlim -> time_exceeded[label = "是"];
@@ -88,8 +88,15 @@ digraph G {
         label = "ND 表中是否有下一跳 MAC 地址",
         shape = diamond
     ];
+
+    destination_unreachable [
+        label = "发送 ICMPv6 Destination Unreachable 消息",
+        shape = rect
+    ];
     
-    nexthop_found -> loop_end;
+    nexthop_found -> destination_unreachable[label= "否"];
+    destination_unreachable -> loop_end;
+    
     nexthop_found -> check_mac[label = "是"];
     check_mac -> forward[label = "是"];
         
@@ -114,7 +121,21 @@ digraph G {
     ];
     
     check_ripng -> check_request[label = "是"];
-    check_ripng -> loop_end[label = "否"];
+    check_ripng -> check_echo_request[label = "否"];
+
+    check_echo_request [
+        label = "是否 ICMPv6 Echo Request 报文";
+        shape = diamond
+    ];
+
+    reply_echo [
+        label = "发送 ICMPv6 Echo Reply 报文";
+        shape = rect
+    ];
+
+    check_echo_request -> reply_echo[label = "是"];
+    check_echo_request -> loop_end[label = "否"];
+    reply_echo -> loop_end;
     
     handle_request [
         label = "发送 RIPng Response 报文",

@@ -33,10 +33,11 @@
 3. 如果距离上一次发送已经超过了 5 秒，就发送完整的路由表到所有的接口；
 4. 接收 IPv6 分组，如果没有收到就跳到第 2 步；
 5. 检查 IPv6 分组的完整性和正确性；
-6. 判断 IPv6 分组目标是否是路由器：如果是，则进入 RIPng 协议处理；如果否，则要转发；
+6. 判断 IPv6 分组目标是否是路由器：如果是，则进入 RIPng/ICMPv6 协议处理；如果否，则要转发；
 7. 如果是 RIPng 报文，如果是 Request，就构造对应的 Response；如果是 Response，按照 Response 更新路由表；
+8. 如果是 ICMPv6 Echo Request 报文，则构造 ICMPv6 Echo Reply 响应；
 8. 如果这个 IPv6 分组要转发，判断 Hop Limit，如果小于或等于 1，就回复 ICMPv6 Time Exceeded；
-9. 如果 Hop Limit 正常，查询路由表，如果找到了，就转发给下一跳，转发时检查 ND 表；
+9. 如果 Hop Limit 正常，查询路由表，如果找到了，就转发给下一跳，转发时检查 ND 表；如果找不到匹配的路由表表项，则构造 ICMPv6 Destination Unreachable 响应；
 10. 跳到第 2 步，进入下一次循环处理。
 
 也可以见下面的流程图：
@@ -60,7 +61,9 @@
 4. 实现水平分割（split horizon）和毒性反转（reverse poisoning）。
 5. 收到 RIPng Response 时，对路由表进行维护，处理 RIPng 中 `metric=16` 的情况。
 6. 在 Hop Limit 减为 0 时，回复 ICMPv6 Time Exceeded (Hop limit exceeded in transit)，见 [RFC 4443 Section 3.3 Time Exceeded Message](https://datatracker.ietf.org/doc/html/rfc4443#section-3.3)。
-7. 在发送的 RIPng Response 大小超过 MTU 时进行拆分。
+7. 对 ICMPv6 Echo Request 进行 ICMPv6 Echo Reply 的回复，见 [RFC 4443 Echo Reply Message](https://datatracker.ietf.org/doc/html/rfc4443#section-4.2)。
+8. 在接受到 IPv6 packet，按照目的地址在路由表中查找不到路由的时候，回复 ICMPv6 Destination Unreachable (No route to destination)，见 [RFC 4443 Section 3.1 Destination Unreachable Message](https://datatracker.ietf.org/doc/html/rfc4443#section-3.1)。
+9. 在发送的 RIPng Response 大小超过 MTU 时进行拆分。
 
 可选实现的有（不加分，但对调试有帮助）：
 
@@ -68,8 +71,6 @@
 2. 在路由表出现更新的时候立即发送 RIPng Response（完整或者增量），可以加快路由表的收敛速度。
 3. 路由的超时（Timeout）和垃圾回收（Garbage Collection）定时器。
 4. 程序启动时向所有 interface 发送 RIPng Request。
-5. 对 ICMPv6 Echo Request 进行 ICMPv6 Echo Reply 的回复，见 [RFC 4443 Echo Reply Message](https://datatracker.ietf.org/doc/html/rfc4443#section-4.2)。
-6. 在接受到 IPv6 packet，按照目的地址在路由表中查找不到路由的时候，回复 ICMPv6 Destination Unreachable (No route to destination)，见 [RFC 4443 Section 3.1 Destination Unreachable Message](https://datatracker.ietf.org/doc/html/rfc4443#section-3.1)。
 
 不需要实现的有：
 
