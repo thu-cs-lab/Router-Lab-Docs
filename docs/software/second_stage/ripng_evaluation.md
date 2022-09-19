@@ -57,12 +57,12 @@ fd00::9:0/112 via fd00::4:1 dev r3r2
 
 1. 配置网络拓扑，在 R1 和 R3 上运行 BIRD，在 R2 上运行定义了 `ROUTER_R2` 的 RIPng 路由器程序。
 2. 等待 RIPng 协议运行一段时间，一分钟后正式开始评测。
-3. （15% 分数）测试转发 ICMPv6：在 PC1 上 `ping fd00::5:1` 若干次，在 PC2 上 `ping fd00::1:2` 若干次，测试 ICMP 连通性。
-4. （15% 分数）测试转发 TCP：在 PC1 和 PC2 上各监听 80 端口（`sudo nc -6 -l -p 80`），各自通过 nc 访问对方（`nc $remote_ip 80`），测试 TCP 连通性。
+3. （10% 分数）测试转发 ICMPv6：在 PC1 上 `ping fd00::5:1` 若干次，在 PC2 上 `ping fd00::1:2` 若干次，测试 ICMP 连通性。
+4. （10% 分数）测试转发 TCP：在 PC1 和 PC2 上各监听 80 端口（`sudo nc -6 -l -p 80`），各自通过 nc 访问对方（`nc $remote_ip 80`），测试 TCP 连通性。
 5. （20% 分数）判断路由表正误：导出 R1 和 R3 上 系统的路由表（运行 `ip -6 route`），和答案进行比对。
 6. （20% 分数）测试转发性能：在 PC2 上运行 `iperf3 -s`，在 PC1 上运行 `iperf3 -c fd00::5:1 -O 5 -P 10`，按照 Bitrate 给出分数，测试转发的效率。
-7. （20% 分数）测试 HopLimit 降为 0 时的处理：在 PC1 上 `ping fd00::5:1 -t 2`，应当出现 `Time Exceeded` 的 ICMPv6 响应，从 PC2 同样地运行 `ping fd00::1:2 -t 2`。
-8. （10% 分数）测试 ICMP Echo Request 的处理：在 PC1 上 `ping fd00::3:2`，在 PC2 上运行 `ping fd00::4:1`，应当得到响应。
+7. （25% 分数）测试 HopLimit 降为 0 时的处理：在 PC1 上 `ping fd00::5:1 -t 2`，应当出现 `Time Exceeded` 的 ICMPv6 响应，从 PC2 同样地运行 `ping fd00::1:2 -t 2`。
+8. （15% 分数）测试 ICMP Echo Request 的处理：在 PC1 上 `ping fd00::3:2`，在 PC2 上运行 `ping fd00::4:1`，应当得到响应。
 
 代码量：实现 RIPng 协议约 80 行，实现 HopLimit 降为 0 处理约 40 行，实现 ICMPv6 Echo Reply 响应约 20 行，实现 ICMPv6 Destination Unreachable 响应约 40 行。
 

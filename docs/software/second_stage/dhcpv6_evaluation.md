@@ -27,9 +27,9 @@ R1 负责为 PC1 分配动态的 IP 地址 `fd00::1:2/112`。
 评测时 TANLabs 将会自动逐项检查下列内容：
 
 1. 配置网络拓扑，在 R1 上运行定义了 `ROUTER_R1` 的 DHCPv6 服务器程序。
-2. （30% 分数）测试 ICMPv6 Router Solicitation 处理：在 PC1 上运行 `rdisc6 pc1r1`，可以获取正确的信息。
-3. （50% 分数）测试 DHCPv6 获取 IP 地址：在 PC1 上运行 `dhcpcd -6 -1 -B -d`，能否成功获取动态 IPv6 地址。
-4. （20% 分数）测试 ping：在 PC1 上运行 `ping fd00::3:2`，能否联通。
+2. （35% 分数）测试 ICMPv6 Router Solicitation 处理：在 PC1 上运行 `rdisc6 pc1r1`，可以获取正确的信息。
+3. （55% 分数）测试 DHCPv6 获取 IP 地址：在 PC1 上运行 `dhcpcd -6 -1 -B -d`，能否成功获取动态 IPv6 地址。
+4. （10% 分数）测试 ping：在 PC1 上运行 `ping fd00::3:2`，能否联通。
 
 代码量：实现 ICMPv6 处理约 70 行，实现 DHCPv6 协议约 120 行。
 
