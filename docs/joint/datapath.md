@@ -1,53 +1,10 @@
-# 第三部分：转发引擎设计
+# 第四阶段：转发引擎
 
-硬件转发引擎的主要模块包括转发逻辑、转发表（路由表）以及邻居缓存。同时，本实验 **建议** 邻居发现协议（NDP）的处理也采用硬件实现，原因如后文所述。
-
-## 邻居发现协议（NDP）处理
-
-事实上，本实验中，实验者可以把 NDP 处理实现在硬件中，也可以实现在软件中。本实验建议 NDP 采用硬件实现，其优点为方便调试，不需要等到 CPU 及软件实现完毕后再进行调试；但是，如果软件需要访问邻居缓存，则需要额外的工作。
-
-总体而言，实验者至少需要实现 NDP 报文的以下处理，以便与其他网络节点互联互通：
-
-* 组播 Neighbor Solicitation 发送：已知下一跳的 IP 地址，但需要查询其 MAC 地址。
-* 组播 Neighbor Solicitation 接收与处理：其他节点需要查询当前节点的 MAC 地址；或者其他节点正在针对该 IP 地址进行重复地址检测（Duplicate Address Detection，DAD），此时 NDP 报文的源地址为未指定地址。其中，实验者可以不实现对于后一种情况的处理，但是需要正确地丢弃这样的报文。
-* 单播 Neighbor Solicitation 接收与处理：其他节点正在针对该 IP 地址进行邻居不可达检测（Neighbor Unreachability Detection，NUD）。顺便指出，本实验中，实验者可以不实现单播 Neighbor Solicitation 的发送，即可以不主动进行 NUD，但是需要响应 NUD。
-* 单播 Neighbor Advertisement 发送：上述源地址不为未指定地址的 Neighbor Solicitation 触发的 Neighbor Advertisement。
-* 单播 Neighbor Advertisement 接收与处理：当前节点发出的组播 Neighbor Solicitation 得到了响应。
-* 组播 Neighbor Advertisement 发送：上述源地址为未指定地址的 Neighbor Solicitation 触发的 Neighbor Advertisement，实验者可以不实现对于这种情况的处理。
-* 组播 Neighbor Advertisement 接收与处理：其他节点为了响应源地址为未指定地址的 Neighbor Solicitation 而发出的 Neighbor Advertisement，由于其为组播，被当前节点接收。实验者需要正确地丢弃这样的报文。
-
-特别地，实验者可以不实现邻居缓存表项的状态维护（Neighbor Cache Entry States）。此外，实验者可以不实现对于任播（anycast）地址，包括子网路由器任播地址（Subnet-Router anycast address）的 Neighbor Solicitation 的接收与处理。
-
-邻居发现协议的更多细节请参见 [RFC 4861: Neighbor Discovery for IP version 6 (IPv6)](https://datatracker.ietf.org/doc/html/rfc4861)，实验者可以重点关注 4.3、4.4、7.1、7.2.2、7.2.3、7.2.4 以及 7.2.5 小节。
-
-### NDP 报文接收
-
-与 Loopback 不同，在本节中，实验者需要对收到的以太网帧进行解析，判断其 EtherType。如果该帧是一个合法的 NDP 报文，则实验者需要提取出发送者的 MAC 地址以及 IP 地址，然后更新或插入到邻居缓存中。此处的更新是指，当邻居缓存中存在对应 IP 地址的条目时，更新其 MAC 地址，当不存在时，不进行其他操作；插入是指，当邻居缓存中存在对应 IP 地址的条目时，更新其 MAC 地址，当不存在时，插入该 IP 地址和 MAC 地址的对应关系。当处理完成后，实验者即可将此 NDP 报文丢弃。实现完成后，实验者可以通过仿真来进行测试，然后使用 ILA 在实验板上进行观察。
-
-实验者可以在与实验路由器相连的主机上使用 `sudo ndisc6 <目标地址> <网络接口>` 命令来发送 Neighbor Solicitation，以便调试。除 ILA 外，实验者也可以尝试把信号接到 LED 上进行观察。请注意，如果信号变化的频率过快，会导致 LED 闪烁过快，人眼是难以观察的。
-
-!!! question "思考"
-
-    1. 以太网帧的 EtherType 在哪个位置？IPv6 协议对应的 EtherType 是多少？
-    2. IPv6 分组头部的 next header 在哪个位置？NDP 协议对应的 next header 是多少？
-    3. 如何判断一个 NDP 报文是否合法？
-    4. 操作系统一般会在什么情况下发送 NDP 报文到路由器？
-    5. 如何向操作系统添加一条指向实验路由器的路由表项？
-    6. 何时 **更新** NDP 缓存表项？何时 **插入** NDP 缓存表项？
-
-### Neighbor Advertisement 发送
-
-实验者首先需要对接收到的 Neighbor Solicitation 进行判断。若其请求的目标 IP 地址为当前实验路由器对应接口上的 IP 地址，则实验路由器需要构造一个 Neighbor Advertisement 并发送至相同接口。其中，实验路由器四个接口的四个 IP 地址和四个 MAC 地址可以由实验者自行配置，但需要在能够用于自由分配的地址段中选取（或参考助教指示）。特别地，请实验者注意这四个 IP 地址应当在不同的子网，同时不要将 MAC 地址错误地配置为组播地址（一个 MAC 地址为组播地址当且仅当其首个字节最低有效位为 1）。
-
-如果实现正确，实验者就可以通过 `ndisc6` 得到稳定的低延迟的回复了。
-
-!!! question "思考"
-
-    1. 在构造 Neighbor Advertisement 时，以太网帧头部、IPv6 分组头部、NDP 报文的各个字段以及选项（如源 MAC 地址等）应当如何填写？
+硬件转发引擎的主要模块包括转发逻辑、转发表（路由表）以及邻居缓存。其中，邻居缓存和转发表已经设计完成，补充转发逻辑即可形成转发引擎。
 
 ## 路由查询和转发
 
-转发引擎接收到 IP 分组后，需要先判断如何处理。对于目标 IP 地址为路由器自身或目标 IP 地址为 RIP 组播地址等 IP 分组，转发引擎需要将其传递给 CPU 上的软件进行处理。特别地，若实验者实现了 NDP 的硬件处理，那么 NDP 报文可以不传递给 CPU。在实验者实现 CPU 及软件前，可暂时丢弃这些需要传递给 CPU 的 IP 分组，但需要为其预留好接口。对于其他 IP 分组，实验路由器需要进行转发，基本流程为：
+转发引擎接收到 IP 分组后，需要先判断如何处理。对于目标 IP 地址为路由器自身或目标 IP 地址为 RIPng 组播地址等 IP 分组，转发引擎需要将其传递给 CPU 上的软件进行处理。特别地，若实验者实现了 ND 协议的硬件处理，那么 ND 报文可以不传递给 CPU。在实验者实现 CPU 及软件前，可暂时丢弃这些需要传递给 CPU 的 IP 分组，但需要为其预留好接口。对于其他 IP 分组，实验路由器需要进行转发，基本流程为：
 
 * 根据目标 IP 地址查询转发表，获得下一跳接口（出接口）以及下一跳的 IP 地址；
     * 特别地，若查询到直连路由，那么下一跳 IP 地址与目标 IP 地址相同。
