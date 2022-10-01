@@ -40,5 +40,5 @@ ThinRouter 的样例工程在 [https://git.tsinghua.edu.cn/tanlabs-public/tanlab
 
 本文档后续将会频繁出现“实验者需要”及“实验者可以”等文字，其中的“需要”及“可以”含义如下：
 
-* “需要”是指实验者为了完成实验必须要完成的任务，与 [RFC 2119](https://www.ietf.org/rfc/rfc2119.txt) 中 `MUST` 含义类似。
+* “需要”是指实验者为了完成实验必须要完成的任务，与 [RFC 2119](https://datatracker.ietf.org/doc/html/rfc2119) 中 `MUST` 含义类似。
 * “可以”是指本文档建议实验者在进行实验时完成的任务，其可能对实验会有帮助，但实验者可以完成也可以不完成，与 RFC 2119 中 `SHOULD` 含义类似。

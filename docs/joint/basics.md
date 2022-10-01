@@ -4,6 +4,8 @@
 
 在本节中，实验者需要熟悉 IPv6（后文简称为 IP）和 ND 协议的基本内容以及路由器的功能和结构。建议实验者使用 Linux 系统搭建一个网络，用 Linux 自带的转发功能，学会用 tcpdump 和 Wireshark 进行抓包分析，尝试使用 Scapy 进行发包实验。
 
+关于 IPv6 的整体描述，请参见 [RFC 8200: Internet Protocol, Version 6 (IPv6) Specification](https://datatracker.ietf.org/doc/html/rfc8200)。
+
 !!! question "思考"
 
     1. 路由器一般包含哪些模块？本实验需要实现哪些模块？
