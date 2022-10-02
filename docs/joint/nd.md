@@ -39,7 +39,7 @@ IPv6 地址有三种类型，分别为单播地址、任播地址以及组播地
         * 根据 ND 报文的目标 IP 地址（Target Address）生成
         * 例：`ff02::1:ff32:5f30`（由 `fe80::5657:44ff:fe32:5f30` 生成）
 
-关于 IPv6 地址架构的更多说明请参见 [RFC 4291: IP Version 6 Addressing Architecture](https://datatracker.ietf.org/doc/html/rfc4291)。
+关于 IPv6 地址架构的更多说明请参见 [RFC 4291: IP Version 6 Addressing Architecture](https://datatracker.ietf.org/doc/html/rfc4291)，实验者可以重点关注第 2.5.4、2.5.6、2.7.1（Solicited-Node Address）以及 2.8 小节。
 
 ## 路由器地址配置
 
@@ -71,7 +71,9 @@ IPv6 地址有三种类型，分别为单播地址、任播地址以及组播地
 
 特别地，实验者可以不实现邻居缓存表项的状态维护（Neighbor Cache Entry States）。此外，实验者可以不实现对于任播地址，包括子网路由器任播地址的 Neighbor Solicitation 的接收与处理。
 
-邻居发现协议的更多细节请参见 [RFC 4861: Neighbor Discovery for IP version 6 (IPv6)](https://datatracker.ietf.org/doc/html/rfc4861)，实验者可以重点关注 4.3、4.4、7.1、7.2.2、7.2.3、7.2.4 以及 7.2.5 小节。
+邻居发现协议的更多细节请参见 [RFC 4861: Neighbor Discovery for IP version 6 (IPv6)](https://datatracker.ietf.org/doc/html/rfc4861)，实验者可以重点关注第 4.3、4.4、4.6.1、7.1、7.2.2、7.2.3、7.2.4 以及 7.2.5 小节。
+
+基于以太网传送 IPv6 分组（包括 ND 报文）时，源和目的 MAC 地址的填写请参见 [RFC 2464: Transmission of IPv6 Packets over Ethernet Networks](https://datatracker.ietf.org/doc/html/rfc2464)，实验者可以重点关注第 3、6、7 小节。
 
 ### ND 报文接收
 

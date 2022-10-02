@@ -57,6 +57,7 @@ nav:
     - 转发引擎: joint/datapath.md
     - 软硬件接口: joint/interface.md
     - 实验评测: joint/eval.md
+    - 附录：RFC 索引: joint/rfc.md
   - 附录:
     - ip 命令: appendix/ip.md
     - make 命令: appendix/make.md
