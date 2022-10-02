@@ -18,7 +18,7 @@ IPv6 地址有三种类型，分别为单播地址、任播地址以及组播地
     * `::`
 * 回环地址（Loopback Address）
     * `::1`
-    * 用于向主机自身发送 IP 分组的虚拟接口
+    * 配置在用于向主机自身发送 IP 分组的虚拟接口上
 * 全球单播地址（Global Unicast Addresses，GUA）
     * 地址范围较广（目前集中在 `2000::/3`，但 RFC 并没有规定一个范围），全球唯一，全网可达
     * 例：`2a0e:aa06:497::1`
@@ -35,9 +35,9 @@ IPv6 地址有三种类型，分别为单播地址、任播地址以及组播地
     * `ff00::/8`，有多种作用范围，作用范围可小至单个接口（Interface-Local），也可大至全球范围（Global）
     * 分为永久分配和非永久分配两类
     * Solicited-Node Multicast Address 是一类重要的组播地址
-      * 用于在发送组播 Neighbor Solicitation 时作为目的地址（Destination Address）
-      * 根据 ND 报文的目标 IP 地址（Target Address）生成
-      * 例：`ff02::1:ff32:5f30`（由 `fe80::5657:44ff:fe32:5f30` 生成）
+        * 用于在发送组播 Neighbor Solicitation 时作为目的地址（Destination Address）
+        * 根据 ND 报文的目标 IP 地址（Target Address）生成
+        * 例：`ff02::1:ff32:5f30`（由 `fe80::5657:44ff:fe32:5f30` 生成）
 
 关于 IPv6 地址架构的更多说明请参见 [RFC 4291: IP Version 6 Addressing Architecture](https://datatracker.ietf.org/doc/html/rfc4291)。
 
