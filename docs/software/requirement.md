@@ -53,6 +53,6 @@ $$ S' = S \times \min(0.8, 0.95^D) $$
 
 ### 实现 TFTP 协议的客户端和服务端
 
-你需要基于编程作业的代码，修改 `Homework/tftp/main.cpp`，实现一个 TFTP 协议的客户端和服务端。总代码量约 480 行。
+你需要基于编程作业的代码，修改 `Homework/tftp/client.cpp` 和 `Homework/tftp/server.cpp`，实现一个 TFTP 协议的客户端和服务端。总代码量约 480 行。
 
 特点：理解难度最低，代码量最大。
