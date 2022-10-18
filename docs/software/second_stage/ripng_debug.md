@@ -10,6 +10,14 @@
 
 实验仓库中，在 `Setup/ripng` 目录下提供了 netns 配置脚本，BIRD 配置以及评测脚本，你可以参考里面的内容进行配置。
 
+具体来说，可以按照下列的顺序在本地进行评测：
+
+1. 打开一个命令行窗口，进入 `Setup/ripng/setup` 目录，执行 `sudo ./setup-netns.sh` 配置 netns 环境，然后执行 `sudo ./start-r2.sh` 在 R2 上启动路由器，不要退出；
+2. 再打开一个命令行窗口，根据 BIRD 版本进入 `Setup/ripng/bird-v1`（BIRD v1.x）或 `Setup/ripng/bird-v2`（BIRD v2.x）目录，执行 `sudo ./bird-r1.sh`（BIRD v1.x）或 `sudo ./bird-r1-v2.sh` 在 R1 上启动 BIRD，不要退出；
+3. 再打开一个命令行窗口，根据 BIRD 版本进入 `Setup/ripng/bird-v1`（BIRD v1.x）或 `Setup/ripng/bird-v2`（BIRD v2.x）目录，执行 `sudo ./bird-r1.sh`（BIRD v1.x）或 `sudo ./bird-r1-v2.sh` 在 R3 上驱动 BIRD，不要退出；
+4. 再打开一个命令行窗口，进入 `Setup/ripng/test` 目录，依次执行 `sudo ./test3.sh`，`sudo ./test4.sh` 直到 `sudo ./test8.sh`，每个脚本对应评测中的一项；
+5. 所有项目评测完毕后，可以退出 R1 和 R3 上的 BIRD 和 R2 上的路由器。
+
 ### 软件配置
 
 你实现的路由器实际上包括两部分功能：IPv6 分组转发和路由协议。在第二阶段中，自己写的路由器运行在 R2 上，而 R1 和 R3 都需要运行标准的路由器。那么，在 Linux 环境中，为了实现路由器的功能，需要下面两个部分：分组转发和路由协议。
