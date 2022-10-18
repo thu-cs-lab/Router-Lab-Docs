@@ -4,7 +4,7 @@
 
 ![Topology](img/topology_tftp.png)
 
-这一阶段，PC1 由 TANLabs 自动配置和提供，你代码所运行在的树莓派处于 PC1 和 R2 的位置。其中 PC1 运行 TFTP 客户端，R2 运行 TFTP 服务端。
+这一阶段，R1 由 TANLabs 自动配置和提供，你代码所运行在的树莓派处于 PC1 和 R2 的位置。其中 PC1 运行 TFTP 客户端，R2 运行 TFTP 服务端。
 
 初始状态下，R2 配置如下的路由：
 
