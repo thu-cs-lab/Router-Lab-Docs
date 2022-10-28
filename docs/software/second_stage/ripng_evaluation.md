@@ -78,12 +78,12 @@ $$
 
 ??? warning "容易出错的地方"
 
-    1. Metric 计算和更新方式不正确或者不在 [1,16] 的范围内
-    2. 没有正确处理 RIP Response，特别是 metric=16 的处理，参考 [RFC 2080 Section 2.4.2 Response Messages](https://www.rfc-editor.org/rfc/rfc2080.html#section-2.4.2)
-    3. 转发的时候查表 not found，一般情况是路由表出错，或者是查表算法的问题
-    4. 更新路由表的时候，查询应该用精确匹配，但是错误地使用了最长前缀匹配
-    5. 没有对所有发出的 RIP Response 正确地实现水平分割和毒性反转
-    6. 字节序不正确，可以通过 Wireshark 看出
+    1. Metric 计算和更新方式不正确或者不在 [1,16] 的范围内；
+    2. 没有正确处理 RIP Response，特别是 metric=16 的处理，参考 [RFC 2080 Section 2.4.2 Response Messages](https://www.rfc-editor.org/rfc/rfc2080.html#section-2.4.2)；
+    3. 转发的时候查表 not found，一般情况是路由表出错，或者是查表算法的问题；
+    4. 更新路由表的时候，查询应该用精确匹配，但是错误地使用了最长前缀匹配；
+    5. 没有对所有发出的 RIP Response 正确地实现水平分割和毒性反转；
+    6. 字节序不正确，可以通过 Wireshark 看出。
 
 ??? example "可供参考的例子"
 
@@ -115,12 +115,6 @@ $$
     19. R1 把 ICMPv6 报文发给 PC1，目标 MAC 地址为 fd00::1:2 对应的 MAC 地址，源 MAC 地址为 fd00::1:1 对应的 MAC 地址。
     20. PC1 上 ping 显示成功。
 
-??? tip "在线评测的原理"
-
-    实验团队部署了树莓派集群，对于一次个人的真机评测，会分配三个树莓派和两个 VLAN，分别对应 PC1/R1、R2 和 R3/PC2，两个 VLAN 分别对应 R1-R2 和 R2-R3，使用 veth 连接 PC1-R1 和 R3-PC2。
-    接着，在 R1 和 R3 对应的树莓派上进行各种配置，包括 netns、veth、forwarding 和 ethtool（关闭 generic-receive-offload）的设置。在 R1 和 R3 上运行 BIRD，在 R2 上下载静态编译好的路由器程序，在容器里运行。接着，就按照上面所述的测试命令一条一条进行。
-
-    特别地，为了安全，程序运行在单独的 chroot 和 user 中，并且限制了 capability。同时为了保证性能的稳定性，把进程绑定到了一个 CPU 核上。另外，为了提升性能，我们把 CPU Scaling Governor 设为 performance，让树莓派在不打开超频的条件下在最大主频下运行。
 
 !!! tips "这个实验是怎么设计出来的？"
 

@@ -2,7 +2,8 @@
 
 一个 DHCPv6 协议的服务器需要支持如下的功能：
 
-1. 利用 IPv6 ND 和 DHCPv6 协议给客户端分配动态的 IPv6 地址
+1. 利用 IPv6 ND 和 DHCPv6 协议给客户端分配动态的 IPv6 地址；
+2. 根据静态路由表进行 IPv6 分组的转发。
 
 支持 DHCPv6 协议的服务器加上框架提供的基于静态路由表的转发功能，就得到了支持 DHCPv6 协议的路由器。
 
@@ -53,24 +54,24 @@
 
 由于 ICMPv6/DHCPv6 协议完整实现比较复杂，你只需要实现其中的一部分。必须实现的有：
 
-1. 对收到的 ICMPv6 Router Solicitation 生成 ICMPv6 Router Advertisement 回复。
-2. 对收到的 DHCPv6 Solicit 生成 DHCPv6 Advertise 回复。
+1. 对收到的 ICMPv6 Router Solicitation 生成 ICMPv6 Router Advertisement 回复；
+2. 对收到的 DHCPv6 Solicit 生成 DHCPv6 Advertise 回复；
 3. 对收到的 DHCPv6 Request 生成 DHCPv6 Reply 回复。
 
 可选实现的有（不加分）：
 
-1. 实现 DHCPv6 Renew 支持
-2. 实现 DHCPv6 Rapid Commit 支持
-3. 给多个客户端动态分配地址
-4. 持久化已经分配的地址，重启服务器后数据不丢失
-5. 在 Hop Limit 减为 0 时，回复 ICMPv6 Time Exceeded (Hop limit exceeded in transit)，见 [RFC 4443 Section 3.3 Time Exceeded Message](https://datatracker.ietf.org/doc/html/rfc4443#section-3.3)。
-6. 对 ICMPv6 Echo Request 进行 ICMPv6 Echo Reply 的回复，见 [RFC 4443 Echo Reply Message](https://datatracker.ietf.org/doc/html/rfc4443#section-4.2)。
+1. 实现 DHCPv6 Renew 支持；
+2. 实现 DHCPv6 Rapid Commit 支持；
+3. 给多个客户端动态分配地址；
+4. 持久化已经分配的地址，重启服务器后数据不丢失；
+5. 在 Hop Limit 减为 0 时，回复 ICMPv6 Time Exceeded (Hop limit exceeded in transit)，见 [RFC 4443 Section 3.3 Time Exceeded Message](https://datatracker.ietf.org/doc/html/rfc4443#section-3.3)；
+6. 对 ICMPv6 Echo Request 进行 ICMPv6 Echo Reply 的回复，见 [RFC 4443 Echo Reply Message](https://datatracker.ietf.org/doc/html/rfc4443#section-4.2)；
 7. 在接受到 IPv6 packet，按照目的地址在路由表中查找不到路由的时候，回复 ICMPv6 Destination Unreachable (No route to destination)，见 [RFC 4443 Section 3.1 Destination Unreachable Message](https://datatracker.ietf.org/doc/html/rfc4443#section-3.1)。
 
 不需要实现的有：
 
-1. 转发功能，支持直连路由和间接路由，包括 Hop Limit 减一，查表并向正确的 interface 发送出去。这一功能已经由框架提供。
-2. NDP 的处理，已经在 HAL 中实现。
+1. 转发功能，支持直连路由和间接路由，包括 Hop Limit 减一，查表并向正确的 interface 发送出去。这一功能已经由框架提供；
+2. NDP 的处理，已经在 HAL 中实现；
 3. interface 状态的跟踪（UP/DOWN 切换）。
 
 !!! attention "HONOR CODE"
