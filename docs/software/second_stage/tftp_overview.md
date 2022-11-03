@@ -40,12 +40,18 @@ TFTP 服务端的主要工作流程如下：
 2. 进入主循环；
 3. 接收 IPv6 分组，如果没有收到就跳到第 2 步；
 4. 检查 IPv6 分组的完整性和正确性；
-5. 判断 IPv6 分组目标是否是服务端：如果是，则进入 TFTP 协议处理；如果否，忽略并跳到第2步；
-6. 如果 IPv6 分组来自新的 TFTP 客户端，为该客户端随机生成服务端 TID 并记录相关信息，如果是 TFTP RRQ，文件不存在则构造 TFTP ERROR 并发送，文件存在则读取文件，构造 TFTP DATA 并发送；如果是 TFTP WRQ，文件存在则构造 TFTP ERROR 并发送，文件不存在则构造 TFTP ACK 并发送；
-7. 如果 IPv6 分组来自已有的 TFTP 客户端，如果正在进行的传输的操作是读取且收到的为 TFTP ACK，则检查 Block 编号判断进行重传或者发送下一块；如果正在进行的传输的操作是写入且收到的为 TFTP DATA，若 Block 编号为最后一次传输的 Block 编号加一，则写入块到文件并发送 TFTP ACK；
+5. 判断 IPv6 分组目标是否是服务端：如果是，则进入 TFTP 协议处理；如果否，忽略并跳到第 2 步；
+6. 如果 IPv6 分组来自新的 TFTP 客户端，为该客户端随机生成服务端 TID 并记录相关信息；
+    1. 如果是 TFTP RRQ，文件不存在则构造 TFTP ERROR 并发送，文件存在则读取文件，构造 TFTP DATA 并发送文件第一个块，同时更新传输状态；
+    2. 如果是 TFTP WRQ，文件存在则构造 TFTP ERROR 并发送，文件不存在则构造 TFTP ACK 并发送，告诉客户端可以开始发送文件内容，同时更新传输状态；
+7. 如果 IPv6 分组来自已有的 TFTP 客户端
+    1. 如果正在进行的传输的操作是读取且收到的为 TFTP ACK，则检查 Block 编号：
+        1. 如果和最后一次发送的 Block 编号相等，说明客户端已经收到最后一次发送的 Block，根据当前传输状态，判断要继续发送下一个块，还是当前传输已经结束；
+        2. 如果和最后一次发送的 Block 编号不相等，说明客户端没有收到最后一次发送的 Block，则要重新发送最后一次发送的 Block；
+    2. 如果正在进行的传输的操作是写入且收到的为 TFTP DATA，则检查 Block 编号，若 Block 编号为最后一次传输的 Block 编号加一，说明客户端发送了新的块，则写入块到文件并发送 TFTP ACK；
 8. 跳到第 2 步，进入下一次循环处理。
 
-更详细的处理流程可以参考下面的流程图：
+也可以见下面的流程图：
 
 ![](img/flow_tftp_server.png)
 
@@ -68,12 +74,17 @@ TODO
   2. 对收到的 TFTP WRQ，若文件不存在且可写入，则生成 TFTP ACK 回复，否则生成 TFTP ERROR 回复；
   3. 若正在进行的传输的操作为读取，对收到的 TFTP ACK，若 Block 编号等于最后一次发送的 Block 编号，则读取下一块并生成 TFTP DATA 回复，否则重新发送最后一个 Block；
   4. 若正在进行的传输的操作为写入，对收到的 TFTP DATA，若 Block 编号等于最后一次发送的 Block 编号加一，则写入块到文件中并生成 TFTP ACK 回复；
-- TFTP客户端：
+- TFTP 客户端：
   1. TODO
 
 可选实现的有（不加分）：
 
-1. 在服务端接收到 TFTP WRQ，但无法写入文件时，回复 TFTP ERROR；
+- TFTP 服务端：
+  1. 接收到 TFTP WRQ，但无法写入文件时，回复 TFTP ERROR；
+  2. 若正在进行的传输的操作为写入，对收到的 TFTP DATA，若 Block 编号不等于最后一次发送的 Block 编号加一，则重新发送 TFTP ACK，告诉客户端需要重新传输 TFTP DATA；
+  3. 除了 octet 以外的传输模式，如 binascii，都可以当成 octet 来实现。
+- TFTP 客户端：
+  1. TODO
 
 !!! attention "HONOR CODE"
 

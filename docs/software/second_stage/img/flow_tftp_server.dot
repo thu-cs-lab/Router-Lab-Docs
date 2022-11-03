@@ -66,7 +66,7 @@ digraph G {
         label = "判断文件是否存在",
         shape = diamond
     ]
-    recv_TFTP_RRQ -> DATA_transmission_state [label = "是"];
+    recv_TFTP_RRQ -> reply_TFTP_DATA [label = "是"];
     recv_TFTP_RRQ -> reply_TFTP_ERROR [label = "否"];
 
     recv_TFTP_WRQ [
