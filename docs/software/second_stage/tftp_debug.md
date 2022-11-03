@@ -12,8 +12,9 @@
 
 具体来说，可以按照下列的顺序在本地进行评测：
 
-1. 打开一个命令行窗口，进入 `Setup/tftp/setup` 目录，执行 `sudo ./setup-netns.sh` 配置 netns 环境，然后执行 `sudo ./start-standard-tftpd-r2.sh` 在 R2 上启动 TFTP 标准服务端，不要退出；
-2. 再打开一个命令行窗口，进入 `Setup/tftp/test` 目录，依次执行 `sudo ./test2.sh` 和 `sudo ./test3.sh`，对应第二项和第三项测试；
-3. 回到第一个命令行窗口，按 Ctrl-C 结束 TFTP 标准服务端，执行 `sudo ./start-custom-tftpd-r2.sh` 在 R2 上启动你编写的 TFTP 服务端，不要退出；
-4. 回到第二个命令行窗口，依次执行 `sudo ./test5.sh`，`sudo ./test6.sh` 到 `sudo ./test9.sh`，对应第五项到第九项测试；
-5. 所有项目评测完毕后，可以退出 R2 上的 TFTP 服务端。
+1. 确认系统内没有正在运行的 TFTP 服务端（进程名为 server）、TFTP 客户端（进程名为 client）以及 tftpd 程序（进程名为 in.tftpd 或者 tftpd）；
+2. 打开一个命令行窗口，进入 `Setup/tftp/setup` 目录，执行 `sudo ./setup-netns.sh` 配置 netns 环境，然后执行 `sudo ./start-standard-tftpd-r2.sh` 在 R2 上启动 TFTP 标准服务端，不要退出；
+3. 再打开一个命令行窗口，进入 `Setup/tftp/test` 目录，依次执行 `sudo ./test2.sh` 和 `sudo ./test3.sh`，对应第二项和第三项测试；
+4. 回到第一个命令行窗口，按 Ctrl-C 结束 TFTP 标准服务端，执行 `sudo ./start-custom-tftpd-r2.sh` 在 R2 上启动你编写的 TFTP 服务端，不要退出；
+5. 回到第二个命令行窗口，依次执行 `sudo ./test5.sh`，`sudo ./test6.sh` 到 `sudo ./test9.sh`，对应第五项到第九项测试；
+6. 所有项目评测完毕后，可以退出 R2 上的 TFTP 服务端。

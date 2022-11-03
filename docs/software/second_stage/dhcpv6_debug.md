@@ -12,6 +12,7 @@
 
 具体来说，可以按照下列的顺序在本地进行评测：
 
-1. 打开一个命令行窗口，进入 `Setup/dhcpv6/setup` 目录，执行 `sudo ./setup-netns.sh` 配置 netns 环境，然后执行 `sudo ./start-r1.sh` 在 R1 上启动你编写的 DHCPv6 路由器，不要退出；
-2. 再打开一个命令行窗口，进入 `Setup/dhcpv6/test` 目录，依次执行 `sudo ./test2.sh`，`sudo ./test3.sh` 到 `sudo ./test5.sh`，对应第二项到第五项测试；
-5. 所有项目评测完毕后，可以退出 R1 上的 DHCPv6 路由器。
+1. 确认系统内没有正在运行的 DHCPv6 路由器（进程名为 router）以及 dhcpcd 程序（进程名为 dhcpcd）；
+2. 打开一个命令行窗口，进入 `Setup/dhcpv6/setup` 目录，执行 `sudo ./setup-netns.sh` 配置 netns 环境，然后执行 `sudo ./start-r1.sh` 在 R1 上启动你编写的 DHCPv6 路由器，不要退出；
+3. 再打开一个命令行窗口，进入 `Setup/dhcpv6/test` 目录，依次执行 `sudo ./test2.sh`，`sudo ./test3.sh` 到 `sudo ./test5.sh`，对应第二项到第五项测试；
+4. 所有项目评测完毕后，可以退出 R1 上的 DHCPv6 路由器。
