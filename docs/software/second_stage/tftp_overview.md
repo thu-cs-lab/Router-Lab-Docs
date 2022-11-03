@@ -28,6 +28,48 @@
 2. 如何为每个客户端维护当前状态？
 3. 如何支持多个 TFTP 客户端同时请求？
 
+## 工作流程
+
+可以回答以上几个问题以后，结合仓库中  `Homework/tftp/server.cpp` 与  `Homework/tftp/client.cpp` 尝试理解 TFTP 服务端与客户端的工作流程。
+
+TFTP 服务端的主要工作流程如下：
+
+1. 初始化路由表，加入直连路由；
+2. 进入主循环；
+3. 接收 IPv6 分组，如果没有收到就跳到第 2 步；
+4. 检查 IPv6 分组的完整性和正确性；
+5. 判断 IPv6 分组目标是否是服务端：如果是，则进入 TFTP 协议处理；如果否，忽略并跳到第2步；
+6. 如果 IPv6 分组来自新的 TFTP 客户端，为该客户端随机生成服务端 TID 并记录相关信息，如果是 TFTP RRQ，文件不存在则构造 TFTP ERROR 并发送，文件存在则读取文件，构造 TFTP DATA 并发送；如果是 TFTP WRQ，文件存在则构造 TFTP ERROR 并发送，文件不存在则构造 TFTP ACK 并发送；
+7. 如果 IPv6 分组来自已有的 TFTP 客户端，如果传输的操作是读取且收到的为 TFTP ACK，则检查 Block 编号判断进行重传或者发送下一块；如果传输的操作是写入且收到的为 TFTP DATA，若 Block 编号为最后一次传输的 Block 编号加一，则写入块到文件并发送 TFTP ACK；
+8. 跳到第 2 步，进入下一次循环处理。
+
+更详细的处理流程可以参考下面的流程图：
+
+![](img/flow_tftp_server.png)
+
+TFTP 客户端的工作流程如下：
+
+##### // todo
+
+也可以见下面的流程图：
+
+##### // todo
+
+## 功能要求
+
+由于协议完整实现比较复杂，你只需要实现其中的一部分。必须实现的有：
+
+- TFTP 服务端：
+  1. 对收到的 TFTP RRQ，若文件存在则生成 TFTP DATA 回复，则生成 TFTP ERROR 回复；
+  2. 对收到的 TFTP WRQ，若文件不存在且可写入，则生成 TFTP ACK 回复，否则生成 TFTP ERROR回复；
+  3. 若传输的操作为读取，对收到的 TFTP ACK，若 Block 编号等于最后一次发送的 Block 编号，则读取下一块并生成 TFTP DATA 回复，否则重新发送最后一个 Block；
+  4. 若传输的操作为写入，对收到的 TFTP DATA，若 Block 编号等于最后一次发送的 Block 编号加一，则写入块到文件中并生成 TFTP ACK 回复；
+- TFTP客户端：
+
+可选实现的有（不加分）：
+
+1. 在服务端接收到 TFTP WRQ，但无法写入文件时，回复 TFTP ERROR；
+
 !!! attention "HONOR CODE"
 
-    在 `tftp` 目录中，有一个 `HONOR-CODE.md` 文件，你需要在这个文件中以 Markdown 格式记录你完成这个作业时参考网上的文章或者代码、与同学的交流情况。
+    在`tftp` 目录中，有一个 `HONOR-CODE.md` 文件，你需要在这个文件中以 Markdown 格式记录你完成这个作业时参考网上的文章或者代码、与同学的交流情况。
