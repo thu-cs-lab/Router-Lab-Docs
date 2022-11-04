@@ -1,0 +1,151 @@
+digraph G {
+    init [
+        label = "初始化路由表",
+        shape = rect
+    ];
+    
+    arg [
+        label = "解析三个命令行参数",
+        shape = rect
+        
+    ]
+    
+    loop [
+        label = "循环开始",
+        shape = rect
+    ];
+    
+    init -> arg;
+    
+    arg -> loop;
+    
+    loop -> recv;
+    
+    recv [
+        label = "现在是否为初始状态",
+        shape = diamond
+    ];
+    recv -> initial [label = "否"];
+    
+    initial [
+        label = "尝试向服务器发送 request"
+        shape = rect
+    ];
+    initial -> ipv6
+        
+    recv -> ipv6 [label = "是"];
+    
+    ipv6[
+        label = "是否收到 IPV6 分组"
+        shape = diamond
+    ]
+    
+    ipv6 -> check [label = "是"];
+    ipv6 -> loop_end [label = "否"];
+    
+    
+    check [
+        label = "IPv6 分组是否完整",
+        shape = diamond
+    ];
+    check -> loop_end [label = "否"];
+    check -> type [label = "是"];
+    
+    type [
+        label = "判断目的 UDP 端口是否等于客户端 TID",
+        shape = diamond
+    ];
+    type -> server_port [label = "是"];
+    type -> loop_end [label = "否"];
+
+    server_port [
+        label = "是否知道服务端 TID"
+        shape = diamond
+    ];
+    server_port -> known_port[label = "是"]
+    server_port -> unknown_port[label = "否"]
+    unknown_port [
+        label = "设置 TID 为源 UDP 端口"
+        shape = rec
+    ];
+    
+    known_port [
+        label = "源 UDP 端口是否等于服务端 TID "
+        shape = diamond
+    ];
+    
+    known_port -> loop_end [label = "否"]
+    known_port -> TFTP_type[label = "是"]
+    unknown_port -> TFTP_type
+    
+    TFTP_type [
+        label = "判断 TFTP 报文类型",
+        shape = diamond
+    ];
+    TFTP_type -> recv_TFTP_DATA[label = "DATA"];
+    TFTP_type -> check_block_number[label = "ACK"]
+    TFTP_type -> TFTP_ERROR[label = "ERROR"]
+
+    recv_TFTP_DATA [
+        label = "Block 编号是否等于最后一次传输的 Block 编号加一",
+        shape = diamond
+    ]
+    recv_TFTP_DATA -> write_TFTP_DATA [label = "是"];
+    write_TFTP_DATA[
+        label = "写入文件并更新 Block 编号"
+    ];
+    
+    write_TFTP_DATA -> reply_TFTP_ACK
+    
+    reply_TFTP_DATA [
+        label = "发送 TFTP DATA 报文";
+        shape = rect
+    ];
+    
+    
+    reply_TFTP_ACK [
+        label = "发送 TFTP ACK 报文";
+        shape = rect
+    ];
+    reply_TFTP_ACK -> loop_end;
+    
+    DATA_transmission_state [
+        label = "判断数据是否传输完毕"
+        shape = diamond
+    ];
+    DATA_transmission_state -> close_connect [label = "是"];
+    DATA_transmission_state -> reply_TFTP_DATA[label = "否"];
+    reply_TFTP_DATA -> loop_end;
+
+    close_connect [
+        label = "关闭该连接"
+        shape = rect
+    ];
+    close_connect -> loop_end;
+
+    check_block_number [
+        label = "Block 编号是否等于最后一次发送的 Block 编号"
+        shape = diamond
+    ];
+    check_block_number -> retrans_last_block [label = "否"];
+    check_block_number -> DATA_transmission_state [label = "是"];
+
+    retrans_last_block [
+        label = "重新发送最后一个 Block"
+        shape = rect
+    ];
+    retrans_last_block -> loop_end;
+    
+    TFTP_ERROR[
+        label = "输出错误信息"
+        shape = rect
+    ]
+    TFTP_ERROR -> loop_end;
+    
+    loop_end [
+        label = "循环结束",
+        shape = rect
+    ];
+    
+    loop_end -> loop;
+}
