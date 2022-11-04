@@ -80,11 +80,11 @@ TODO
 可选实现的有（不加分）：
 
 - TFTP 服务端：
-  1. 接收到 TFTP WRQ，但无法写入文件时，回复 TFTP ERROR；
-  2. 若正在进行的传输的操作为写入，对收到的 TFTP DATA，若 Block 编号不等于最后一次发送的 Block 编号加一，则重新发送 TFTP ACK，告诉客户端需要重新传输 TFTP DATA；
-  3. 除了 octet 以外的传输模式，如 binascii，都可以当成 octet 来实现。
+    1. 接收到 TFTP WRQ，但无法写入文件时，回复 TFTP ERROR；
+    2. 若正在进行的传输的操作为写入，对收到的 TFTP DATA，若 Block 编号不等于最后一次发送的 Block 编号加一，则重新发送 TFTP ACK，告诉客户端需要重新传输 TFTP DATA；
+    3. 除了 octet 以外的传输模式，如 binascii，都可以当成 octet 来实现。
 - TFTP 客户端：
-  1. TODO
+    1. TODO
 
 !!! attention "HONOR CODE"
 
