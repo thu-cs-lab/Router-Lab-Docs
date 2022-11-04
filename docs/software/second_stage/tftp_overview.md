@@ -70,12 +70,12 @@ TODO
 由于协议完整实现比较复杂，你只需要实现其中的一部分。必须实现的有：
 
 - TFTP 服务端：
-  1. 对收到的 TFTP RRQ，若文件存在则生成 TFTP DATA 回复，则生成 TFTP ERROR 回复；
-  2. 对收到的 TFTP WRQ，若文件不存在且可写入，则生成 TFTP ACK 回复，否则生成 TFTP ERROR 回复；
-  3. 若正在进行的传输的操作为读取，对收到的 TFTP ACK，若 Block 编号等于最后一次发送的 Block 编号，则读取下一块并生成 TFTP DATA 回复，否则重新发送最后一个 Block；
-  4. 若正在进行的传输的操作为写入，对收到的 TFTP DATA，若 Block 编号等于最后一次发送的 Block 编号加一，则写入块到文件中并生成 TFTP ACK 回复；
+    1. 对收到的 TFTP RRQ，若文件存在则生成 TFTP DATA 回复，则生成 TFTP ERROR 回复；
+    2. 对收到的 TFTP WRQ，若文件不存在且可写入，则生成 TFTP ACK 回复，否则生成 TFTP ERROR 回复；
+    3. 若正在进行的传输的操作为读取，对收到的 TFTP ACK，若 Block 编号等于最后一次发送的 Block 编号，则读取下一块并生成 TFTP DATA 回复，否则重新发送最后一个 Block；
+    4. 若正在进行的传输的操作为写入，对收到的 TFTP DATA，若 Block 编号等于最后一次发送的 Block 编号加一，则写入块到文件中并生成 TFTP ACK 回复；
 - TFTP 客户端：
-  1. TODO
+    1. TODO
 
 可选实现的有（不加分）：
 
