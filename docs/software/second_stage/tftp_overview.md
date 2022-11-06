@@ -87,7 +87,8 @@ TFTP 客户端的工作流程如下：
     3. 若正在进行的传输的操作为读取，对收到的 TFTP ACK，若 Block 编号等于最后一次发送的 Block 编号，则读取下一块并生成 TFTP DATA 回复，否则重新发送最后一个 Block；
     4. 若正在进行的传输的操作为写入，对收到的 TFTP DATA，若 Block 编号等于最后一次发送的 Block 编号加一，则写入块到文件中并生成 TFTP ACK 回复；
 - TFTP 客户端：
-    1. TODO
+    1. 对收到的 TFTP DATA，判断其 Block Number，写入数据到文件中，发送 TFTP ACK 回复；
+    2. 对收到的 TFTP ACK，判断其 Block Number，发送下一块数据 TFTP DATA。
 
 可选实现的有（不加分）：
 
@@ -96,7 +97,8 @@ TFTP 客户端的工作流程如下：
     2. 若正在进行的传输的操作为写入，对收到的 TFTP DATA，若 Block 编号不等于最后一次发送的 Block 编号加一，则重新发送 TFTP ACK，告诉客户端需要重新传输 TFTP DATA；
     3. 除了 octet 以外的传输模式，如 binascii，都可以当成 octet 来实现。
 - TFTP 客户端：
-    1. TODO
+    1. 接受到 TFTP DATA，若 Block Number 不正确，则重新发送 TFTP ACK，高速服务端需要重新传输 TFTP DATA；
+    2. 除了 octet 以外的传输模式，如 binascii，都可以当成 octet 来实现。
 
 !!! attention "HONOR CODE"
 
