@@ -39,7 +39,8 @@ $$
 ??? warning "容易出错的地方"
 
     1. ICMPv6 构造时出错；
-    2. DHCPv6 Option 构造出错，包括 Code，Length 等等字段。
+    2. DHCPv6 Option 构造出错，包括 Code，Length 等等字段；
+    3. 目的 MAC 地址出错。
 
 ??? example "可供参考的例子"
 
