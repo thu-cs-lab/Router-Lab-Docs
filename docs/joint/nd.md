@@ -28,7 +28,7 @@ IPv6 地址有三种类型，分别为单播地址、任播地址以及组播地
     * 例：`fe80::5657:44ff:fe32:5f30`（由 `54:57:44:32:5f:30` 生成）
 * 子网路由器任播地址（Subnet-Router Anycast Address）
     * 接口号为全零的地址，在本实验中不要使用
-* Unique Local Addresses，ULA
+* Unique Local Addresses, ULA
     * `fc00::/7`，“内网地址”，本实验不涉及
     * 可参考 [RFC 4193: Unique Local IPv6 Unicast Addresses](https://datatracker.ietf.org/doc/html/rfc4193)
 * 组播地址（Multicast Addresses）
