@@ -19,6 +19,13 @@
 5. 再打开一个命令行窗口，进入 `Setup/ripng/test` 目录，依次执行 `sudo ./test3.sh`，`sudo ./test4.sh` 直到 `sudo ./test8.sh`，每个脚本对应评测中的一项；
 6. 所有项目评测完毕后，可以退出 R1 和 R3 上的 BIRD 和 R2 上的路由器。
 
+在评测过程中，如果发现某一步结果不对，可以使用 tcpdump 或者 wireshark 来进行抓包。具体地，如果要在某个 netns 中抓包（例如 PC1），需要用如下的命令来运行 tcpdump 或者 wireshark：
+
+```shell
+sudo ip netns exec PC1 tcpdump [some arguments]
+sudo ip netns exec PC1 wireshark
+```
+
 ### 软件配置
 
 你实现的路由器实际上包括两部分功能：IPv6 分组转发和路由协议。在第二阶段中，自己写的路由器运行在 R2 上，而 R1 和 R3 都需要运行标准的路由器。那么，在 Linux 环境中，为了实现路由器的功能，需要下面两个部分：分组转发和路由协议。

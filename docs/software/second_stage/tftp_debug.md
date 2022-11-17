@@ -18,3 +18,10 @@
 4. 回到第一个命令行窗口，按 Ctrl-C 结束 TFTP 标准服务端，执行 `sudo ./start-custom-tftpd-r2.sh` 在 R2 上启动你编写的 TFTP 服务端，不要退出；
 5. 回到第二个命令行窗口，依次执行 `sudo ./test5.sh`，`sudo ./test6.sh` 到 `sudo ./test9.sh`，对应第五项到第九项测试；
 6. 所有项目评测完毕后，可以退出 R2 上的 TFTP 服务端。
+
+在评测过程中，如果发现某一步结果不对，可以使用 tcpdump 或者 wireshark 来进行抓包。具体地，如果要在某个 netns 中抓包（例如 PC1），需要用如下的命令来运行 tcpdump 或者 wireshark：
+
+```shell
+sudo ip netns exec PC1 tcpdump [some arguments]
+sudo ip netns exec PC1 wireshark
+```
