@@ -46,6 +46,8 @@ $$
 
     实际上，当你通过有线网连接清华校园网的时候，就需要通过 DHCPv6 协议获取动态的 IPv6 地址。你可以打开 Wireshark 进行抓包，然后通过有线连接到校园网，就可以看到 ICMPv6 以及 DHCPv6 的整个工作流程。
 
+    点击 [`icmpv6-ra-rs.pcap`](static/icmpv6-ra-rs.pcap) 下载，可以看到在校园网上抓取的 ICMPv6 Router Solicitation 和 Router Advertisement。
+
 ??? question "如何提升转发性能？"
 
     你可以按照代码的框架进行分析，在测试转发性能的时候，代码中哪些部分的执行次数最多，然后估计哪些部分的占用时间最长，然后针对这部分进行优化。
