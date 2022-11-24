@@ -55,14 +55,52 @@ fd00::1:0/112 via fd00::3:1 dev r2r1
 
 本地测试主要分为两个部分：首先，搭建网络拓扑，将网络中各个设备连接好；其次，在各个设备上，运行相应的软件，并配置好网络。
 
-下面，根据你要测试的软件，寻找对应的本地测试流程。
+下面涉及到的脚本都在 `Setup/interconnect` 目录下。
 
-### PC1 上的 TFTP 客户端
+下面分为两种方法来进行测试：
 
-### R1 上的 DHCPv6 路由器
+1. 在互联测试的拓扑中，测试自己编写的代码
+2. 集齐三到五位同学的程序，放在一台机器上测试
 
-### R2 上的 RIPng 路由器
+### 仅测试自己的代码
 
-### R3 上的 RIPng 路由器
+如果在互联测试的拓扑中，仅测试自己编写的代码，按照下面的分情况来测试：
 
-### PC2 上的 TFTP 服务端
+#### PC1 上的 TFTP 客户端
+
+自己编写的代码是 `Homework/tftp/pc1/client`，此时 R1 R2 R3 PC2 运行标准程序。
+
+1. 进入 `Setup/interconnect/setup` 目录，运行 `sudo ./start-netns.sh` 命令以配置网络拓扑。
+2. 进入 `Setup/interconnect/setup` 目录，运行 `sudo ./start-standard-r1-dhcpd.sh`，在 R1 上启动标准 DHCPv6 服务器。
+3. 打开新窗口，进入 `Setup/interconnect/setup` 目录，运行 `sudo ./start-standard-r1-radvd.sh`，在 R1 上启动标准 IPv6 RA 服务器。
+4. 打开新窗口，进入 `Setup/interconnect/setup` 目录，根据 BIRD 版本，进入 bird-v1 或 bird-v2 目录，然后运行 `sudo ./bird-r2.sh` 或 `sudo ./bird-r2-v2.sh`，在 R2 上启动标准 RIPng 服务器。
+5. 打开新窗口，进入 `Setup/interconnect/setup` 目录，根据 BIRD 版本，进入 bird-v1 或 bird-v2 目录，然后运行 `sudo ./bird-r3.sh` 或 `sudo ./bird-r3-v2.sh`，在 R3 上启动标准 RIPng 服务器。
+6. 打开新窗口，进入 `Setup/interconnect/setup` 目录，运行 `sudo ./start-standard-pc2.sh`，在 PC2 上启动标准 TFTP 服务器。
+7. 打开新窗口，进入 `Setup/interconnect/test` 目录，依次执行 `sudo ./test2.sh`、`sudo ./test4.sh` 直到 `sudo ./test8.sh`，完成各项测试。
+
+#### R1 上的 DHCPv6 路由器
+
+自己编写的代码是 `Homework/dhcpv6/r1/router`，此时 PC1 R2 R3 PC2 运行标准程序。
+
+#### R2 上的 RIPng 路由器
+
+自己编写的代码是 `Homework/router/interconnect-r2/router`，此时 PC1 R1 R3 PC2 运行标准程序。
+
+#### R3 上的 RIPng 路由器
+
+自己编写的代码是 `Homework/router/r3/router`，此时 PC1 R1 R2 PC2 运行标准程序。
+
+#### PC2 上的 TFTP 服务端
+
+自己编写的代码是 `Homework/tftp/pc2/server`，此时 PC1 R1 R2 R3 运行标准程序。
+
+### 测试多份程序
+
+如果要测试多个同学的程序，先把多个同学编译好的二进制集中到一个 Linux 系统中。每个位置要执行的程序路径是：
+
+- PC1: `Homework/tftp/pc1/client`
+- R1: `Homework/dhcpv6/r1/router`
+- R2: `Homework/router/interconnect-r2/router`
+- R3: `Homework/router/r3/router`
+- PC2: `Homework/tftp/pc2/server`
+
