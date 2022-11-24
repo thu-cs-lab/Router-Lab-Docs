@@ -131,7 +131,7 @@ fd00::1:0/112 via fd00::3:1 dev r2r1
 
 ### 测试多份程序
 
-如果要测试多个同学的程序，先把多个同学编译好的二进制集中到一个 Linux 系统中。每个位置要执行的程序路径是：
+如果要测试多个同学的程序，先把多个同学编译好的程序集中到一个 Linux 系统的同一个仓库中。每个位置要执行的程序路径是：
 
 - PC1: `Homework/tftp/pc1/client`
 - R1: `Homework/dhcpv6/r1/router`
@@ -139,3 +139,13 @@ fd00::1:0/112 via fd00::3:1 dev r2r1
 - R3: `Homework/router/r3/router`
 - PC2: `Homework/tftp/pc2/server`
 
+请注意不要复制代码。需要注意的是，编译的程序可能会有兼容性问题，例如通常在比较新的系统中编译的软件，无法直接在旧的系统中运行，报错可能是缺少相应的动态库，或者找不到 GLIBC 对应版本的符号。为了解决这个问题，可以在 Makefrag 中添加静态链接的编译选项。
+
+准备好程序以后，按照下面的步骤评测：
+
+1. 进入 `Setup/interconnect/setup` 目录，运行 `sudo ./start-netns.sh` 命令以配置网络拓扑。
+2. 进入 `Setup/interconnect/setup` 目录，运行 `sudo ./start-custom-r1.sh`，在 R1 上启动自己的 DHCPv6 服务器。
+3. 打开新窗口，进入 `Setup/interconnect/setup` 目录，运行 `sudo ./start-custom-r2.sh`，在 R2 上启动自己的 RIPng 服务器。
+4. 打开新窗口，进入 `Setup/interconnect/setup` 目录，运行 `sudo ./start-custom-r3.sh`，在 R3 上启动自己的 RIPng 服务器。
+6. 打开新窗口，进入 `Setup/interconnect/setup` 目录，运行 `sudo ./start-custom-pc2.sh`，在 PC2 上启动自己写的 TFTP 服务器。
+7. 打开新窗口，进入 `Setup/interconnect/test` 目录，依次执行 `sudo ./test2.sh`、`sudo ./test4.sh`、`sudo ./test5.sh`、`sudo ./test6.sh`、`sudo ./test7.sh` 和 `sudo ./test8.sh`，完成各项测试。
