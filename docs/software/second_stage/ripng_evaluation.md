@@ -85,7 +85,7 @@ $$
     5. 没有对所有发出的 RIP Response 正确地实现水平分割和毒性反转；
     6. 字节序不正确，可以通过 Wireshark 看出；
     7. 目的 MAC 地址出错；
-    8. ICMPv6 Time Exceeded 报文的源 IPv6 地址应该用非 Link Local 地址。
+    8. ICMPv6 错误消息（Time Exceeded 及 Destination Unreachable）的源 IPv6 地址错误地使用了 Link Local 地址，应该使用其他类型的地址。
 
 ??? example "可供参考的例子"
 
