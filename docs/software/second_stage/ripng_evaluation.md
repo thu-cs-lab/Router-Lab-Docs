@@ -84,7 +84,8 @@ $$
     4. 更新路由表的时候，查询应该用精确匹配，但是错误地使用了最长前缀匹配；
     5. 没有对所有发出的 RIP Response 正确地实现水平分割和毒性反转；
     6. 字节序不正确，可以通过 Wireshark 看出；
-    7. 目的 MAC 地址出错。
+    7. 目的 MAC 地址出错；
+    8. ICMPv6 Time Exceeded 报文的源 IPv6 地址应该用非 Link Local 地址。
 
 ??? example "可供参考的例子"
 
