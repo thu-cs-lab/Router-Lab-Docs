@@ -74,7 +74,7 @@ fd00::1:0/112 via fd00::3:1 dev r2r1
 
 自己编写的代码是 `Homework/tftp/pc1/client`，此时 R1 R2 R3 PC2 运行标准程序。
 
-1. 进入 `Setup/interconnect/setup` 目录，运行 `sudo ./start-netns.sh` 命令以配置网络拓扑。
+1. 进入 `Setup/interconnect/setup` 目录，运行 `sudo ./setup-netns.sh` 命令以配置网络拓扑。
 2. 进入 `Setup/interconnect/setup` 目录，运行 `sudo ./start-standard-r1-dhcpd.sh`，在 R1 上启动标准 DHCPv6 服务器。
 3. 打开新窗口，进入 `Setup/interconnect/setup` 目录，运行 `sudo ./start-standard-r1-radvd.sh`，在 R1 上启动标准 IPv6 RA 服务器。
 4. 打开新窗口，进入 `Setup/interconnect/setup` 目录，根据 BIRD 版本，进入 bird-v1 或 bird-v2 目录，然后运行 `sudo ./bird-r2.sh` 或 `sudo ./bird-r2-v2.sh`，在 R2 上启动标准 RIPng 服务器。
@@ -86,7 +86,7 @@ fd00::1:0/112 via fd00::3:1 dev r2r1
 
 自己编写的代码是 `Homework/dhcpv6/r1/router`，此时 PC1 R2 R3 PC2 运行标准程序。
 
-1. 进入 `Setup/interconnect/setup` 目录，运行 `sudo ./start-netns.sh` 命令以配置网络拓扑。
+1. 进入 `Setup/interconnect/setup` 目录，运行 `sudo ./setup-netns.sh` 命令以配置网络拓扑。
 2. 打开新窗口，进入 `Setup/interconnect/setup` 目录，运行 `sudo ./start-custom-r1.sh`，在 R1 上启动自己编写的 DHCPv6 服务器。
 3. 打开新窗口，进入 `Setup/interconnect/setup` 目录，根据 BIRD 版本，进入 bird-v1 或 bird-v2 目录，然后运行 `sudo ./bird-r2.sh` 或 `sudo ./bird-r2-v2.sh`，在 R2 上启动标准 RIPng 服务器。
 4. 打开新窗口，进入 `Setup/interconnect/setup` 目录，根据 BIRD 版本，进入 bird-v1 或 bird-v2 目录，然后运行 `sudo ./bird-r3.sh` 或 `sudo ./bird-r3-v2.sh`，在 R3 上启动标准 RIPng 服务器。
@@ -97,7 +97,7 @@ fd00::1:0/112 via fd00::3:1 dev r2r1
 
 自己编写的代码是 `Homework/router/interconnect-r2/router`，此时 PC1 R1 R3 PC2 运行标准程序。
 
-1. 进入 `Setup/interconnect/setup` 目录，运行 `sudo ./start-netns.sh` 命令以配置网络拓扑。
+1. 进入 `Setup/interconnect/setup` 目录，运行 `sudo ./setup-netns.sh` 命令以配置网络拓扑。
 2. 进入 `Setup/interconnect/setup` 目录，运行 `sudo ./start-standard-r1-dhcpd.sh`，在 R1 上启动标准 DHCPv6 服务器。
 3. 打开新窗口，进入 `Setup/interconnect/setup` 目录，运行 `sudo ./start-standard-r1-radvd.sh`，在 R1 上启动标准 IPv6 RA 服务器。
 4. 打开新窗口，进入 `Setup/interconnect/setup` 目录，运行 `sudo ./start-custom-r2.sh`，在 R2 上自己写的 RIPng 路由器。
@@ -109,7 +109,7 @@ fd00::1:0/112 via fd00::3:1 dev r2r1
 
 自己编写的代码是 `Homework/router/r3/router`，此时 PC1 R1 R2 PC2 运行标准程序。
 
-1. 进入 `Setup/interconnect/setup` 目录，运行 `sudo ./start-netns.sh` 命令以配置网络拓扑。
+1. 进入 `Setup/interconnect/setup` 目录，运行 `sudo ./setup-netns.sh` 命令以配置网络拓扑。
 2. 进入 `Setup/interconnect/setup` 目录，运行 `sudo ./start-standard-r1-dhcpd.sh`，在 R1 上启动标准 DHCPv6 服务器。
 3. 打开新窗口，进入 `Setup/interconnect/setup` 目录，运行 `sudo ./start-standard-r1-radvd.sh`，在 R1 上启动标准 IPv6 RA 服务器。
 4. 打开新窗口，进入 `Setup/interconnect/setup` 目录，根据 BIRD 版本，进入 bird-v1 或 bird-v2 目录，然后运行 `sudo ./bird-r2.sh` 或 `sudo ./bird-r2-v2.sh`，在 R2 上启动标准 RIPng 服务器。
@@ -121,7 +121,7 @@ fd00::1:0/112 via fd00::3:1 dev r2r1
 
 自己编写的代码是 `Homework/tftp/pc2/server`，此时 PC1 R1 R2 R3 运行标准程序。
 
-1. 进入 `Setup/interconnect/setup` 目录，运行 `sudo ./start-netns.sh` 命令以配置网络拓扑。
+1. 进入 `Setup/interconnect/setup` 目录，运行 `sudo ./setup-netns.sh` 命令以配置网络拓扑。
 2. 进入 `Setup/interconnect/setup` 目录，运行 `sudo ./start-standard-r1-dhcpd.sh`，在 R1 上启动标准 DHCPv6 服务器。
 3. 打开新窗口，进入 `Setup/interconnect/setup` 目录，运行 `sudo ./start-standard-r1-radvd.sh`，在 R1 上启动标准 IPv6 RA 服务器。
 4. 打开新窗口，进入 `Setup/interconnect/setup` 目录，根据 BIRD 版本，进入 bird-v1 或 bird-v2 目录，然后运行 `sudo ./bird-r2.sh` 或 `sudo ./bird-r2-v2.sh`，在 R2 上启动标准 RIPng 服务器。
@@ -143,7 +143,7 @@ fd00::1:0/112 via fd00::3:1 dev r2r1
 
 准备好程序以后，按照下面的步骤评测：
 
-1. 进入 `Setup/interconnect/setup` 目录，运行 `sudo ./start-netns.sh` 命令以配置网络拓扑。
+1. 进入 `Setup/interconnect/setup` 目录，运行 `sudo ./setup-netns.sh` 命令以配置网络拓扑。
 2. 进入 `Setup/interconnect/setup` 目录，运行 `sudo ./start-custom-r1.sh`，在 R1 上启动自己的 DHCPv6 服务器。
 3. 打开新窗口，进入 `Setup/interconnect/setup` 目录，运行 `sudo ./start-custom-r2.sh`，在 R2 上启动自己的 RIPng 服务器。
 4. 打开新窗口，进入 `Setup/interconnect/setup` 目录，运行 `sudo ./start-custom-r3.sh`，在 R3 上启动自己的 RIPng 服务器。
