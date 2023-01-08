@@ -218,5 +218,8 @@ S   W   I   T   C   H
 
 最后，进行如下测试：
 
-* 测试常用网络功能是否正常。
+* 访问 https://bgp.he.net/ ，查看网页是否加载正常。
+* 运行 `traceroute -6 bgp.he.net` 命令，查看路由是否正常。
+* 从 https://mirrors6.tuna.tsinghua.edu.cn/ 下载文件，观察传输速率是否正常。
+* 测试其他常用网络功能是否正常。
 
