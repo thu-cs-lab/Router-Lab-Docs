@@ -130,3 +130,7 @@
 !!! question "运行路由器时报错 no viable interfaces open for capture"
 
     这是因为路由器程序找不到对应的 interface。可能的原因有：1）没有用 root 权限运行；2）运行在错误的 netns 或者 netns 和路由器 r1-r3 不匹配；3) 没有正确配置 netns 或其他虚拟网络环境
+
+!!! question "通过 git commit 提交代码到 GitLab 上后，TANLabs 实验平台的构建历史看不到更新？"
+
+    这说明你的代码在 CI 上构建时失败了，请前往 GitLab，找到对应的 commit，进入 CI 详细信息，就可以知道为什么构建失败了。
