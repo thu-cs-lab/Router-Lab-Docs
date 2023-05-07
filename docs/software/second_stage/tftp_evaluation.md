@@ -18,14 +18,14 @@ fd00::3:0/122 dev r1r2 scope link
 评测时 TANLabs 将会自动逐项检查下列内容：
 
 1. 配置网络拓扑，在 R2 上运行标准 TFTP 服务器程序。
-2. （15% 分数）测试你写的 TFTP 客户端从标准 TFTP 服务端下载文件，在 R2 上创建文件 `test2`，在 PC1 上运行 `client get fd00::3:2 test2`，判断 PC1 上 `test2` 内容是否与 R2 上一致。
-3. （15% 分数）测试你写的 TFTP 客户端向标准 TFTP 服务端上传文件，在 PC1 上创建文件 `test3`，在 PC1 上运行 `client put fd00::3:2 test3`，判断 R2 上 `test3` 内容是否与 PC1 上一致。
+2. （15% 分数）测试你写的 TFTP 客户端从标准 TFTP 服务端下载文件，在 R2 上创建文件 `test2`，在 PC1 上运行 `client get fd00::3:2 test2`，判断 PC1 上 `test2` 内容是否与 R2 上一致。期望输出：文件内容正确，diff 为空。
+3. （15% 分数）测试你写的 TFTP 客户端向标准 TFTP 服务端上传文件，在 PC1 上创建文件 `test3`，在 PC1 上运行 `client put fd00::3:2 test3`，判断 R2 上 `test3` 内容是否与 PC1 上一致。期望输出：文件内容正确，diff 为空。
 4. 停止 R2 上的标准 TFTP 服务器，在 R2 上运行你写的 TFTP 服务端。
-5. （15% 分数）测试标准 TFTP 客户端从你写的 TFTP 服务端下载文件，在 R2 上创建文件 `test5`，在 PC1 上运行 `echo "get test5" | tftp fd00::3:2`，判断 PC1 上 `test5` 内容是否与 R2 上一致。
-6. （15% 分数）测试标准 TFTP 客户端向你写的 TFTP 服务端上传文件，在 PC1 上创建文件 `test6`，在 PC1 上运行 `echo "put test6" | tftp fd00::3:2`，判断 R2 上 `test6` 内容是否与 PC1 上一致。
-7. （15% 分数）测试你写的 TFTP 客户端从你写的 TFTP 服务端下载文件，在 R2 上创建文件 `test7`，在 PC1 上运行 `client get fd00::3:2 test7`，判断 PC1 上 `test7` 内容是否与 R2 上一致。
-8. （15% 分数）测试你写的 TFTP 客户端从你写的 TFTP 服务端上传文件，在 PC1 上创建文件 `test8`，在 PC1 上运行 `client put fd00::3:2 test8`，判断 R2 上 `test8` 内容是否与 PC1 上一致。
-9. （10% 分数）测试你写的 TFTP 客户端从你写的 TFTP 服务端下载文件的性能（根据端到端 wall time 时间计算）
+5. （15% 分数）测试标准 TFTP 客户端从你写的 TFTP 服务端下载文件，在 R2 上创建文件 `test5`，在 PC1 上运行 `echo "get test5" | tftp fd00::3:2`，判断 PC1 上 `test5` 内容是否与 R2 上一致。期望输出：文件内容正确，diff 为空。
+6. （15% 分数）测试标准 TFTP 客户端向你写的 TFTP 服务端上传文件，在 PC1 上创建文件 `test6`，在 PC1 上运行 `echo "put test6" | tftp fd00::3:2`，判断 R2 上 `test6` 内容是否与 PC1 上一致。期望输出：文件内容正确，diff 为空。
+7. （15% 分数）测试你写的 TFTP 客户端从你写的 TFTP 服务端下载文件，在 R2 上创建文件 `test7`，在 PC1 上运行 `client get fd00::3:2 test7`，判断 PC1 上 `test7` 内容是否与 R2 上一致。期望输出：文件内容正确，diff 为空。
+8. （15% 分数）测试你写的 TFTP 客户端从你写的 TFTP 服务端上传文件，在 PC1 上创建文件 `test8`，在 PC1 上运行 `client put fd00::3:2 test8`，判断 R2 上 `test8` 内容是否与 PC1 上一致。期望输出：文件内容正确，diff 为空。
+9. （10% 分数）测试你写的 TFTP 客户端从你写的 TFTP 服务端下载文件的性能（根据端到端 wall time 时间计算）。期望输出：输出了运行时间。
 
 代码量：实现客户端约 170 行，实现服务端约 310 行。
 
