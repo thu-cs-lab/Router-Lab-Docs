@@ -19,13 +19,13 @@ ThinRouter 的样例工程在 [https://git.tsinghua.edu.cn/tanlabs-public/tanlab
 ```shell
 > git remote add upstream git@git.tsinghua.edu.cn:tanlabs-public/tanlabs.git
 > git fetch upstream
-> git merge upstream/master
+> git merge upstream/masterk
 ```
 
 或者，更简单地，按照如下命令来合并：
 
 ```shell
-> git pull git@git.tsinghua.edu.cn:tanlabs-public/tanlabs.git master
+> git pull git@git.tsinghua.edu.cn:tanlabs-public/tanlabs.git masterk
 ```
 
 ## 与软件实验的区别
