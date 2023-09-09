@@ -9,7 +9,7 @@
 
 !!! tip "推荐查看在线版"
 
-    推荐查看本文档的在线版（<https://lab.cs.tsinghua.edu.cn/router/doc/>)，而非 PDF 或 Word 版本。
+    推荐查看本文档的在线版（<https://lab.cs.tsinghua.edu.cn/router/doc/>），而非 PDF 或 Word 版本。
     离线版本的显示效果可能不佳，并且无法获得实时的更新。
 
 ## 实验内容

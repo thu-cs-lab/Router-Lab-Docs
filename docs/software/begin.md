@@ -1,6 +1,6 @@
 # 开始实验
 
-在 TANLabs 上仔细阅读 Honor Code，确定不会违反以下的要求后接受作业：
+在 [TANLabs](https://lab.cs.tsinghua.edu.cn/tan) 上仔细阅读 Honor Code，确定不会违反以下的要求后接受作业：
 
 1. 我在完成作业过程中不抄袭他人的代码。如果参考了任何他人的代码或思路，一定会在使用处以代码注释的方式注明出处。
 2. 如果有其他选课的同学在本学期结束之前寻求自己的帮助，我会确保这些同学不会不加引用地直接使用自己的想法或代码。因为不允许代码层面的借鉴，所以我不会源代码直接提供给他人（包括截图、视频等形式）。
@@ -11,30 +11,30 @@
 接受作业后，第一步是克隆本仓库（不要忘记先在 GitLab 上添加你的 SSH Key）：
 
 ```shell
-> git clone git@git.tsinghua.edu.cn:network-2023spring/router-lab-xxx.git Router-Lab # 将 xxx 替换为你的用户名
-> cd Router-Lab
+git clone git@git.tsinghua.edu.cn:network-2023spring/router-lab-xxx.git Router-Lab # 将 xxx 替换为你的用户名
+cd Router-Lab
 ```
 
 修改代码后，使用 git 提交：
 
 ```shell
-> git add .
-> git commit -m "Describe what you have done here"
-> git push origin master
+git add .
+git commit -m "Describe what you have done here"
+git push origin master
 ```
 
 如果原始框架代码有更新（届时会通过多种渠道通知），你可以如下合并这些更新：
 
 ```shell
-> git remote add upstream git@git.tsinghua.edu.cn:Router-Lab/Router-Lab.git
-> git fetch upstream
-> git merge upstream/master
+git remote add upstream git@git.tsinghua.edu.cn:Router-Lab/Router-Lab.git
+git fetch upstream
+git merge upstream/master
 ```
 
 或者，更简单地，直接：
 
 ```shell
-> git pull git@git.tsinghua.edu.cn:Router-Lab/Router-Lab.git master
+git pull git@git.tsinghua.edu.cn:Router-Lab/Router-Lab.git master
 ```
 
 !!! info "注意更新方式"

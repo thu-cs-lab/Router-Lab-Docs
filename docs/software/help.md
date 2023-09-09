@@ -6,11 +6,11 @@
 2. 用错误信息上网搜索解决方法，并且进行尝试
 3. 查询错误所涉及的函数的相关文档，和样例代码进行比对
 4. 用调试器，单步查看每一步变量的变化
-5. 如果实在自己解决不了，在找别人求助之前，先用电脑截图关键部分和错误信息；如果代码多的话，把关键的代码放到 pastebin 服务（或者 Rust Playground）上生成一个链接
+5. 如果实在自己解决不了，在找别人求助之前，先用电脑截图关键部分和错误信息；如果代码多的话，把关键的代码放到 pastebin 服务上生成一个链接
 6. 如果可以的话，尽量缩减代码，得到一个 MWE（最小错误样例），这样可以方便他人复现问题
 7. 向别人阐述你的问题，谈你都做了哪些尝试，并且把代码和错误信息截图（或者链接）发给对方
 
-完整版：见 [《提问的智慧》](https://github.com/ryanhanwu/How-To-Ask-Questions-The-Smart-Way/blob/master/README-zh_CN.md)
+完整版：见 [《提问的智慧》](https://github.com/ryanhanwu/How-To-Ask-Questions-The-Smart-Way/blob/master/README-zh_CN.md)，也可阅读[一生一芯项目书写的《如何科学地提问》](https://ysyx.oscc.cc/docs/2306/prestudy/0.1.html)。
 
 ## 寻求帮助的途径
 
