@@ -19,6 +19,8 @@
 - lookup：路由表查询和更新
 - protocol：RIPng 协议解析和封装
 
+其中 eui64 比较容易，主要是熟悉实验框架和平台的使用。internet-checksum 可能是编程作业里最难的一个，涉及到比较复杂的逻辑，需要仔细思考。lookup 题目可易可难，取决于你实现的方法。protocol 也不复杂，需要一定的细心。要编写的代码行数：eui64 < lookup < protocol < internet-checksum。
+
 每个题目都有类似的结构（以 `internet-checksum` 为例）：
 
 - data：数据所在的目录
