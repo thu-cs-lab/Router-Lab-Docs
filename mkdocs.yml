@@ -29,6 +29,7 @@ nav:
     - 理论复习: software/theory.md
     - 开始实验: software/begin.md
     - 寻求帮助: software/help.md
+    - 调试思路: software/debug.md
     - 第一阶段: software/first_stage.md
     - 第二阶段:
       - 总述: software/second_stage.md
@@ -62,7 +63,6 @@ nav:
     - ip 命令: appendix/ip.md
     - make 命令: appendix/make.md
     - 树莓派使用: appendix/raspberry_pi.md
-    - 调试方法: appendix/debug.md
     - 名词解释: appendix/glossary.md
     - 网络拓扑搭建: appendix/topology.md
 
