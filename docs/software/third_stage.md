@@ -110,6 +110,10 @@ fd00::1:0/112 via fd00::3:1 dev r2r1
 6. 打开新窗口，进入 `Setup/interconnect/setup` 目录，运行 `sudo ./start-standard-pc2.sh`，在 PC2 上启动标准 TFTP 服务器。
 7. 打开新窗口，进入 `Setup/interconnect/test` 目录，依次执行 `sudo ./test2.sh`、`sudo ./test4.sh`、`sudo ./test5.sh`、`sudo ./test6-standard.sh`、`sudo ./test7-standard.sh` 和 `sudo ./test8-standard.sh`，完成各项测试。
 
+#### R2 上的 OSPF 路由器
+
+施工中
+
 #### R3 上的 RIPng 路由器
 
 自己编写的代码是 `Homework/router/r3/router`，此时 PC1 R1 R2 PC2 运行标准程序。
@@ -122,6 +126,10 @@ fd00::1:0/112 via fd00::3:1 dev r2r1
 5. 打开新窗口，进入 `Setup/interconnect/setup` 目录，运行 `sudo ./start-custom-r3.sh`，在 R3 上自己写的 RIPng 路由器。
 6. 打开新窗口，进入 `Setup/interconnect/setup` 目录，运行 `sudo ./start-standard-pc2.sh`，在 PC2 上启动标准 TFTP 服务器。
 7. 打开新窗口，进入 `Setup/interconnect/test` 目录，依次执行 `sudo ./test2.sh`、`sudo ./test4.sh`、`sudo ./test5.sh`、`sudo ./test6-standard.sh`、`sudo ./test7-standard.sh` 和 `sudo ./test8-standard.sh`，完成各项测试。
+
+#### R3 上的 OSPF 路由器
+
+施工中
 
 #### PC2 上的 TFTP 服务端
 
