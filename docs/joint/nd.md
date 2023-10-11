@@ -25,7 +25,7 @@ IPv6 地址有三种类型，分别为单播地址、任播地址以及组播地
 * 链路本地地址（Link-Local IPv6 Unicast Addresses）
     * `fe80::/64`，同链路唯一，同链路可达
     * 可由 MAC 地址生成（可以参见编程作业 `eui64`）
-    * 例：`fe80::5657:44ff:fe32:5f30`（由 `54:57:44:32:5f:30` 生成）
+    * 例：`fe80::8e1f:64ff:fe69:1001`（由 `8c:1f:64:69:10:01` 生成）
 * 子网路由器任播地址（Subnet-Router Anycast Address）
     * 接口号为全零的地址，在本实验中不要使用
 * Unique Local Addresses, ULA
@@ -37,7 +37,7 @@ IPv6 地址有三种类型，分别为单播地址、任播地址以及组播地
     * Solicited-Node Multicast Address 是一类重要的组播地址
         * 用于在发送组播 Neighbor Solicitation 时作为目的地址（Destination Address）
         * 根据 ND 报文的目标 IP 地址（Target Address）生成
-        * 例：`ff02::1:ff32:5f30`（由 `fe80::5657:44ff:fe32:5f30` 生成）
+        * 例：`ff02::1:ff69:1001`（由 `fe80::8e1f:64ff:fe69:1001` 生成）
 
 关于 IPv6 地址架构的更多说明请参见 [RFC 4291: IP Version 6 Addressing Architecture](https://datatracker.ietf.org/doc/html/rfc4291)，实验者可以重点关注第 2.5.4、2.5.6、2.7.1（Solicited-Node Address）以及 2.8 小节。
 
