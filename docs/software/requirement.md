@@ -21,7 +21,7 @@ $$ S' = S \times \min(0.8, 0.95^D) $$
 - `eui64`：基于 EUI64 构造 IPv6 Link Local 地址，代码量约 10 行
 - `internet-checksum`：进行 UDP 和 ICMPv6 校验和的检验和计算，代码量约 80 行
 - `lookup`：路由表的查询和更新，代码量约 60 行
-- `protocol`：RIPng 协议的处理，代码量约 70 行
+- `protocol/protocol-ospf`：RIPng/OSPF 协议的处理，代码量约 70 行
 
 你需要在 [TANLabs](https://lab.cs.tsinghua.edu.cn/tan/) 上登录，并且在网站上创建属于你的作业 GitLab 仓库。你需要使用 Git 往你的作业仓库中提交的你的代码，然后在 TANLabs 查看评测结果。评测的流程和要求详见 TANLabs 网站上的说明。
 
