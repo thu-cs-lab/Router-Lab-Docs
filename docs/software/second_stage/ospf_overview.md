@@ -2,9 +2,9 @@
 
 一个 OSPF 协议的路由器需要支持如下的功能：
 
-1. 发现邻居 OSPF 路由器，同步 Link State Database
+1. 发现邻居 OSPF 路由器，保持 Link State Database 同步
 2. 根据 Link State Database，通过 Dijkstra 最短路算法计算路由表
-3. 按照动态的路由表，进行 IPv6 分组的转发
+3. 按照动态计算得到的路由表，进行 IPv6 分组的转发
 
 ## 协议理解
 
@@ -29,9 +29,9 @@ TODO
 7. 如果是 OSPF 报文，根据 OSPF 报文类型进行处理：
     1. 如果是 OSPF Hello，判断是否是不认识的 OSPF 路由器，如果是，加入到邻居状态表中
     2. 如果是 OSPF Database Description，和邻居进行 Link State Database 的状态同步，把自己的 LSA Header 发送给对方，同时记录对方发送的 LSA Header；同步完成后，发送 OSPF LS Request 获取对方的完整 LSA
-    3. 如果是 OSPF LS Update，更新自己的 Link State Database，回复 OSPF LS Acknowledgement
+    3. 如果是 OSPF LS Update，更新自己的 Link State Database，更新状态，不再重传对应的 OSPF LS Request 报文（若有），并根据需要回复 OSPF LS Acknowledgement
     4. 如果是 OSPF LS Request，用 OSPF LS Update 回复自己 Link State Database 中对应的 LSA
-    5. 如果是 OSPF LS Acknowledgement，更新状态，不再重传对应的 OSPF LS Request 报文
+    5. 如果是 OSPF LS Acknowledgement，更新状态，不再重传对应的 OSPF LS Update 报文
 8. 如果这个 IPv6 分组要转发，判断 Hop Limit，如果小于或等于 1，就丢弃；
 9. 如果 Hop Limit 正常，查询路由表，如果找到了，就转发给下一跳，转发时从 ND 表中获取下一跳 MAC 地址；如果找不到匹配的路由表表项，则丢弃；
 10. 跳到第 2 步，进入下一次循环处理。
@@ -42,9 +42,9 @@ TODO: 流程图
 
 由于 OSPF 协议完整实现比较复杂，你只需要实现其中的一部分。必须实现的有：
 
-1. 根据 Link State Database，执行 Dijkstra 算法，计算路由表
-2. 构造 OSPF Hello 报文，在收到来自邻居的 OSPF Hello 报文时，更新状态
-3. 更新 checksum 小作业的实现，加入对 OSPF Header 校验和计算的支持
+1. 更新 checksum 小作业的实现，加入对 OSPF 报文校验和计算的支持
+2. 构造 OSPF Hello 报文并发送；接收来自邻居的 OSPF Hello 报文，并更新状态
+3. 根据 Link State Database，执行 Dijkstra 算法，计算路由表
 
 其余功能已经由代码框架提供。
 
