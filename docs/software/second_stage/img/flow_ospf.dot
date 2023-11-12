@@ -1,0 +1,118 @@
+digraph G {
+    node [margin="0.3,0"]
+
+    init [label = "初始化路由表";shape = rect;];
+    
+    loop [label = "循环开始";shape = rect;];
+    
+    init -> loop;
+    
+    send_all [label = "发送 OSPF Hello 到所有网络接口";shape = rect;];
+    
+    timeout [label = "5s 计时器超时";shape = diamond;];
+    
+    loop -> timeout;
+    
+    timeout -> send_all [label = "是";];
+    send_all -> loop_end;
+    
+    recv [label = "是否接收到 IPv6 分组";shape = diamond;];
+    
+    timeout -> recv [label = "否";];
+    recv -> loop_end [label = "否";];
+    
+    check [label = "IPv6 分组是否完整";shape = diamond;];
+    
+    recv -> check [label = "是";];
+    check -> loop_end [label = "否";];
+    check -> type [label = "是";];
+    
+    type [label = "判断分组目标是否是路由器";shape = diamond;];
+    
+    check_ospf [label = "是否是 OSPF 报文";shape = diamond;];
+    
+    type -> check_ospf [label = "是";];
+    type -> check_hlim [label = "否";];
+    
+    check_hlim [label = "判断 Hop Limit 是否 <= 1";shape = diamond;];
+    
+    time_exceeded [label = "发送 ICMPv6 Time Exceeded 报文";shape = rect;];
+    check_hlim -> time_exceeded [label = "是";];
+    time_exceeded -> loop_end;
+    
+    lookup [label = "按照目的 IPv6 地址查询路由表";shape = rect;];
+    
+    check_hlim -> lookup [label = "否";];
+    
+    nexthop_found [label = "是否找到下一跳";shape = diamond;];
+    
+    lookup -> nexthop_found;
+    
+    check_mac [label = "ND 表中是否有下一跳 MAC 地址";shape = diamond;];
+    
+    destination_unreachable [label = "发送 ICMPv6 Destination Unreachable 消息";shape = rect;];
+    
+    nexthop_found -> destination_unreachable [label = "否";];
+    destination_unreachable -> loop_end;
+    
+    nexthop_found -> check_mac [label = "是";];
+    check_mac -> forward [label = "是";];
+    
+    forward [label = "转发给下一跳";shape = rect;];
+    
+    forward -> loop_end;
+    
+    ndp [label = "ND 查找下一跳 MAC 地址";shape = rect;];
+    
+    check_mac -> ndp [label = "否";];
+    ndp -> loop_end;
+    
+    check_ospf_type [label = "判断 OSPF 类型";shape = diamond;];
+    
+    check_ospf -> check_ospf_type [label = "是";];
+    check_ospf -> loop_end [label = "否";];
+    
+    hello_check [label = "判断是否认识该路由器";shape = diamond;];
+    handle_hello [label = "加入邻居状态表";shape = rect;];
+    
+    check_ospf_type -> hello_check [label = "Hello";];
+    hello_check -> handle_hello [label = "否";];
+    hello_check -> loop_end [label = "是";];
+    handle_hello -> loop_end;
+    
+    dd_check [label = "LSDB 状态同步是否完成";shape = diamond;];
+    handle_dd_sync [label = "发送 DD 报文继续同步";shape = rect;];
+    handle_dd_fin [label = "发送 LS Request";shape = rect;];
+    
+    check_ospf_type -> dd_check [label = "Database Description";];
+    dd_check -> handle_dd_sync [label = "否";];
+    dd_check -> handle_dd_fin [label = "是";];
+    handle_dd_sync -> loop_end;
+    handle_dd_fin -> loop_end;
+    
+    handle_update_lsdb [label = "更新 LSDB 与路由表";shape = rect;];
+    handle_update_ack [label = "回复 LS Acknowledgement";shape = rect;];
+    handle_update_check_ospf_type [label = "是否有对应的 LS Request 报文";shape = diamond;];
+    handle_update_rm_request [label = "不再重传";shape = rect;];
+    
+    check_ospf_type -> handle_update_lsdb [label = "LS Update";];
+    handle_update_lsdb -> handle_update_check_ospf_type;
+    handle_update_check_ospf_type -> handle_update_ack [label = "否";];
+    handle_update_check_ospf_type -> handle_update_rm_request [label = "是";];
+    handle_update_rm_request -> handle_update_ack;
+    handle_update_ack -> loop_end;
+    
+    handle_request [label = "回复 LS Update";shape = rect;];
+    
+    check_ospf_type -> handle_request [label = "LS Request";];
+    handle_request -> loop_end;
+    
+    handle_ack [label = "不再重传对应的 LS Update 报文";shape = rect;];
+    
+    check_ospf_type -> handle_ack [label = "LS Acknowledgement";];
+    handle_ack -> loop_end;
+    
+    loop_end [label = "循环结束";shape = rect;];
+    
+    loop_end -> loop;
+}

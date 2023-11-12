@@ -56,7 +56,9 @@ ExStart 和 Exchange 的过程具体参见 [RFC 2328 Section 10.6 Receiving Data
 9. 如果 Hop Limit 正常，查询路由表，如果找到了，就转发给下一跳，转发时从 ND 表中获取下一跳 MAC 地址；如果找不到匹配的路由表表项，则丢弃；
 10. 跳到第 2 步，进入下一次循环处理。
 
-TODO: 流程图
+也可以见下面的流程图：
+
+![](img/flow_ospf.png)
 
 ## 功能要求
 
