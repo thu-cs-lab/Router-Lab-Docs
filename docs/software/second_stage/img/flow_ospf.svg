@@ -1,472 +1,484 @@
 <?xml version="1.0" standalone="no"?>
-<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="1680pt" height="1139pt" viewBox="0.00 0.00 1679.79 1139.00">
-<g id="graph0" class="graph" transform="translate(4,1135) scale(1)" data-name="G">
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="1574pt" height="1047pt" viewBox="0.00 0.00 1573.88 1046.8">
+<g id="graph0" class="graph" transform="translate(4,1042.800048828125) scale(1)" data-name="G">
 
-<polygon fill="white" stroke="none" points="-4,4 -4,-1135 1675.79,-1135 1675.79,4 -4,4" style=""/>
+<polygon fill="white" stroke="none" points="-4,4 -4,-1042.8 1569.88,-1042.8 1569.88,4 -4,4"/>
 <!-- init -->
-<g id="node1" class="node" pointer-events="visible" data-name="init">
 
-<polygon fill="none" stroke="black" points="1076.29,-1131 969.29,-1131 969.29,-1095 1076.29,-1095 1076.29,-1131" style=""/>
-<text text-anchor="middle" x="1022.79" y="-1108.8" font-family="Times,serif" font-size="14.00" style="">初始化路由表</text>
-</g>
 <!-- loop -->
-<g id="node2" class="node" pointer-events="visible" data-name="loop">
+<g id="node1" class="node" pointer-events="visible" data-name="loop">
 
-<polygon fill="none" stroke="black" points="1065.79,-1058 979.79,-1058 979.79,-1022 1065.79,-1022 1065.79,-1058" style=""/>
-<text text-anchor="middle" x="1022.79" y="-1035.8" font-family="Times,serif" font-size="14.00" style="">循环开始</text>
+<ellipse fill="none" stroke="black" cx="639.13" cy="-1020.8" rx="48.74" ry="18"/>
+<text text-anchor="middle" x="639.13" y="-1016.6" font-family="Times,serif" font-size="14.00">循环开始</text>
 </g>
 <!-- init&#45;&gt;loop -->
-<g id="edge1" class="edge" data-name="init-&gt;loop">
 
-<path fill="none" stroke="black" d="M1022.79,-1094.81C1022.79,-1087.23 1022.79,-1078.1 1022.79,-1069.54" style=""/>
-<polygon fill="black" stroke="black" points="1026.29,-1069.54 1022.79,-1059.54 1019.29,-1069.54 1026.29,-1069.54" style=""/>
-</g>
 <!-- timeout -->
-<g id="node4" class="node" pointer-events="visible" data-name="timeout">
+<g id="node2" class="node" pointer-events="visible" data-name="timeout">
 
-<polygon fill="none" stroke="black" points="324.79,-985 234.98,-967 324.79,-949 414.59,-967 324.79,-985" style=""/>
-<text text-anchor="middle" x="324.79" y="-962.8" font-family="Times,serif" font-size="14.00" style="">5s 计时器超时</text>
+<polygon fill="none" stroke="black" points="639.13,-965.8 549.32,-947.8 639.13,-929.8 728.93,-947.8 639.13,-965.8"/>
+<text text-anchor="middle" x="639.13" y="-943.6" font-family="Times,serif" font-size="14.00">5s 计时器超时</text>
 </g>
 <!-- loop&#45;&gt;timeout -->
-<g id="edge2" class="edge" data-name="loop-&gt;timeout">
+<g id="edge1" class="edge" data-name="loop-&gt;timeout">
 
-<path fill="none" stroke="black" d="M979.39,-1034.59C861.87,-1022.63 536.73,-989.56 393.75,-975.02" style=""/>
-<polygon fill="black" stroke="black" points="394.36,-971.56 384.05,-974.03 393.65,-978.52 394.36,-971.56" style=""/>
+<path fill="none" stroke="black" d="M639.13,-1002.61C639.13,-995.03 639.13,-985.9 639.13,-977.34"/>
+<polygon fill="black" stroke="black" points="642.63,-977.34 639.13,-967.34 635.63,-977.34 642.63,-977.34"/>
 </g>
 <!-- send_all -->
 <g id="node3" class="node" pointer-events="visible" data-name="send_all">
 
-<polygon fill="none" stroke="black" points="213.36,-842.2 0.21,-842.2 0.21,-806.2 213.36,-806.2 213.36,-842.2" style=""/>
-<text text-anchor="middle" x="106.79" y="-820" font-family="Times,serif" font-size="14.00" style="">发送 OSPF Hello 到所有网络接口</text>
-</g>
-<!-- loop_end -->
-<g id="node5" class="node" pointer-events="visible" data-name="loop_end">
-
-<polygon fill="none" stroke="black" points="892.79,-36 806.79,-36 806.79,0 892.79,0 892.79,-36" style=""/>
-<text text-anchor="middle" x="849.79" y="-13.8" font-family="Times,serif" font-size="14.00" style="">循环结束</text>
-</g>
-<!-- send_all&#45;&gt;loop_end -->
-<g id="edge4" class="edge" data-name="send_all-&gt;loop_end">
-
-<path fill="none" stroke="black" d="M119.62,-805.72C131.97,-787.12 148.79,-756.37 148.79,-726.8 148.79,-726.8 148.79,-726.8 148.79,-90 148.79,-56.59 182.65,-63.14 214.79,-54 323.02,-23.2 661.52,-19.26 794.94,-18.93" style=""/>
-<polygon fill="black" stroke="black" points="794.94,-22.43 804.93,-18.91 794.93,-15.43 794.94,-22.43" style=""/>
+<polygon fill="none" stroke="black" points="728.7,-823 515.55,-823 515.55,-787 728.7,-787 728.7,-823"/>
+<text text-anchor="middle" x="622.13" y="-800.8" font-family="Times,serif" font-size="14.00">发送 OSPF Hello 到所有网络接口</text>
 </g>
 <!-- timeout&#45;&gt;send_all -->
-<g id="edge3" class="edge" data-name="timeout-&gt;send_all">
+<g id="edge2" class="edge" data-name="timeout-&gt;send_all">
 
-<path fill="none" stroke="black" d="M299.06,-953.96C272.24,-941 229.37,-919.14 194.79,-896.2 173.61,-882.15 151.35,-864.16 134.52,-849.8" style=""/>
-<polygon fill="black" stroke="black" points="137.25,-847.53 127.39,-843.65 132.68,-852.83 137.25,-847.53" style=""/>
-<text text-anchor="middle" x="258.04" y="-918.4" font-family="Times,serif" font-size="14.00" style="">是</text>
+<path fill="none" stroke="black" d="M637.08,-929.82C634.23,-906.26 629.05,-863.36 625.6,-834.77"/>
+<polygon fill="black" stroke="black" points="629.09,-834.5 624.42,-824.99 622.14,-835.34 629.09,-834.5"/>
+<text text-anchor="middle" x="640.38" y="-899.2" font-family="Times,serif" font-size="14.00">是</text>
 </g>
 <!-- recv -->
-<g id="node6" class="node" pointer-events="visible" data-name="recv">
+<g id="node5" class="node" pointer-events="visible" data-name="recv">
 
-<polygon fill="none" stroke="black" points="324.79,-896.2 203.92,-878.2 324.79,-860.2 445.65,-878.2 324.79,-896.2" style=""/>
-<text text-anchor="middle" x="324.79" y="-874" font-family="Times,serif" font-size="14.00" style="">是否接收到 IPv6 分组</text>
+<polygon fill="none" stroke="black" points="771.13,-877 650.26,-859 771.13,-841 891.99,-859 771.13,-877"/>
+<text text-anchor="middle" x="771.13" y="-854.8" font-family="Times,serif" font-size="14.00">是否接收到 IPv6 分组</text>
 </g>
 <!-- timeout&#45;&gt;recv -->
-<g id="edge5" class="edge" data-name="timeout-&gt;recv">
+<g id="edge4" class="edge" data-name="timeout-&gt;recv">
 
-<path fill="none" stroke="black" d="M324.79,-948.85C324.79,-937.16 324.79,-921.39 324.79,-907.82" style=""/>
-<polygon fill="black" stroke="black" points="328.29,-908.12 324.79,-898.12 321.29,-908.12 328.29,-908.12" style=""/>
-<text text-anchor="middle" x="330.04" y="-918.4" font-family="Times,serif" font-size="14.00" style="">否</text>
+<path fill="none" stroke="black" d="M659.46,-933.43C681.04,-919.24 715.39,-896.65 740.3,-880.27"/>
+<polygon fill="black" stroke="black" points="741.97,-883.36 748.41,-874.94 738.13,-877.51 741.97,-883.36"/>
+<text text-anchor="middle" x="722.38" y="-899.2" font-family="Times,serif" font-size="14.00">否</text>
 </g>
-<!-- loop_end&#45;&gt;loop -->
-<g id="edge44" class="edge" data-name="loop_end-&gt;loop">
+<!-- loop_end_1 -->
+<g id="node4" class="node" pointer-events="visible" data-name="loop_end_1">
 
-<path fill="none" stroke="black" d="M893.11,-20.45C1062.65,-26.4 1671.79,-50.54 1671.79,-90 1671.79,-968 1671.79,-968 1671.79,-968 1671.79,-1027.61 1233.56,-1037.19 1077.31,-1038.72" style=""/>
-<polygon fill="black" stroke="black" points="1077.61,-1035.22 1067.64,-1038.8 1077.67,-1042.22 1077.61,-1035.22" style=""/>
+<ellipse fill="none" stroke="black" cx="700.13" cy="-662.2" rx="48.74" ry="18"/>
+<text text-anchor="middle" x="700.13" y="-658" font-family="Times,serif" font-size="14.00">循环结束</text>
 </g>
-<!-- recv&#45;&gt;loop_end -->
-<g id="edge6" class="edge" data-name="recv-&gt;loop_end">
+<!-- send_all&#45;&gt;loop_end_1 -->
+<g id="edge3" class="edge" data-name="send_all-&gt;loop_end_1">
 
-<path fill="none" stroke="black" d="M299.56,-863.64C271.12,-846.3 228.79,-813.41 228.79,-771.2 228.79,-771.2 228.79,-771.2 228.79,-90 228.79,-33.22 643.87,-21.83 795.32,-19.56" style=""/>
-<polygon fill="black" stroke="black" points="795.15,-23.06 805.1,-19.42 795.05,-16.06 795.15,-23.06" style=""/>
-<text text-anchor="middle" x="234.04" y="-455.2" font-family="Times,serif" font-size="14.00" style="">否</text>
+<path fill="none" stroke="black" d="M631.69,-786.74C645.1,-762.54 669.59,-718.31 685.35,-689.87"/>
+<polygon fill="black" stroke="black" points="688.21,-691.93 689.99,-681.49 682.09,-688.54 688.21,-691.93"/>
+</g>
+<!-- recv&#45;&gt;loop_end_1 -->
+<g id="edge5" class="edge" data-name="recv-&gt;loop_end_1">
+
+<path fill="none" stroke="black" d="M765.19,-841.73C753.07,-808.46 725.32,-732.34 710.28,-691.05"/>
+<polygon fill="black" stroke="black" points="713.63,-690.02 706.91,-681.82 707.05,-692.41 713.63,-690.02"/>
+<text text-anchor="middle" x="743.38" y="-746.8" font-family="Times,serif" font-size="14.00">否</text>
 </g>
 <!-- check -->
-<g id="node7" class="node" pointer-events="visible" data-name="check">
+<g id="node6" class="node" pointer-events="visible" data-name="check">
 
-<polygon fill="none" stroke="black" points="365.79,-788.2 256.31,-770.2 365.79,-752.2 475.27,-770.2 365.79,-788.2" style=""/>
-<text text-anchor="middle" x="365.79" y="-766" font-family="Times,serif" font-size="14.00" style="">IPv6 分组是否完整</text>
+<polygon fill="none" stroke="black" points="882.13,-769 772.64,-751 882.13,-733 991.61,-751 882.13,-769"/>
+<text text-anchor="middle" x="882.13" y="-746.8" font-family="Times,serif" font-size="14.00">IPv6 分组是否完整</text>
 </g>
 <!-- recv&#45;&gt;check -->
-<g id="edge7" class="edge" data-name="recv-&gt;check">
+<g id="edge6" class="edge" data-name="recv-&gt;check">
 
-<path fill="none" stroke="black" d="M331.01,-861.1C337.49,-844.37 347.72,-817.89 355.42,-798" style=""/>
-<polygon fill="black" stroke="black" points="358.61,-799.45 358.95,-788.86 352.08,-796.93 358.61,-799.45" style=""/>
-<text text-anchor="middle" x="356.04" y="-820" font-family="Times,serif" font-size="14.00" style="">是</text>
+<path fill="none" stroke="black" d="M786.56,-843.26C805.28,-825.38 837.03,-795.07 858.75,-774.32"/>
+<polygon fill="black" stroke="black" points="860.91,-777.1 865.73,-767.66 856.08,-772.03 860.91,-777.1"/>
+<text text-anchor="middle" x="848.38" y="-800.8" font-family="Times,serif" font-size="14.00">是</text>
 </g>
-<!-- check&#45;&gt;loop_end -->
-<g id="edge8" class="edge" data-name="check-&gt;loop_end">
+<!-- check&#45;&gt;loop_end_1 -->
+<g id="edge7" class="edge" data-name="check-&gt;loop_end_1">
 
-<path fill="none" stroke="black" d="M336.99,-756.47C310.33,-742.51 274.79,-717.33 274.79,-682.4 274.79,-682.4 274.79,-682.4 274.79,-458.4 274.79,-367.53 269.79,-344.87 269.79,-254 269.79,-254 269.79,-254 269.79,-90 269.79,-37.34 651.31,-23.4 795.49,-20.01" style=""/>
-<polygon fill="black" stroke="black" points="795.23,-23.51 805.15,-19.79 795.08,-16.52 795.23,-23.51" style=""/>
-<text text-anchor="middle" x="280.04" y="-410.8" font-family="Times,serif" font-size="14.00" style="">否</text>
+<path fill="none" stroke="black" d="M854.88,-737.01C824.23,-722.39 774.2,-698.53 739.36,-681.91"/>
+<polygon fill="black" stroke="black" points="740.96,-678.8 730.43,-677.65 737.95,-685.12 740.96,-678.8"/>
+<text text-anchor="middle" x="813.38" y="-702.4" font-family="Times,serif" font-size="14.00">否</text>
 </g>
 <!-- type -->
-<g id="node8" class="node" pointer-events="visible" data-name="type">
+<g id="node7" class="node" pointer-events="visible" data-name="type">
 
-<polygon fill="none" stroke="black" points="468.79,-699.4 332.96,-681.4 468.79,-663.4 604.62,-681.4 468.79,-699.4" style=""/>
-<text text-anchor="middle" x="468.79" y="-677.2" font-family="Times,serif" font-size="14.00" style="">判断分组目标是否是路由器</text>
+<polygon fill="none" stroke="black" points="903.13,-680.2 767.29,-662.2 903.13,-644.2 1038.96,-662.2 903.13,-680.2"/>
+<text text-anchor="middle" x="903.13" y="-658" font-family="Times,serif" font-size="14.00">判断分组目标是否是路由器</text>
 </g>
 <!-- check&#45;&gt;type -->
-<g id="edge9" class="edge" data-name="check-&gt;type">
+<g id="edge8" class="edge" data-name="check-&gt;type">
 
-<path fill="none" stroke="black" d="M382.79,-754.87C399,-741.21 423.63,-720.45 442.39,-704.65" style=""/>
-<polygon fill="black" stroke="black" points="444.51,-707.43 449.9,-698.31 440,-702.08 444.51,-707.43" style=""/>
-<text text-anchor="middle" x="431.04" y="-721.6" font-family="Times,serif" font-size="14.00" style="">是</text>
+<path fill="none" stroke="black" d="M886.17,-733.26C889.08,-721.26 893.06,-704.8 896.43,-690.86"/>
+<polygon fill="black" stroke="black" points="899.78,-691.9 898.73,-681.36 892.98,-690.25 899.78,-691.9"/>
+<text text-anchor="middle" x="900.38" y="-702.4" font-family="Times,serif" font-size="14.00">是</text>
 </g>
 <!-- check_ospf -->
-<g id="node9" class="node" pointer-events="visible" data-name="check_ospf">
+<g id="node8" class="node" pointer-events="visible" data-name="check_ospf">
 
-<polygon fill="none" stroke="black" points="468.79,-610.6 359.27,-592.6 468.79,-574.6 578.3,-592.6 468.79,-610.6" style=""/>
-<text text-anchor="middle" x="468.79" y="-588.4" font-family="Times,serif" font-size="14.00" style="">是否是 OSPF 报文</text>
+<polygon fill="none" stroke="black" points="737.13,-591.4 627.61,-573.4 737.13,-555.4 846.64,-573.4 737.13,-591.4"/>
+<text text-anchor="middle" x="737.13" y="-569.2" font-family="Times,serif" font-size="14.00">是否是 OSPF 报文</text>
 </g>
 <!-- type&#45;&gt;check_ospf -->
-<g id="edge10" class="edge" data-name="type-&gt;check_ospf">
+<g id="edge9" class="edge" data-name="type-&gt;check_ospf">
 
-<path fill="none" stroke="black" d="M468.79,-663.25C468.79,-651.56 468.79,-635.79 468.79,-622.22" style=""/>
-<polygon fill="black" stroke="black" points="472.29,-622.52 468.79,-612.52 465.29,-622.52 472.29,-622.52" style=""/>
-<text text-anchor="middle" x="474.04" y="-632.8" font-family="Times,serif" font-size="14.00" style="">是</text>
+<path fill="none" stroke="black" d="M876.46,-647.25C848.21,-632.49 803.49,-609.1 772.36,-592.83"/>
+<polygon fill="black" stroke="black" points="774.19,-589.83 763.71,-588.3 770.95,-596.04 774.19,-589.83"/>
+<text text-anchor="middle" x="840.38" y="-613.6" font-family="Times,serif" font-size="14.00">是</text>
 </g>
 <!-- check_hlim -->
-<g id="node10" class="node" pointer-events="visible" data-name="check_hlim">
+<g id="node9" class="node" pointer-events="visible" data-name="check_hlim">
 
-<polygon fill="none" stroke="black" points="1234.79,-521.8 1089.55,-503.8 1234.79,-485.8 1380.02,-503.8 1234.79,-521.8" style=""/>
-<text text-anchor="middle" x="1234.79" y="-499.6" font-family="Times,serif" font-size="14.00" style="">判断 Hop Limit 是否 &lt;= 1</text>
+<polygon fill="none" stroke="black" points="1010.13,-591.4 864.89,-573.4 1010.13,-555.4 1155.36,-573.4 1010.13,-591.4"/>
+<text text-anchor="middle" x="1010.13" y="-569.2" font-family="Times,serif" font-size="14.00">判断 Hop Limit 是否 &lt;= 1</text>
 </g>
 <!-- type&#45;&gt;check_hlim -->
-<g id="edge11" class="edge" data-name="type-&gt;check_hlim">
+<g id="edge10" class="edge" data-name="type-&gt;check_hlim">
 
-<path fill="none" stroke="black" d="M516.99,-669.35C650.86,-638.66 1026.97,-552.44 1174.41,-518.64" style=""/>
-<polygon fill="black" stroke="black" points="1175.02,-522.09 1183.98,-516.45 1173.45,-515.27 1175.02,-522.09" style=""/>
-<text text-anchor="middle" x="933.04" y="-588.4" font-family="Times,serif" font-size="14.00" style="">否</text>
-</g>
-<!-- check_ospf&#45;&gt;loop_end -->
-<g id="edge24" class="edge" data-name="check_ospf-&gt;loop_end">
-
-<path fill="none" stroke="black" d="M413.55,-583.25C369.72,-573.12 315.79,-551.22 315.79,-504.8 315.79,-504.8 315.79,-504.8 315.79,-360 315.79,-230.67 271.06,-163.15 363.79,-73 394.27,-43.36 674.65,-27.04 795.16,-21.35" style=""/>
-<polygon fill="black" stroke="black" points="795.31,-24.84 805.14,-20.88 794.98,-17.85 795.31,-24.84" style=""/>
-<text text-anchor="middle" x="319.04" y="-302.8" font-family="Times,serif" font-size="14.00" style="">否</text>
+<path fill="none" stroke="black" d="M921.28,-646.48C938.08,-632.84 963.31,-612.37 982.6,-596.73"/>
+<polygon fill="black" stroke="black" points="984.79,-599.46 990.35,-590.44 980.38,-594.02 984.79,-599.46"/>
+<text text-anchor="middle" x="972.38" y="-613.6" font-family="Times,serif" font-size="14.00">否</text>
 </g>
 <!-- check_ospf_type -->
-<g id="node18" class="node" pointer-events="visible" data-name="check_ospf_type">
+<g id="node20" class="node" pointer-events="visible" data-name="check_ospf_type">
 
-<polygon fill="none" stroke="black" points="716.79,-521.8 615.56,-503.8 716.79,-485.8 818.01,-503.8 716.79,-521.8" style=""/>
-<text text-anchor="middle" x="716.79" y="-499.6" font-family="Times,serif" font-size="14.00" style="">判断 OSPF 类型</text>
+<polygon fill="none" stroke="black" points="571.13,-502.6 469.9,-484.6 571.13,-466.6 672.35,-484.6 571.13,-502.6"/>
+<text text-anchor="middle" x="571.13" y="-480.4" font-family="Times,serif" font-size="14.00">判断 OSPF 类型</text>
 </g>
 <!-- check_ospf&#45;&gt;check_ospf_type -->
-<g id="edge23" class="edge" data-name="check_ospf-&gt;check_ospf_type">
+<g id="edge22" class="edge" data-name="check_ospf-&gt;check_ospf_type">
 
-<path fill="none" stroke="black" d="M502.75,-579.71C546.93,-564.25 624.2,-537.2 672.82,-520.19" style=""/>
-<polygon fill="black" stroke="black" points="673.92,-523.51 682.2,-516.91 671.6,-516.91 673.92,-523.51" style=""/>
-<text text-anchor="middle" x="620.04" y="-544" font-family="Times,serif" font-size="14.00" style="">是</text>
+<path fill="none" stroke="black" d="M711.91,-559.22C683.72,-544.47 637.86,-520.5 606.18,-503.93"/>
+<polygon fill="black" stroke="black" points="607.86,-500.86 597.37,-499.32 604.61,-507.06 607.86,-500.86"/>
+<text text-anchor="middle" x="674.38" y="-524.8" font-family="Times,serif" font-size="14.00">是</text>
+</g>
+<!-- loop_end -->
+<g id="node24" class="node" pointer-events="visible" data-name="loop_end">
+
+<ellipse fill="none" stroke="black" cx="454.13" cy="-18" rx="48.74" ry="18"/>
+<text text-anchor="middle" x="454.13" y="-13.8" font-family="Times,serif" font-size="14.00">循环结束</text>
+</g>
+<!-- check_ospf&#45;&gt;loop_end -->
+<g id="edge23" class="edge" data-name="check_ospf-&gt;loop_end_5" data-comment="check_ospf-&gt;loop_end">
+
+<path fill="none" stroke="black" d="M737.52,-555.25C737.79,-543.56 738.15,-527.79 738.47,-514.22"/>
+<polygon fill="black" stroke="black" points="741.96,-514.6 738.69,-504.52 734.96,-514.44 741.96,-514.6"/>
+<text text-anchor="middle" x="744.38" y="-524.8" font-family="Times,serif" font-size="14.00">否</text>
 </g>
 <!-- time_exceeded -->
-<g id="node11" class="node" pointer-events="visible" data-name="time_exceeded">
+<g id="node10" class="node" pointer-events="visible" data-name="time_exceeded">
 
-<polygon fill="none" stroke="black" points="1350.97,-379 1118.6,-379 1118.6,-343 1350.97,-343 1350.97,-379" style=""/>
-<text text-anchor="middle" x="1234.79" y="-356.8" font-family="Times,serif" font-size="14.00" style="">发送 ICMPv6 Time Exceeded 报文</text>
+<polygon fill="none" stroke="black" points="1123.31,-502.6 890.94,-502.6 890.94,-466.6 1123.31,-466.6 1123.31,-502.6"/>
+<text text-anchor="middle" x="1007.13" y="-480.4" font-family="Times,serif" font-size="14.00">发送 ICMPv6 Time Exceeded 报文</text>
 </g>
 <!-- check_hlim&#45;&gt;time_exceeded -->
-<g id="edge12" class="edge" data-name="check_hlim-&gt;time_exceeded">
+<g id="edge11" class="edge" data-name="check_hlim-&gt;time_exceeded">
 
-<path fill="none" stroke="black" d="M1234.79,-485.54C1234.79,-461.89 1234.79,-419.12 1234.79,-390.64" style=""/>
-<polygon fill="black" stroke="black" points="1238.29,-390.92 1234.79,-380.92 1231.29,-390.92 1238.29,-390.92" style=""/>
-<text text-anchor="middle" x="1240.04" y="-455.2" font-family="Times,serif" font-size="14.00" style="">是</text>
+<path fill="none" stroke="black" d="M1009.53,-555.25C1009.13,-543.56 1008.58,-527.79 1008.12,-514.22"/>
+<polygon fill="black" stroke="black" points="1011.62,-514.4 1007.78,-504.52 1004.63,-514.64 1011.62,-514.4"/>
+<text text-anchor="middle" x="1014.38" y="-524.8" font-family="Times,serif" font-size="14.00">是</text>
 </g>
 <!-- lookup -->
 <g id="node12" class="node" pointer-events="visible" data-name="lookup">
 
-<polygon fill="none" stroke="black" points="1459.23,-433 1266.34,-433 1266.34,-397 1459.23,-397 1459.23,-433" style=""/>
-<text text-anchor="middle" x="1362.79" y="-410.8" font-family="Times,serif" font-size="14.00" style="">按照目的 IPv6 地址查询路由表</text>
+<polygon fill="none" stroke="black" points="1334.57,-502.6 1141.68,-502.6 1141.68,-466.6 1334.57,-466.6 1334.57,-502.6"/>
+<text text-anchor="middle" x="1238.13" y="-480.4" font-family="Times,serif" font-size="14.00">按照目的 IPv6 地址查询路由表</text>
 </g>
 <!-- check_hlim&#45;&gt;lookup -->
-<g id="edge14" class="edge" data-name="check_hlim-&gt;lookup">
+<g id="edge13" class="edge" data-name="check_hlim-&gt;lookup">
 
-<path fill="none" stroke="black" d="M1256.5,-488.08C1275.97,-474.87 1304.9,-455.26 1327.66,-439.82" style=""/>
-<polygon fill="black" stroke="black" points="1329.42,-442.85 1335.74,-434.34 1325.5,-437.06 1329.42,-442.85" style=""/>
-<text text-anchor="middle" x="1315.04" y="-455.2" font-family="Times,serif" font-size="14.00" style="">否</text>
+<path fill="none" stroke="black" d="M1044.75,-559.22C1081.16,-545.36 1139,-523.34 1181.95,-506.99"/>
+<polygon fill="black" stroke="black" points="1183.01,-510.33 1191.11,-503.5 1180.52,-503.78 1183.01,-510.33"/>
+<text text-anchor="middle" x="1150.38" y="-524.8" font-family="Times,serif" font-size="14.00">否</text>
 </g>
-<!-- time_exceeded&#45;&gt;loop_end -->
-<g id="edge13" class="edge" data-name="time_exceeded-&gt;loop_end">
+<!-- loop_end_2 -->
+<g id="node11" class="node" pointer-events="visible" data-name="loop_end_2">
 
-<path fill="none" stroke="black" d="M1238.05,-342.59C1241.92,-316.35 1245.1,-266.44 1220.79,-235 1207.1,-217.31 1190.4,-231.98 1173.79,-217 1120.49,-168.95 1152.64,-122.6 1100.79,-73 1073.14,-46.55 969.67,-31.29 904.53,-24.11" style=""/>
-<polygon fill="black" stroke="black" points="905.05,-20.64 894.74,-23.06 904.31,-27.6 905.05,-20.64" style=""/>
+<ellipse fill="none" stroke="black" cx="1007.13" cy="-395.8" rx="48.74" ry="18"/>
+<text text-anchor="middle" x="1007.13" y="-391.6" font-family="Times,serif" font-size="14.00">循环结束</text>
+</g>
+<!-- time_exceeded&#45;&gt;loop_end_2 -->
+<g id="edge12" class="edge" data-name="time_exceeded-&gt;loop_end_2">
+
+<path fill="none" stroke="black" d="M1007.13,-466.45C1007.13,-454.76 1007.13,-438.99 1007.13,-425.42"/>
+<polygon fill="black" stroke="black" points="1010.63,-425.72 1007.13,-415.72 1003.63,-425.72 1010.63,-425.72"/>
 </g>
 <!-- nexthop_found -->
 <g id="node13" class="node" pointer-events="visible" data-name="nexthop_found">
 
-<polygon fill="none" stroke="black" points="1365.79,-325 1271.9,-307 1365.79,-289 1459.67,-307 1365.79,-325" style=""/>
-<text text-anchor="middle" x="1365.79" y="-302.8" font-family="Times,serif" font-size="14.00" style="">是否找到下一跳</text>
+<polygon fill="none" stroke="black" points="1238.13,-413.8 1144.24,-395.8 1238.13,-377.8 1332.01,-395.8 1238.13,-413.8"/>
+<text text-anchor="middle" x="1238.13" y="-391.6" font-family="Times,serif" font-size="14.00">是否找到下一跳</text>
 </g>
 <!-- lookup&#45;&gt;nexthop_found -->
-<g id="edge15" class="edge" data-name="lookup-&gt;nexthop_found">
+<g id="edge14" class="edge" data-name="lookup-&gt;nexthop_found">
 
-<path fill="none" stroke="black" d="M1363.27,-396.97C1363.73,-380.76 1364.43,-356.06 1364.97,-336.79" style=""/>
-<polygon fill="black" stroke="black" points="1368.47,-336.95 1365.25,-326.85 1361.47,-336.75 1368.47,-336.95" style=""/>
+<path fill="none" stroke="black" d="M1238.13,-466.45C1238.13,-454.76 1238.13,-438.99 1238.13,-425.42"/>
+<polygon fill="black" stroke="black" points="1241.63,-425.72 1238.13,-415.72 1234.63,-425.72 1241.63,-425.72"/>
 </g>
 <!-- check_mac -->
 <g id="node14" class="node" pointer-events="visible" data-name="check_mac">
 
-<polygon fill="none" stroke="black" points="1351.79,-217 1182.41,-199 1351.79,-181 1521.16,-199 1351.79,-217" style=""/>
-<text text-anchor="middle" x="1351.79" y="-194.8" font-family="Times,serif" font-size="14.00" style="">ND 表中是否有下一跳 MAC 地址</text>
+<polygon fill="none" stroke="black" points="1095.13,-305.8 925.75,-287.8 1095.13,-269.8 1264.5,-287.8 1095.13,-305.8"/>
+<text text-anchor="middle" x="1095.13" y="-283.6" font-family="Times,serif" font-size="14.00">ND 表中是否有下一跳 MAC 地址</text>
 </g>
 <!-- nexthop_found&#45;&gt;check_mac -->
-<g id="edge18" class="edge" data-name="nexthop_found-&gt;check_mac">
+<g id="edge17" class="edge" data-name="nexthop_found-&gt;check_mac">
 
-<path fill="none" stroke="black" d="M1363.54,-288.97C1361.37,-272.59 1358.06,-247.53 1355.51,-228.17" style=""/>
-<polygon fill="black" stroke="black" points="1359.01,-227.94 1354.23,-218.49 1352.07,-228.86 1359.01,-227.94" style=""/>
-<text text-anchor="middle" x="1366.04" y="-248.8" font-family="Times,serif" font-size="14.00" style="">是</text>
+<path fill="none" stroke="black" d="M1219.43,-380.94C1195.35,-363.09 1153.22,-331.86 1124.76,-310.77"/>
+<polygon fill="black" stroke="black" points="1127.01,-308.08 1116.89,-304.93 1122.84,-313.7 1127.01,-308.08"/>
+<text text-anchor="middle" x="1193.38" y="-337.6" font-family="Times,serif" font-size="14.00">是</text>
 </g>
 <!-- destination_unreachable -->
 <g id="node15" class="node" pointer-events="visible" data-name="destination_unreachable">
 
-<polygon fill="none" stroke="black" points="1656.3,-163 1373.27,-163 1373.27,-127 1656.3,-127 1656.3,-163" style=""/>
-<text text-anchor="middle" x="1514.79" y="-140.8" font-family="Times,serif" font-size="14.00" style="">发送 ICMPv6 Destination Unreachable 消息</text>
+<polygon fill="none" stroke="black" points="1565.64,-305.8 1282.61,-305.8 1282.61,-269.8 1565.64,-269.8 1565.64,-305.8"/>
+<text text-anchor="middle" x="1424.13" y="-283.6" font-family="Times,serif" font-size="14.00">发送 ICMPv6 Destination Unreachable 消息</text>
 </g>
 <!-- nexthop_found&#45;&gt;destination_unreachable -->
-<g id="edge16" class="edge" data-name="nexthop_found-&gt;destination_unreachable">
+<g id="edge15" class="edge" data-name="nexthop_found-&gt;destination_unreachable">
 
-<path fill="none" stroke="black" d="M1406.86,-296.52C1446.2,-285.02 1503.36,-261.4 1529.79,-217 1537.51,-204.01 1534.71,-187.61 1529.54,-173.85" style=""/>
-<polygon fill="black" stroke="black" points="1532.84,-172.66 1525.65,-164.87 1526.42,-175.44 1532.84,-172.66" style=""/>
-<text text-anchor="middle" x="1520.04" y="-248.8" font-family="Times,serif" font-size="14.00" style="">否</text>
+<path fill="none" stroke="black" d="M1260.93,-381.8C1291.57,-364.34 1346.49,-333.04 1384.09,-311.62"/>
+<polygon fill="black" stroke="black" points="1385.45,-314.87 1392.41,-306.88 1381.99,-308.79 1385.45,-314.87"/>
+<text text-anchor="middle" x="1363.38" y="-337.6" font-family="Times,serif" font-size="14.00">否</text>
 </g>
 <!-- forward -->
-<g id="node16" class="node" pointer-events="visible" data-name="forward">
+<g id="node17" class="node" pointer-events="visible" data-name="forward">
 
-<polygon fill="none" stroke="black" points="1290.29,-109 1183.29,-109 1183.29,-73 1290.29,-73 1290.29,-109" style=""/>
-<text text-anchor="middle" x="1236.79" y="-86.8" font-family="Times,serif" font-size="14.00" style="">转发给下一跳</text>
+<polygon fill="none" stroke="black" points="1099.63,-197.8 992.63,-197.8 992.63,-161.8 1099.63,-161.8 1099.63,-197.8"/>
+<text text-anchor="middle" x="1046.13" y="-175.6" font-family="Times,serif" font-size="14.00">转发给下一跳</text>
 </g>
 <!-- check_mac&#45;&gt;forward -->
-<g id="edge19" class="edge" data-name="check_mac-&gt;forward">
+<g id="edge18" class="edge" data-name="check_mac-&gt;forward">
 
-<path fill="none" stroke="black" d="M1334.82,-182.36C1316.17,-165.18 1285.97,-137.33 1264,-117.09" style=""/>
-<polygon fill="black" stroke="black" points="1266.58,-114.7 1256.85,-110.5 1261.83,-119.85 1266.58,-114.7" style=""/>
-<text text-anchor="middle" x="1316.04" y="-140.8" font-family="Times,serif" font-size="14.00" style="">是</text>
+<path fill="none" stroke="black" d="M1087.47,-270.24C1079.79,-253.63 1067.84,-227.78 1058.76,-208.13"/>
+<polygon fill="black" stroke="black" points="1062.06,-206.93 1054.69,-199.32 1055.71,-209.87 1062.06,-206.93"/>
+<text text-anchor="middle" x="1083.38" y="-229.6" font-family="Times,serif" font-size="14.00">是</text>
 </g>
 <!-- ndp -->
-<g id="node17" class="node" pointer-events="visible" data-name="ndp">
+<g id="node19" class="node" pointer-events="visible" data-name="ndp">
 
-<polygon fill="none" stroke="black" points="1488.9,-109 1308.67,-109 1308.67,-73 1488.9,-73 1488.9,-109" style=""/>
-<text text-anchor="middle" x="1398.79" y="-86.8" font-family="Times,serif" font-size="14.00" style="">ND 查找下一跳 MAC 地址</text>
+<polygon fill="none" stroke="black" points="1298.24,-197.8 1118.01,-197.8 1118.01,-161.8 1298.24,-161.8 1298.24,-197.8"/>
+<text text-anchor="middle" x="1208.13" y="-175.6" font-family="Times,serif" font-size="14.00">ND 查找下一跳 MAC 地址</text>
 </g>
 <!-- check_mac&#45;&gt;ndp -->
-<g id="edge21" class="edge" data-name="check_mac-&gt;ndp">
+<g id="edge20" class="edge" data-name="check_mac-&gt;ndp">
 
-<path fill="none" stroke="black" d="M1348.19,-180.94C1345.9,-165.91 1344.77,-143.83 1353.29,-127 1355.09,-123.42 1357.46,-120.11 1360.16,-117.06" style=""/>
-<polygon fill="black" stroke="black" points="1362.53,-119.63 1367.37,-110.21 1357.71,-114.55 1362.53,-119.63" style=""/>
-<text text-anchor="middle" x="1358.04" y="-140.8" font-family="Times,serif" font-size="14.00" style="">否</text>
+<path fill="none" stroke="black" d="M1111.8,-271.16C1130.12,-253.98 1159.8,-226.13 1181.38,-205.89"/>
+<polygon fill="black" stroke="black" points="1183.5,-208.7 1188.4,-199.31 1178.71,-203.59 1183.5,-208.7"/>
+<text text-anchor="middle" x="1174.38" y="-229.6" font-family="Times,serif" font-size="14.00">否</text>
 </g>
-<!-- destination_unreachable&#45;&gt;loop_end -->
-<g id="edge17" class="edge" data-name="destination_unreachable-&gt;loop_end">
+<!-- loop_end_3 -->
+<g id="node16" class="node" pointer-events="visible" data-name="loop_end_3">
 
-<path fill="none" stroke="black" d="M1515.9,-126.8C1515.93,-110.34 1513.08,-86.13 1497.79,-73 1453.22,-34.74 1052.86,-23 904.65,-19.95" style=""/>
-<polygon fill="black" stroke="black" points="904.75,-16.45 894.68,-19.75 904.61,-23.45 904.75,-16.45" style=""/>
+<ellipse fill="none" stroke="black" cx="1424.13" cy="-179.8" rx="48.74" ry="18"/>
+<text text-anchor="middle" x="1424.13" y="-175.6" font-family="Times,serif" font-size="14.00">循环结束</text>
 </g>
-<!-- forward&#45;&gt;loop_end -->
-<g id="edge20" class="edge" data-name="forward-&gt;loop_end">
+<!-- destination_unreachable&#45;&gt;loop_end_3 -->
+<g id="edge16" class="edge" data-name="destination_unreachable-&gt;loop_end_3">
 
-<path fill="none" stroke="black" d="M1209.69,-72.63C1197.63,-65.7 1182.96,-58.35 1168.79,-54 1078.86,-26.37 968.77,-19.96 904.25,-18.8" style=""/>
-<polygon fill="black" stroke="black" points="904.69,-15.31 894.64,-18.67 904.59,-22.31 904.69,-15.31" style=""/>
+<path fill="none" stroke="black" d="M1424.13,-269.77C1424.13,-253.56 1424.13,-228.86 1424.13,-209.59"/>
+<polygon fill="black" stroke="black" points="1427.63,-209.65 1424.13,-199.65 1420.63,-209.65 1427.63,-209.65"/>
 </g>
-<!-- ndp&#45;&gt;loop_end -->
-<g id="edge22" class="edge" data-name="ndp-&gt;loop_end">
+<!-- loop_end_4 -->
+<g id="node18" class="node" pointer-events="visible" data-name="loop_end_4">
 
-<path fill="none" stroke="black" d="M1308.42,-74.45C1305.51,-73.96 1302.62,-73.47 1299.79,-73 1247.82,-64.32 1235,-60.98 1182.79,-54 1085.08,-40.94 970.71,-29.83 904.62,-23.81" style=""/>
-<polygon fill="black" stroke="black" points="905.03,-20.33 894.76,-22.92 904.4,-27.3 905.03,-20.33" style=""/>
+<ellipse fill="none" stroke="black" cx="1126.13" cy="-91" rx="48.74" ry="18"/>
+<text text-anchor="middle" x="1126.13" y="-86.8" font-family="Times,serif" font-size="14.00">循环结束</text>
 </g>
+<!-- forward&#45;&gt;loop_end_4 -->
+<g id="edge19" class="edge" data-name="forward-&gt;loop_end_4">
+
+<path fill="none" stroke="black" d="M1061.93,-161.65C1073.7,-148.89 1089.94,-131.27 1103.14,-116.94"/>
+<polygon fill="black" stroke="black" points="1105.67,-119.36 1109.87,-109.64 1100.52,-114.62 1105.67,-119.36"/>
+</g>
+<!-- loop_end_6 -->
+<g id="edge21" class="edge" data-name="ndp-&gt;loop_end_4" data-comment="loop_end_6">
+
+<path fill="none" stroke="black" d="M1191.93,-161.65C1179.75,-148.77 1162.91,-130.93 1149.31,-116.54"/>
+<polygon fill="black" stroke="black" points="1152.19,-114.49 1142.78,-109.62 1147.1,-119.3 1152.19,-114.49"/>
+</g>
+<!-- ndp&#45;&gt;loop_end_6 -->
+
 <!-- hello_check -->
-<g id="node19" class="node" pointer-events="visible" data-name="hello_check">
+<g id="node22" class="node" pointer-events="visible" data-name="hello_check">
 
-<polygon fill="none" stroke="black" points="454.79,-217 335.53,-199 454.79,-181 574.04,-199 454.79,-217" style=""/>
-<text text-anchor="middle" x="454.79" y="-194.8" font-family="Times,serif" font-size="14.00" style="">判断是否认识该路由器</text>
+<polygon fill="none" stroke="black" points="119.13,-197.8 -0.13,-179.8 119.13,-161.8 238.38,-179.8 119.13,-197.8"/>
+<text text-anchor="middle" x="119.13" y="-175.6" font-family="Times,serif" font-size="14.00">判断是否认识该路由器</text>
 </g>
 <!-- check_ospf_type&#45;&gt;hello_check -->
-<g id="edge25" class="edge" data-name="check_ospf_type-&gt;hello_check">
+<g id="edge24" class="edge" data-name="check_ospf_type-&gt;hello_check">
 
-<path fill="none" stroke="black" d="M697.65,-488.98C689.64,-482.85 680.44,-475.33 672.79,-467.8 589.81,-386.2 507.32,-274.36 472.29,-225.07" style=""/>
-<polygon fill="black" stroke="black" points="475.25,-223.19 466.62,-217.04 469.53,-227.23 475.25,-223.19" style=""/>
-<text text-anchor="middle" x="604.34" y="-356.8" font-family="Times,serif" font-size="14.00" style="">Hello</text>
+<path fill="none" stroke="black" d="M542.98,-471.11C529.24,-464.76 512.6,-456.69 498.13,-448.6 473.2,-434.67 467.74,-429.86 444.13,-413.8 332.88,-338.14 203.82,-243.51 147.67,-201.99"/>
+<polygon fill="black" stroke="black" points="150.01,-199.37 139.89,-196.23 145.84,-204.99 150.01,-199.37"/>
+<text text-anchor="middle" x="380.68" y="-337.6" font-family="Times,serif" font-size="14.00">Hello</text>
 </g>
 <!-- dd_check -->
-<g id="node21" class="node" pointer-events="visible" data-name="dd_check">
+<g id="node25" class="node" pointer-events="visible" data-name="dd_check">
 
-<polygon fill="none" stroke="black" points="725.79,-217 591.79,-199 725.79,-181 859.78,-199 725.79,-217" style=""/>
-<text text-anchor="middle" x="725.79" y="-194.8" font-family="Times,serif" font-size="14.00" style="">LSDB 状态同步是否完成</text>
+<polygon fill="none" stroke="black" points="390.13,-197.8 256.13,-179.8 390.13,-161.8 524.12,-179.8 390.13,-197.8"/>
+<text text-anchor="middle" x="390.13" y="-175.6" font-family="Times,serif" font-size="14.00">LSDB 状态同步是否完成</text>
 </g>
 <!-- check_ospf_type&#45;&gt;dd_check -->
-<g id="edge29" class="edge" data-name="check_ospf_type-&gt;dd_check">
+<g id="edge28" class="edge" data-name="check_ospf_type-&gt;dd_check">
 
-<path fill="none" stroke="black" d="M703.84,-487.61C675.48,-452.37 612.59,-362.48 641.79,-289 652.69,-261.56 676.52,-237.68 696.02,-221.58" style=""/>
-<polygon fill="black" stroke="black" points="698.05,-224.44 703.7,-215.48 693.69,-218.96 698.05,-224.44" style=""/>
-<text text-anchor="middle" x="701.85" y="-356.8" font-family="Times,serif" font-size="14.00" style="">Database Description</text>
+<path fill="none" stroke="black" d="M550.13,-469.84C511.98,-443.44 432.47,-381.5 402.13,-305.8 389.59,-274.53 387.82,-235.47 388.38,-209.41"/>
+<polygon fill="black" stroke="black" points="391.87,-209.72 388.73,-199.6 384.87,-209.47 391.87,-209.72"/>
+<text text-anchor="middle" x="493.19" y="-337.6" font-family="Times,serif" font-size="14.00">Database Description</text>
 </g>
 <!-- handle_update_lsdb -->
-<g id="node24" class="node" pointer-events="visible" data-name="handle_update_lsdb">
+<g id="node28" class="node" pointer-events="visible" data-name="handle_update_lsdb">
 
-<polygon fill="none" stroke="black" points="830.57,-433 681,-433 681,-397 830.57,-397 830.57,-433" style=""/>
-<text text-anchor="middle" x="755.79" y="-410.8" font-family="Times,serif" font-size="14.00" style="">更新 LSDB 与路由表</text>
+<polygon fill="none" stroke="black" points="645.91,-413.8 496.34,-413.8 496.34,-377.8 645.91,-377.8 645.91,-413.8"/>
+<text text-anchor="middle" x="571.13" y="-391.6" font-family="Times,serif" font-size="14.00">更新 LSDB 与路由表</text>
 </g>
 <!-- check_ospf_type&#45;&gt;handle_update_lsdb -->
-<g id="edge34" class="edge" data-name="check_ospf_type-&gt;handle_update_lsdb">
+<g id="edge33" class="edge" data-name="check_ospf_type-&gt;handle_update_lsdb">
 
-<path fill="none" stroke="black" d="M723.94,-486.88C729.37,-474.79 736.98,-457.87 743.39,-443.59" style=""/>
-<polygon fill="black" stroke="black" points="746.48,-445.24 747.39,-434.69 740.1,-442.38 746.48,-445.24" style=""/>
-<text text-anchor="middle" x="768.92" y="-455.2" font-family="Times,serif" font-size="14.00" style="">LS Update</text>
+<path fill="none" stroke="black" d="M571.13,-466.45C571.13,-454.76 571.13,-438.99 571.13,-425.42"/>
+<polygon fill="black" stroke="black" points="574.63,-425.72 571.13,-415.72 567.63,-425.72 574.63,-425.72"/>
+<text text-anchor="middle" x="601.26" y="-436" font-family="Times,serif" font-size="14.00">LS Update</text>
 </g>
 <!-- handle_request -->
-<g id="node28" class="node" pointer-events="visible" data-name="handle_request">
+<g id="node32" class="node" pointer-events="visible" data-name="handle_request">
 
-<polygon fill="none" stroke="black" points="1102.05,-163 973.52,-163 973.52,-127 1102.05,-127 1102.05,-163" style=""/>
-<text text-anchor="middle" x="1037.79" y="-140.8" font-family="Times,serif" font-size="14.00" style="">回复 LS Update</text>
+<polygon fill="none" stroke="black" points="824.39,-251.8 695.86,-251.8 695.86,-215.8 824.39,-215.8 824.39,-251.8"/>
+<text text-anchor="middle" x="760.13" y="-229.6" font-family="Times,serif" font-size="14.00">回复 LS Update</text>
 </g>
 <!-- check_ospf_type&#45;&gt;handle_request -->
-<g id="edge40" class="edge" data-name="check_ospf_type-&gt;handle_request">
+<g id="edge39" class="edge" data-name="check_ospf_type-&gt;handle_request">
 
-<path fill="none" stroke="black" d="M750.95,-491.52C767.18,-485.51 786.54,-477.38 802.79,-467.8 889.86,-416.47 920.92,-407.16 979.79,-325 1004.6,-290.37 997.73,-274.86 1012.79,-235 1015.82,-226.97 1017.17,-225.18 1019.79,-217 1024.21,-203.18 1028.26,-187.58 1031.4,-174.53" style=""/>
-<polygon fill="black" stroke="black" points="1034.79,-175.39 1033.66,-164.86 1027.98,-173.8 1034.79,-175.39" style=""/>
-<text text-anchor="middle" x="998.26" y="-356.8" font-family="Times,serif" font-size="14.00" style="">LS Request</text>
+<path fill="none" stroke="black" d="M599.92,-471.22C611.59,-465.38 624.74,-457.69 635.13,-448.6 694.42,-396.74 705.56,-376.59 740.13,-305.8 746.69,-292.36 751.43,-276.41 754.64,-263.03"/>
+<polygon fill="black" stroke="black" points="757.99,-264.06 756.75,-253.54 751.16,-262.55 757.99,-264.06"/>
+<text text-anchor="middle" x="733.6" y="-391.6" font-family="Times,serif" font-size="14.00">LS Request</text>
 </g>
 <!-- handle_ack -->
-<g id="node29" class="node" pointer-events="visible" data-name="handle_ack">
+<g id="node33" class="node" pointer-events="visible" data-name="handle_ack">
 
-<polygon fill="none" stroke="black" points="1219.55,-271 1014.02,-271 1014.02,-235 1219.55,-235 1219.55,-271" style=""/>
-<text text-anchor="middle" x="1116.79" y="-248.8" font-family="Times,serif" font-size="14.00" style="">不再重传对应的 LS Update 报文</text>
+<polygon fill="none" stroke="black" points="979.89,-359.8 774.36,-359.8 774.36,-323.8 979.89,-323.8 979.89,-359.8"/>
+<text text-anchor="middle" x="877.13" y="-337.6" font-family="Times,serif" font-size="14.00">不再重传对应的 LS Update 报文</text>
 </g>
 <!-- check_ospf_type&#45;&gt;handle_ack -->
-<g id="edge42" class="edge" data-name="check_ospf_type-&gt;handle_ack">
+<g id="edge41" class="edge" data-name="check_ospf_type-&gt;handle_ack">
 
-<path fill="none" stroke="black" d="M804.39,-500.88C879.03,-497.74 979.35,-489.48 1012.79,-467.8 1077.92,-425.57 1103.48,-330.01 1112.46,-282.26" style=""/>
-<polygon fill="black" stroke="black" points="1115.86,-283.16 1114.14,-272.7 1108.96,-281.95 1115.86,-283.16" style=""/>
-<text text-anchor="middle" x="1135.58" y="-410.8" font-family="Times,serif" font-size="14.00" style="">LS Acknowledgement</text>
+<path fill="none" stroke="black" d="M624.11,-475.52C679.23,-466.93 759.41,-453.89 773.13,-448.6 800.12,-438.2 807.27,-433.84 828.13,-413.8 841.51,-400.94 853.42,-383.89 862.14,-369.73"/>
+<polygon fill="black" stroke="black" points="865.04,-371.71 867.14,-361.32 859.02,-368.13 865.04,-371.71"/>
+<text text-anchor="middle" x="869.92" y="-436" font-family="Times,serif" font-size="14.00">LS Acknowledgement</text>
+</g><g id="node21" class="node" pointer-events="visible" data-name="loop_end_5" data-comment="check_ospf_type-&gt;handle_ack">
+
+<ellipse fill="none" stroke="black" cx="739.13" cy="-484.6" rx="48.74" ry="18"/>
+<text text-anchor="middle" x="739.13" y="-480.4" font-family="Times,serif" font-size="14.00">循环结束</text>
 </g>
-<!-- hello_check&#45;&gt;loop_end -->
-<g id="edge27" class="edge" data-name="hello_check-&gt;loop_end">
+<!-- loop_end&#45;&gt;loop -->
 
-<path fill="none" stroke="black" d="M434.26,-183.61C401.8,-159.17 345.41,-108.72 377.29,-73 404.72,-42.26 676.62,-26.63 795.09,-21.23" style=""/>
-<polygon fill="black" stroke="black" points="795.05,-24.74 804.89,-20.79 794.74,-17.74 795.05,-24.74" style=""/>
-<text text-anchor="middle" x="382.04" y="-86.8" font-family="Times,serif" font-size="14.00" style="">是</text>
+<!-- hello_check&#45;&gt;loop_end -->
+<g id="edge26" class="edge" data-name="hello_check-&gt;loop_end">
+
+<path fill="none" stroke="black" d="M128.52,-162.82C144.47,-136.22 176.86,-84.59 194.63,-73 254.71,-33.8 337.86,-22.32 393.7,-19.33"/>
+<polygon fill="black" stroke="black" points="393.83,-22.83 403.67,-18.88 393.52,-15.84 393.83,-22.83"/>
+<text text-anchor="middle" x="200.38" y="-86.8" font-family="Times,serif" font-size="14.00">是</text>
 </g>
 <!-- handle_hello -->
-<g id="node20" class="node" pointer-events="visible" data-name="handle_hello">
+<g id="node23" class="node" pointer-events="visible" data-name="handle_hello">
 
-<polygon fill="none" stroke="black" points="514.29,-109 397.29,-109 397.29,-73 514.29,-73 514.29,-109" style=""/>
-<text text-anchor="middle" x="455.79" y="-86.8" font-family="Times,serif" font-size="14.00" style="">加入邻居状态表</text>
+<polygon fill="none" stroke="black" points="149.63,-109 32.62,-109 32.62,-73 149.63,-73 149.63,-109"/>
+<text text-anchor="middle" x="91.13" y="-86.8" font-family="Times,serif" font-size="14.00">加入邻居状态表</text>
 </g>
 <!-- hello_check&#45;&gt;handle_hello -->
-<g id="edge26" class="edge" data-name="hello_check-&gt;handle_hello">
+<g id="edge25" class="edge" data-name="hello_check-&gt;handle_hello">
 
-<path fill="none" stroke="black" d="M454.95,-180.97C455.1,-164.76 455.33,-140.06 455.51,-120.79" style=""/>
-<polygon fill="black" stroke="black" points="459.01,-120.89 455.61,-110.85 452.01,-120.82 459.01,-120.89" style=""/>
-<text text-anchor="middle" x="460.04" y="-140.8" font-family="Times,serif" font-size="14.00" style="">否</text>
+<path fill="none" stroke="black" d="M113.86,-162.47C110.01,-150.54 104.69,-134.06 100.17,-120.03"/>
+<polygon fill="black" stroke="black" points="103.62,-119.33 97.22,-110.89 96.96,-121.48 103.62,-119.33"/>
+<text text-anchor="middle" x="113.38" y="-131.2" font-family="Times,serif" font-size="14.00">否</text>
 </g>
 <!-- handle_hello&#45;&gt;loop_end -->
-<g id="edge28" class="edge" data-name="handle_hello-&gt;loop_end">
+<g id="edge27" class="edge" data-name="handle_hello-&gt;loop_end">
 
-<path fill="none" stroke="black" d="M514.55,-74.79C517.33,-74.17 520.08,-73.56 522.79,-73 618.03,-53.09 730.12,-35.92 795.25,-26.56" style=""/>
-<polygon fill="black" stroke="black" points="795.55,-30.05 804.96,-25.17 794.56,-23.12 795.55,-30.05" style=""/>
+<path fill="none" stroke="black" d="M124.2,-72.65C138.57,-65.81 155.82,-58.53 172.13,-54 246.95,-33.22 336.37,-24.76 394.15,-21.33"/>
+<polygon fill="black" stroke="black" points="394.33,-24.83 404.12,-20.77 393.94,-17.84 394.33,-24.83"/>
 </g>
 <!-- handle_dd_sync -->
-<g id="node22" class="node" pointer-events="visible" data-name="handle_dd_sync">
+<g id="node26" class="node" pointer-events="visible" data-name="handle_dd_sync">
 
-<polygon fill="none" stroke="black" points="687.51,-109 532.07,-109 532.07,-73 687.51,-73 687.51,-109" style=""/>
-<text text-anchor="middle" x="609.79" y="-86.8" font-family="Times,serif" font-size="14.00" style="">发送 DD 报文继续同步</text>
+<polygon fill="none" stroke="black" points="369.85,-109 214.41,-109 214.41,-73 369.85,-73 369.85,-109"/>
+<text text-anchor="middle" x="292.13" y="-86.8" font-family="Times,serif" font-size="14.00">发送 DD 报文继续同步</text>
 </g>
 <!-- dd_check&#45;&gt;handle_dd_sync -->
-<g id="edge30" class="edge" data-name="dd_check-&gt;handle_dd_sync">
+<g id="edge29" class="edge" data-name="dd_check-&gt;handle_dd_sync">
 
-<path fill="none" stroke="black" d="M709.17,-182.81C690.36,-165.63 659.45,-137.38 637.09,-116.95" style=""/>
-<polygon fill="black" stroke="black" points="639.55,-114.45 629.8,-110.29 634.82,-119.62 639.55,-114.45" style=""/>
-<text text-anchor="middle" x="690.04" y="-140.8" font-family="Times,serif" font-size="14.00" style="">否</text>
+<path fill="none" stroke="black" d="M373.06,-163.68C358.49,-150.78 337.24,-131.96 320.18,-116.85"/>
+<polygon fill="black" stroke="black" points="322.63,-114.34 312.83,-110.33 317.99,-119.58 322.63,-114.34"/>
+<text text-anchor="middle" x="355.38" y="-131.2" font-family="Times,serif" font-size="14.00">否</text>
 </g>
 <!-- handle_dd_fin -->
-<g id="node23" class="node" pointer-events="visible" data-name="handle_dd_fin">
+<g id="node27" class="node" pointer-events="visible" data-name="handle_dd_fin">
 
-<polygon fill="none" stroke="black" points="838.73,-109 704.84,-109 704.84,-73 838.73,-73 838.73,-109" style=""/>
-<text text-anchor="middle" x="771.79" y="-86.8" font-family="Times,serif" font-size="14.00" style="">发送 LS Request</text>
+<polygon fill="none" stroke="black" points="521.07,-109 387.18,-109 387.18,-73 521.07,-73 521.07,-109"/>
+<text text-anchor="middle" x="454.13" y="-86.8" font-family="Times,serif" font-size="14.00">发送 LS Request</text>
 </g>
 <!-- dd_check&#45;&gt;handle_dd_fin -->
-<g id="edge31" class="edge" data-name="dd_check-&gt;handle_dd_fin">
+<g id="edge30" class="edge" data-name="dd_check-&gt;handle_dd_fin">
 
-<path fill="none" stroke="black" d="M732.77,-181.9C739.91,-165.46 751.12,-139.62 759.7,-119.85" style=""/>
-<polygon fill="black" stroke="black" points="762.9,-121.26 763.67,-110.7 756.48,-118.48 762.9,-121.26" style=""/>
-<text text-anchor="middle" x="760.04" y="-140.8" font-family="Times,serif" font-size="14.00" style="">是</text>
+<path fill="none" stroke="black" d="M401.86,-162.88C411.04,-150.43 423.99,-132.87 434.71,-118.33"/>
+<polygon fill="black" stroke="black" points="437.35,-120.65 440.47,-110.53 431.71,-116.5 437.35,-120.65"/>
+<text text-anchor="middle" x="433.38" y="-131.2" font-family="Times,serif" font-size="14.00">是</text>
 </g>
 <!-- handle_dd_sync&#45;&gt;loop_end -->
-<g id="edge32" class="edge" data-name="handle_dd_sync-&gt;loop_end">
+<g id="edge31" class="edge" data-name="handle_dd_sync-&gt;loop_end">
 
-<path fill="none" stroke="black" d="M668.8,-72.54C707.59,-61.07 757.94,-46.17 795.69,-35" style=""/>
-<polygon fill="black" stroke="black" points="796.42,-38.44 805.02,-32.24 794.44,-31.72 796.42,-38.44" style=""/>
+<path fill="none" stroke="black" d="M331.76,-72.63C356.51,-61.78 388.31,-47.85 413.28,-36.9"/>
+<polygon fill="black" stroke="black" points="414.39,-40.24 422.15,-33.02 411.58,-33.82 414.39,-40.24"/>
 </g>
 <!-- handle_dd_fin&#45;&gt;loop_end -->
-<g id="edge33" class="edge" data-name="handle_dd_fin-&gt;loop_end">
+<g id="edge32" class="edge" data-name="handle_dd_fin-&gt;loop_end">
 
-<path fill="none" stroke="black" d="M790.67,-72.81C800.18,-64.16 811.89,-53.5 822.37,-43.96" style=""/>
-<polygon fill="black" stroke="black" points="824.65,-46.61 829.69,-37.29 819.94,-41.44 824.65,-46.61" style=""/>
+<path fill="none" stroke="black" d="M454.13,-72.81C454.13,-65.23 454.13,-56.1 454.13,-47.54"/>
+<polygon fill="black" stroke="black" points="457.63,-47.54 454.13,-37.54 450.63,-47.54 457.63,-47.54"/>
 </g>
 <!-- handle_update_check_ospf_type -->
-<g id="node26" class="node" pointer-events="visible" data-name="handle_update_check_ospf_type">
+<g id="node30" class="node" pointer-events="visible" data-name="handle_update_check_ospf_type">
 
-<polygon fill="none" stroke="black" points="810.79,-325 651.08,-307 810.79,-289 970.49,-307 810.79,-325" style=""/>
-<text text-anchor="middle" x="810.79" y="-302.8" font-family="Times,serif" font-size="14.00" style="">是否有对应的 LS Request 报文</text>
+<polygon fill="none" stroke="black" points="571.13,-305.8 411.42,-287.8 571.13,-269.8 730.83,-287.8 571.13,-305.8"/>
+<text text-anchor="middle" x="571.13" y="-283.6" font-family="Times,serif" font-size="14.00">是否有对应的 LS Request 报文</text>
 </g>
 <!-- handle_update_lsdb&#45;&gt;handle_update_check_ospf_type -->
-<g id="edge35" class="edge" data-name="handle_update_lsdb-&gt;handle_update_check_ospf_type">
+<g id="edge34" class="edge" data-name="handle_update_lsdb-&gt;handle_update_check_ospf_type">
 
-<path fill="none" stroke="black" d="M764.62,-396.97C773.39,-380.08 786.93,-353.97 797.09,-334.39" style=""/>
-<polygon fill="black" stroke="black" points="800.14,-336.12 801.64,-325.64 793.92,-332.9 800.14,-336.12" style=""/>
+<path fill="none" stroke="black" d="M571.13,-377.77C571.13,-361.56 571.13,-336.86 571.13,-317.59"/>
+<polygon fill="black" stroke="black" points="574.63,-317.65 571.13,-307.65 567.63,-317.65 574.63,-317.65"/>
 </g>
 <!-- handle_update_ack -->
-<g id="node25" class="node" pointer-events="visible" data-name="handle_update_ack">
+<g id="node29" class="node" pointer-events="visible" data-name="handle_update_ack">
 
-<polygon fill="none" stroke="black" points="1050.87,-109 856.7,-109 856.7,-73 1050.87,-73 1050.87,-109" style=""/>
-<text text-anchor="middle" x="953.79" y="-86.8" font-family="Times,serif" font-size="14.00" style="">回复 LS Acknowledgement</text>
+<polygon fill="none" stroke="black" points="733.21,-109 539.04,-109 539.04,-73 733.21,-73 733.21,-109"/>
+<text text-anchor="middle" x="636.13" y="-86.8" font-family="Times,serif" font-size="14.00">回复 LS Acknowledgement</text>
 </g>
 <!-- handle_update_ack&#45;&gt;loop_end -->
-<g id="edge39" class="edge" data-name="handle_update_ack-&gt;loop_end">
+<g id="edge38" class="edge" data-name="handle_update_ack-&gt;loop_end">
 
-<path fill="none" stroke="black" d="M928.34,-72.63C915.25,-63.69 899.08,-52.66 884.83,-42.92" style=""/>
-<polygon fill="black" stroke="black" points="886.81,-40.04 876.58,-37.29 882.86,-45.82 886.81,-40.04" style=""/>
+<path fill="none" stroke="black" d="M591.6,-72.63C562.86,-61.42 525.67,-46.91 497.21,-35.81"/>
+<polygon fill="black" stroke="black" points="498.77,-32.66 488.18,-32.29 496.23,-39.18 498.77,-32.66"/>
 </g>
 <!-- handle_update_check_ospf_type&#45;&gt;handle_update_ack -->
-<g id="edge36" class="edge" data-name="handle_update_check_ospf_type-&gt;handle_update_ack">
+<g id="edge35" class="edge" data-name="handle_update_check_ospf_type-&gt;handle_update_ack">
 
-<path fill="none" stroke="black" d="M821.53,-289.92C845.93,-253.41 905.7,-163.96 935.82,-118.88" style=""/>
-<polygon fill="black" stroke="black" points="938.63,-120.98 941.28,-110.72 932.81,-117.09 938.63,-120.98" style=""/>
-<text text-anchor="middle" x="899.04" y="-194.8" font-family="Times,serif" font-size="14.00" style="">否</text>
+<path fill="none" stroke="black" d="M568.51,-269.91C565.4,-245.2 562.31,-198.18 576.63,-161.8 583.26,-144.95 595.74,-129.29 607.57,-117.09"/>
+<polygon fill="black" stroke="black" points="609.82,-119.79 614.5,-110.29 604.91,-114.8 609.82,-119.79"/>
+<text text-anchor="middle" x="582.38" y="-175.6" font-family="Times,serif" font-size="14.00">否</text>
 </g>
 <!-- handle_update_rm_request -->
-<g id="node27" class="node" pointer-events="visible" data-name="handle_update_rm_request">
+<g id="node31" class="node" pointer-events="visible" data-name="handle_update_rm_request">
 
-<polygon fill="none" stroke="black" points="1010.79,-217 924.79,-217 924.79,-181 1010.79,-181 1010.79,-217" style=""/>
-<text text-anchor="middle" x="967.79" y="-194.8" font-family="Times,serif" font-size="14.00" style="">不再重传</text>
+<polygon fill="none" stroke="black" points="682.13,-197.8 596.13,-197.8 596.13,-161.8 682.13,-161.8 682.13,-197.8"/>
+<text text-anchor="middle" x="639.13" y="-175.6" font-family="Times,serif" font-size="14.00">不再重传</text>
 </g>
 <!-- handle_update_check_ospf_type&#45;&gt;handle_update_rm_request -->
-<g id="edge37" class="edge" data-name="handle_update_check_ospf_type-&gt;handle_update_rm_request">
+<g id="edge36" class="edge" data-name="handle_update_check_ospf_type-&gt;handle_update_rm_request">
 
-<path fill="none" stroke="black" d="M860.67,-294.2C877.24,-288.81 895.17,-281.28 909.79,-271 926.45,-259.28 940.94,-241.54 951.28,-226.72" style=""/>
-<polygon fill="black" stroke="black" points="953.95,-229.02 956.61,-218.76 948.14,-225.12 953.95,-229.02" style=""/>
-<text text-anchor="middle" x="949.04" y="-248.8" font-family="Times,serif" font-size="14.00" style="">是</text>
+<path fill="none" stroke="black" d="M581.45,-270.7C592.2,-253.95 609.2,-227.45 621.97,-207.55"/>
+<polygon fill="black" stroke="black" points="624.75,-209.69 627.2,-199.38 618.86,-205.91 624.75,-209.69"/>
+<text text-anchor="middle" x="621.38" y="-229.6" font-family="Times,serif" font-size="14.00">是</text>
 </g>
-<!-- handle_update_rm_request&#45;&gt;handle_update_ack -->
-<g id="edge38" class="edge" data-name="handle_update_rm_request-&gt;handle_update_ack">
+<g id="edge37" class="edge" data-name="handle_update_rm_request-&gt;handle_update_ack" data-comment="handle_update_check_ospf_type-&gt;handle_update_rm_request">
 
-<path fill="none" stroke="black" d="M965.54,-180.97C963.39,-164.69 960.1,-139.82 957.55,-120.52" style=""/>
-<polygon fill="black" stroke="black" points="961.05,-120.3 956.27,-110.84 954.11,-121.21 961.05,-120.3" style=""/>
-</g>
-<!-- handle_request&#45;&gt;loop_end -->
-<g id="edge41" class="edge" data-name="handle_request-&gt;loop_end">
+<path fill="none" stroke="black" d="M638.53,-161.65C638.13,-149.96 637.58,-134.19 637.12,-120.62"/>
+<polygon fill="black" stroke="black" points="640.62,-120.8 636.78,-110.92 633.63,-121.04 640.62,-120.8"/>
+</g><g id="edge40" class="edge" data-name="handle_request-&gt;loop_end" data-comment="handle_update_check_ospf_type-&gt;handle_update_rm_request">
 
-<path fill="none" stroke="black" d="M1051.28,-126.65C1061.53,-111.21 1071.96,-88.7 1059.79,-73 1040.85,-48.58 959.82,-33.27 904.14,-25.43" style=""/>
-<polygon fill="black" stroke="black" points="904.9,-22 894.52,-24.12 903.95,-28.94 904.9,-22" style=""/>
-</g>
-<!-- handle_ack&#45;&gt;loop_end -->
-<g id="edge43" class="edge" data-name="handle_ack-&gt;loop_end">
+<path fill="none" stroke="black" d="M764.11,-215.45C770.45,-182.89 778.71,-112.37 742.13,-73 711.86,-40.44 588.68,-27.17 513.56,-22.02"/>
+<polygon fill="black" stroke="black" points="514.11,-18.55 503.9,-21.39 513.65,-25.54 514.11,-18.55"/>
+</g><g id="edge42" class="edge" data-name="handle_ack-&gt;loop_end" data-comment="handle_update_check_ospf_type-&gt;handle_update_rm_request">
 
-<path fill="none" stroke="black" d="M1118.1,-234.65C1119.77,-199.37 1118.35,-118.75 1075.79,-73 1064.52,-60.89 1059.28,-59.78 1043.79,-54 998.41,-37.07 943.91,-28.16 904.24,-23.58" style=""/>
-<polygon fill="black" stroke="black" points="904.78,-20.12 894.46,-22.51 904.02,-27.07 904.78,-20.12" style=""/>
-</g>
-</g>
+<path fill="none" stroke="black" d="M871.5,-323.38C865.28,-302.55 856.13,-266.51 856.13,-234.8 856.13,-234.8 856.13,-234.8 856.13,-90 856.13,-55.6 624.96,-32.55 513.22,-23.41"/>
+<polygon fill="black" stroke="black" points="513.58,-19.93 503.33,-22.61 513.01,-26.9 513.58,-19.93"/>
+</g></g>
 </svg>

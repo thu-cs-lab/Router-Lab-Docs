@@ -1,30 +1,26 @@
 digraph G {
-    node [margin="0.3,0"]
-
-    init [label = "初始化路由表";shape = rect;];
+    node [margin = "0.3,0";];
     
-    loop [label = "循环开始";shape = rect;];
-    
-    init -> loop;
-    
-    send_all [label = "发送 OSPF Hello 到所有网络接口";shape = rect;];
+    loop [label = "循环开始";];
     
     timeout [label = "5s 计时器超时";shape = diamond;];
+    send_all [label = "发送 OSPF Hello 到所有网络接口";shape = rect;];
+    loop_end_1 [label = "循环结束";];
     
     loop -> timeout;
     
     timeout -> send_all [label = "是";];
-    send_all -> loop_end;
+    send_all -> loop_end_1;
     
     recv [label = "是否接收到 IPv6 分组";shape = diamond;];
     
     timeout -> recv [label = "否";];
-    recv -> loop_end [label = "否";];
+    recv -> loop_end_1 [label = "否";];
     
     check [label = "IPv6 分组是否完整";shape = diamond;];
     
     recv -> check [label = "是";];
-    check -> loop_end [label = "否";];
+    check -> loop_end_1 [label = "否";];
     check -> type [label = "是";];
     
     type [label = "判断分组目标是否是路由器";shape = diamond;];
@@ -35,10 +31,11 @@ digraph G {
     type -> check_hlim [label = "否";];
     
     check_hlim [label = "判断 Hop Limit 是否 <= 1";shape = diamond;];
-    
     time_exceeded [label = "发送 ICMPv6 Time Exceeded 报文";shape = rect;];
+    loop_end_2 [label = "循环结束";];
+    
     check_hlim -> time_exceeded [label = "是";];
-    time_exceeded -> loop_end;
+    time_exceeded -> loop_end_2;
     
     lookup [label = "按照目的 IPv6 地址查询路由表";shape = rect;];
     
@@ -51,26 +48,29 @@ digraph G {
     check_mac [label = "ND 表中是否有下一跳 MAC 地址";shape = diamond;];
     
     destination_unreachable [label = "发送 ICMPv6 Destination Unreachable 消息";shape = rect;];
+    loop_end_3 [label = "循环结束";];
     
     nexthop_found -> destination_unreachable [label = "否";];
-    destination_unreachable -> loop_end;
+    destination_unreachable -> loop_end_3;
     
     nexthop_found -> check_mac [label = "是";];
     check_mac -> forward [label = "是";];
     
     forward [label = "转发给下一跳";shape = rect;];
+    loop_end_4 [label = "循环结束";];
     
-    forward -> loop_end;
+    forward -> loop_end_4;
     
     ndp [label = "ND 查找下一跳 MAC 地址";shape = rect;];
     
     check_mac -> ndp [label = "否";];
-    ndp -> loop_end;
+    ndp -> loop_end_4;
     
     check_ospf_type [label = "判断 OSPF 类型";shape = diamond;];
+    loop_end_5 [label = "循环结束";];
     
     check_ospf -> check_ospf_type [label = "是";];
-    check_ospf -> loop_end [label = "否";];
+    check_ospf -> loop_end_5 [label = "否";];
     
     hello_check [label = "判断是否认识该路由器";shape = diamond;];
     handle_hello [label = "加入邻居状态表";shape = rect;];
@@ -112,7 +112,5 @@ digraph G {
     check_ospf_type -> handle_ack [label = "LS Acknowledgement";];
     handle_ack -> loop_end;
     
-    loop_end [label = "循环结束";shape = rect;];
-    
-    loop_end -> loop;
+    loop_end [label = "循环结束";];
 }
