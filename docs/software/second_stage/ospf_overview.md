@@ -38,7 +38,7 @@ ExStart 和 Exchange 的过程具体参见 [RFC 2328 Section 10.6 Receiving Data
 
 ## 工作流程
 
-可以回答以上几个问题以后，结合仓库中 `Homework/ospf/main.cpp` 尝试理解下面的路由的工作流程：
+可以结合以上内容和仓库中 `Homework/ospf/main.cpp` 尝试理解下面的路由的工作流程：
 
 1. 初始化路由表，加入直连路由；
 2. 进入路由器主循环；
