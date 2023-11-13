@@ -4,7 +4,7 @@
 
 ![Topology](img/topology_ripng.png)
 
-这一阶段，PC1、R1、R3、PC2 都由 TANLabs 自动配置和提供，两台路由器上均运行 BIRD 作为标准的路由软件实现。你代码所运行在的树莓派处于 R2 的位置。其中 R2 实际用到的只有两个口，剩余两个口按顺序配置为 `fd00::8:1/112` 和 `fd00::9:1/112` （见 `Router-Lab/Homework/ospf/main.cpp` 代码中 ROUTER_R2 部分）。初始情况下，R1 和 R3 先不启动 OSPF 协议处理程序，这些机器的系统路由表如下：
+这一阶段，PC1、R1、R3、PC2 都由 TANLabs 自动配置和提供，两台路由器上均运行 BIRD（BIRD Internet Routing Daemon）作为标准的路由软件实现。运行着你的代码的树莓派处于 R2 的位置。其中 R2 实际用到的只有两个口，剩余两个口按顺序配置为 `fd00::8:1/112` 和 `fd00::9:1/112`（见 `Router-Lab/Homework/ospf/main.cpp` 代码中 ROUTER_R2 部分）。初始情况下，R1 和 R3 先不启动 OSPF 协议处理程序，这些机器的系统路由表如下：
 
 ```text
 PC1:
