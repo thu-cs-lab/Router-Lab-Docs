@@ -36,14 +36,14 @@ sudo ip netns exec PC1 wireshark
 
 ```shell
 # enable forwarding for all interfaces
-echo 1 > /proc/sys/net/ipv4/conf/all/forwarding
+echo 1 > /proc/sys/net/ipv6/conf/all/forwarding
 ```
 
 如果你在 netns 中用 Linux 自带的功能做转发需要运行如下命令：
 
 ```shell
 # enable forwarding for all interfaces in netns R1
-ip netns exec R1 sh -c "echo 1 > /proc/sys/net/ipv4/conf/all/forwarding"
+ip netns exec R1 sh -c "echo 1 > /proc/sys/net/ipv6/conf/all/forwarding"
 ```
 
 #### 路由协议
