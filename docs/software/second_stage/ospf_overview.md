@@ -14,7 +14,7 @@ OSPF 是一种链路状态路由协议，每个 OSPF 路由器都维护一个链
 
 在本实验中，我们只有一个区域 Area 0，并将路由器之间的网络简化为点到点网络（Point-to-Point networks），使用到的 LSA 只有两种：Router-LSA 和 Intra-Area-Prefix-LSA。Router-LSA 用来描述路由器之间的链路信息，Intra-Area-Prefix-LSA 用来描述路由器到子网的链路信息。计算路由表时，只需要先根据 Router-LSA 算出到所有路由器的最短路，再根据 Intra-Area-Prefix-LSA 计算出到每个子网的最短路，然后计算下一跳并插入路由表即可。
 
-一旦路由器启动，其便会每隔一定时间向外发送 Hello 报文，描述自身的所有邻居（Neighbor）。当路由器收到一个 Hello 报文后，其便会在收报文的接口上开始维护这个报文的发送者对应的邻居数据结构（Neighbor data structure），其中存储着邻居状态等信息。
+一旦路由器启动，其便会每隔一定时间从各个接口向外发送 Hello 报文，描述这个接口上近期见过的所有邻居（Neighbor）。当路由器收到一个 Hello 报文后，其便会在收报文的接口上开始维护这个报文的发送者对应的邻居数据结构（Neighbor data structure），其中存储着邻居状态等信息。
 
 初始时邻居为 **Init** 状态，路由器会在发出的 Hello 报文中包含这个邻居。当路由器从该邻居发出的 Hello 报文中看到自己时，这表明路由器与该邻居之间建立了双向通信，邻居状态转为 **ExStart**。
 
