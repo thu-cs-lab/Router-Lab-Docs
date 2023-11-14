@@ -4,7 +4,7 @@
 
 ![Topology](img/topology_ripng.png)
 
-这一阶段，PC1、R1、R3、PC2 都由 TANLabs 自动配置和提供，两台路由器上均运行 BIRD（BIRD Internet Routing Daemon）作为标准的路由软件实现。运行着你的代码的树莓派处于 R2 的位置。其中 R2 实际用到的只有两个口，剩余两个口按顺序配置为 `fd00::8:1/112` 和 `fd00::9:1/112`（见 `Router-Lab/Homework/ospf/main.cpp` 代码中 ROUTER_R2 部分）。初始情况下，R1 和 R3 先不启动 OSPF 协议处理程序，这些机器的系统路由表如下：
+这一阶段，PC1、R1、R3、PC2 都由 TANLabs 自动配置和提供，两台路由器上均运行 BIRD（BIRD Internet Routing Daemon）作为标准的路由软件实现。运行着你的代码的树莓派处于 R2 的位置。其中 R2 实际用到的只有两个口，剩余两个口按顺序配置为 `fd00::8:1/112` 和 `fd00::9:1/112`（见 `Router-Lab/Homework/ospf/main.cpp` 代码中 `ROUTER_R2` 部分）。初始情况下，R1 和 R3 先不启动 OSPF 协议处理程序，这些机器的系统路由表如下：
 
 ```text
 PC1:
@@ -40,9 +40,9 @@ fd00::8:0/112 via fd00::4:1 dev r3r2
 fd00::9:0/112 via fd00::4:1 dev r3r2
 ```
 
-在 Linux 中，上面的 `via fd00:3:2` 和 `via fd00::4:1` 在实际情况下会变成对应的 fe80 开头的 Link Local 地址。
+在 Linux 中，上面的 `via fd00:3:2` 和 `via fd00::4:1` 在实际情况下会变成对应的 `fe80::` 开头的 Link Local 地址。
 
-在代码中，已经为大家设置好了一些常量，根据 ROUTER_R{1,2,3} 宏的不同定义取不同的值。在 `Homework/ospf` 目录下可以看到名为 `r1` `r2` `r3` 的目录，每个目录下都有 Makefile，分别编译出不同宏定义下的路由器。
+在代码中，已经为大家设置好了一些常量，根据 `ROUTER_R{1,2,3}` 宏的不同定义取不同的值。在 `Homework/ospf` 目录下可以看到名为 `r1` `r2` `r3` 的目录，每个目录下都有 Makefile，分别编译出不同宏定义下的路由器。
 
 ## 检查内容
 
@@ -77,16 +77,16 @@ $$
 
 ??? warning "容易出错的地方"
 
-    TODO: 待补充
+    暂无 ^_^
 
 ??? example "可供参考的例子"
 
-    我们提供了 [`ospf-r1.pcap`](static/ospf-r1.pcap) 和 [`ospf-r3.pcap`](static/ospf-r3.pcap) （可点击文件名下载），分别是在 R1 的 r1r2 接口和 R3 的 r3r2 接口的抓包结果，以及在这个过程中 BIRD 的输出日志 [`bird-ospf-r1.txt`](static/bird-ospf-r1.txt) 和 [`bird-ospf-r3.txt`](static/bird-ospf-r3.txt)。
+    我们提供了 [`ospf-r1.pcap`](static/ospf-r1.pcap) 和 [`ospf-r3.pcap`](static/ospf-r3.pcap)（可点击文件名下载），分别是在 R1 的 r1r2 接口和 R3 的 r3r2 接口的抓包结果，以及在这个过程中 BIRD 输出的日志 [`bird-ospf-r1.txt`](static/bird-ospf-r1.txt) 和 [`bird-ospf-r3.txt`](static/bird-ospf-r3.txt)。
     
     在这过程中，我们模拟了实验的过程：
     
-    1. 开启 R1 R3 上的 BIRD，然后在 R2 上运行的路由器实现
-    2. 等待一段时间后，运行 `test4.sh`，测试 PC1 和 PC2 间的 ping 连通性，每个方向 ping 4 次
+    1. 开启 R1 和 R3 上的 BIRD，然后在 R2 上运行本实验的路由器实现；
+    2. 等待一段时间后，运行 `test4.sh`，测试 PC1 和 PC2 间的 ping 连通性，每个方向 ping 4 次。
     
     下面按包序号解释 `ospf-r1.pcap` 的抓包结果：
 
@@ -111,7 +111,7 @@ $$
     No.13:      R2 收到 R1 的 DD 报文，将自己设为 Leader（Master），邻居状态变为 Exchange，将自己的
                 DD Sequence Number 加一，Leader（Master）位置为 1，同时携带自己的 LSA Header 发送。
     No.14:      R1 收到 R2 的 DD 报文，发现 More 位为 0，于是使用收到 DD 报文的 DD Sequence Number
-                回复 R2 的 DD 报文（因为 R1 是 Slave），邻居状态变为 Loading。
+                回复 R2 的 DD 报文（因为 R1 是 Follower），邻居状态变为 Loading。
     No.15:      R1 发送 LS Request，请求自己没有的两个 R2 的 LSA。
     No.16:      由于 R1 收到过 R2 发来的报文，故邻居缓存中有 R2 地址对应的 MAC 地址，此处是 R1
                 正在维护邻居缓存有效性，进行 NUD 检测。
