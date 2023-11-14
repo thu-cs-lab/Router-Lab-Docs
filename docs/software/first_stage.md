@@ -17,9 +17,9 @@
 - eui64：生成 IPv6 Link Local 地址
 - internet-checksum：计算校验和
 - lookup：路由表查询和更新
-- protocol(protocol-ospf)：RIPng(OSPF) 协议解析和封装，其中 `protocol` 作业对应的是 RIPng 协议，`protocol-ospf` 作业对应的是 OSPF 协议，二选一即可，建议和第二、三阶段采用同样的协议
+- protocol（protocol-ospf）：RIPng（OSPF）协议解析和封装，其中 `protocol` 作业对应的是 RIPng 协议，`protocol-ospf` 作业对应的是 OSPF 协议，二选一即可，建议和第二、三阶段采用同样的协议
 
-其中 eui64 比较容易，主要是熟悉实验框架和平台的使用。internet-checksum 可能是编程作业里最难的一个，涉及到比较复杂的逻辑，需要仔细思考。lookup 题目可易可难，取决于你实现的方法。protocol 也不复杂，需要一定的细心。要编写的代码行数：eui64 < lookup < protocol(protocol-ospf) < internet-checksum。
+其中 eui64 比较容易，主要是熟悉实验框架和平台的使用。internet-checksum 可能是编程作业里最难的一个，涉及到比较复杂的逻辑，需要仔细思考。lookup 题目可易可难，取决于你实现的方法。protocol 也不复杂，需要一定的细心。要编写的代码行数：eui64 < lookup < protocol（protocol-ospf） < internet-checksum。
 
 每个题目都有类似的结构（以 `internet-checksum` 为例）：
 

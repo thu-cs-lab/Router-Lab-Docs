@@ -19,13 +19,13 @@
         <mxCell id="Bsx0fT66WqdBsRw88jEr-8" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;exitPerimeter=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;entryPerimeter=0;startArrow=classic;startFill=1;" edge="1" parent="1" source="Bsx0fT66WqdBsRw88jEr-5" target="Bsx0fT66WqdBsRw88jEr-7">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="Bsx0fT66WqdBsRw88jEr-5" value="RIPng/OSPF Router" style="shape=mxgraph.cisco.routers.router;sketch=0;html=1;pointerEvents=1;dashed=0;fillColor=#036897;strokeColor=#ffffff;strokeWidth=2;verticalLabelPosition=bottom;verticalAlign=top;align=center;outlineConnect=0;" vertex="1" parent="1">
+        <mxCell id="Bsx0fT66WqdBsRw88jEr-5" value="OSPF/RIPng Router" style="shape=mxgraph.cisco.routers.router;sketch=0;html=1;pointerEvents=1;dashed=0;fillColor=#036897;strokeColor=#ffffff;strokeWidth=2;verticalLabelPosition=bottom;verticalAlign=top;align=center;outlineConnect=0;" vertex="1" parent="1">
           <mxGeometry x="440" y="208.5" width="78" height="53" as="geometry" />
         </mxCell>
         <mxCell id="Bsx0fT66WqdBsRw88jEr-10" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;exitPerimeter=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;entryPerimeter=0;startArrow=classic;startFill=1;" edge="1" parent="1" source="Bsx0fT66WqdBsRw88jEr-7" target="Bsx0fT66WqdBsRw88jEr-9">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="Bsx0fT66WqdBsRw88jEr-7" value="RIPng/OSPF Router" style="shape=mxgraph.cisco.routers.router;sketch=0;html=1;pointerEvents=1;dashed=0;fillColor=#036897;strokeColor=#ffffff;strokeWidth=2;verticalLabelPosition=bottom;verticalAlign=top;align=center;outlineConnect=0;" vertex="1" parent="1">
+        <mxCell id="Bsx0fT66WqdBsRw88jEr-7" value="OSPF/RIPng Router" style="shape=mxgraph.cisco.routers.router;sketch=0;html=1;pointerEvents=1;dashed=0;fillColor=#036897;strokeColor=#ffffff;strokeWidth=2;verticalLabelPosition=bottom;verticalAlign=top;align=center;outlineConnect=0;" vertex="1" parent="1">
           <mxGeometry x="580" y="208.5" width="78" height="53" as="geometry" />
         </mxCell>
         <mxCell id="Bsx0fT66WqdBsRw88jEr-9" value="TFTP Server" style="shape=mxgraph.cisco.servers.fileserver;sketch=0;html=1;pointerEvents=1;dashed=0;fillColor=#036897;strokeColor=#ffffff;strokeWidth=2;verticalLabelPosition=bottom;verticalAlign=top;align=center;outlineConnect=0;" vertex="1" parent="1">

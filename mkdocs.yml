@@ -33,15 +33,15 @@ nav:
     - 第一阶段: software/first_stage.md
     - 第二阶段:
       - 总述: software/second_stage.md
-      - RIPng:
-        - 总述: software/second_stage/ripng_overview.md
-        - 评测: software/second_stage/ripng_evaluation.md
-        - 调试: software/second_stage/ripng_debug.md
       - OSPF:
         - 总述: software/second_stage/ospf_overview.md
         - 评测: software/second_stage/ospf_evaluation.md
         - 调试: software/second_stage/ospf_debug.md
         - 附录：RFC 索引: software/second_stage/ospf_rfc.md
+      - RIPng:
+        - 总述: software/second_stage/ripng_overview.md
+        - 评测: software/second_stage/ripng_evaluation.md
+        - 调试: software/second_stage/ripng_debug.md
       - DHCPv6:
         - 总述: software/second_stage/dhcpv6_overview.md
         - 评测: software/second_stage/dhcpv6_evaluation.md

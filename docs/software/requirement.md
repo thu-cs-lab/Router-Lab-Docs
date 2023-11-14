@@ -21,7 +21,7 @@ $$ S' = S \times \min(0.8, 0.95^D) $$
 - `eui64`：基于 EUI64 构造 IPv6 Link Local 地址，代码量约 10 行
 - `internet-checksum`：进行 UDP 和 ICMPv6 校验和的检验和计算，代码量约 80 行
 - `lookup`：路由表的查询和更新，代码量约 60 行
-- `protocol/protocol-ospf`：RIPng/OSPF 协议的处理，代码量约 70 行
+- `protocol-ospf/protocol`：OSPF/RIP 协议的处理，代码量约 70 行
 
 你需要在 [TANLabs](https://lab.cs.tsinghua.edu.cn/tan/) 上登录，并且在网站上创建属于你的作业 GitLab 仓库。你需要使用 Git 往你的作业仓库中提交的你的代码，然后在 TANLabs 查看评测结果。评测的流程和要求详见 TANLabs 网站上的说明。
 
@@ -31,8 +31,8 @@ $$ S' = S \times \min(0.8, 0.95^D) $$
 
 第二部分，你需要在以下四个选项中，选择一个完成：
 
-1. 实现 RIPng 协议的路由器
-2. 实现 OSPF 协议的路由器
+1. 实现 OSPF 协议的路由器（推荐）
+2. 实现 RIPng 协议的路由器
 3. 实现 DHCPv6 协议的路由器
 4. 实现 TFTP 协议的客户端和服务端
 
@@ -40,17 +40,17 @@ $$ S' = S \times \min(0.8, 0.95^D) $$
 
 和编程作业一样，你也需要把代码提交到 GitLab 上，然后在 TANLabs 上进行远程的树莓派的评测，分为个人和互联两种评测方法。
 
+### 实现 OSPF 协议路由器（推荐）
+
+你需要基于编程作业的代码，修改 `Homework/ospf/main.cpp`，实现一个支持 OSPF 协议的路由器。总代码量约 125 行。
+
+特点：理解难度最大，代码量最小。
+
 ### 实现 RIPng 协议路由器
 
 你需要基于编程作业的代码，修改 `Homework/router/main.cpp`，实现一个支持 RIPng 协议的路由器。总代码量约 185 行。
 
-特点：理解难度最大，代码量最小。
-
-### 实现 OSPF 协议路由器
-
-你需要基于编程作业的代码，修改 `Homework/ospf/main.cpp`，实现一个支持 OSPF 协议的路由器。总代码量约 xxx 行。
-
-特点：理解难度 XX，代码量 YY。
+特点：理解难度较大，代码量较小。
 
 ### 实现 DHCPv6 协议服务器
 
