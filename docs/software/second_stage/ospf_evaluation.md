@@ -81,7 +81,9 @@ $$
 
 ??? example "可供参考的例子"
 
-    我们提供了 [`ospf-r1.pcap`](static/ospf-r1.pcap) 和 [`ospf-r3.pcap`](static/ospf-r3.pcap) （可点击文件名下载）这两个文件，分别是在 R1 的 r1r2 接口和 R3 的 r3r2 接口的抓包结果，模拟了实验的过程：
+    我们提供了 [`ospf-r1.pcap`](static/ospf-r1.pcap) 和 [`ospf-r3.pcap`](static/ospf-r3.pcap) （可点击文件名下载），分别是在 R1 的 r1r2 接口和 R3 的 r3r2 接口的抓包结果，以及在这个过程中 BIRD 的输出日志 [`bird-ospf-r1.txt`](static/bird-ospf-r1.txt) 和 [`bird-ospf-r3.txt`](static/bird-ospf-r3.txt)。
+    
+    在这过程中，我们模拟了实验的过程：
     
     1. 开启 R1 R3 上的 BIRD，然后在 R2 上运行的路由器实现
     2. 等待一段时间后，运行 `test4.sh`，测试 PC1 和 PC2 间的 ping 连通性，每个方向 ping 4 次
