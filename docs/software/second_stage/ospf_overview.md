@@ -1,10 +1,10 @@
 ## OSPF 路由器
 
-一个 OSPF 协议的路由器需要支持如下的功能：
+一个 OSPF 协议的路由器需要支持如下功能：
 
-1. 发现邻居 OSPF 路由器，保持 Link State Database 同步
-2. 根据 Link State Database，通过 Dijkstra 最短路算法计算路由表
-3. 按照动态计算得到的路由表，进行 IPv6 分组的转发
+1. 发现邻居 OSPF 路由器，保持 Link State Database 同步；
+2. 根据 Link State Database，通过 Dijkstra 最短路算法计算路由表；
+3. 按照动态计算得到的路由表，进行 IPv6 分组的转发。
 
 ## 协议理解
 
@@ -58,9 +58,9 @@ ExStart 和 Exchange 的过程具体参见 [RFC 2328 Section 10.6 Receiving Data
 
 由于 OSPF 协议完整实现比较复杂，你只需要实现其中的一部分。必须实现的有：
 
-1. 更新 checksum 小作业的实现，加入对 OSPF 报文校验和计算的支持
-2. 构造 OSPF Hello 报文并发送；接收来自邻居的 OSPF Hello 报文，并更新状态
-3. 根据 LSDB，执行 Dijkstra 算法，计算路由表
+1. 更新 checksum 小作业的实现，加入对 OSPF 报文校验和计算的支持；
+2. 构造 OSPF Hello 报文并发送；接收来自邻居的 OSPF Hello 报文，并更新状态；
+3. 根据 LSDB，执行 Dijkstra 算法，计算路由表。
 
 其余功能已经由代码框架提供。
 
