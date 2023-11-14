@@ -97,7 +97,8 @@ $$
                 R1 开始维护关于 R2 的邻居状态。
     No.5:       R1 在间隔 5 秒后再一次发送 OSPF Hello 报文，在其中包含了 R2 的 Router ID。
     No.6:       R2 第一次收到 R1 的 OSPF Hello 报文（No.5），开始维护关于 R1 的邻居状态，初始为 Init，
-                实验框架在此时会立即触发各个接口发送一次 Hello。
+                实验框架在此时会立即触发各个接口发送一次 Hello。虽然 No.5 中已经包含了 R2 的 Router ID，
+                但是由于实验框架简化了邻居状态的转移，R2 并没有进入 ExStart 状态，而是需要等待再次收到。
     No.7:       R1 收到 R2 的 Hello，发现其中包含了自己的 Router ID，于是将 R2 的邻居状态设为 ExStart，
                 并开始发送 DD 报文。然而由于此时 R2 中 R1 的邻居状态仍为 Init，并且实验框架为了测试对
                 OSPF Hello 报文的处理是否正确，并未实现 Init 直接到 ExStart 的状态转换，故该包被丢弃。
@@ -121,8 +122,8 @@ $$
     No.19:      R2 发送 LS Update 回复 No.15 的 LS Request。由于实验框架一个 LS Update 只包含一个 LSA，
                 故有 No.18 和 No.19 两个包。R1 在收到这两个报文后，便完成了所有 LSA 的请求，
                 维护的 R2 邻居状态变为 Full。
-    No.20:      R2 维护的 R1 邻居状态变为 Full 后，自身的 Router LSA 中添加了到 R1 的连接信息，
-                需要向各个邻居洪泛这个 LSA 的更新。在向 R1 发送更新时，实验框架发出 NS 请求，但丢弃了该 OSPF 报文。
+    No.20:      R2 维护的 R1 邻居状态变为 Full 后，自身的 Router LSA 中添加了到 R1 的连接信息，需要向
+                各个邻居洪泛这个 LSA 的更新。在向 R1 发送更新时，实验框架发出 NS 请求，但丢弃了该 OSPF 报文。
     No.21:      R1 回复 NA。
     No.22:      R2 收到 R1 的 LS Update（No.17），回复 LS Acknowledge。
     No.23:      R1 收到 R2 的 LS Update（No.18、No.19），回复 LS Acknowledge。BIRD 实现了延迟发送
@@ -136,7 +137,7 @@ $$
     No.28:      R2 重传之前丢弃的 LS Update（No.20）。实验框架中 LS Update 重传和 OSPF Hello 共用计时器，
                 故和 No.27 一起发送。
     No.29:      R2 收到 R1 的 LS Update（No.26），回复 LS Acknowledge。
-    No.30:      R1 收到 R2 的 LS Update（No.28），回复 LS Acknowledge。
+    No.30:      R1 收到 R2 的 LS Update（No.28），回复 LS Acknowledge。此处为延迟发送。
     No.31:      R2 收到 R3 的 Router LSA，洪泛 LS Update 给 R1。
     No.32:      R2 维护的 R3 邻居状态变为 Full 后，自身的 Router LSA 中添加了到 R3 的连接信息，
                 向各个邻居洪泛这个 LSA 的更新。
