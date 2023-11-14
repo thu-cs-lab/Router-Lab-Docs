@@ -77,39 +77,84 @@ $$
 
 ??? warning "容易出错的地方"
 
-    TODO
+    TODO: 待补充
 
 ??? example "可供参考的例子"
 
-    TODO: 更换抓包样例
+    我们提供了 [`ospf-r1.pcap`](static/ospf-r1.pcap) 和 [`ospf-r3.pcap`](static/ospf-r3.pcap) （可点击文件名下载）这两个文件，分别是在 R1 的 r1r2 接口和 R3 的 r3r2 接口的抓包结果，模拟了实验的过程：
+    
+    1. 开启 R1 R3 上的 BIRD，然后在 R2 上运行的路由器实现
+    2. 等待一段时间后，运行 `test4.sh`，测试 PC1 和 PC2 间的 ping 连通性，每个方向 ping 4 次
+    
+    下面按包序号解释 `ospf-r1.pcap` 的抓包结果：
 
-    我们提供了 [`r1.pcap`](static/r1.pcap) 和 [`r3.pcap`](static/r3.pcap) （可点击文件名下载）这两个文件，分别是在 R1 和 R3 抓包的结果，模拟了实验的过程：
-    
-    1. 开启 R1 R3 上的 BIRD 和 R2 上运行的路由器实现
-    2. 使用 ping 进行了若干次连通性测试
-    
-    举个例子，从 PC1 到 PC2 进行 ping 连通性测试的网络活动（忽略 RIP）：
-    
-    1. PC1 要 ping fd00::5:1，查询路由表得知下一跳是 fd00::1:1。
-    2. 假如 PC1 还不知道 fd00::1:1 的 MAC 地址，则发送 NDP 请求（通过 pc1r1）询问 fd00::1:1 的 MAC 地址。
-    3. R1 接收到 NDP 请求，回复 MAC 地址（r1pc1）给 PC1（通过 r1pc1）。
-    4. PC1 把 ICMPv6 报文发给 R1，目标 MAC 地址为上面 NDP 请求里回复的 MAC 地址，即 R1 的 MAC 地址（r1pc1）。
-    5. R1 接收到 IPv6 分组，查询路由表得知下一跳是 fd00::3:2，假如它已经知道 fd00::3:2 的 MAC 地址。
-    6. R1 把 IPv6 分组外层的源 MAC 地址改为自己的 MAC 地址（r1r2），目的 MAC 地址改为 fd00::3:2 的 MAC 地址（R2 的 r2r1），发给 R2（通过 r1r2）。
-    7. R2 接收到 IPv6 分组，查询路由表得知下一跳是 fd00::4:2，假如它不知道 fd00::4:2 的 MAC 地址，所以丢掉这个 IPv6 分组。
-    8. R2 发送 NDP 请求（通过 r2r3）询问 fd00::4:2 的 MAC 地址。
-    9. R3 接收到 NDP 请求，回复 MAC 地址（r3r2）给 R2（通过 r3r2）。
-    10. PC1 继续 ping fd00::5:1，查询路由表得知下一跳是 fd00::1:1。
-    11. PC1 把 ICMPv6 报文发给 R1，目标 MAC 地址为 fd00::1:1 对应的 MAC 地址，源 MAC 地址为 fd00::1:2 对应的 MAC 地址。
-    12. R1 查表后把 ICMPv6 报文发给 R2，目标 MAC 地址为 fd00::3:2 对应的 MAC 地址，源 MAC 地址为 fd00::3:2 对应的 MAC 地址。
-    13. R2 查表后把 ICMPv6 报文发给 R3，目标 MAC 地址为 fd00::4:2 对应的 MAC 地址，源 MAC 地址为 fd00::4:1 对应的 MAC 地址。
-    14. R3 查表后把 ICMPv6 报文发给 PC2，目标 MAC 地址为 fd00::5:1 对应的 MAC 地址，源 MAC 地址为 fd00::5:2 对应的 MAC 地址。
-    15. PC2 收到后响应，查表得知下一跳是 fd00::5:2。
-    16. PC2 把 ICMPv6 报文发给 R3，目标 MAC 地址为 fd00::5:2 对应的 MAC 地址，源 MAC 地址为 fd00::5:2 对应的 MAC 地址。
-    17. R3 把 ICMPv6 报文发给 R2，目标 MAC 地址为 fd00::4:1 对应的 MAC 地址，源 MAC 地址为 fd00::4:2 对应的 MAC 地址。
-    18. R2 把 ICMPv6 报文发给 R1，目标 MAC 地址为 fd00::3:1 对应的 MAC 地址，源 MAC 地址为 fd00::3:2 对应的 MAC 地址。
-    19. R1 把 ICMPv6 报文发给 PC1，目标 MAC 地址为 fd00::1:2 对应的 MAC 地址，源 MAC 地址为 fd00::1:1 对应的 MAC 地址。
-    20. PC1 上 ping 显示成功。
+    ```
+    No.1:       R1 从 r1r2 接口向 AllSPFRouters 组播地址，即 ff02::5 发送 OSPF Hello。
+    No.2~No.3:  MLD（Multicast Listener Discovery）协议相关报文，用于加入组播组，本实验中不用关心。
+    No.4:       R2 路由器启动了，于是开始发送 OSPF Hello 报文。R1 第一次收到 R2 发来的 OSPF Hello，
+                R1 开始维护关于 R2 的邻居状态。
+    No.5:       R1 在间隔 5 秒后再一次发送 OSPF Hello 报文，在其中包含了 R2 的 Router ID。
+    No.6:       R2 第一次收到 R1 的 OSPF Hello (No.5)，开始维护关于 R1 的邻居状态，初始为 Init，
+                实验框架在此时会立即触发各个接口发送一次 Hello。
+    No.7:       R1 收到 R2 的 Hello，发现其中包含了自己的 Router ID，于是将 R2 的邻居状态设为 ExStart，
+                并开始发送 DD 报文。然而由于此时 R2 中 R1 的邻居状态仍为 Init，并且实验框架为了测试对
+                OSPF Hello 报文的处理是否正确，并未实现 Init 直接到 ExStart 的状态转换，故该包被丢弃。
+    No.8:       R2 在第一次收到 R3 的 OSPF Hello 报文，立即触发各个接口发送一次 Hello，故 R1 也会收到一次。
+    No.9:       R1 重传 DD 报文。
+    No.10:      R1 间隔 5 秒后，再一次发送 OSPF Hello 报文。
+    No.11:      R2 收到 R1 的 OSPF Hello 报文，将 R1 的邻居状态设为 ExStart，开始发送 DD 报文。
+    No.12:      R1 收到 R2 的 DD 报文，由于 R2 的 Router ID 比自己大，于是将自己设为 Follower（Slave），
+                邻居状态变为 Exchange，使用 R2 的 DD Sequence Number 回复 R2 的 DD 报文，
+                其中 Init 位和 Leader（Master）位置为 0，同时携带自己的 LSA Header。
+    No.13:      R2 收到 R1 的 DD 报文，将自己设为 Leader（Master），邻居状态变为 Exchange，将自己的
+                DD Sequence Number 加一，Leader（Master）位置为 1，同时携带自己的 LSA Header 发送。
+    No.14:      R1 收到 R2 的 DD 报文，发现 More 位为 0，于是使用收到 DD 报文的 DD Sequence Number
+                回复 R2 的 DD 报文（因为 R1 是 Slave），邻居状态变为 Loading。
+    No.15:      R1 发送 LS Request，请求自己没有的两个 R2 的 LSA。
+    No.16:      由于 R1 收到过 R2 发来的报文，故邻居缓存中有 R2 地址对应的 MAC 地址，此处是 R1
+                正在维护邻居缓存有效性，进行 NUD 检测。
+    No.17:      R2 收到 R1 的 DD 报文（No.14），发现 More bit 为 0，于是邻居状态变为 Loading。
+    No.18:      R2 发送 LS Update 回复 No.15 的 LS Request。
+    No.19:      R2 发送 LS Update 回复 No.15 的 LS Request。由于实验框架一个 LS Update 只回复一个 LSA，
+                故有 No.18 和 No.19 两个包。R1 在收到这两个报文后，便完成了所有 LSA 的请求，
+                维护的 R2 邻居状态变为 Full。
+    No.20:      R2 对 No.16 NUD 检测的回复。
+    No.21:      R1 发送 LS Update 回复 No.17 的 LS Request。R2 收到此报文后，便完成了所有 LSA 的请求，
+                维护的 R1 邻居状态变为 Full。
+    No.22:      R2 维护的 R1 邻居状态变为 Full 后，自身的 Router LSA 中添加了到 R1 的连接信息，
+                需要向各个邻居洪泛这个 LSA 的更新。在向 R1 发送更新时，实验框架发出 NS 请求，但丢弃了该包。
+    No.23:      R1 回复 NA。
+    No.24:      R2 收到 R1 的 LS Update（No.21），回复 LS Acknowledge。
+    No.25:      R2 在间隔 5 秒后，再一次发送 OSPF Hello 报文。
+    No.26:      R1 收到 R2 的 LS Update（No.18，No.19），回复 LS Acknowledge。BIRD 实现了延迟发送
+                LS Acknowledge（详见 RFC2328 Section 13.5），故间隔了一段时间才回复。
+    No.27:      R2 重传之前丢弃的 LS Update（No.22）。实验框架中 LS Update 重传和 OSPF Hello 共用计时器，
+                故和 No.25 一起发送。
+    No.28:      R1 维护的 R2 邻居状态变为 Full 后，自身的 Router LSA 中添加了到 R2 的连接信息，
+                向各个邻居洪泛这个 LSA 的更新，此处的延迟发送与 BIRD 的实现相关。
+    No.29:      R2 收到 R1 的 LS Update（No.28），回复 LS Acknowledge。
+    No.30:      R1 收到 R2 的 LS Update（No.27），回复 LS Acknowledge。
+    No.31:      R1 在间隔 5 秒后，再一次发送 OSPF Hello 报文。
+    No.32:      R1 维护邻居缓存，进行 NUD 检测。
+    No.33:      R2 回复 No.32 的 NUD 检测。
+    No.34:      R2 在间隔 5 秒后，再一次发送 OSPF Hello 报文。
+    No.35:      R2 收到 R3 的 Router LSA，洪泛 LS Update 给 R1。
+    No.36:      R2 维护的 R3 邻居状态变为 Full 后，自身的 Router LSA 中添加了到 R3 的连接信息，
+                向各个邻居洪泛这个 LSA 的更新。
+    No.37:      R2 收到 R3 的 Intra-Area-Prefix LSA，洪泛 LS Update 给 R1。
+    No.38:      R1 收到 R2 的 LS Update（No.35，No.36，No.37），回复 LS Acknowledge。此处为延迟发送。
+    No.39:      R2 向 R1 洪泛 R3 的 Router LSA 更新，这说明 R3 维护的 R2 邻居状态已变为 Full，
+                并且已经向 R2 洪泛了更新。
+    No.40:      R1 收到 R2 的 LS Update（No.39），回复 LS Acknowledge。
+    No.41~NO.45: R1 和 R2 继续每隔 5 秒发送 OSPF Hello 报文，维持邻居状态。
+    No.46:      PC1 向 PC2 发送 ICMPv6 Echo Request，R1 收到后根据目标 IPv6 地址查询路由表，
+                得知下一跳为 R2，于是转发给 R2。
+    No.47:      R1 收到了 R2 转发来的 ICMPv6 Echo Reply，之后将根据目标 IPv6 地址查询路由表，
+                并得知匹配 r1pc1 接口的直连路由，然后转发给 PC1。
+    No.48:      R2 间隔 5 秒后，再一次发送 OSPF Hello 报文。
+    No.49~No.54: PC1 ping PC2 的剩余三个来回。
+    No.55~No.64: PC2 ping PC1 的四个来回。
+    ```
 
 ??? question "实现的路由表需要支持容纳多大的规模？"
 

@@ -89,7 +89,7 @@ $$
 
 ??? example "可供参考的例子"
 
-    我们提供了 [`r1.pcap`](static/r1.pcap) 和 [`r3.pcap`](static/r3.pcap) （可点击文件名下载）这两个文件，分别是在 R1 和 R3 抓包的结果，模拟了实验的过程：
+    我们提供了 [`ripng-r1.pcap`](static/ripng-r1.pcap) 和 [`ripng-r3.pcap`](static/ripng-r3.pcap) （可点击文件名下载）这两个文件，分别是在 R1 和 R3 抓包的结果，模拟了实验的过程：
 
     1. 开启 R1 R3 上的 BIRD 和 R2 上运行的路由器实现
     2. 使用 ping 进行了若干次连通性测试
