@@ -1,7 +1,7 @@
 site_name: Router Lab 实验文档
 site_description: 'Documentation for Router Lab'
 site_author: 'Router Lab Developers'
-copyright: 'Copyright &copy; 2019-2022 Department of Computer Science and Technology, Tsinghua University. All Rights Reserved.'
+copyright: 'Copyright &copy; 2019-2023 Department of Computer Science and Technology, Tsinghua University. All Rights Reserved.'
 
 theme: 
   name: 'material'
