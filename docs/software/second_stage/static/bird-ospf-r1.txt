@@ -1,0 +1,210 @@
+bird: ospf1: Initializing
+bird: ospf1: Starting
+bird: ospf1: Adding area 0.0.0.0
+bird: ospf1: Connected to table master
+bird: ospf1: State changed to feed
+bird: Started
+bird: ospf1 < interface lo created
+bird: ospf1 < interface r1pc1 goes up
+bird: ospf1 < primary address fd00::1:0/112 on interface r1pc1 added
+bird: ospf1 < address fe80::/64 on interface r1pc1 added
+bird: ospf1: Adding interface r1pc1 (IID 0) to area 0.0.0.0
+bird: ospf1 < interface r1r2 goes up
+bird: ospf1 < primary address fd00::3:0/112 on interface r1r2 added
+bird: ospf1 < address fe80::/64 on interface r1r2 added
+bird: ospf1: Adding interface r1r2 (IID 0) to area 0.0.0.0
+bird: ospf1: State changed to up
+bird: ospf1: Interface r1r2 changed state from Down to PtP
+bird: ospf1: HELLO packet sent via r1r2
+bird: ospf1: Interface r1pc1 changed state from Down to Waiting
+bird: ospf1: Updating router state for area 0.0.0.0
+bird: ospf1: Originating LSA: Type: 2001, Id: 0.0.0.0, Rt: 1.1.1.1, Seq: 80000001
+bird: ospf1: Scheduling routing table calculation
+bird: ospf1: Originating LSA: Type: 2009, Id: 0.0.0.0, Rt: 1.1.1.1, Seq: 80000001
+bird: ospf1: Updating link state for r1pc1 (Id: 0.0.0.7)
+bird: ospf1: Originating LSA: Type: 0008, Id: 0.0.0.7, Rt: 1.1.1.1, Seq: 80000001
+bird: ospf1: Starting routing table calculation
+bird: ospf1: Starting routing table calculation for area 0.0.0.0
+bird: ospf1: Starting routing table calculation for inter-area (area 0.0.0.0)
+bird: ospf1: Starting routing table calculation for ext routes
+bird: ospf1: Starting routing table synchronisation
+bird: ospf1 > added [best] fd00::1:0/112 dev r1pc1
+bird: ospf1 < rejected by protocol fd00::1:0/112 dev r1pc1
+bird: ospf1 > added [best] fd00::3:0/112 dev r1r2
+bird: ospf1 < rejected by protocol fd00::3:0/112 dev r1r2
+bird: ospf1: HELLO packet received from nbr 1.1.1.2 on r1r2
+bird: ospf1: New neighbor 1.1.1.2 on r1r2, IP address fe80::5c6e:a0ff:fea5:4751
+bird: ospf1: Neighbor 1.1.1.2 on r1r2 changed state from Down to Init
+bird: ospf1: HELLO packet sent via r1r2
+bird: ospf1: HELLO packet received from nbr 1.1.1.2 on r1r2
+bird: ospf1: Neighbor 1.1.1.2 on r1r2 changed state from Init to 2-Way
+bird: ospf1: Neighbor 1.1.1.2 on r1r2 changed state from 2-Way to ExStart
+bird: ospf1: DBDES packet sent to nbr 1.1.1.2 on r1r2
+bird: ospf1:     length   28
+bird: ospf1:     router   1.1.1.1
+bird: ospf1:     mtu      1500
+bird: ospf1:     imms     I M MS
+bird: ospf1:     ddseq    4233136236
+bird: ospf1: HELLO packet received from nbr 1.1.1.2 on r1r2
+bird: ospf1: DBDES packet sent to nbr 1.1.1.2 on r1r2
+bird: ospf1:     length   28
+bird: ospf1:     router   1.1.1.1
+bird: ospf1:     mtu      1500
+bird: ospf1:     imms     I M MS
+bird: ospf1:     ddseq    4233136236
+bird: ospf1: HELLO packet sent via r1r2
+bird: ospf1: DBDES packet received from nbr 1.1.1.2 on r1r2
+bird: ospf1:     length   28
+bird: ospf1:     router   1.1.1.2
+bird: ospf1:     mtu      1500
+bird: ospf1:     imms     I M MS
+bird: ospf1:     ddseq    1804289383
+bird: ospf1: Neighbor 1.1.1.2 on r1r2 changed state from ExStart to Exchange
+bird: ospf1: DBDES packet sent to nbr 1.1.1.2 on r1r2
+bird: ospf1:     length   68
+bird: ospf1:     router   1.1.1.1
+bird: ospf1:     mtu      1500
+bird: ospf1:     imms
+bird: ospf1:     ddseq    1804289383
+bird: ospf1:     LSA      Type: 2001, Id: 0.0.0.0, Rt: 1.1.1.1, Seq: 80000001, Age: 9, Sum: 1616
+bird: ospf1:     LSA      Type: 2009, Id: 0.0.0.0, Rt: 1.1.1.1, Seq: 80000001, Age: 9, Sum: de0e
+bird: ospf1: DBDES packet received from nbr 1.1.1.2 on r1r2
+bird: ospf1:     length   68
+bird: ospf1:     router   1.1.1.2
+bird: ospf1:     mtu      1500
+bird: ospf1:     imms     MS
+bird: ospf1:     ddseq    1804289384
+bird: ospf1:     LSA      Type: 2001, Id: 0.0.0.0, Rt: 1.1.1.2, Seq: 80000001, Age: 1, Sum: 0000
+bird: ospf1:     LSA      Type: 2009, Id: 0.0.0.0, Rt: 1.1.1.2, Seq: 80000001, Age: 1, Sum: 0000
+bird: ospf1: DBDES packet sent to nbr 1.1.1.2 on r1r2
+bird: ospf1:     length   28
+bird: ospf1:     router   1.1.1.1
+bird: ospf1:     mtu      1500
+bird: ospf1:     imms
+bird: ospf1:     ddseq    1804289384
+bird: ospf1: Neighbor 1.1.1.2 on r1r2 changed state from Exchange to Loading
+bird: ospf1: LSREQ packet sent to nbr 1.1.1.2 on r1r2
+bird: ospf1:     length   40
+bird: ospf1:     router   1.1.1.1
+bird: ospf1:     LSR      Type: 2001, Id: 0.0.0.0, Rt: 1.1.1.2
+bird: ospf1:     LSR      Type: 2009, Id: 0.0.0.0, Rt: 1.1.1.2
+bird: ospf1: LSREQ packet received from nbr 1.1.1.2 on r1r2
+bird: ospf1:     length   40
+bird: ospf1:     router   1.1.1.2
+bird: ospf1:     LSR      Type: 2001, Id: 0.0.0.0, Rt: 1.1.1.1
+bird: ospf1:     LSR      Type: 2009, Id: 0.0.0.0, Rt: 1.1.1.1
+bird: ospf1: LSUPD packet sent to nbr 1.1.1.2 on r1r2
+bird: ospf1:     length   116
+bird: ospf1:     router   1.1.1.1
+bird: ospf1:     LSA      Type: 2001, Id: 0.0.0.0, Rt: 1.1.1.1, Seq: 80000001, Age: 10, Sum: 1616
+bird: ospf1:     LSA      Type: 2009, Id: 0.0.0.0, Rt: 1.1.1.1, Seq: 80000001, Age: 10, Sum: de0e
+bird: ospf1: LSUPD packet received from nbr 1.1.1.2 on r1r2
+bird: ospf1:     length   44
+bird: ospf1:     router   1.1.1.2
+bird: ospf1:     LSA      Type: 2001, Id: 0.0.0.0, Rt: 1.1.1.2, Seq: 80000001, Age: 1, Sum: 0a23
+bird: ospf1: Installing LSA: Type: 2001, Id: 0.0.0.0, Rt: 1.1.1.2, Seq: 80000001, Age: 1
+bird: ospf1: Scheduling routing table calculation
+bird: ospf1: LSUPD packet received from nbr 1.1.1.2 on r1r2
+bird: ospf1:     length   132
+bird: ospf1:     router   1.1.1.2
+bird: ospf1:     LSA      Type: 2009, Id: 0.0.0.0, Rt: 1.1.1.2, Seq: 80000001, Age: 1, Sum: c718
+bird: ospf1: Installing LSA: Type: 2009, Id: 0.0.0.0, Rt: 1.1.1.2, Seq: 80000001, Age: 1
+bird: ospf1: Neighbor 1.1.1.2 on r1r2 changed state from Loading to Full
+bird: ospf1: LSACK packet received from nbr 1.1.1.2 on r1r2
+bird: ospf1:     length   56
+bird: ospf1:     router   1.1.1.2
+bird: ospf1:     LSA      Type: 2001, Id: 0.0.0.0, Rt: 1.1.1.1, Seq: 80000001, Age: 10, Sum: 1616
+bird: ospf1:     LSA      Type: 2009, Id: 0.0.0.0, Rt: 1.1.1.1, Seq: 80000001, Age: 10, Sum: de0e
+bird: ospf1: Updating router state for area 0.0.0.0
+bird: ospf1: Originating LSA: Type: 2001, Id: 0.0.0.0, Rt: 1.1.1.1, Seq: 80000002
+bird: ospf1: Starting routing table calculation
+bird: ospf1: Starting routing table calculation for area 0.0.0.0
+bird: ospf1: Starting routing table calculation for inter-area (area 0.0.0.0)
+bird: ospf1: Starting routing table calculation for ext routes
+bird: ospf1: Starting routing table synchronisation
+bird: ospf1: LSACK packet sent via r1r2
+bird: ospf1:     length   56
+bird: ospf1:     router   1.1.1.1
+bird: ospf1:     LSA      Type: 2001, Id: 0.0.0.0, Rt: 1.1.1.2, Seq: 80000001, Age: 1, Sum: 0a23
+bird: ospf1:     LSA      Type: 2009, Id: 0.0.0.0, Rt: 1.1.1.2, Seq: 80000001, Age: 1, Sum: c718
+bird: ospf1: LSUPD packet flooded via r1r2
+bird: ospf1:     length   60
+bird: ospf1:     router   1.1.1.1
+bird: ospf1:     LSA      Type: 2001, Id: 0.0.0.0, Rt: 1.1.1.1, Seq: 80000002, Age: 1, Sum: 946c
+bird: ospf1: HELLO packet received from nbr 1.1.1.2 on r1r2
+bird: ospf1: LSUPD packet received from nbr 1.1.1.2 on r1r2
+bird: ospf1:     length   60
+bird: ospf1:     router   1.1.1.2
+bird: ospf1:     LSA      Type: 2001, Id: 0.0.0.0, Rt: 1.1.1.2, Seq: 80000002, Age: 1, Sum: 40cb
+bird: ospf1: Installing LSA: Type: 2001, Id: 0.0.0.0, Rt: 1.1.1.2, Seq: 80000002, Age: 1
+bird: ospf1: Scheduling routing table calculation
+bird: ospf1: LSACK packet received from nbr 1.1.1.2 on r1r2
+bird: ospf1:     length   36
+bird: ospf1:     router   1.1.1.2
+bird: ospf1:     LSA      Type: 2001, Id: 0.0.0.0, Rt: 1.1.1.1, Seq: 80000002, Age: 1, Sum: 946c
+bird: ospf1: Starting routing table calculation
+bird: ospf1: Starting routing table calculation for area 0.0.0.0
+bird: ospf1: Starting routing table calculation for inter-area (area 0.0.0.0)
+bird: ospf1: Starting routing table calculation for ext routes
+bird: ospf1: Starting routing table synchronisation
+bird: ospf1 > added [best] fd00::9:0/112 via fe80::5c6e:a0ff:fea5:4751 on r1r2
+bird: ospf1 < rejected by protocol fd00::9:0/112 via fe80::5c6e:a0ff:fea5:4751 on r1r2
+bird: ospf1 > added [best] fd00::8:0/112 via fe80::5c6e:a0ff:fea5:4751 on r1r2
+bird: ospf1 < rejected by protocol fd00::8:0/112 via fe80::5c6e:a0ff:fea5:4751 on r1r2
+bird: ospf1 > added [best] fd00::4:0/112 via fe80::5c6e:a0ff:fea5:4751 on r1r2
+bird: ospf1 < rejected by protocol fd00::4:0/112 via fe80::5c6e:a0ff:fea5:4751 on r1r2
+bird: ospf1: LSACK packet sent via r1r2
+bird: ospf1:     length   36
+bird: ospf1:     router   1.1.1.1
+bird: ospf1:     LSA      Type: 2001, Id: 0.0.0.0, Rt: 1.1.1.2, Seq: 80000002, Age: 1, Sum: 40cb
+bird: ospf1: LSUPD packet received from nbr 1.1.1.2 on r1r2
+bird: ospf1:     length   44
+bird: ospf1:     router   1.1.1.2
+bird: ospf1:     LSA      Type: 2001, Id: 0.0.0.0, Rt: 1.1.1.3, Seq: 80000001, Age: 12, Sum: 0428
+bird: ospf1: Installing LSA: Type: 2001, Id: 0.0.0.0, Rt: 1.1.1.3, Seq: 80000001, Age: 12
+bird: ospf1: Scheduling routing table calculation
+bird: ospf1: LSUPD packet received from nbr 1.1.1.2 on r1r2
+bird: ospf1:     length   76
+bird: ospf1:     router   1.1.1.2
+bird: ospf1:     LSA      Type: 2001, Id: 0.0.0.0, Rt: 1.1.1.2, Seq: 80000003, Age: 1, Sum: 04e2
+bird: ospf1: Installing LSA: Type: 2001, Id: 0.0.0.0, Rt: 1.1.1.2, Seq: 80000003, Age: 1
+bird: ospf1: LSUPD packet received from nbr 1.1.1.2 on r1r2
+bird: ospf1:     length   92
+bird: ospf1:     router   1.1.1.2
+bird: ospf1:     LSA      Type: 2009, Id: 0.0.0.0, Rt: 1.1.1.3, Seq: 80000001, Age: 12, Sum: b72c
+bird: ospf1: Installing LSA: Type: 2009, Id: 0.0.0.0, Rt: 1.1.1.3, Seq: 80000001, Age: 12
+bird: ospf1: Starting routing table calculation
+bird: ospf1: Starting routing table calculation for area 0.0.0.0
+bird: ospf1: Starting routing table calculation for inter-area (area 0.0.0.0)
+bird: ospf1: Starting routing table calculation for ext routes
+bird: ospf1: Starting routing table synchronisation
+bird: ospf1: HELLO packet sent via r1r2
+bird: ospf1: LSACK packet sent via r1r2
+bird: ospf1:     length   76
+bird: ospf1:     router   1.1.1.1
+bird: ospf1:     LSA      Type: 2001, Id: 0.0.0.0, Rt: 1.1.1.3, Seq: 80000001, Age: 12, Sum: 0428
+bird: ospf1:     LSA      Type: 2001, Id: 0.0.0.0, Rt: 1.1.1.2, Seq: 80000003, Age: 1, Sum: 04e2
+bird: ospf1:     LSA      Type: 2009, Id: 0.0.0.0, Rt: 1.1.1.3, Seq: 80000001, Age: 12, Sum: b72c
+bird: ospf1: LSUPD packet received from nbr 1.1.1.2 on r1r2
+bird: ospf1:     length   60
+bird: ospf1:     router   1.1.1.2
+bird: ospf1:     LSA      Type: 2001, Id: 0.0.0.0, Rt: 1.1.1.3, Seq: 80000002, Age: 1, Sum: a25c
+bird: ospf1: Installing LSA: Type: 2001, Id: 0.0.0.0, Rt: 1.1.1.3, Seq: 80000002, Age: 1
+bird: ospf1: Scheduling routing table calculation
+bird: ospf1: Starting routing table calculation
+bird: ospf1: Starting routing table calculation for area 0.0.0.0
+bird: ospf1: Starting routing table calculation for inter-area (area 0.0.0.0)
+bird: ospf1: Starting routing table calculation for ext routes
+bird: ospf1: Starting routing table synchronisation
+bird: ospf1 > added [best] fd00::5:0/112 via fe80::5c6e:a0ff:fea5:4751 on r1r2
+bird: ospf1 < rejected by protocol fd00::5:0/112 via fe80::5c6e:a0ff:fea5:4751 on r1r2
+bird: ospf1: LSACK packet sent via r1r2
+bird: ospf1:     length   36
+bird: ospf1:     router   1.1.1.1
+bird: ospf1:     LSA      Type: 2001, Id: 0.0.0.0, Rt: 1.1.1.3, Seq: 80000002, Age: 1, Sum: a25c
+bird: ospf1: HELLO packet received from nbr 1.1.1.2 on r1r2
+bird: ospf1: HELLO packet sent via r1r2
+bird: ospf1: HELLO packet received from nbr 1.1.1.2 on r1r2
+bird: ospf1: HELLO packet sent via r1r2
+bird: ospf1: HELLO packet received from nbr 1.1.1.2 on r1r2
+bird: ospf1: HELLO packet sent via r1r2
