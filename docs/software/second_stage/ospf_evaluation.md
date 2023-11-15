@@ -50,7 +50,7 @@ fd00::9:0/112 via fd00::4:1 dev r3r2
 
 1. 配置网络拓扑，在 R1 和 R3 上运行 BIRD，在 R2 上运行定义了 `ROUTER_R2` 的 OSPF 路由器程序。
 2. 等待 OSPF 协议运行一段时间，30 秒后正式开始评测。
-3. （20% 分数）测试 R1 和 R3 上的 OSPF 邻居关系：在 R1 和 R3 上运行 `birdc show ospf neighbor`（还需要用 `-s` 指定 BIRD 监听的 socket 路径，详见本地测试快捷脚本） 查看 OSPF 邻居信息。期望输出：R2 对应的 State 为 `Full/PtP`。
+3. （20% 分数）测试 R1 和 R3 上的 OSPF 邻居关系：在 R1 和 R3 上运行 `birdc show ospf neighbor`（还需要用 `-s` 指定 BIRD 监听的 socket 路径，详见本地测试快捷脚本）查看 OSPF 邻居信息。期望输出：R2 对应的 State 为 `Full/PtP`。
 4. （15% 分数）测试转发 ICMPv6：在 PC1 上 `ping fd00::5:1` 若干次，在 PC2 上 `ping fd00::1:2` 若干次，测试 ICMP 连通性。期望输出：丢包率不是 100%。
 5. （15% 分数）测试转发 TCP：在 PC1 和 PC2 上各监听 80 端口（`sudo nc -6 -l -p 80`），各自通过 nc 访问对方（`nc $remote_ip 80`），测试 TCP 连通性。期望输出：打印了通过 TCP 传输的数据。
 6. （40% 分数）判断路由表正误：导出 R1 和 R3 上的系统路由表（运行 `ip -6 route`），和答案进行比对。期望输出：打印出正确的路由表。
@@ -98,7 +98,8 @@ $$
     No.5:       R1 在间隔 5 秒后再一次发送 OSPF Hello 报文，在其中包含了 R2 的 Router ID。
     No.6:       R2 第一次收到 R1 的 OSPF Hello 报文（No.5），开始维护关于 R1 的邻居状态，初始为 Init，
                 实验框架在此时会立即触发各个接口发送一次 Hello。虽然 No.5 中已经包含了 R2 的 Router ID，
-                但是由于实验框架简化了邻居状态的转移，R2 并没有进入 ExStart 状态，而是需要等待再次收到。
+                但是由于实验框架简化了邻居状态的转移，R2 维护的 R1 的邻居状态并没有进入 ExStart，而是需要等待
+                R2 再次收到 R1 的 Hello（No.11）。
     No.7:       R1 收到 R2 的 Hello，发现其中包含了自己的 Router ID，于是将 R2 的邻居状态设为 ExStart，
                 并开始发送 DD 报文。然而由于此时 R2 中 R1 的邻居状态仍为 Init，并且实验框架为了测试对
                 OSPF Hello 报文的处理是否正确，并未实现 Init 直接到 ExStart 的状态转换，故该包被丢弃。
