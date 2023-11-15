@@ -14,9 +14,9 @@
 
 1. 确认系统内没有正在运行的 OSPF 路由器（进程名为 router）以及 BIRD 程序（进程名为 bird 或者 bird6）；
 2. 打开一个命令行窗口，进入 `Setup/ospf/setup` 目录，执行 `sudo ./setup-netns.sh` 配置 netns 环境，然后执行 `sudo ./start-r2.sh` 在 R2 上启动路由器，不要退出；
-3. 再打开一个命令行窗口，根据 BIRD 版本进入 `Setup/ospf/setup/bird-v1`（BIRD v1.6.x）或 `Setup/ospf/setup/bird-v2`（BIRD v2.x）目录，执行 `sudo ./bird-r1.sh`（BIRD v1.6.x）或 `sudo ./bird-r1-v2.sh` 在 R1 上启动 BIRD，不要退出；
-4. 再打开一个命令行窗口，根据 BIRD 版本进入 `Setup/ospf/setup/bird-v1`（BIRD v1.6.x）或 `Setup/ospf/setup/bird-v2`（BIRD v2.x）目录，执行 `sudo ./bird-r3.sh`（BIRD v1.6.x）或 `sudo ./bird-r3-v2.sh` 在 R3 上启动 BIRD，不要退出；
-5. 再打开一个命令行窗口，进入 `Setup/ospf/test` 目录，依次执行 `sudo ./test3.sh`、`sudo ./test4.sh` 直到 `sudo ./test7.sh`，每个脚本对应评测中的一项；
+3. 再打开一个命令行窗口，根据 BIRD 版本进入 `Setup/ospf/setup/bird-v1`（BIRD v1.6.x）或 `Setup/ospf/setup/bird-v2`（BIRD v2.x）目录，执行 `sudo ./bird-r1.sh`（BIRD v1.6.x）或 `sudo ./bird-r1-v2.sh`（BIRD v2.x） 在 R1 上启动 BIRD，不要退出；
+4. 再打开一个命令行窗口，根据 BIRD 版本进入 `Setup/ospf/setup/bird-v1`（BIRD v1.6.x）或 `Setup/ospf/setup/bird-v2`（BIRD v2.x）目录，执行 `sudo ./bird-r3.sh`（BIRD v1.6.x）或 `sudo ./bird-r3-v2.sh`（BIRD v2.x） 在 R3 上启动 BIRD，不要退出；
+5. 再打开一个命令行窗口，进入 `Setup/ospf/test` 目录，依次执行 `sudo ./test3-bird-v1.sh`（BIRD v1.6.x） 或 `sudo ./test3-bird-v2.sh`（BIRD v2.x）、`sudo ./test4.sh` 直到 `sudo ./test7.sh`，每个脚本对应评测中的一项；
 6. 所有项目评测完毕后，可以退出 R1 和 R3 上的 BIRD 和 R2 上的路由器。
 
 在评测过程中，如果发现某一步结果不对，可以使用 tcpdump 或者 Wireshark 来进行抓包。具体地，如果要在某个 netns 中抓包（例如 PC1），需要用如下命令来运行 tcpdump 或者 Wireshark：

@@ -50,7 +50,7 @@ fd00::9:0/112 via fd00::4:1 dev r3r2
 
 1. 配置网络拓扑，在 R1 和 R3 上运行 BIRD，在 R2 上运行定义了 `ROUTER_R2` 的 OSPF 路由器程序。
 2. 等待 OSPF 协议运行一段时间，30 秒后正式开始评测。
-3. （20% 分数）测试 R1 和 R3 上的 OSPF 邻居关系：在 R1 和 R3 上运行 `birdc show ospf neighbor` 查看 OSPF 邻居信息。期望输出：R2 对应的 State 为 `Full/PtP`。
+3. （20% 分数）测试 R1 和 R3 上的 OSPF 邻居关系：在 R1 和 R3 上运行 `birdc show ospf neighbor`（还需要用 `-s` 指定 BIRD 监听的 socket 路径，详见本地测试快捷脚本） 查看 OSPF 邻居信息。期望输出：R2 对应的 State 为 `Full/PtP`。
 4. （15% 分数）测试转发 ICMPv6：在 PC1 上 `ping fd00::5:1` 若干次，在 PC2 上 `ping fd00::1:2` 若干次，测试 ICMP 连通性。期望输出：丢包率不是 100%。
 5. （15% 分数）测试转发 TCP：在 PC1 和 PC2 上各监听 80 端口（`sudo nc -6 -l -p 80`），各自通过 nc 访问对方（`nc $remote_ip 80`），测试 TCP 连通性。期望输出：打印了通过 TCP 传输的数据。
 6. （40% 分数）判断路由表正误：导出 R1 和 R3 上的系统路由表（运行 `ip -6 route`），和答案进行比对。期望输出：打印出正确的路由表。
