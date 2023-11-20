@@ -7,25 +7,25 @@
 1. Ubuntu 22.04 及更新
 2. Debian 11 及更新
 
-如果你用的是 Windows 系统，你可以 WSL 2/虚拟机/领取的树莓派上进行以下所有相关的操作。请注意，MinGW 和 Cygwin 也是不支持的。不建议用 CentOS/RHEL，因为软件版本通常比较旧。
+如果你用的是 Windows 系统，你可以在 WSL 2 或虚拟机上进行以下所有相关的操作。请注意，MinGW 和 Cygwin 也是不支持的。不建议用 CentOS/RHEL，因为软件版本通常比较旧。
 
 **如果你还没有 Linux 系统环境，请在做实验前提前通过 WSL 2/虚拟机/双系统等方式准备好。**
 
-另外，编程作业部分因为不涉及到 Linux 的 API，故支持的系统更多，包括 macOS，但由于其余部分仅支持 Linux，还是应当提前准备好 Linux 环境。
+另外，编程作业部分因为不涉及到 Linux 的 API，所以支持的系统更多，包括 macOS，但由于其余部分仅支持 Linux，还是应当提前准备好 Linux 环境。
 
 ## 知识储备
 
-完成该实验需要一定的 **Git、Make、SSH、Shell、Python3 和 Linux** 的使用知识。如果你是大三或之后选的课程，那么你应该已经在《程序设计基础》《程序设计训练》《软件工程》《编译原理》等课程中学到了相应的知识。如果你尚未学习这些相关课程，请参考以下的教程 **进行预习**：
+完成该实验需要一定的 **C++、Git、Make、SSH、Shell、Python3 和 Linux** 的使用知识。如果你是大三或之后选的课程，那么你应该已经在《程序设计基础》《程序设计训练》《软件工程》《编译原理》等课程中学到了相应的知识。如果你尚未学习这些相关课程，请参考以下的教程 **进行预习**：
 
-- Git: [简明指南](https://rogerdudler.github.io/git-guide/index.zh.html) [Git 教程](https://www.liaoxuefeng.com/wiki/896043488029600) [缺失的一课](https://missing-semester-cn.github.io/2020/version-control/) [Git Cheatsheet](https://education.github.com/git-cheat-sheet-education.pdf)
+- Git: [计算机系科协技能引导文档 - Git：分布式版本控制软件](https://docs.net9.org/basic/git/) [简明指南](https://rogerdudler.github.io/git-guide/index.zh.html) [Git 教程](https://www.liaoxuefeng.com/wiki/896043488029600) [缺失的一课](https://missing-semester-cn.github.io/2020/version-control/) [Git Cheatsheet](https://education.github.com/git-cheat-sheet-education.pdf)
 - Make: 见[附录](../appendix/make.md)
 - SSH: [GitLab SSH 配置（注意用的是 git.tsinghua.edu.cn 而不是 gitlab.com）](https://www.yiibai.com/gitlab/gitlab_ssh_key_setup.html)
 - Shell: [缺失的一课](https://missing-semester-cn.github.io/2020/command-line/) [Command Line Cheatsheet](https://threenine.co.uk/download/1846/)
-- Linux: [USTC LUG Linux 101 在线讲义](https://101.lug.ustc.edu.cn/)
+- Linux: [计算机系科协技能引导文档 - Linux 入门](https://docs.net9.org/basic/linux/) [USTC LUG Linux 101 在线讲义](https://101.lug.ustc.edu.cn/)
 
 其中特别推荐 [计算机教育中缺失的一课](https://missing-semester-cn.github.io/)。
 
-在最终评测时，你编写的路由器代码都将在树莓派的 Linux 系统上运行。
+在最终评测时，你编写的路由器代码都将在树莓派上的 Linux 系统上运行。
 
 ## 配置开发环境
 

@@ -24,10 +24,6 @@
 
     这一般是因为传给 `HAL_SendIPPacket` 的长度参数大于网口的 MTU，请检查你传递的参数是否正确。需要注意的是，在一些情况下，在 Linux 后端中， `HAL_ReceiveIPPacket` 有时候会返回一个长度大于 MTU 的 IP 分组，这是 TSO (TCP Segment Offload) 或者类似的技术导致的（在网卡中若干个 IP 分组被合并为一个）。你可以用 `ethtool -K 网口名称 tso off` 来尝试关闭 TSO，然后在 `ethtool -k 网口名称` 的输出中找到 `tcp-segmentation-offload: on/off` 确认一下是否成功关闭。另外，有的网卡的设置是 `generic-receive-offload`，相应地，用 `ethtool -K 网口名称 generic-receive-offload off` 关闭即可。
 
-!!! question "RIP 协议用的是组播地址，但组播是用 IGMP 协议进行维护的，这个框架是怎么解决这个问题的？"
-
-    在 Linux 和 macOS 后端的 `HAL_Init` 函数中，它会向所有网口都发一份 `IGMP Membership Join group 224.0.0.9` 表示本机进入了 RIP 协议的对应组播组之中。为了简化流程，退出时不会发送 Leave Group 的消息，你可以选择手动发送。
-
 !!! question "我通过 `veth` 建立了两个 netns 之间的连接，路由器也写好了，RIP 可以通，ICMP 也没问题，但就是 TCP 不工作，抓包也能看到 SYN 但是看不到 SYN+ACK，这是为啥？"
 
     这是因为 Linux 对于网卡有 TX Offload 机制，对于传输层协议的 Checksum 可以交由硬件计算；因此在经过 `veth` 转发时，TCP Checksum 一般是不正确的，这有可能引起一些问题。解决方案和上面类似，用 `ethtool -K veth 名称 tx off` 即可，注意 veth 的两侧都要配置。
@@ -107,9 +103,9 @@
 
     你可能直接在 Example 目录下使用 CMake 了。Example 是 Router-Lab 的子项目，不能单独使用。
 
-!!! question "我用 netns 和 veth 搭建好了网络，路由器也写好了，RIP 可以通，但 ICMP 到 R1 以后就不转发了，R1 上运行的是 BIRD，这是为什么呢？"
+!!! question "我用 netns 和 veth 搭建好了网络，路由器也写好了，RIPng 可以通，但 ICMP 到 R1 以后就不转发了，R1 上运行的是 BIRD，这是为什么呢？"
 
-    BIRD 只负责路由协议，它会把学习到的路由协议和 Linux 的路由表进行同步，并不会做转发的功能。为了打开 Linux 自带的转发功能，需要运行 `ip netns exec R1 sh -c "echo 1 > /proc/sys/net/ipv4/conf/all/forwarding"` 命令，在 R1 netns 下把所有接口的 IPv4 的转发打开。但请注意，运行自己编写的路由器的 netns 中不需要 Linux 自带的转发功能，可以把 1 改成 0 以关闭转发功能。
+    BIRD 只负责路由协议，它会把学习到的路由协议和 Linux 的路由表进行同步，并不会做转发的功能。为了打开 Linux 自带的转发功能，需要运行 `ip netns exec R1 sh -c "echo 1 > /proc/sys/net/ipv6/conf/all/forwarding"` 命令，在 R1 netns 下把所有接口的 IPv6 的转发打开。但请注意，运行自己编写的路由器的 netns 中不需要 Linux 自带的转发功能，可以把 1 改成 0 以关闭转发功能。
 
 !!! question "我用在本地用 netns 和 veth 搭建好了网络，也可以完成所要求的测试，但是在在线评测的时候一个都不过，这可能是为什么呢？"
 
@@ -121,7 +117,7 @@
 
 !!! question "运行 BIRD 的时候，显示 Cannot create control socket bird-r1.ctl: Operation not supported"
 
-    如果是在 WSL 里面运行 BIRD，由于 WSL 共享目录的文件系统不支持 unix socket，所以 BIRD 创建 control socket 会失败。解决方法有两种：1) 把整个 Router-Lab 目录挪到 HOME 下面 2) 参数 `-s bird-r1.ctl` 改为 `-s ~/bird-r1.ctl`
+    如果是在 WSL 里面运行 BIRD，由于 WSL 共享目录的文件系统不支持 unix socket，所以 BIRD 创建 control socket 会失败。解决方法有两种：1) 把整个 Router-Lab 目录挪到 HOME 下面 2) 参数 `-s bird-r1.ctl` 改为 `-s ~/bird-r1.ctl`，也就是把 control socket 挪到 HOME 下面
 
 !!! question "在 CI 上提交的时候，报错 BAD signature"
 
@@ -129,7 +125,7 @@
 
 !!! question "运行路由器时报错 no viable interfaces open for capture"
 
-    这是因为路由器程序找不到对应的 interface。可能的原因有：1）没有用 root 权限运行；2）运行在错误的 netns 或者 netns 和路由器 r1-r3 不匹配；3) 没有正确配置 netns 或其他虚拟网络环境
+    这是因为路由器程序找不到对应的 interface。可能的原因有：1）没有用 root 权限运行；2）运行在错误的 netns 或者 netns 和路由器 r1-r3 不匹配；3）没有正确配置 netns 或其他虚拟网络环境
 
 !!! question "通过 git commit 提交代码到 GitLab 上后，TANLabs 实验平台的构建历史看不到更新？"
 
