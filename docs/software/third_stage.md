@@ -152,7 +152,7 @@ fd00::1:0/112 via fd00::3:1 dev r2r1
 
 1. 进入 `Setup/interconnect/setup` 目录，运行 `sudo ./setup-netns.sh` 命令以配置网络拓扑。
 2. 进入 `Setup/interconnect/setup` 目录，运行 `sudo ./start-custom-r1.sh`，在 R1 上启动自己的 DHCPv6 服务器。
-3. 打开新窗口，进入 `Setup/interconnect/setup` 目录，运行 `sudo ./start-custom-r2-ripng.sh` 或 `sudo ./start-custom-r2-ospf.sh`，在 R2 上启动自己的 RIPng 或 OSPF 服务器。
-4. 打开新窗口，进入 `Setup/interconnect/setup` 目录，运行 `sudo ./start-custom-r3-ripng.sh` 或 `sudo ./start-custom-r3-ospf.sh`，在 R3 上启动自己的 RIPng 或 OSPF 服务器。
+3. 打开新窗口，进入 `Setup/interconnect/setup` 目录，运行 `sudo ./start-custom-r2-ospf.sh` 或 `sudo ./start-custom-r2-ripng.sh`，在 R2 上启动自己的 OSPF 或 RIPng 服务器。
+4. 打开新窗口，进入 `Setup/interconnect/setup` 目录，运行 `sudo ./start-custom-r3-ospf.sh` 或 `sudo ./start-custom-r3-ripng.sh`，在 R3 上启动自己的 OSPF 或 RIPng 服务器。
 6. 打开新窗口，进入 `Setup/interconnect/setup` 目录，运行 `sudo ./start-custom-pc2.sh`，在 PC2 上启动自己写的 TFTP 服务器。
 7. 打开新窗口，进入 `Setup/interconnect/test` 目录，依次执行 `sudo ./test2.sh`、`sudo ./test5.sh`、`sudo ./test6.sh`、`sudo ./test7.sh`、`sudo ./test8.sh` 和 `sudo ./test9.sh`，完成各项测试。
