@@ -28,15 +28,15 @@ fd00::1:0/112 via fd00::3:1 dev r2r1
 
 评测方法：
 
-1. 配置网络拓扑，在 R1 R2 R3 PC2 上分别运行后四位同学的程序；
+1. 配置网络拓扑，在 R1、R2、R3、PC2 上分别运行后四位同学的程序；
 2. （20% 分数）在 PC1 上运行 `dhcpcd -6 -1 -B -C resolv.conf -d pc1r1` 命令获取动态 IPv6 地址，如果没有分配成功，则跳过以下测试项目，直接记为失败；
-3. 等待 RIPng/OSPF 协议运行一段时间，一分钟后进行评测。
-4. （40% 分数，仅 OSPF）根据 R2 和 R3 的输出判断 OSPF 邻居关系是否建立，进入 Full 状态。
-5. （20% 分数，仅 RIPng）在 PC1 上 `ping fd00::3:2` 若干次，测试 ICMP 连通性。
-6. （20% 分数，仅 RIPng）在 PC1 上 `ping fd00::5:1 -t 3`，应当出现 `Time Exceeded` 的 ICMPv6 响应。
-7. （15% 分数）测试第一位同学写的 TFTP 客户端从第五位同学写的 TFTP 服务端下载文件，在 PC2 上创建文件 `test6`，在 PC1 上运行 `client get fd00::5:1 test6`，判断 PC1 上 `test6` 内容是否与 PC2 上一致。
-8. （15% 分数）测试第一位同学写的 TFTP 客户端向第五位同学写的 TFTP 服务端上传文件，在 PC1 上创建文件 `test7`，在 PC1 上运行 `client put fd00::5:1 test7`，判断 PC2 上 `test7` 内容是否与 PC1 上一致。
-9. （10% 分数）测试第一位同学写的 TFTP 客户端向第五位同学写的 TFTP 服务端下载文件的性能（根据端到端 wall time 时间计算）
+3. 等待 OSPF/RIPng 协议运行一段时间，一分钟后进行评测；
+4. （40% 分数，仅 OSPF）根据 R2 和 R3 的输出判断 OSPF 邻居关系是否建立，是否进入 Full 状态；
+5. （20% 分数，仅 RIPng）在 PC1 上 `ping fd00::3:2` 若干次，测试 ICMP 连通性；
+6. （20% 分数，仅 RIPng）在 PC1 上 `ping fd00::5:1 -t 3`，应当出现 `Time Exceeded` 的 ICMPv6 响应；
+7. （15% 分数）测试第一位同学写的 TFTP 客户端从第五位同学写的 TFTP 服务端下载文件，在 PC2 上创建文件 `test6`，在 PC1 上运行 `client get fd00::5:1 test6`，判断 PC1 上 `test6` 内容是否与 PC2 上一致；
+8. （15% 分数）测试第一位同学写的 TFTP 客户端向第五位同学写的 TFTP 服务端上传文件，在 PC1 上创建文件 `test7`，在 PC1 上运行 `client put fd00::5:1 test7`，判断 PC2 上 `test7` 内容是否与 PC1 上一致；
+9. （10% 分数）测试第一位同学写的 TFTP 客户端从第五位同学写的 TFTP 服务端下载文件的性能（根据端到端 wall time 时间计算）。
 
 由于性能会计入分数，请在通过所有功能测试后，检查一下是否删除了不必要的影响性能的调试代码。
 
@@ -98,6 +98,10 @@ fd00::1:0/112 via fd00::3:1 dev r2r1
 5. 打开新窗口，进入 `Setup/interconnect/setup` 目录，运行 `sudo ./start-standard-pc2.sh`，在 PC2 上启动标准 TFTP 服务器。
 6. 打开新窗口，进入 `Setup/interconnect/test` 目录，依次执行 `sudo ./test2.sh`、`sudo ./test4.sh`、`sudo ./test5.sh`、`sudo ./test6-standard.sh`、`sudo ./test7-standard.sh` 和 `sudo ./test8-standard.sh`，完成各项测试。
 
+#### R2 上的 OSPF 路由器
+
+施工中
+
 #### R2 上的 RIPng 路由器
 
 自己编写的代码是 `Homework/router/interconnect-r2/router`，此时 PC1 R1 R3 PC2 运行标准程序。
@@ -111,7 +115,7 @@ fd00::1:0/112 via fd00::3:1 dev r2r1
 6. 打开新窗口，进入 `Setup/interconnect/setup` 目录，运行 `sudo ./start-standard-pc2.sh`，在 PC2 上启动标准 TFTP 服务器。
 7. 打开新窗口，进入 `Setup/interconnect/test` 目录，依次执行 `sudo ./test2.sh`、`sudo ./test4.sh`、`sudo ./test5.sh`、`sudo ./test6-standard.sh`、`sudo ./test7-standard.sh` 和 `sudo ./test8-standard.sh`，完成各项测试。
 
-#### R2 上的 OSPF 路由器
+#### R3 上的 OSPF 路由器
 
 施工中
 
@@ -127,10 +131,6 @@ fd00::1:0/112 via fd00::3:1 dev r2r1
 5. 打开新窗口，进入 `Setup/interconnect/setup` 目录，运行 `sudo ./start-custom-r3.sh`，在 R3 上自己写的 RIPng 路由器。
 6. 打开新窗口，进入 `Setup/interconnect/setup` 目录，运行 `sudo ./start-standard-pc2.sh`，在 PC2 上启动标准 TFTP 服务器。
 7. 打开新窗口，进入 `Setup/interconnect/test` 目录，依次执行 `sudo ./test2.sh`、`sudo ./test4.sh`、`sudo ./test5.sh`、`sudo ./test6-standard.sh`、`sudo ./test7-standard.sh` 和 `sudo ./test8-standard.sh`，完成各项测试。
-
-#### R3 上的 OSPF 路由器
-
-施工中
 
 #### PC2 上的 TFTP 服务端
 

@@ -15,7 +15,7 @@
 四个编程作业需要实现的功能：
 
 - eui64：用 MAC 地址生成 IPv6 Link Local 地址
-- internet-checksum：计算互联网校验和
+- internet-checksum：计算 Internet 校验和
 - lookup：路由表查询和更新
 - protocol（protocol-ospf）：RIPng（OSPF）协议解析和封装，其中 `protocol` 作业对应的是 RIPng 协议，`protocol-ospf` 作业对应的是 OSPF 协议，二选一即可，建议和第二、三阶段采用同样的协议
 
