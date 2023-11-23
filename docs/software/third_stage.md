@@ -34,8 +34,8 @@ fd00::1:0/112 via fd00::3:1 dev r2r1
 4. （40% 分数，仅 OSPF）根据 R2 和 R3 的输出判断 OSPF 邻居关系是否建立，是否进入 Full 状态；
 5. （20% 分数，仅 RIPng）在 PC1 上 `ping fd00::3:2` 若干次，测试 ICMP 连通性；
 6. （20% 分数，仅 RIPng）在 PC1 上 `ping fd00::5:1 -t 3`，应当出现 `Time Exceeded` 的 ICMPv6 响应；
-7. （15% 分数）测试第一位同学写的 TFTP 客户端从第五位同学写的 TFTP 服务端下载文件，在 PC2 上创建文件 `test6`，在 PC1 上运行 `client get fd00::5:1 test6`，判断 PC1 上 `test6` 内容是否与 PC2 上一致；
-8. （15% 分数）测试第一位同学写的 TFTP 客户端向第五位同学写的 TFTP 服务端上传文件，在 PC1 上创建文件 `test7`，在 PC1 上运行 `client put fd00::5:1 test7`，判断 PC2 上 `test7` 内容是否与 PC1 上一致；
+7. （15% 分数）测试第一位同学写的 TFTP 客户端从第五位同学写的 TFTP 服务端下载文件，在 PC2 上创建文件 `test7`，在 PC1 上运行 `client get fd00::5:1 test7`，判断 PC1 上 `test7` 内容是否与 PC2 上一致；
+8. （15% 分数）测试第一位同学写的 TFTP 客户端向第五位同学写的 TFTP 服务端上传文件，在 PC1 上创建文件 `test8`，在 PC1 上运行 `client put fd00::5:1 test8`，判断 PC2 上 `test8` 内容是否与 PC1 上一致；
 9. （10% 分数）测试第一位同学写的 TFTP 客户端从第五位同学写的 TFTP 服务端下载文件的性能（根据端到端 wall time 时间计算）。
 
 由于性能会计入分数，请在通过所有功能测试后，检查一下是否删除了不必要的影响性能的调试代码。
@@ -45,15 +45,6 @@ fd00::1:0/112 via fd00::3:1 dev r2r1
 	1. 没有把实验框架最新的更改同步到仓库，导致仓库中缺少对于互联测试的支持；
 	2. 合并实验框架新修改的时候，不小心删掉了一些内容；
 	3. 注意实验框架新的更改中，也是有 TODO 的，请注意实现。
-
-
-??? tip "提升转发性能的方法"
-
-
-??? tip "支持较大路由表的方法"
-
-
-!!! tips "第三阶段实验是怎么设计出来的？"
 
 
 ## 本地测试
@@ -81,10 +72,10 @@ fd00::1:0/112 via fd00::3:1 dev r2r1
 1. 进入 `Setup/interconnect/setup` 目录，运行 `sudo ./setup-netns.sh` 命令以配置网络拓扑。
 2. 进入 `Setup/interconnect/setup` 目录，运行 `sudo ./start-standard-r1-dhcpd.sh`，在 R1 上启动标准 DHCPv6 服务器。
 3. 打开新窗口，进入 `Setup/interconnect/setup` 目录，运行 `sudo ./start-standard-r1-radvd.sh`，在 R1 上启动标准 IPv6 RA 服务器。
-4. 打开新窗口，进入 `Setup/interconnect/setup` 目录，根据 BIRD 版本，进入 bird-v1 或 bird-v2 目录，然后运行 `sudo ./bird-r2.sh` 或 `sudo ./bird-r2-v2.sh`，在 R2 上启动标准 RIPng 服务器。
-5. 打开新窗口，进入 `Setup/interconnect/setup` 目录，根据 BIRD 版本，进入 bird-v1 或 bird-v2 目录，然后运行 `sudo ./bird-r3.sh` 或 `sudo ./bird-r3-v2.sh`，在 R3 上启动标准 RIPng 服务器。
+4. 打开新窗口，进入 `Setup/interconnect/setup` 目录，根据 BIRD 版本，进入 bird-v1 或 bird-v2 目录，然后运行 `sudo ./bird-r2-ripng.sh` 或 `sudo ./bird-r2-v2-ripng.sh`，在 R2 上启动标准 RIPng 服务器。
+5. 打开新窗口，进入 `Setup/interconnect/setup` 目录，根据 BIRD 版本，进入 bird-v1 或 bird-v2 目录，然后运行 `sudo ./bird-r3-ripng.sh` 或 `sudo ./bird-r3-v2-ripng.sh`，在 R3 上启动标准 RIPng 服务器。
 6. 打开新窗口，进入 `Setup/interconnect/setup` 目录，运行 `sudo ./start-standard-pc2.sh`，在 PC2 上启动标准 TFTP 服务器。
-7. 打开新窗口，进入 `Setup/interconnect/test` 目录，依次执行 `sudo ./test2.sh`、`sudo ./test4.sh`、`sudo ./test5.sh`、`sudo ./test6.sh`、`sudo ./test7.sh` 和 `sudo ./test8.sh`，完成各项测试。
+7. 打开新窗口，进入 `Setup/interconnect/test` 目录，依次执行 `sudo ./test2.sh`、`sudo ./test5.sh`、`sudo ./test6.sh`、`sudo ./test7.sh`、`sudo ./test8.sh` 和 `sudo ./test9.sh`，完成各项测试。
 
 #### R1 上的 DHCPv6 路由器
 
@@ -93,10 +84,10 @@ fd00::1:0/112 via fd00::3:1 dev r2r1
 0. 确认系统内没有正在运行的 DHCPv6 路由器（进程名为 router）以及 bird 程序（进程名为 bird 或者 bird6）以及 dhcpcd 进程。
 1. 进入 `Setup/interconnect/setup` 目录，运行 `sudo ./setup-netns.sh` 命令以配置网络拓扑。
 2. 打开新窗口，进入 `Setup/interconnect/setup` 目录，运行 `sudo ./start-custom-r1.sh`，在 R1 上启动自己编写的 DHCPv6 服务器。
-3. 打开新窗口，进入 `Setup/interconnect/setup` 目录，根据 BIRD 版本，进入 bird-v1 或 bird-v2 目录，然后运行 `sudo ./bird-r2.sh` 或 `sudo ./bird-r2-v2.sh`，在 R2 上启动标准 RIPng 服务器。
-4. 打开新窗口，进入 `Setup/interconnect/setup` 目录，根据 BIRD 版本，进入 bird-v1 或 bird-v2 目录，然后运行 `sudo ./bird-r3.sh` 或 `sudo ./bird-r3-v2.sh`，在 R3 上启动标准 RIPng 服务器。
+3. 打开新窗口，进入 `Setup/interconnect/setup` 目录，根据 BIRD 版本，进入 bird-v1 或 bird-v2 目录，然后运行 `sudo ./bird-r2-ripng.sh` 或 `sudo ./bird-r2-v2-ripng.sh`，在 R2 上启动标准 RIPng 服务器。
+4. 打开新窗口，进入 `Setup/interconnect/setup` 目录，根据 BIRD 版本，进入 bird-v1 或 bird-v2 目录，然后运行 `sudo ./bird-r3-ripng.sh` 或 `sudo ./bird-r3-v2-ripng.sh`，在 R3 上启动标准 RIPng 服务器。
 5. 打开新窗口，进入 `Setup/interconnect/setup` 目录，运行 `sudo ./start-standard-pc2.sh`，在 PC2 上启动标准 TFTP 服务器。
-6. 打开新窗口，进入 `Setup/interconnect/test` 目录，依次执行 `sudo ./test2.sh`、`sudo ./test4.sh`、`sudo ./test5.sh`、`sudo ./test6-standard.sh`、`sudo ./test7-standard.sh` 和 `sudo ./test8-standard.sh`，完成各项测试。
+6. 打开新窗口，进入 `Setup/interconnect/test` 目录，依次执行 `sudo ./test2.sh`、`sudo ./test5.sh`、`sudo ./test6.sh`、`sudo ./test7-standard.sh`、`sudo ./test8-standard.sh` 和 `sudo ./test9-standard.sh`，完成各项测试。
 
 #### R2 上的 OSPF 路由器
 
@@ -110,10 +101,10 @@ fd00::1:0/112 via fd00::3:1 dev r2r1
 1. 进入 `Setup/interconnect/setup` 目录，运行 `sudo ./setup-netns.sh` 命令以配置网络拓扑。
 2. 进入 `Setup/interconnect/setup` 目录，运行 `sudo ./start-standard-r1-dhcpd.sh`，在 R1 上启动标准 DHCPv6 服务器。
 3. 打开新窗口，进入 `Setup/interconnect/setup` 目录，运行 `sudo ./start-standard-r1-radvd.sh`，在 R1 上启动标准 IPv6 RA 服务器。
-4. 打开新窗口，进入 `Setup/interconnect/setup` 目录，运行 `sudo ./start-custom-r2.sh`，在 R2 上自己写的 RIPng 路由器。
-5. 打开新窗口，进入 `Setup/interconnect/setup` 目录，根据 BIRD 版本，进入 bird-v1 或 bird-v2 目录，然后运行 `sudo ./bird-r3.sh` 或 `sudo ./bird-r3-v2.sh`，在 R3 上启动标准 RIPng 服务器。
+4. 打开新窗口，进入 `Setup/interconnect/setup` 目录，运行 `sudo ./start-custom-r2-ripng.sh`，在 R2 上自己写的 RIPng 路由器。
+5. 打开新窗口，进入 `Setup/interconnect/setup` 目录，根据 BIRD 版本，进入 bird-v1 或 bird-v2 目录，然后运行 `sudo ./bird-r3-ripng.sh` 或 `sudo ./bird-r3-v2-ripng.sh`，在 R3 上启动标准 RIPng 服务器。
 6. 打开新窗口，进入 `Setup/interconnect/setup` 目录，运行 `sudo ./start-standard-pc2.sh`，在 PC2 上启动标准 TFTP 服务器。
-7. 打开新窗口，进入 `Setup/interconnect/test` 目录，依次执行 `sudo ./test2.sh`、`sudo ./test4.sh`、`sudo ./test5.sh`、`sudo ./test6-standard.sh`、`sudo ./test7-standard.sh` 和 `sudo ./test8-standard.sh`，完成各项测试。
+7. 打开新窗口，进入 `Setup/interconnect/test` 目录，依次执行 `sudo ./test2.sh`、`sudo ./test5.sh`、`sudo ./test6.sh`、`sudo ./test7-standard.sh`、`sudo ./test8-standard.sh` 和 `sudo ./test9-standard.sh`，完成各项测试。
 
 #### R3 上的 OSPF 路由器
 
@@ -127,10 +118,10 @@ fd00::1:0/112 via fd00::3:1 dev r2r1
 1. 进入 `Setup/interconnect/setup` 目录，运行 `sudo ./setup-netns.sh` 命令以配置网络拓扑。
 2. 进入 `Setup/interconnect/setup` 目录，运行 `sudo ./start-standard-r1-dhcpd.sh`，在 R1 上启动标准 DHCPv6 服务器。
 3. 打开新窗口，进入 `Setup/interconnect/setup` 目录，运行 `sudo ./start-standard-r1-radvd.sh`，在 R1 上启动标准 IPv6 RA 服务器。
-4. 打开新窗口，进入 `Setup/interconnect/setup` 目录，根据 BIRD 版本，进入 bird-v1 或 bird-v2 目录，然后运行 `sudo ./bird-r2.sh` 或 `sudo ./bird-r2-v2.sh`，在 R2 上启动标准 RIPng 服务器。
-5. 打开新窗口，进入 `Setup/interconnect/setup` 目录，运行 `sudo ./start-custom-r3.sh`，在 R3 上自己写的 RIPng 路由器。
+4. 打开新窗口，进入 `Setup/interconnect/setup` 目录，根据 BIRD 版本，进入 bird-v1 或 bird-v2 目录，然后运行 `sudo ./bird-r2-ripng.sh` 或 `sudo ./bird-r2-v2-ripng.sh`，在 R2 上启动标准 RIPng 服务器。
+5. 打开新窗口，进入 `Setup/interconnect/setup` 目录，运行 `sudo ./start-custom-r3-ripng.sh`，在 R3 上自己写的 RIPng 路由器。
 6. 打开新窗口，进入 `Setup/interconnect/setup` 目录，运行 `sudo ./start-standard-pc2.sh`，在 PC2 上启动标准 TFTP 服务器。
-7. 打开新窗口，进入 `Setup/interconnect/test` 目录，依次执行 `sudo ./test2.sh`、`sudo ./test4.sh`、`sudo ./test5.sh`、`sudo ./test6-standard.sh`、`sudo ./test7-standard.sh` 和 `sudo ./test8-standard.sh`，完成各项测试。
+7. 打开新窗口，进入 `Setup/interconnect/test` 目录，依次执行 `sudo ./test2.sh`、`sudo ./test5.sh`、`sudo ./test6.sh`、`sudo ./test7-standard.sh`、`sudo ./test8-standard.sh` 和 `sudo ./test9-standard.sh`，完成各项测试。
 
 #### PC2 上的 TFTP 服务端
 
@@ -140,10 +131,10 @@ fd00::1:0/112 via fd00::3:1 dev r2r1
 1. 进入 `Setup/interconnect/setup` 目录，运行 `sudo ./setup-netns.sh` 命令以配置网络拓扑。
 2. 进入 `Setup/interconnect/setup` 目录，运行 `sudo ./start-standard-r1-dhcpd.sh`，在 R1 上启动标准 DHCPv6 服务器。
 3. 打开新窗口，进入 `Setup/interconnect/setup` 目录，运行 `sudo ./start-standard-r1-radvd.sh`，在 R1 上启动标准 IPv6 RA 服务器。
-4. 打开新窗口，进入 `Setup/interconnect/setup` 目录，根据 BIRD 版本，进入 bird-v1 或 bird-v2 目录，然后运行 `sudo ./bird-r2.sh` 或 `sudo ./bird-r2-v2.sh`，在 R2 上启动标准 RIPng 服务器。
-5. 打开新窗口，进入 `Setup/interconnect/setup` 目录，根据 BIRD 版本，进入 bird-v1 或 bird-v2 目录，然后运行 `sudo ./bird-r3.sh` 或 `sudo ./bird-r3-v2.sh`，在 R3 上启动标准 RIPng 服务器。
+4. 打开新窗口，进入 `Setup/interconnect/setup` 目录，根据 BIRD 版本，进入 bird-v1 或 bird-v2 目录，然后运行 `sudo ./bird-r2-ripng.sh` 或 `sudo ./bird-r2-v2-ripng.sh`，在 R2 上启动标准 RIPng 服务器。
+5. 打开新窗口，进入 `Setup/interconnect/setup` 目录，根据 BIRD 版本，进入 bird-v1 或 bird-v2 目录，然后运行 `sudo ./bird-r3-ripng.sh` 或 `sudo ./bird-r3-v2-ripng.sh`，在 R3 上启动标准 RIPng 服务器。
 6. 打开新窗口，进入 `Setup/interconnect/setup` 目录，运行 `sudo ./start-custom-pc2.sh`，在 PC2 上启动自己写的 TFTP 服务器。
-7. 打开新窗口，进入 `Setup/interconnect/test` 目录，依次执行 `sudo ./test2.sh`、`sudo ./test4.sh`、`sudo ./test5.sh`、`sudo ./test6-standard.sh`、`sudo ./test7-standard.sh` 和 `sudo ./test8-standard.sh`，完成各项测试。
+7. 打开新窗口，进入 `Setup/interconnect/test` 目录，依次执行 `sudo ./test2.sh`、`sudo ./test5.sh`、`sudo ./test6.sh`、`sudo ./test7-standard.sh`、`sudo ./test8-standard.sh` 和 `sudo ./test9-standard.sh`，完成各项测试。
 
 ### 测试多份程序
 
@@ -161,7 +152,7 @@ fd00::1:0/112 via fd00::3:1 dev r2r1
 
 1. 进入 `Setup/interconnect/setup` 目录，运行 `sudo ./setup-netns.sh` 命令以配置网络拓扑。
 2. 进入 `Setup/interconnect/setup` 目录，运行 `sudo ./start-custom-r1.sh`，在 R1 上启动自己的 DHCPv6 服务器。
-3. 打开新窗口，进入 `Setup/interconnect/setup` 目录，运行 `sudo ./start-custom-r2.sh`，在 R2 上启动自己的 RIPng 服务器。
-4. 打开新窗口，进入 `Setup/interconnect/setup` 目录，运行 `sudo ./start-custom-r3.sh`，在 R3 上启动自己的 RIPng 服务器。
+3. 打开新窗口，进入 `Setup/interconnect/setup` 目录，运行 `sudo ./start-custom-r2-ripng.sh` 或 `sudo ./start-custom-r2-ospf.sh`，在 R2 上启动自己的 RIPng 或 OSPF 服务器。
+4. 打开新窗口，进入 `Setup/interconnect/setup` 目录，运行 `sudo ./start-custom-r3-ripng.sh` 或 `sudo ./start-custom-r3-ospf.sh`，在 R3 上启动自己的 RIPng 或 OSPF 服务器。
 6. 打开新窗口，进入 `Setup/interconnect/setup` 目录，运行 `sudo ./start-custom-pc2.sh`，在 PC2 上启动自己写的 TFTP 服务器。
-7. 打开新窗口，进入 `Setup/interconnect/test` 目录，依次执行 `sudo ./test2.sh`、`sudo ./test4.sh`、`sudo ./test5.sh`、`sudo ./test6.sh`、`sudo ./test7.sh` 和 `sudo ./test8.sh`，完成各项测试。
+7. 打开新窗口，进入 `Setup/interconnect/test` 目录，依次执行 `sudo ./test2.sh`、`sudo ./test5.sh`、`sudo ./test6.sh`、`sudo ./test7.sh`、`sudo ./test8.sh` 和 `sudo ./test9.sh`，完成各项测试。
