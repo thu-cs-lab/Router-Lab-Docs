@@ -37,6 +37,7 @@ nav:
         - 总述: software/second_stage/ospf_overview.md
         - 评测: software/second_stage/ospf_evaluation.md
         - 调试: software/second_stage/ospf_debug.md
+        - 附录：名词解释: software/second_stage/ospf_glossary.md
         - 附录：RFC 索引: software/second_stage/ospf_rfc.md
       - RIPng:
         - 总述: software/second_stage/ripng_overview.md
