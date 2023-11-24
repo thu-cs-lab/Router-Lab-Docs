@@ -28,7 +28,7 @@
 
 2023-2024 秋季学期：
 
-- [2023-2024 秋软件实验及理论背景讲解](./slides/2023-2024秋软件实验及理论背景讲解.pdf)
+- [2023-2024 秋软件实验及理论背景讲解](./slides/2023-2024秋软件实验及理论背景讲解.pdf) [录像第一部分](https://cloud.tsinghua.edu.cn/f/75569d5ade6e4cc0a1b7/) [录像第二部分](https://cloud.tsinghua.edu.cn/f/1999719aa73e485fbb84/) [录像第三部分](https://cloud.tsinghua.edu.cn/f/cdeb112ec1694f70aec1/)
 
 2022-2023 秋季学期：
 
@@ -38,5 +38,7 @@
 2021-2022 秋季学期：
 
 - [2021-2022 秋季编程作业](./slides/2021-2022秋季编程作业.pdf)
-- [2021-2022 秋编程作业实验讲解](./slides/2021-2022秋编程作业实验讲解.pdf)
+- [2021-2022 秋编程作业实验讲解](./slides/2021-2022秋编程作业实验讲解.pdf) [录像](https://cloud.tsinghua.edu.cn/f/80ae6bc14dbe40ab9921/)
 - [2021-2022 秋软件实验真机实验](./slides/2021-2022秋软件实验真机实验.pdf)
+- [讲座第一讲：常用网络分析与调试工具](./slides/第一讲：常用网络分析与调试工具.pdf) [录像](https://cloud.tsinghua.edu.cn/f/87ba6a207f57409cbeee/)
+- [讲座第二讲：IPv6, ICMPv6, SLAAC, DHCPv6](./slides/第二讲：IPv6,%20ICMPv6,%20SLAAC,%20DHCPv6.pdf) [录像](https://cloud.tsinghua.edu.cn/f/e91d30a1a5ca4ac1aef2/)
