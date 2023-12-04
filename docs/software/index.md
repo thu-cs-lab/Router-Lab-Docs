@@ -28,6 +28,7 @@
 
 2023-2024 秋季学期：
 
+- [2023-2024 秋软件实验第二次实验课](./slides/2023-2024秋软件实验第二次实验课.pdf) [录像](https://cloud.tsinghua.edu.cn/f/8f989d41f2c94180b514/)
 - [2023-2024 秋软件实验及理论背景讲解](./slides/2023-2024秋软件实验及理论背景讲解.pdf) [录像第一部分](https://cloud.tsinghua.edu.cn/f/75569d5ade6e4cc0a1b7/) [录像第二部分](https://cloud.tsinghua.edu.cn/f/1999719aa73e485fbb84/) [录像第三部分](https://cloud.tsinghua.edu.cn/f/cdeb112ec1694f70aec1/)
 
 2022-2023 秋季学期：
