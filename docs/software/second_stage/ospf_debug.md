@@ -67,13 +67,13 @@ protocol device {
 
 protocol kernel {
     # 表示 BIRD 会把系统的路由表通过 OSPF 发出去，也会把收到的 OSPF 信息写入系统路由表
-    # 你可以用 `ip route` 或 `ip r` 命令查看系统的路由表
+    # 你可以用 `ip -6 route` 或 `ip -6 r` 命令查看系统的 IPv6 路由表
     # 退出 BIRD 后从系统中删除路由
     persist off;
     # 从系统学习路由
     learn;
     ipv6 {
-        # 导出路由到系统，可以用 `ip r` 看到
+        # 导出路由到系统，可以用 `ip -6 r` 看到
         # 也可以用 `export none` 表示不导出，用 `birdc show route` 查看路由
         export all;
     };
@@ -121,12 +121,12 @@ protocol device {
 
 protocol kernel {
     # 表示 BIRD 会把系统的路由表通过 OSPF 发出去，也会把收到的 OSPF 信息写入系统路由表
-    # 你可以用 `ip route` 或 `ip r` 命令查看系统的路由表
+    # 你可以用 `ip -6 route` 或 `ip -6 r` 命令查看系统的 IPv6 路由表
     # 退出 BIRD 后从系统中删除路由
     persist off;
     # 从系统学习路由
     learn;
-    # 导出路由到系统，可以用 `ip r` 看到
+    # 导出路由到系统，可以用 `ip -6 r` 看到
     # 也可以用 `export none` 表示不导出，用 `birdc show route` 查看路由
     export all;
 }
