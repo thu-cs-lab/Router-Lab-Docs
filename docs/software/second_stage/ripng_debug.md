@@ -12,7 +12,7 @@
 
 具体来说，可以按照下列的顺序在本地进行评测：
 
-1. 确认系统内没有正在运行的 RIPng 路由器（进程名为 router）以及 bird 程序（进程名为 bird 或者 bird6）；
+1. 在 `Homework/router/r2/` 目录下用 `make` 命令构建你编写的 RIPng 路由器，确认系统内没有正在运行的 RIPng 路由器（进程名为 router）以及 bird 程序（进程名为 bird 或者 bird6）；
 2. 打开一个命令行窗口，进入 `Setup/ripng/setup` 目录，执行 `sudo ./setup-netns.sh` 配置 netns 环境，然后执行 `sudo ./start-r2.sh` 在 R2 上启动路由器，不要退出；
 3. 再打开一个命令行窗口，根据 BIRD 版本进入 `Setup/ripng/setup/bird-v1`（BIRD v1.x）或 `Setup/ripng/setup/bird-v2`（BIRD v2.x）目录，执行 `sudo ./bird-r1.sh`（BIRD v1.x）或 `sudo ./bird-r1-v2.sh` 在 R1 上启动 BIRD，不要退出；
 4. 再打开一个命令行窗口，根据 BIRD 版本进入 `Setup/ripng/setup/bird-v1`（BIRD v1.x）或 `Setup/ripng/setup/bird-v2`（BIRD v2.x）目录，执行 `sudo ./bird-r3.sh`（BIRD v1.x）或 `sudo ./bird-r3-v2.sh` 在 R3 上启动 BIRD，不要退出；
