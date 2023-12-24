@@ -126,3 +126,7 @@
 !!! question "运行脚本时出现 `exec of "xxx" failed: No such file or directory`"
 
     这个报错是脚本在尝试运行 `xxx` 命令失败时输出的，它的意思是找不到这个命令，需要在系统中安装对应的提供了该命令的包。建议回顾 [准备工作](./preparation.md) 文档，把缺少的包安装上。
+
+!!! question "在平台上真机评测时，看到日志里提示 `failed to disable ipv6 of interface xxx`，是否正常？"
+
+    这是正常的：HAL 为了避免和 Linux 自己的网络栈冲突，在启动时会尝试关闭 Linux 的 IPv6 网络栈。如果关闭失败，就会输出以上的提示。实验平台对运行的程序做了隔离，导致程序关闭 IPv6 网络栈失败，但实际上 Linux 的 IPv6 网络栈已经被实验平台关闭，所以可以忽略这个问题。
