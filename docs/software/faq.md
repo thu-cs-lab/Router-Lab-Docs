@@ -12,10 +12,6 @@
 
     给它命令行参数 `-o ip.check_checksum:TRUE` `-o tcp.check_checksum:TRUE` 和 `-o udp.check_checksum:TRUE` 就可以打开它的校验功能。如果你使用 Wireshark，直接在 Protocol Preferences 中选择即可。
 
-!!! question "为啥要搞 HAL 啊，2018 年让大家用 Linux 的 Raw Socket，不也有人搞出来了吗？"
-
-    我们认为 2018 年的 Linux 的 Raw Socket 是比较古老而且需要同学编写很多冗余代码的一套 API，另外比较复杂的 Quagga 的交互接口也让很多同学遇到了困难，结果就是只有少数同学很顺利地完成了所有任务，一些同学在不理解这些 API 的工作方式的情况下直接拿代码来就用，出现一些问题后就一筹莫展，这是我们不希望看到的一种情况，况且这部分知识与网络原理课程关系不大，日后也基本不会接触。2019 年我们采用的 `libpcap` 以一个更底层的方式进行收发，绕过了操作系统的 IP 层，这样可以避开 Raw Socket 的一些限制，不过也多了自行维护 ARP 的负担。同时，2019 年新增了硬件路由器实验，为了把二者统一，我们设计了 HAL 库，它维护了 ARP 的信息，在 Linux 等平台下用 `libpcap`，在 Xilinx 平台下用 IP 核的寄存器，和 stdio 后端用于在线评测。我们期望通过这些方法减少大家的负担。
-
 !!! question "我没有趁手的 Linux 环境，我可以用 WSL 吗？"
 
     由于 WSL1 没有实现 pcap，如果使用 Linux 后端，即使 sudo 运行也会报告找不到可以抓包的网口，所以你只能用文件后端进行测试。如果你使用 WSL2，应当可以正常的使用 Linux 后端的所有功能（但不保证没有问题）。
@@ -46,17 +42,9 @@
 
     一个可能的原因是代码出现了 Undefined Behavior，编译器在不同环境下编译出不同的代码，导致行为不一致。可以用 UBSan 来发现这种问题。在路由器代码里，一个很常见的 Undefined Behavior 就是对 32 位整数左移或右移 32 位，或者调用 `__builtin_clz(0)`，或者更常见的未初始化变量、数组越界等等。还需要注意 char 可能有符号，也可能无符号，建议显式地使用 int8_t 或 uint8_t。
 
-!!! question "我用 ssh 连不上树莓派，有什么办法可以进行诊断吗？"
-
-    可以拿 HDMI 线把树莓派接到显示器上，然后插上 USB 的键盘和鼠标，登录进去用 `ip` 命令看它的网络情况。网络连接方面，可以用网线连到自己的电脑或者宿舍路由器上，也可以连接到 Wi-Fi。如果没有显示器，也可以用 USB 转串口，把串口接到树莓派对应的引脚上。
-
 !!! question "我在 macOS 上安装了 Wireshark，但是报错找不到 tshark？"
 
     tshark 可能被安装到了 /Applications/Wireshark.app/Contents/MacOS/tshark 路径下，如果存在这个文件，把目录放到 PATH 环境变量里就可以了。
-
-!!! question "为啥要用树莓派呢，电脑上装一个 Linux 双系统或者开个 Linux 虚拟机不好吗？"
-
-    树莓派可以提供一个统一的环境，而且对同学的电脑的系统和硬盘空间没有什么要求，而虚拟机和双系统都需要不少的硬盘空间。另外，虚拟机的网络配置比树莓派要更加麻烦，一些同学的电脑也会因为没有开启虚拟化或者 Hyper-V 的原因运行不了 VirtualBox 和 VMWare，三种主流的虚拟机软件都有一些不同，让配置变得很麻烦。同时，树莓派的成熟度和文档都比较好，网上有很多完善的资料，学习起来并不困难，硬件成本也不高。
 
 !!! question "我在 WSL 下编译，发现编译不通过，`checksum.cpp` 等几个 cpp 文件都不是合法的 cpp 代码。"
 
@@ -117,11 +105,11 @@
 
 !!! question "运行 BIRD 的时候，显示 Cannot create control socket bird-r1.ctl: Operation not supported"
 
-    如果是在 WSL 里面运行 BIRD，由于 WSL 共享目录的文件系统不支持 unix socket，所以 BIRD 创建 control socket 会失败。解决方法有两种：1) 把整个 Router-Lab 目录挪到 HOME 下面 2) 参数 `-s bird-r1.ctl` 改为 `-s ~/bird-r1.ctl`，也就是把 control socket 挪到 HOME 下面
+    如果是在 WSL 里面运行 BIRD，由于 WSL 共享目录的文件系统不支持 unix socket，所以 BIRD 创建 control socket 会失败。解决方法有两种：1) 把整个 Router-Lab 目录挪到 HOME 下面 2) 参数 `-s bird-r1.ctl` 改为 `-s ~/bird-r1.ctl`，也就是把 control socket 挪到 HOME 下面。
 
 !!! question "在 CI 上提交的时候，报错 BAD signature"
 
-    这是因为实验仓库对 `.gitlab-ci.yml` 做了签名检查，如果误修改了这个文件或者经过了换行符的变化（比如在 Windows Git clone 的仓库又在 WSL 里打开），请克隆模板仓库，然后用模板仓库中的文件覆盖自己仓库里的文件。
+    这是因为实验仓库对 `.gitlab-ci.yml` 做了签名检查，如果误修改了这个文件或者经过了换行符的变化（比如在 Windows Git clone 的仓库又在 WSL 里打开），请用 WSL 的 git 克隆模板仓库，然后用模板仓库中的文件覆盖自己仓库里的文件。
 
 !!! question "运行路由器时报错 no viable interfaces open for capture"
 
@@ -130,3 +118,7 @@
 !!! question "通过 git commit 提交代码到 GitLab 上后，TANLabs 实验平台的构建历史看不到更新？"
 
     这说明你的代码在 CI 上构建时失败了，请前往 GitLab，找到对应的 commit，进入 CI 详细信息，就可以知道为什么构建失败了。
+
+!!! question "配置 netns 环境时提示 Failed to create network namespace，即使用 root 用户也不行"
+
+    这说明你的环境不支持 netns，大概率就是 WSL1，WSL1 不支持 netns，请更新到 WSL2。
