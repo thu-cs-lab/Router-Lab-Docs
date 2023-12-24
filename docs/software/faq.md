@@ -122,3 +122,7 @@
 !!! question "配置 netns 环境时提示 Failed to create network namespace，即使用 root 用户也不行"
 
     这说明你的环境不支持 netns，大概率就是 WSL1，WSL1 不支持 netns，请更新到 WSL2。
+
+!!! question "运行脚本时出现 `exec of "xxx" failed: No such file or directory`"
+
+    这个报错是脚本在尝试运行 `xxx` 命令失败时输出的，它的意思是找不到这个命令，需要在系统中安装对应的提供了该命令的包。建议回顾 [准备工作](./preparation.md) 文档，把缺少的包安装上。
