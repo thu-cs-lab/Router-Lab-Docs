@@ -103,3 +103,5 @@ TFTP 客户端的工作流程如下：
 !!! attention "HONOR CODE"
 
     在 `tftp` 目录中，有一个 `HONOR-CODE.md` 文件，你需要在这个文件中以 Markdown 格式记录你完成这个作业时参考网上的文章或者代码、与同学的交流情况。
+
+    HONOR CODE 可以在截止日期之后再提交到仓库中。
