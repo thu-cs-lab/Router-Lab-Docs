@@ -98,7 +98,7 @@ fd00::1:0/112 via fd00::3:1 dev r2r1
 2. 进入 `Setup/interconnect/setup` 目录，运行 `sudo ./start-standard-r1-dhcpd.sh`，在 R1 上启动标准 DHCPv6 服务器。
 3. 打开新窗口，进入 `Setup/interconnect/setup` 目录，运行 `sudo ./start-standard-r1-radvd.sh`，在 R1 上启动标准 IPv6 RA 服务器。
 4. 打开新窗口，进入 `Setup/interconnect/setup` 目录，运行 `sudo ./start-custom-r2-ospf.sh`，在 R2 上启动自己写的 OSPF 路由器。
-5. 打开新窗口，进入 `Setup/interconnect/setup` 目录，根据 BIRD 版本，进入 `bird-v1` 或 `bird-v2` 目录，然后运行 `sudo ./bird-r3-ospf.sh` 或 `sudo ./bird-r3-v2-ospf.sh`，在 R3 上启动标准 RIPng 服务器。
+5. 打开新窗口，进入 `Setup/interconnect/setup` 目录，根据 BIRD 版本，进入 `bird-v1` 或 `bird-v2` 目录，然后运行 `sudo ./bird-r3-ospf.sh` 或 `sudo ./bird-r3-v2-ospf.sh`，在 R3 上启动标准 OSPF 服务器。
 6. 打开新窗口，进入 `Setup/interconnect/setup` 目录，运行 `sudo ./start-standard-pc2.sh`，在 PC2 上启动标准 TFTP 服务器。
 7. 打开新窗口，进入 `Setup/interconnect/test` 目录，依次执行 `sudo ./test2.sh`、`sudo ./test4-bird-r3-v1.sh`（BIRD v1.6.x）或 `sudo ./test4-bird-r3-v2.sh`（BIRD v2.x）并从 R2 自己的路由器的输出中观察是否在与 R3 路由器的邻居关系进入了 Full 状态、`sudo ./test7-standard.sh`、`sudo ./test8-standard.sh` 和 `sudo ./test9-standard.sh`，完成各项测试。
 
@@ -124,7 +124,7 @@ fd00::1:0/112 via fd00::3:1 dev r2r1
 2. 进入 `Setup/interconnect/setup` 目录，运行 `sudo ./start-standard-r1-dhcpd.sh`，在 R1 上启动标准 DHCPv6 服务器。
 3. 打开新窗口，进入 `Setup/interconnect/setup` 目录，运行 `sudo ./start-standard-r1-radvd.sh`，在 R1 上启动标准 IPv6 RA 服务器。
 4. 打开新窗口，进入 `Setup/interconnect/setup` 目录，运行 `sudo ./start-custom-r3-ospf.sh`，在 R3 上启动自己写的 OSPF 路由器。
-5. 打开新窗口，进入 `Setup/interconnect/setup` 目录，根据 BIRD 版本，进入 `bird-v1` 或 `bird-v2` 目录，然后运行 `sudo ./bird-r2-ospf.sh` 或 `sudo ./bird-r2-v2-ospf.sh`，在 R2 上启动标准 RIPng 服务器。
+5. 打开新窗口，进入 `Setup/interconnect/setup` 目录，根据 BIRD 版本，进入 `bird-v1` 或 `bird-v2` 目录，然后运行 `sudo ./bird-r2-ospf.sh` 或 `sudo ./bird-r2-v2-ospf.sh`，在 R2 上启动标准 OSPF 服务器。
 6. 打开新窗口，进入 `Setup/interconnect/setup` 目录，运行 `sudo ./start-standard-pc2.sh`，在 PC2 上启动标准 TFTP 服务器。
 7. 打开新窗口，进入 `Setup/interconnect/test` 目录，依次执行 `sudo ./test2.sh`、`sudo ./test4-bird-r2-v1.sh`（BIRD v1.6.x）或 `sudo ./test4-bird-r2-v2.sh`（BIRD v2.x）并从 R3 自己的路由器的输出中观察是否在与 R2 路由器的邻居关系进入了 Full 状态、`sudo ./test7-standard.sh`、`sudo ./test8-standard.sh` 和 `sudo ./test9-standard.sh`，完成各项测试。
 
