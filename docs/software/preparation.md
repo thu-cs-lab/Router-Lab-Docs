@@ -37,6 +37,8 @@ sudo apt install git make cmake python3 python3-pip libpcap-dev libreadline-dev 
 pip3 install pyshark
 ```
 
+注意：BIRD 有两个版本系列：v1.6 和 v2.0。实验所用的是 v2.0 版本的 BIRD，请注意安装正确的版本。
+
 需要注意的是，Debian 系列发行版在安装一些带有服务的包的时候，会默认启动服务并设置为开机启动。如果你不希望这些服务启动，可以用下面的命令停止服务并取消开机启动：
 
 ```shell
