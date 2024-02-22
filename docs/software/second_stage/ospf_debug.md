@@ -12,11 +12,11 @@
 
 具体来说，可以按照下列顺序在本地进行评测：
 
-1. 在 `Homework/ospf/r2/` 目录下用 `make` 命令构建你编写的 OSPF 路由器，确认系统内没有正在运行的 OSPF 路由器（进程名为 router）以及 BIRD 程序（进程名为 bird 或者 bird6）；
+1. 在 `Homework/ospf/r2/` 目录下用 `make` 命令构建你编写的 OSPF 路由器，确认系统内没有正在运行的 OSPF 路由器（进程名为 router）以及 BIRD 程序（进程名为 bird）；
 2. 打开一个命令行窗口，进入 `Setup/ospf/setup` 目录，执行 `sudo ./setup-netns.sh` 配置 netns 环境，然后执行 `sudo ./start-r2.sh` 在 R2 上启动路由器，不要退出；
-3. 再打开一个命令行窗口，根据 BIRD 版本进入 `Setup/ospf/setup/bird-v1`（BIRD v1.6.x）或 `Setup/ospf/setup/bird-v2`（BIRD v2.x）目录，执行 `sudo ./bird-r1.sh`（BIRD v1.6.x）或 `sudo ./bird-r1-v2.sh`（BIRD v2.x）在 R1 上启动 BIRD，不要退出；
-4. 再打开一个命令行窗口，根据 BIRD 版本进入 `Setup/ospf/setup/bird-v1`（BIRD v1.6.x）或 `Setup/ospf/setup/bird-v2`（BIRD v2.x）目录，执行 `sudo ./bird-r3.sh`（BIRD v1.6.x）或 `sudo ./bird-r3-v2.sh`（BIRD v2.x）在 R3 上启动 BIRD，不要退出；
-5. 再打开一个命令行窗口，进入 `Setup/ospf/test` 目录，依次执行 `sudo ./test3-bird-v1.sh`（BIRD v1.6.x）或 `sudo ./test3-bird-v2.sh`（BIRD v2.x）、`sudo ./test4.sh` 直到 `sudo ./test7.sh`，每个脚本对应评测中的一项；
+3. 再打开一个命令行窗口，进入 `Setup/ospf/setup/bird-v2` 目录，执行 `sudo ./bird-r1-v2.sh` 在 R1 上启动 BIRD，不要退出；
+4. 再打开一个命令行窗口，进入 `Setup/ospf/setup/bird-v2` 目录，执行 `sudo ./bird-r3-v2.sh` 在 R3 上启动 BIRD，不要退出；
+5. 再打开一个命令行窗口，进入 `Setup/ospf/test` 目录，依次执行 `sudo ./test3-bird-v2.sh`、`sudo ./test4.sh` 直到 `sudo ./test7.sh`，每个脚本对应评测中的一项；
 6. 所有项目评测完毕后，可以退出 R1 和 R3 上的 BIRD 和 R2 上的路由器。
 
 在评测过程中，如果发现某一步结果不对，可以使用 tcpdump 或者 Wireshark 来进行抓包。具体地，如果要在某个 netns 中抓包（例如 PC1），需要用如下命令来运行 tcpdump 或者 Wireshark：
@@ -49,8 +49,6 @@ ip netns exec R1 sh -c "echo 1 > /proc/sys/net/ipv6/conf/all/forwarding"
 #### 路由协议
 
 为了实现路由协议，需要运行 BIRD。下面提供一个 BIRD（BIRD Internet Routing Daemon，安装方法 `apt install bird2`）的参考配置，以 Debian 为例，按如下方式修改文件 `/etc/bird.conf` 即可。
-
-需要注意的是，BIRD v1.6.x 中，处理 IPv6 协议的 BIRD 叫做 `bird6`，而 IPv4 协议的 BIRD 叫做 `bird`；在 BIRD v2.x 中，两个版本合并了，因此都是 `bird`。
 
 ##### BIRD v2.x 配置
 
@@ -91,55 +89,6 @@ protocol ospf v3 {
         import all;
         export all;
     };
-    debug all;
-    area 0 {  # 本实验中只有一个区域 0
-        interface "网口名称" {  # 网口名称必须存在，否则 BIRD 会直接退出
-            hello 5;  # 5 秒发送一次 OSPF Hello
-            type pointopoint;  # 本实验中假设路由器间链路为点对点链路
-            link lsa suppression yes;  # 不发送本实验中不需要的 Link LSA
-        };
-        interface "连接 PC 的网口名称" {
-            stub on;  # 将和 PC 直连的网口设置为 stub，不发送 Hello，不洪泛 LSA
-            link lsa suppression yes;
-        };
-    };
-}
-```
-
-##### BIRD v1.6.x 配置（已过时）
-
-[BIRD v1.6.x 官方配置文档](https://bird.network.cz/?get_doc&f=bird.html&v=16)
-
-```conf
-# log "bird.log" all;  # 可以将 log 输出到文件中
-# debug protocols all;  # 如果要更详细的信息，可以打开这个
-
-router id 网口IP地址;  # 随便写一个，保证唯一性即可
-
-protocol device {
-}
-
-protocol kernel {
-    # 表示 BIRD 会把系统的路由表通过 OSPF 发出去，也会把收到的 OSPF 信息写入系统路由表
-    # 你可以用 `ip -6 route` 或 `ip -6 r` 命令查看系统的 IPv6 路由表
-    # 退出 BIRD 后从系统中删除路由
-    persist off;
-    # 从系统学习路由
-    learn;
-    # 导出路由到系统，可以用 `ip -6 r` 看到
-    # 也可以用 `export none` 表示不导出，用 `birdc show route` 查看路由
-    export all;
-}
-
-protocol static {
-    route a:b:c:d::/64 via "网口名称";  # 可以手动添加一个静态路由方便调试，只有在这个网口存在并且为 UP 时才生效
-}
-
-# BIRD 的 OSPF 协议中会自动引入直连路由，故不需要 protocol direct
-
-protocol ospf {
-    import all;
-    export all;
     debug all;
     area 0 {  # 本实验中只有一个区域 0
         interface "网口名称" {  # 网口名称必须存在，否则 BIRD 会直接退出

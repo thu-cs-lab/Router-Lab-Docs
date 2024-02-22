@@ -40,7 +40,7 @@ pip3 install pyshark
 需要注意的是，Debian 系列发行版在安装一些带有服务的包的时候，会默认启动服务并设置为开机启动。如果你不希望这些服务启动，可以用下面的命令停止服务并取消开机启动：
 
 ```shell
-sudo systemctl disable --now tftpd-hpa isc-dhcp-server dhcpcd radvd bird bird6
+sudo systemctl disable --now tftpd-hpa isc-dhcp-server dhcpcd radvd bird
 ```
 
 如果安装时网络较慢，可以参考 [TUNA 镜像站](https://mirrors.tuna.tsinghua.edu.cn/help/debian/) 或者 [OpenTUNA 镜像站](https://opentuna.cn/help/debian) 的 Debian 镜像使用帮助进行配置。其他发行版也有类似的包管理器安装方法。

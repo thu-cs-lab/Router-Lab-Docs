@@ -68,12 +68,12 @@ fd00::1:0/112 via fd00::3:1 dev r2r1
 
 自己编写的代码是 `Homework/tftp/pc1/client`，此时 R1、R2、R3、PC2 运行标准程序。
 
-0. 确认系统内没有正在运行的 TFTP 客户端和服务端（进程名为 client/server）以及 BIRD 程序（进程名为 bird 或者 bird6）以及 dhcpcd 进程。
+0. 确认系统内没有正在运行的 TFTP 客户端和服务端（进程名为 client/server）以及 BIRD 程序（进程名为 bird）以及 dhcpcd 进程。
 1. 进入 `Setup/interconnect/setup` 目录，运行 `sudo ./setup-netns.sh` 命令以配置网络拓扑。
 2. 进入 `Setup/interconnect/setup` 目录，运行 `sudo ./start-standard-r1-dhcpd.sh`，在 R1 上启动标准 DHCPv6 服务器。
 3. 打开新窗口，进入 `Setup/interconnect/setup` 目录，运行 `sudo ./start-standard-r1-radvd.sh`，在 R1 上启动标准 IPv6 RA 服务器。
-4. 打开新窗口，进入 `Setup/interconnect/setup` 目录，根据 BIRD 版本，进入 `bird-v1` 或 `bird-v2` 目录，然后运行 `sudo ./bird-r2-ripng.sh` 或 `sudo ./bird-r2-v2-ripng.sh`，在 R2 上启动标准 RIPng 服务器。
-5. 打开新窗口，进入 `Setup/interconnect/setup` 目录，根据 BIRD 版本，进入 `bird-v1` 或 `bird-v2` 目录，然后运行 `sudo ./bird-r3-ripng.sh` 或 `sudo ./bird-r3-v2-ripng.sh`，在 R3 上启动标准 RIPng 服务器。
+4. 打开新窗口，进入 `Setup/interconnect/setup` 目录，进入 `bird-v2` 目录，然后运行 `sudo ./bird-r2-v2-ripng.sh`，在 R2 上启动标准 RIPng 服务器。
+5. 打开新窗口，进入 `Setup/interconnect/setup` 目录，进入 `bird-v2` 目录，然后运行 `sudo ./bird-r3-v2-ripng.sh`，在 R3 上启动标准 RIPng 服务器。
 6. 打开新窗口，进入 `Setup/interconnect/setup` 目录，运行 `sudo ./start-standard-pc2.sh`，在 PC2 上启动标准 TFTP 服务器。
 7. 打开新窗口，进入 `Setup/interconnect/test` 目录，依次执行 `sudo ./test2.sh`、`sudo ./test5.sh`、`sudo ./test6.sh`、`sudo ./test7.sh`、`sudo ./test8.sh` 和 `sudo ./test9.sh`，完成各项测试。
 
@@ -81,11 +81,11 @@ fd00::1:0/112 via fd00::3:1 dev r2r1
 
 自己编写的代码是 `Homework/dhcpv6/r1/router`，此时 PC1、R2、R3、PC2 运行标准程序。
 
-0. 确认系统内没有正在运行的 DHCPv6 路由器（进程名为 router）以及 BIRD 程序（进程名为 bird 或者 bird6）以及 dhcpcd 进程。
+0. 确认系统内没有正在运行的 DHCPv6 路由器（进程名为 router）以及 BIRD 程序（进程名为 bird）以及 dhcpcd 进程。
 1. 进入 `Setup/interconnect/setup` 目录，运行 `sudo ./setup-netns.sh` 命令以配置网络拓扑。
 2. 打开新窗口，进入 `Setup/interconnect/setup` 目录，运行 `sudo ./start-custom-r1.sh`，在 R1 上启动自己编写的 DHCPv6 服务器。
-3. 打开新窗口，进入 `Setup/interconnect/setup` 目录，根据 BIRD 版本，进入 `bird-v1` 或 `bird-v2` 目录，然后运行 `sudo ./bird-r2-ripng.sh` 或 `sudo ./bird-r2-v2-ripng.sh`，在 R2 上启动标准 RIPng 服务器。
-4. 打开新窗口，进入 `Setup/interconnect/setup` 目录，根据 BIRD 版本，进入 `bird-v1` 或 `bird-v2` 目录，然后运行 `sudo ./bird-r3-ripng.sh` 或 `sudo ./bird-r3-v2-ripng.sh`，在 R3 上启动标准 RIPng 服务器。
+3. 打开新窗口，进入 `Setup/interconnect/setup` 目录，进入 `bird-v2` 目录，然后运行 `sudo ./bird-r2-v2-ripng.sh`，在 R2 上启动标准 RIPng 服务器。
+4. 打开新窗口，进入 `Setup/interconnect/setup` 目录，进入 `bird-v2` 目录，然后运行 `sudo ./bird-r3-v2-ripng.sh`，在 R3 上启动标准 RIPng 服务器。
 5. 打开新窗口，进入 `Setup/interconnect/setup` 目录，运行 `sudo ./start-standard-pc2.sh`，在 PC2 上启动标准 TFTP 服务器。
 6. 打开新窗口，进入 `Setup/interconnect/test` 目录，依次执行 `sudo ./test2.sh`、`sudo ./test5.sh`、`sudo ./test6.sh`、`sudo ./test7-standard.sh`、`sudo ./test8-standard.sh` 和 `sudo ./test9-standard.sh`，完成各项测试。
 
@@ -93,25 +93,25 @@ fd00::1:0/112 via fd00::3:1 dev r2r1
 
 自己编写的代码是 `Homework/ospf/interconnect-r2/router`，此时 PC1、R1、R3、PC2 运行标准程序。
 
-0. 确认系统内没有正在运行的 OSPF 路由器（进程名为 router）以及 BIRD 程序（进程名为 bird 或者 bird6）以及 dhcpcd 进程。
+0. 确认系统内没有正在运行的 OSPF 路由器（进程名为 router）以及 BIRD 程序（进程名为 bird）以及 dhcpcd 进程。
 1. 进入 `Setup/interconnect/setup` 目录，运行 `sudo ./setup-netns.sh` 命令以配置网络拓扑。
 2. 进入 `Setup/interconnect/setup` 目录，运行 `sudo ./start-standard-r1-dhcpd.sh`，在 R1 上启动标准 DHCPv6 服务器。
 3. 打开新窗口，进入 `Setup/interconnect/setup` 目录，运行 `sudo ./start-standard-r1-radvd.sh`，在 R1 上启动标准 IPv6 RA 服务器。
 4. 打开新窗口，进入 `Setup/interconnect/setup` 目录，运行 `sudo ./start-custom-r2-ospf.sh`，在 R2 上启动自己写的 OSPF 路由器。
-5. 打开新窗口，进入 `Setup/interconnect/setup` 目录，根据 BIRD 版本，进入 `bird-v1` 或 `bird-v2` 目录，然后运行 `sudo ./bird-r3-ospf.sh` 或 `sudo ./bird-r3-v2-ospf.sh`，在 R3 上启动标准 OSPF 服务器。
+5. 打开新窗口，进入 `Setup/interconnect/setup` 目录，进入 `bird-v2` 目录，然后运行 `sudo ./bird-r3-v2-ospf.sh`，在 R3 上启动标准 OSPF 服务器。
 6. 打开新窗口，进入 `Setup/interconnect/setup` 目录，运行 `sudo ./start-standard-pc2.sh`，在 PC2 上启动标准 TFTP 服务器。
-7. 打开新窗口，进入 `Setup/interconnect/test` 目录，依次执行 `sudo ./test2.sh`、`sudo ./test4-bird-r3-v1.sh`（BIRD v1.6.x）或 `sudo ./test4-bird-r3-v2.sh`（BIRD v2.x）并从 R2 自己的路由器的输出中观察是否在与 R3 路由器的邻居关系进入了 Full 状态、`sudo ./test7-standard.sh`、`sudo ./test8-standard.sh` 和 `sudo ./test9-standard.sh`，完成各项测试。
+7. 打开新窗口，进入 `Setup/interconnect/test` 目录，依次执行 `sudo ./test2.sh`、`sudo ./test4-bird-r3-v2.sh` 并从 R2 自己的路由器的输出中观察是否在与 R3 路由器的邻居关系进入了 Full 状态、`sudo ./test7-standard.sh`、`sudo ./test8-standard.sh` 和 `sudo ./test9-standard.sh`，完成各项测试。
 
 #### R2 上的 RIPng 路由器
 
 自己编写的代码是 `Homework/router/interconnect-r2/router`，此时 PC1、R1、R3、PC2 运行标准程序。
 
-0. 确认系统内没有正在运行的 RIPng 路由器（进程名为 router）以及 BIRD 程序（进程名为 bird 或者 bird6）以及 dhcpcd 进程。
+0. 确认系统内没有正在运行的 RIPng 路由器（进程名为 router）以及 BIRD 程序（进程名为 bird）以及 dhcpcd 进程。
 1. 进入 `Setup/interconnect/setup` 目录，运行 `sudo ./setup-netns.sh` 命令以配置网络拓扑。
 2. 进入 `Setup/interconnect/setup` 目录，运行 `sudo ./start-standard-r1-dhcpd.sh`，在 R1 上启动标准 DHCPv6 服务器。
 3. 打开新窗口，进入 `Setup/interconnect/setup` 目录，运行 `sudo ./start-standard-r1-radvd.sh`，在 R1 上启动标准 IPv6 RA 服务器。
 4. 打开新窗口，进入 `Setup/interconnect/setup` 目录，运行 `sudo ./start-custom-r2-ripng.sh`，在 R2 上启动自己写的 RIPng 路由器。
-5. 打开新窗口，进入 `Setup/interconnect/setup` 目录，根据 BIRD 版本，进入 `bird-v1` 或 `bird-v2` 目录，然后运行 `sudo ./bird-r3-ripng.sh` 或 `sudo ./bird-r3-v2-ripng.sh`，在 R3 上启动标准 RIPng 服务器。
+5. 打开新窗口，进入 `Setup/interconnect/setup` 目录，进入 `bird-v2` 目录，然后运行 `sudo ./bird-r3-v2-ripng.sh`，在 R3 上启动标准 RIPng 服务器。
 6. 打开新窗口，进入 `Setup/interconnect/setup` 目录，运行 `sudo ./start-standard-pc2.sh`，在 PC2 上启动标准 TFTP 服务器。
 7. 打开新窗口，进入 `Setup/interconnect/test` 目录，依次执行 `sudo ./test2.sh`、`sudo ./test5.sh`、`sudo ./test6.sh`、`sudo ./test7-standard.sh`、`sudo ./test8-standard.sh` 和 `sudo ./test9-standard.sh`，完成各项测试。
 
@@ -119,24 +119,24 @@ fd00::1:0/112 via fd00::3:1 dev r2r1
 
 自己编写的代码是 `Homework/ospf/r3/router`，此时 PC1、R1、R2、PC2 运行标准程序。
 
-0. 确认系统内没有正在运行的 OSPF 路由器（进程名为 router）以及 BIRD 程序（进程名为 bird 或者 bird6）以及 dhcpcd 进程。
+0. 确认系统内没有正在运行的 OSPF 路由器（进程名为 router）以及 BIRD 程序（进程名为 bird）以及 dhcpcd 进程。
 1. 进入 `Setup/interconnect/setup` 目录，运行 `sudo ./setup-netns.sh` 命令以配置网络拓扑。
 2. 进入 `Setup/interconnect/setup` 目录，运行 `sudo ./start-standard-r1-dhcpd.sh`，在 R1 上启动标准 DHCPv6 服务器。
 3. 打开新窗口，进入 `Setup/interconnect/setup` 目录，运行 `sudo ./start-standard-r1-radvd.sh`，在 R1 上启动标准 IPv6 RA 服务器。
 4. 打开新窗口，进入 `Setup/interconnect/setup` 目录，运行 `sudo ./start-custom-r3-ospf.sh`，在 R3 上启动自己写的 OSPF 路由器。
-5. 打开新窗口，进入 `Setup/interconnect/setup` 目录，根据 BIRD 版本，进入 `bird-v1` 或 `bird-v2` 目录，然后运行 `sudo ./bird-r2-ospf.sh` 或 `sudo ./bird-r2-v2-ospf.sh`，在 R2 上启动标准 OSPF 服务器。
+5. 打开新窗口，进入 `Setup/interconnect/setup` 目录，进入 `bird-v2` 目录，然后运行 `sudo ./bird-r2-v2-ospf.sh`，在 R2 上启动标准 OSPF 服务器。
 6. 打开新窗口，进入 `Setup/interconnect/setup` 目录，运行 `sudo ./start-standard-pc2.sh`，在 PC2 上启动标准 TFTP 服务器。
-7. 打开新窗口，进入 `Setup/interconnect/test` 目录，依次执行 `sudo ./test2.sh`、`sudo ./test4-bird-r2-v1.sh`（BIRD v1.6.x）或 `sudo ./test4-bird-r2-v2.sh`（BIRD v2.x）并从 R3 自己的路由器的输出中观察是否在与 R2 路由器的邻居关系进入了 Full 状态、`sudo ./test7-standard.sh`、`sudo ./test8-standard.sh` 和 `sudo ./test9-standard.sh`，完成各项测试。
+7. 打开新窗口，进入 `Setup/interconnect/test` 目录，依次执行 `sudo ./test2.sh`、`sudo ./test4-bird-r2-v2.sh` 并从 R3 自己的路由器的输出中观察是否在与 R2 路由器的邻居关系进入了 Full 状态、`sudo ./test7-standard.sh`、`sudo ./test8-standard.sh` 和 `sudo ./test9-standard.sh`，完成各项测试。
 
 #### R3 上的 RIPng 路由器
 
 自己编写的代码是 `Homework/router/r3/router`，此时 PC1、R1、R2、PC2 运行标准程序。
 
-0. 确认系统内没有正在运行的 RIPng 路由器（进程名为 router）以及 BIRD 程序（进程名为 bird 或者 bird6）以及 dhcpcd 进程。
+0. 确认系统内没有正在运行的 RIPng 路由器（进程名为 router）以及 BIRD 程序（进程名为 bird）以及 dhcpcd 进程。
 1. 进入 `Setup/interconnect/setup` 目录，运行 `sudo ./setup-netns.sh` 命令以配置网络拓扑。
 2. 进入 `Setup/interconnect/setup` 目录，运行 `sudo ./start-standard-r1-dhcpd.sh`，在 R1 上启动标准 DHCPv6 服务器。
 3. 打开新窗口，进入 `Setup/interconnect/setup` 目录，运行 `sudo ./start-standard-r1-radvd.sh`，在 R1 上启动标准 IPv6 RA 服务器。
-4. 打开新窗口，进入 `Setup/interconnect/setup` 目录，根据 BIRD 版本，进入 `bird-v1` 或 `bird-v2` 目录，然后运行 `sudo ./bird-r2-ripng.sh` 或 `sudo ./bird-r2-v2-ripng.sh`，在 R2 上启动标准 RIPng 服务器。
+4. 打开新窗口，进入 `Setup/interconnect/setup` 目录，进入 `bird-v2` 目录，然后运行 `sudo ./bird-r2-v2-ripng.sh`，在 R2 上启动标准 RIPng 服务器。
 5. 打开新窗口，进入 `Setup/interconnect/setup` 目录，运行 `sudo ./start-custom-r3-ripng.sh`，在 R3 上启动自己写的 RIPng 路由器。
 6. 打开新窗口，进入 `Setup/interconnect/setup` 目录，运行 `sudo ./start-standard-pc2.sh`，在 PC2 上启动标准 TFTP 服务器。
 7. 打开新窗口，进入 `Setup/interconnect/test` 目录，依次执行 `sudo ./test2.sh`、`sudo ./test5.sh`、`sudo ./test6.sh`、`sudo ./test7-standard.sh`、`sudo ./test8-standard.sh` 和 `sudo ./test9-standard.sh`，完成各项测试。
@@ -145,12 +145,12 @@ fd00::1:0/112 via fd00::3:1 dev r2r1
 
 自己编写的代码是 `Homework/tftp/pc2/server`，此时 PC1、R1、R2、R3 运行标准程序。
 
-0. 确认系统内没有正在运行的 TFTP 客户端和服务端（进程名为 client/server）以及 BIRD 程序（进程名为 bird 或者 bird6）以及 dhcpcd 进程。
+0. 确认系统内没有正在运行的 TFTP 客户端和服务端（进程名为 client/server）以及 BIRD 程序（进程名为 bird）以及 dhcpcd 进程。
 1. 进入 `Setup/interconnect/setup` 目录，运行 `sudo ./setup-netns.sh` 命令以配置网络拓扑。
 2. 进入 `Setup/interconnect/setup` 目录，运行 `sudo ./start-standard-r1-dhcpd.sh`，在 R1 上启动标准 DHCPv6 服务器。
 3. 打开新窗口，进入 `Setup/interconnect/setup` 目录，运行 `sudo ./start-standard-r1-radvd.sh`，在 R1 上启动标准 IPv6 RA 服务器。
-4. 打开新窗口，进入 `Setup/interconnect/setup` 目录，根据 BIRD 版本，进入 `bird-v1` 或 `bird-v2` 目录，然后运行 `sudo ./bird-r2-ripng.sh` 或 `sudo ./bird-r2-v2-ripng.sh`，在 R2 上启动标准 RIPng 服务器。
-5. 打开新窗口，进入 `Setup/interconnect/setup` 目录，根据 BIRD 版本，进入 `bird-v1` 或 `bird-v2` 目录，然后运行 `sudo ./bird-r3-ripng.sh` 或 `sudo ./bird-r3-v2-ripng.sh`，在 R3 上启动标准 RIPng 服务器。
+4. 打开新窗口，进入 `Setup/interconnect/setup` 目录，进入 `bird-v2` 目录，然后运行 `sudo ./bird-r2-v2-ripng.sh`，在 R2 上启动标准 RIPng 服务器。
+5. 打开新窗口，进入 `Setup/interconnect/setup` 目录，进入 `bird-v2` 目录，然后运行 `sudo ./bird-r3-v2-ripng.sh`，在 R3 上启动标准 RIPng 服务器。
 6. 打开新窗口，进入 `Setup/interconnect/setup` 目录，运行 `sudo ./start-custom-pc2.sh`，在 PC2 上启动自己写的 TFTP 服务器。
 7. 打开新窗口，进入 `Setup/interconnect/test` 目录，依次执行 `sudo ./test2.sh`、`sudo ./test5.sh`、`sudo ./test6.sh`、`sudo ./test7-standard.sh`、`sudo ./test8-standard.sh` 和 `sudo ./test9-standard.sh`，完成各项测试。
 
