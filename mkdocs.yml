@@ -69,7 +69,6 @@ nav:
   - 附录:
     - ip 命令: appendix/ip.md
     - make 命令: appendix/make.md
-    - 树莓派使用: appendix/raspberry_pi.md
     - 名词解释: appendix/glossary.md
     - 网络拓扑搭建: appendix/topology.md
 
