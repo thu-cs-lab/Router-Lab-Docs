@@ -11,7 +11,7 @@
 接受作业后，第一步是克隆本仓库（不要忘记先在 GitLab 上添加你的 SSH Key）：
 
 ```shell
-git clone git@git.tsinghua.edu.cn:network-2023fall/router-lab-xxx.git Router-Lab # 将 xxx 替换为你的用户名
+git clone git@git.tsinghua.edu.cn:network-2024spring/router-lab-xxx.git Router-Lab # 将 xxx 替换为你的用户名
 cd Router-Lab
 ```
 
