@@ -32,6 +32,8 @@ OSPF 协议也是如此：每个路由器只知道自己的信息，但是通过
 
 为了方便实验者理解，这里简要介绍了一下本实验中 OSPF 协议的流程，详细内容请参见 [RFC 2328: OSPF Version 2](static/rfc2328.html) 及 Andrew S. Tanenbaum 等教授所撰写的《Computer Networks, 6th Edition》《计算机网络（第 6 版）》的第 5.2.5 节 Link State Routing（链路状态路由算法）和第 5.7.6 节 OSPF—An Interior Gateway Routing Protocol（OSPF——域内路由协议）。
 
+需要注意的是，本实验实现的是 OSPF 的 IPv6 版本，即 OSPF version 3（OSPFv3），对应 [RFC 5340: OSPF for IPv6](https://datatracker.ietf.org/doc/html/rfc5340)。但由于 OSPFv3 并没有改变 OSPF 的基本机制，所以 [RFC 5340](https://datatracker.ietf.org/doc/html/rfc5340) 中只讨论了 OSPFv3 与 OSPFv2 的区别，并未重新叙述 OSPF 协议的流程。因此，本文档主要参考 [RFC 2328: OSPF Version 2](static/rfc2328.html) 来介绍，但同学实现时的一些细节（如报文格式等）还需要参考 [RFC 5340](https://datatracker.ietf.org/doc/html/rfc5340)。对此，我们提供了一份批注版的 [RFC 2328](static/rfc2328.html)，将 OSPFv3 的更新内容以批注的形式标注在上面，具体可以参见[附录：RFC 索引](./ospf_rfc.md)。
+
 OSPF 是一种链路状态路由协议，每个 OSPF 路由器都维护一个链路状态数据库（Link State Database，LSDB），其中包含了网络中所有路由器、子网及其连接关系的信息，具体表现为一个个的链路状态通告（Link State Advertisements，LSA）条目。路由器之间通过链路状态更新（Link State Update，LS Update）报文来同步这些信息。每个路由器使用链路状态信息计算路由表，完成分组转发。
 
 在本实验中，我们只有一个区域 Area 0，并将路由器之间的网络简化为点到点网络（Point-to-Point networks），使用到的 LSA 只有两种：Router-LSA 和 Intra-Area-Prefix-LSA。Router-LSA 用来描述路由器之间的链路信息，Intra-Area-Prefix-LSA 用来描述路由器到子网的链路信息。计算路由表时，只需要先根据 Router-LSA 算出到所有路由器的最短路，再根据 Intra-Area-Prefix-LSA 计算出到每个子网的最短路，然后计算下一跳并插入路由表即可。
@@ -86,11 +88,7 @@ ExStart 和 Exchange 的过程具体参见 [RFC 2328 Section 10.6 Receiving Data
 
 其余功能已经由代码框架提供。
 
-关于 Hello Protocol 的更多说明请参见 [RFC 2328: OSPF Version 2](static/rfc2328.html)，实验者可以重点关注第 7、7.1、8、8.1、8.2、9（Hello Timer）、9.5 以及 10.5 小节。
-
-关于 LSA 格式的更多说明请参见 [RFC 2328: OSPF Version 2](static/rfc2328.html)，实验者可以重点关注第 12、12.1、12.1.1、12.1.3、12.1.4、12.1.5、12.1.6 以及 12.1.7 小节。
-
-关于路由表计算的更多说明请参见 [RFC 2328: OSPF Version 2](static/rfc2328.html)，实验者可以重点关注第 11、16、16.1、16.1.1 以及 16.8 小节。
+更多说明请参见[附录：RFC 索引](./ospf_rfc.md)。
 
 !!! attention "HONOR CODE"
 
