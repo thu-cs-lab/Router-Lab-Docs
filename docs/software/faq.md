@@ -1,5 +1,17 @@
 # FAQ
 
+!!! question "在 CI 上提交的时候，报错 BAD signature"
+
+    这是因为实验仓库对 `.gitlab-ci.yml` 做了签名检查，如果误修改了这个文件或者经过了换行符的变化（比如在 Windows Git clone 的仓库又在 WSL 里打开），请用 WSL 的 git 克隆模板仓库，然后用模板仓库中的文件覆盖自己仓库里的文件。
+
+!!! question "我的程序在真机评测中，stdout 显示是空的，即使我程序一开始就输出了内容？"
+
+    这一般是因为程序在评测过程中异常退出，或者输出的内容没有达到缓冲区的大小，此时写入到 stdout 的数据在缓存中，没有写入到文件中，评测系统取到的文件就是空白的。解决方法是在输出到标准输出（比如 `printf`）的时候，调用 `fflush(stdout)` 来强制清空缓冲区，把输出内容写入到文件。
+
+!!! question "我在树莓派写的可以工作的代码，放到我的 x86 电脑上跑怎么就不工作了呢？或者反过来，我在 x86 电脑上写的可以工作的代码，放到树莓派上怎么就不工作了呢？或者我本地评测通过的代码，在线为什么不通过呢？"
+
+    一个可能的原因是代码出现了 Undefined Behavior，编译器在不同环境下编译出不同的代码，导致行为不一致。可以用 UBSan 来发现这种问题。在路由器代码里，一个很常见的 Undefined Behavior 就是对 32 位整数左移或右移 32 位，或者调用 `__builtin_clz(0)`，或者更常见的未初始化变量、数组越界等等。还需要注意 char 可能有符号，也可能无符号，建议显式地使用 int8_t 或 uint8_t。
+
 !!! question "我用的是纯命令行环境，没有 Wireshark 图形界面可以用，咋办？"
 
     你可以用 tcpdump 代替 Wireshark，它的特点是一次性输出所有内容；或者用 tshark，是 Wireshark 官方的 CLI 版本；也可以用 termshark，它是 Wireshark 的 TUI 版，操作方式和 Wireshark 是一致的。比较常用的 tshark 用法是 `sudo tshark -i [interface_name] -V -l [filter]` ，其中 `interface_name` 是网卡名字，如 `eth0` ，`-V` 表示打印出解析树， `-l` 表示关闭输出缓冲， `[filter]` 表示过滤，常见的有 `arp` `ip` `icmp` `ip6` `icmp6` 等等。
@@ -37,10 +49,6 @@
 !!! question "树莓派和计算机组成原理用的板子有什么区别？"
 
     树莓派就是一个小型的计算机，只不过指令集是 ARM，其余部分用起来和笔记本电脑没有本质区别；计算机组成原理的板子核心是 FPGA，你需要编写 Verilog 代码对它进行编程。
-
-!!! question "我在树莓派写的可以工作的代码，放到我的 x86 电脑上跑怎么就不工作了呢？或者反过来，我在 x86 电脑上写的可以工作的代码，放到树莓派上怎么就不工作了呢？或者我本地评测通过的代码，在线为什么不通过呢？"
-
-    一个可能的原因是代码出现了 Undefined Behavior，编译器在不同环境下编译出不同的代码，导致行为不一致。可以用 UBSan 来发现这种问题。在路由器代码里，一个很常见的 Undefined Behavior 就是对 32 位整数左移或右移 32 位，或者调用 `__builtin_clz(0)`，或者更常见的未初始化变量、数组越界等等。还需要注意 char 可能有符号，也可能无符号，建议显式地使用 int8_t 或 uint8_t。
 
 !!! question "我在 macOS 上安装了 Wireshark，但是报错找不到 tshark？"
 
@@ -101,17 +109,9 @@
 
     特别地，在互联测试中，因为是和其他同学编写的路由器进行互联，而不是和标准实现（BIRD）互联，所以在之前和本地的测试中，标准实现（BIRD）所能容忍的一些错误，会在互联测试中暴露出来。因此在本地测试的时候，除了能通过所有测试，还应该抓包再次确认实现的正确性。
 
-!!! question "我的程序在真机评测中，stdout 显示是空的，即使我程序一开始就输出了内容？"
-
-    这一般是因为程序在评测过程中异常退出，或者输出的内容没有达到缓冲区的大小，此时写入到 stdout 的数据在缓存中，没有写入到文件中，评测系统取到的文件就是空白的。解决方法是在输出到标准输出（比如 `printf`）的时候，调用 `fflush(stdout)` 来强制清空缓冲区，把输出内容写入到文件。
-
 !!! question "运行 BIRD 的时候，显示 Cannot create control socket bird-r1.ctl: Operation not supported"
 
     如果是在 WSL 里面运行 BIRD，由于 WSL 共享目录的文件系统不支持 unix socket，所以 BIRD 创建 control socket 会失败。解决方法有两种：1) 把整个 Router-Lab 目录挪到 HOME 下面 2) 参数 `-s bird-r1.ctl` 改为 `-s ~/bird-r1.ctl`，也就是把 control socket 挪到 HOME 下面。
-
-!!! question "在 CI 上提交的时候，报错 BAD signature"
-
-    这是因为实验仓库对 `.gitlab-ci.yml` 做了签名检查，如果误修改了这个文件或者经过了换行符的变化（比如在 Windows Git clone 的仓库又在 WSL 里打开），请用 WSL 的 git 克隆模板仓库，然后用模板仓库中的文件覆盖自己仓库里的文件。
 
 !!! question "运行路由器时报错 no viable interfaces open for capture"
 
