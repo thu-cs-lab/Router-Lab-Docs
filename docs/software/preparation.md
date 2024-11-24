@@ -45,6 +45,10 @@ pip3 install pyshark
 sudo systemctl disable --now tftpd-hpa isc-dhcp-server dhcpcd radvd bird
 ```
 
+!!! warning "WSL 环境注意事项"
+
+    对于 WSL 环境，可能会因为 dhcpcd 服务的启动而导致网络连接问题。建议运行上述命令关闭这些服务，或至少关闭 dhcpcd 服务。消除 dhcpcd 造成的影响还需要先在 Windows 的 cmd 里 `wsl --shutdown` 关闭 WSL，再重新打开。
+
 如果安装时网络较慢，可以参考 [TUNA 镜像站](https://mirrors.tuna.tsinghua.edu.cn/help/debian/) 的 Debian 镜像使用帮助进行配置。其他发行版也有类似的包管理器安装方法。
 
 如果你使用的是 macOS 系统，推荐使用 Homebrew，可以参考 [TUNA 镜像站的 Homebrew 镜像使用帮助](https://mirrors.tuna.tsinghua.edu.cn/help/homebrew/) 进行配置。然后运行如下的命令：

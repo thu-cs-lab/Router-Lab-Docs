@@ -12,6 +12,10 @@
 
     一个可能的原因是代码出现了 Undefined Behavior，编译器在不同环境下编译出不同的代码，导致行为不一致。可以用 UBSan 来发现这种问题。在路由器代码里，一个很常见的 Undefined Behavior 就是对 32 位整数左移或右移 32 位，或者调用 `__builtin_clz(0)`，或者更常见的未初始化变量、数组越界等等。还需要注意 char 可能有符号，也可能无符号，建议显式地使用 int8_t 或 uint8_t。
 
+!!! question "装完准备工作中的软件依赖之后，我的 WSL 断网了，git clone/push/pull 显示 Network is unreachable 怎么办？"
+
+    若 `ip a` 发现网卡上有形如 `169.254.x.x` 的地址，说明可能是 dhcpcd 服务造成的网络连接问题。可以参考[准备工作](../software/preparation.md)中的方法关闭 dhcpcd 服务。
+
 !!! question "我用的是纯命令行环境，没有 Wireshark 图形界面可以用，咋办？"
 
     你可以用 tcpdump 代替 Wireshark，它的特点是一次性输出所有内容；或者用 tshark，是 Wireshark 官方的 CLI 版本；也可以用 termshark，它是 Wireshark 的 TUI 版，操作方式和 Wireshark 是一致的。比较常用的 tshark 用法是 `sudo tshark -i [interface_name] -V -l [filter]` ，其中 `interface_name` 是网卡名字，如 `eth0` ，`-V` 表示打印出解析树， `-l` 表示关闭输出缓冲， `[filter]` 表示过滤，常见的有 `arp` `ip` `icmp` `ip6` `icmp6` 等等。
