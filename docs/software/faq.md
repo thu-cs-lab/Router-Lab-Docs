@@ -12,6 +12,8 @@
 
     一个可能的原因是代码出现了 Undefined Behavior，编译器在不同环境下编译出不同的代码，导致行为不一致。可以用 UBSan 来发现这种问题。在路由器代码里，一个很常见的 Undefined Behavior 就是对 32 位整数左移或右移 32 位，或者调用 `__builtin_clz(0)`，或者更常见的未初始化变量、数组越界等等。还需要注意 char 可能有符号，也可能无符号，建议显式地使用 int8_t 或 uint8_t。
 
+    可以在 `Makefile` 中的 `CXXFLAGS` 和 `LDFLAGS` 里加入 `-fsanitize=undefined -fno-sanitize-recover` 来开启 UBSan，然后编译运行，程序将在运行中第一处遇到 Undefined Behavior 的地方退出，并输出详细信息。UBSan 会影响程序的性能，因此在正式提交前记得删去这两个 flag。更多关于 UBSan 的信息可以参考 [Clang 文档](https://clang.llvm.org/docs/UndefinedBehaviorSanitizer.html)。
+
 !!! question "装完准备工作中的软件依赖之后，我的 WSL 断网了，git clone/push/pull 显示 Network is unreachable 怎么办？"
 
     若 `ip a` 发现网卡上有形如 `169.254.x.x` 的地址，说明可能是 dhcpcd 服务造成的网络连接问题。可以参考[准备工作](../software/preparation.md)中的方法关闭 dhcpcd 服务。
