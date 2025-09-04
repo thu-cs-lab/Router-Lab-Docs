@@ -57,7 +57,7 @@ nav:
     - 框架使用: software/framework.md
     - FAQ: software/faq.md
     - 维基百科: software/wikipedia.md
-  - 硬件路由器实验:
+  - 硬件路由器实验（2025 年秋季学期停开）:
     - 总述: joint/index.md
     - 开始实验: joint/basics.md
     - 邻居发现协议与邻居缓存: joint/nd.md
