@@ -1,8 +1,28 @@
-# Tofino 交换机基础实验: 数据平面
+# Tofino 交换机基础实验: Simple Forward
 
 在本节中，实验者将学习如何在真实 Tofino 芯片交换机上进行 L2/L3 Forwarding 实验，熟悉硬件架构和适配 Tofino 的 P4 编程方法，实现从仿真环境到真实硬件的过渡
 
-在本节中，实验者需要完成 `simple_forward` 数据平面的作业，通过这些作业实验者将了解如何在 Tofino 芯片交换机上编译、运行 P4 程序，如何通过 `bfshell` 下发表项。
+在本节中，将以 `simple_forward`程序为例，帮助实验者将了解如何在 Tofino 芯片交换机上编译、运行 P4 程序，如何通过 `bfshell` 下发表项等。
+
+在 `simple_forward` 程序中，交换机实现了基于端口号的 Forwarding 功能，实验者可以通过 `bfshell` 手动下发表项，实现两个端口之间的互通
+
+```
+action ai_forward(portid_t egress_port){
+    ig_tm_md.ucast_egress_port = egress_port;
+}
+
+table ti_forward{
+    key = {
+        ig_intr_md.ingress_port: exact;
+    }
+    actions = {
+        ai_forward;
+        ai_drop;
+    }
+    size = 1024;
+    default_action = ai_drop;
+}
+```
 
 以下部分讲解如何通过 `bfshell` ⼿动下发表项
 
@@ -32,7 +52,8 @@ make
 运行以上指令进入 `bfshell` 后，进入 `ucli` 模式开启端口：
 
 ```
-bfshell> ucliStarting UCLI from bf-shell 
+bfshell> ucli
+Starting UCLI from bf-shell 
 
 Cannot read termcap database;
 using dumb terminal settings.
@@ -126,4 +147,4 @@ tbl.add_with_ai_forward(
 )
 ```
 
-以上即为手动下发表项的参考，更快速、更复杂的下发表项的办法请参考后续的控制平面部分
+以上即为手动下发表项的参考，更快速、更复杂的下发表项的办法请参考提供的 `simple_forward` 示例程序

@@ -59,7 +59,11 @@ nav:
     - 维基百科: software/wikipedia.md
   - P4 交换机实验:
     - 实验总述: p4/index.md
-    - 控制平面: p4/control_plane.md
+    - 第一阶段:
+      - 数据平面: p4/data_plane.md
+      - 控制平面: p4/control_plane.md
+    - 第二阶段:
+      - Tofino 交换机: p4/tofino_data_plane.md
   - 硬件路由器实验【停开】:
     - 总述: joint/index.md
     - 开始实验: joint/basics.md
