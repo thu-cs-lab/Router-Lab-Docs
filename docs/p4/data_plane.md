@@ -17,6 +17,7 @@
 
 ### 安装虚拟机环境
 以下脚本完成这些内容：
+
 * 下载 `Vagrant` 和 `libvirt`
 * 下载 vagrant 插件: `vagrant-rsync-back`
 	* `vagrant rsync` 指令将宿主机上的文件夹覆盖到虚拟机上
@@ -87,6 +88,7 @@ end
 ```
 
 以上 `Vagrantfile` 有如下功能：
+
 * 创建一个 `ubuntu 24.04` 的虚拟机
 * 创建 `tutorials` 文件夹宿主机和虚拟机之间的映射，可以进行 `rsync` 和 `rsync-back` 操作
 * 设定虚拟机名称 `vm-p4`
