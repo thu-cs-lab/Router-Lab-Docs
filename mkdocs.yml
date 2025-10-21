@@ -64,6 +64,7 @@ nav:
       - 控制平面: p4/control_plane.md
     - 第二阶段:
       - Tofino 交换机: p4/tofino_data_plane.md
+      - 交换机转发实验: p4/tofino_lab.md
   - 硬件路由器实验【停开】:
     - 总述: joint/index.md
     - 开始实验: joint/basics.md
