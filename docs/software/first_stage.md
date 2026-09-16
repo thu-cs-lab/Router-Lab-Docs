@@ -17,9 +17,9 @@
 - eui64：用 MAC 地址生成 IPv6 Link Local 地址
 - internet-checksum：计算 Internet 校验和
 - lookup：路由表查询和更新
-- protocol（protocol-ospf）：RIPng（OSPF）协议解析和封装，其中 `protocol` 作业对应的是 RIPng 协议，`protocol-ospf` 作业对应的是 OSPF 协议，二选一即可，建议和第二、三阶段采用同样的协议
+- protocol-ospf：OSPF 协议解析和封装
 
-其中 eui64 比较容易，主要是熟悉实验框架和平台的使用。internet-checksum 可能是编程作业里最难的一个，涉及到比较复杂的逻辑，需要仔细思考。lookup 题目可易可难，取决于你实现的方法。protocol/protocol-ospf 也不复杂，需要一定的细心。要编写的代码行数：eui64 < lookup < protocol（protocol-ospf） < internet-checksum。
+其中 eui64 比较容易，主要是熟悉实验框架和平台的使用。internet-checksum 可能是编程作业里最难的一个，涉及到比较复杂的逻辑，需要仔细思考。lookup 题目可易可难，取决于你实现的方法。protocol-ospf 也不复杂，需要一定的细心。要编写的代码行数：eui64 < lookup < protocol-ospf < internet-checksum。
 
 每个题目都有类似的结构（以 `internet-checksum` 为例）：
 
@@ -79,4 +79,4 @@ make grade # 也可以运行评分脚本，实际上就是运行 python3 grade.p
 
 !!! tips "第一阶段实验是怎么设计出来的？"
 
-    第一阶段实验包括了四个路由器所要实现的功能，它们比较重要，也比较容易实现错误，因此单独抽出来变成一个给定输入和输出进行代码实现的编程作业，这样可以在保证这部分代码一定的正确性。诚然，这一部分的测试可能检测不出所有可能出现的错误，只能为后面的实验提供一些帮助。为何选取这四个部分作为编程作业，是参考了往年同学在实现路由器阶段遇到的常见问题。
+    第一阶段实验包括了路由器所要实现的四个功能，它们比较重要，也比较容易实现错误，因此单独抽出来变成一个给定输入和输出进行代码实现的编程作业，这样可以在保证这部分代码一定的正确性。诚然，这一部分的测试可能检测不出所有可能出现的错误，只能为后面的实验提供一些帮助。为何选取这四个部分作为编程作业，是参考了往年同学在实现路由器阶段遇到的常见问题。
