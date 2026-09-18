@@ -26,28 +26,22 @@
 
 这三点技能对于日后科研和工作都有很多的用处。例如科研时，经常需要在 Linux 环境下编译各种软件，例如网上很多论文的开源代码，有时候会遇到网络或者硬件问题，如果通过这个实验，学习到针对网络问题的调试思路，那么遇到其他环境问题的时候，也可以类似地解决。
 
-## 实验讲解 PPT
+## 往年实验讲解 PPT 与实验课录像
+
+**注意**：由于软件实验改革，往年部分内容（如互联实验、RIPng 路由器实现等）已被移除，以下资料仅供参考，请同学们完成软件实验时以本文档中描述的最新内容为准。
+
+2025-2026 秋季学期：
+
+- [2025-2026 秋软件实验及理论背景讲解](https://cloud.tsinghua.edu.cn/f/a353595894f5482fbb5a/)
+- [2025-2026 秋软件实验第二次实验课](https://cloud.tsinghua.edu.cn/f/ed7e31ceede844bc92bf/)
 
 2023-2024 秋季学期：
 
-- [2023-2024 秋软件实验第二次实验课](./slides/2023-2024秋软件实验第二次实验课.pdf) [录像](https://cloud.tsinghua.edu.cn/f/8f989d41f2c94180b514/)
-- [2023-2024 秋软件实验及理论背景讲解](./slides/2023-2024秋软件实验及理论背景讲解.pdf) [录像第一部分](https://cloud.tsinghua.edu.cn/f/75569d5ade6e4cc0a1b7/) [录像第二部分](https://cloud.tsinghua.edu.cn/f/1999719aa73e485fbb84/) [录像第三部分](https://cloud.tsinghua.edu.cn/f/cdeb112ec1694f70aec1/)
-
-2022-2023 春季学期
-
-- [2023 春网络原理大实验答疑总结](./slides/2023春网络原理大实验答疑总结.pdf)
-- [2023 春网络原理真机实验](./slides/2023春网络原理真机实验v2.pdf)
-- [2023 春网络原理软件实验](./slides/2023春网络原理软件实验v3.pdf)
-
-2022-2023 秋季学期：
-
-- [2022-2023 秋季软件实验第一部分](./slides/2022-2023秋季软件实验第一部分.pdf)
-- [2022-2023 秋软件实验第二、三阶段](./slides/2022-2023秋软件实验第二、三阶段.pdf)
+- [2023-2024 秋软件实验第二次实验课](https://cloud.tsinghua.edu.cn/f/481dbae7f9404b22b6bc/) [录像](https://cloud.tsinghua.edu.cn/f/db7f480543114053bd3d/)
+- [2023-2024 秋软件实验及理论背景讲解](https://cloud.tsinghua.edu.cn/f/7062921586154b5283b2/) [录像第一部分](https://cloud.tsinghua.edu.cn/f/ac5d8adfe91c4e858cbb/) [录像第二部分](https://cloud.tsinghua.edu.cn/f/4ae88847505241169955/) [录像第三部分](https://cloud.tsinghua.edu.cn/f/96b458b3ab8d41119b4f/)
 
 2021-2022 秋季学期：
 
-- [2021-2022 秋季编程作业](./slides/2021-2022秋季编程作业.pdf)
-- [2021-2022 秋编程作业实验讲解](./slides/2021-2022秋编程作业实验讲解.pdf) [录像](https://cloud.tsinghua.edu.cn/f/80ae6bc14dbe40ab9921/)
-- [2021-2022 秋软件实验真机实验](./slides/2021-2022秋软件实验真机实验.pdf)
-- [讲座第一讲：常用网络分析与调试工具](./slides/第一讲：常用网络分析与调试工具.pdf) [录像](https://cloud.tsinghua.edu.cn/f/87ba6a207f57409cbeee/)
-- [讲座第二讲：IPv6, ICMPv6, SLAAC, DHCPv6](./slides/第二讲：IPv6,%20ICMPv6,%20SLAAC,%20DHCPv6.pdf) [录像](https://cloud.tsinghua.edu.cn/f/e91d30a1a5ca4ac1aef2/)
+- [2021-2022 秋编程作业实验讲解录像](https://cloud.tsinghua.edu.cn/f/051350594ff54a3fbdd3/)
+- [讲座第一讲：常用网络分析与调试工具录像](https://cloud.tsinghua.edu.cn/f/c445c083a44740159e6b/)
+- [讲座第二讲：IPv6, ICMPv6, SLAAC, DHCPv6 录像](https://cloud.tsinghua.edu.cn/f/1647e736b3674217a730/)
