@@ -124,7 +124,7 @@ mininet>
 
 ### P4 编程模型架构
 
-![alt text](../img/p4_arc.png)
+![alt text](img/p4_arc.png)
 
 ### V1Model 架构详解
 
@@ -132,7 +132,7 @@ V1Model 是 BMv2 Simple Switch 常用的架构，采用经典的"匹配-动作"�
 
 #### 数据处理流程
 
-![alt text](../img/v1model.png)
+![alt text](img/v1model.png)
 
 #### 核心组件功能
 
@@ -146,5 +146,5 @@ V1Model 是 BMv2 Simple Switch 常用的架构，采用经典的"匹配-动作"�
 
 #### P4 程序模板（V1Model）
 
-![alt text](../img/v1model_template.png)
+![alt text](img/v1model_template.png)
 

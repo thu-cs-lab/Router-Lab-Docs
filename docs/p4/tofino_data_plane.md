@@ -46,7 +46,7 @@ make
 
 运行截图如下，出现 `bfshell>` 证明成功运行
 
-![alt text](../img/bfshell.png)
+![alt text](img/bfshell.png)
 
 ### 端口开启
 运行以上指令进入 `bfshell` 后，进入 `ucli` 模式开启端口：

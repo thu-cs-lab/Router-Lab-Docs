@@ -13,7 +13,7 @@
 
 网络拓扑如下：
 
-![alt text](../img/lab2_topo.png)
+![alt text](img/lab2_topo.png)
 
 ## 实验目标
 
