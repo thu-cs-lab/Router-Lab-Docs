@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="300" viewBox="0 0 1200 300" role="img" aria-labelledby="title desc">
+  <title id="title">Two-host Tofino topology</title>
+  <desc id="desc">Host A connects to Tofino port 9/0, device port 132. Host B connects to Tofino port 9/1, device port 133.</desc>
+
+  <rect width="1200" height="300" fill="#ffffff"/>
+
+  <rect x="40" y="70" width="270" height="160" rx="6" fill="#f8fafc" stroke="#334155" stroke-width="3"/>
+  <text x="175" y="109" text-anchor="middle" font-family="Arial, sans-serif" font-size="26" font-weight="700" fill="#0f172a">Host A</text>
+  <text x="175" y="148" text-anchor="middle" font-family="Arial, sans-serif" font-size="21" fill="#334155">192.168.1.2/24</text>
+  <text x="175" y="185" text-anchor="middle" font-family="Arial, sans-serif" font-size="18" fill="#475569">02:00:00:00:00:01</text>
+
+  <rect x="465" y="62" width="270" height="176" rx="6" fill="#eef4fb" stroke="#1e4f82" stroke-width="3"/>
+  <text x="600" y="120" text-anchor="middle" font-family="Arial, sans-serif" font-size="30" font-weight="700" fill="#12395f">Tofino</text>
+  <text x="600" y="160" text-anchor="middle" font-family="Arial, sans-serif" font-size="19" fill="#334155">192.168.1.1</text>
+  <text x="600" y="194" text-anchor="middle" font-family="Arial, sans-serif" font-size="19" fill="#334155">192.168.2.1</text>
+
+  <rect x="890" y="70" width="270" height="160" rx="6" fill="#f8fafc" stroke="#334155" stroke-width="3"/>
+  <text x="1025" y="109" text-anchor="middle" font-family="Arial, sans-serif" font-size="26" font-weight="700" fill="#0f172a">Host B</text>
+  <text x="1025" y="148" text-anchor="middle" font-family="Arial, sans-serif" font-size="21" fill="#334155">192.168.2.2/24</text>
+  <text x="1025" y="185" text-anchor="middle" font-family="Arial, sans-serif" font-size="18" fill="#475569">02:00:00:00:00:02</text>
+
+  <line x1="310" y1="150" x2="465" y2="150" stroke="#446a9c" stroke-width="4"/>
+  <text x="387" y="119" text-anchor="middle" font-family="Arial, sans-serif" font-size="19" fill="#334155">9/0</text>
+  <text x="387" y="192" text-anchor="middle" font-family="Arial, sans-serif" font-size="18" fill="#475569">device port 132</text>
+
+  <line x1="735" y1="150" x2="890" y2="150" stroke="#446a9c" stroke-width="4"/>
+  <text x="812" y="119" text-anchor="middle" font-family="Arial, sans-serif" font-size="19" fill="#334155">9/1</text>
+  <text x="812" y="192" text-anchor="middle" font-family="Arial, sans-serif" font-size="18" fill="#475569">device port 133</text>
+</svg>

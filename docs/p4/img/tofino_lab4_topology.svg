@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="370" viewBox="0 0 1200 370" role="img" aria-labelledby="title desc">
+  <title id="title">Lab 4 experiment topology</title>
+  <desc id="desc">Host A and Host B connect to one Tofino switch. The packet generator is an on-chip function inside the Tofino switch.</desc>
+
+  <rect width="1200" height="370" fill="#ffffff"/>
+
+  <!-- Host A -->
+  <rect x="30" y="95" width="260" height="180" rx="8" fill="#f8fafc" stroke="#334155" stroke-width="3"/>
+  <text x="160" y="143" text-anchor="middle" font-family="Arial, sans-serif" font-size="28" font-weight="700" fill="#0f172a">Host A</text>
+  <text x="160" y="190" text-anchor="middle" font-family="Arial, sans-serif" font-size="19" fill="#334155">192.168.1.2/24</text>
+  <text x="160" y="232" text-anchor="middle" font-family="Arial, sans-serif" font-size="18" fill="#475569">02:00:00:00:00:01</text>
+
+  <!-- One complete Tofino switch -->
+  <rect x="370" y="35" width="460" height="300" rx="12" fill="#eef4fb" stroke="#1e4f82" stroke-width="4"/>
+  <text x="600" y="86" text-anchor="middle" font-family="Arial, sans-serif" font-size="31" font-weight="700" fill="#12395f">Tofino switch</text>
+
+  <text x="600" y="137" text-anchor="middle" font-family="Arial, sans-serif" font-size="23" font-weight="700" fill="#172b45">PRE multicast · MGID 100</text>
+  <text x="600" y="170" text-anchor="middle" font-family="Arial, sans-serif" font-size="18" fill="#475569">device ports 132, 133</text>
+
+  <line x1="415" y1="198" x2="785" y2="198" stroke="#b7c7da" stroke-width="2"/>
+
+  <!-- Pktgen is shown as an on-chip capability, not another device -->
+  <rect x="438" y="225" width="55" height="55" rx="7" fill="#1e4f82"/>
+  <text x="466" y="260" text-anchor="middle" font-family="Arial, sans-serif" font-size="18" font-weight="700" fill="#ffffff">PG</text>
+  <text x="635" y="244" text-anchor="middle" font-family="Arial, sans-serif" font-size="21" font-weight="700" fill="#172b45">On-chip packet generator</text>
+  <text x="635" y="273" text-anchor="middle" font-family="Arial, sans-serif" font-size="17" fill="#475569">internal port 196 · pipe 1 local port 68</text>
+
+  <!-- Host B -->
+  <rect x="910" y="95" width="260" height="180" rx="8" fill="#f8fafc" stroke="#334155" stroke-width="3"/>
+  <text x="1040" y="143" text-anchor="middle" font-family="Arial, sans-serif" font-size="28" font-weight="700" fill="#0f172a">Host B</text>
+  <text x="1040" y="190" text-anchor="middle" font-family="Arial, sans-serif" font-size="19" fill="#334155">192.168.2.2/24</text>
+  <text x="1040" y="232" text-anchor="middle" font-family="Arial, sans-serif" font-size="18" fill="#475569">02:00:00:00:00:02</text>
+
+  <!-- Physical links -->
+  <line x1="290" y1="185" x2="370" y2="185" stroke="#446a9c" stroke-width="4"/>
+  <text x="330" y="151" text-anchor="middle" font-family="Arial, sans-serif" font-size="18" fill="#334155">9/0</text>
+  <text x="330" y="220" text-anchor="middle" font-family="Arial, sans-serif" font-size="16" fill="#475569">port 132</text>
+
+  <line x1="830" y1="185" x2="910" y2="185" stroke="#446a9c" stroke-width="4"/>
+  <text x="870" y="151" text-anchor="middle" font-family="Arial, sans-serif" font-size="18" fill="#334155">9/1</text>
+  <text x="870" y="220" text-anchor="middle" font-family="Arial, sans-serif" font-size="16" fill="#475569">port 133</text>
+</svg>
