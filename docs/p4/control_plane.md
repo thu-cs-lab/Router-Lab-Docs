@@ -81,7 +81,3 @@ P4 编译器在生成目标特定的数据平面程序（BMv2 JSON / Tofino 二�
     * 接收或发送数据包上报（`packet_in` / `packet_out`）
 
 通过这种方式，控制平面就能在运行时动态地操控数据平面的转发行为。
-
-## 下一步
-
-完成 BMv2/P4Runtime 练习后，请进入 [第二阶段：Tofino 交换机基础操作](./tofino_operations.md)。这一阶段的四个小实验会把“编译—加载—下表”的抽象流程落实到 Tofino 的 SDE、BF-RT、端口和硬件计数器上。

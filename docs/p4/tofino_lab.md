@@ -13,7 +13,7 @@
 
 网络拓扑如下：
 
-![Tofino 转发实验拓扑](img/lab2_topo.png)
+![alt text](img/lab2_topo.png)
 
 ## 实验目标
 
@@ -55,13 +55,13 @@ Tofino 交换机的行为：
 #### ICMP Echo Request 与 Reply 流程
 
 1. `A -> Switch`：`A` 发送 `ICMP Echo Request` 到交换机，目的 `MAC` 为网关 `MAC`。
-2. `Switch -> B`：交换机修改以太网头部，设置正确的源 `MAC` 和目的 `MAC`，发送 `ICMP Echo Request` 给 `B`。
+3. `Switch -> B`：交换机修改以太网头部，设置正确的源 `MAC` 和目的 `MAC`，发送 `ICMP Echo Request` 给 `B`。
     * 解析 `IP` 分组；
     * 查询转发表（控制平面预先下发），转发到连接 `B` 的端口；
     * 若目的 `MAC` 地址未知，发送 `ARP Request` 询问 `B` 的 `MAC` 地址；
     * 修改以太网头部，设置正确的源 `MAC` 和目的 `MAC`。
-3. `B -> Switch`：`B` 收到 `ICMP Echo Request`，回复 `ICMP Echo Reply` 给交换机。
-4. `Switch -> A`：交换机收到 `ICMP Echo Reply`，查询转发表，修改以太网头部，发送给 `A`。
+4. `B -> Switch`：`B` 收到 `ICMP Echo Request`，回复 `ICMP Echo Reply` 给交换机。
+5. `Switch -> A`：交换机收到 `ICMP Echo Reply`，查询转发表，修改以太网头部，发送给 `A`。
 
 注意：
 
@@ -91,7 +91,7 @@ Tofino 交换机的行为：
 控制平面程序负责下发表项，主要职责包括：
 
 * 配置端口的 `IP` 地址与 `MAC` 地址；
-* 配置静态转发表，实现 `A` 与 `B` 之间的互通；
+* 配置静态转发表，实现 `A `与 `B` 之间的互通；
 
 思考：从与 `B` 连通的端口转发出去的报文，是否每次都需要发送 `ARP` 请求查询 `B` 的 `MAC` 地址？如果不需要，控制平面应如何下发表项以避免频繁发送 `ARP` 请求？数据平面需要做哪些修改以支持该功能？
 

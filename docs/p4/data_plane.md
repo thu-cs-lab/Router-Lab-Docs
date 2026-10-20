@@ -148,6 +148,3 @@ V1Model 是 BMv2 Simple Switch 常用的架构，采用经典的"匹配-动作"�
 
 ![alt text](img/v1model_template.png)
 
-## 下一步
-
-完成 BMv2 上的 Basic Forwarding 和 Basic Tunneling 后，不要直接把 V1Model 程序搬到 Tofino。请进入 [第二阶段：Tofino 交换机基础操作](./tofino_operations.md)，通过四个小实验熟悉 TNA parser、intrinsic metadata、端口状态和硬件抓包方法。
