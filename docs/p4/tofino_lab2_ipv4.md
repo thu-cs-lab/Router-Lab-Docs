@@ -43,13 +43,17 @@ TTL 小于等于 1 的报文直接丢弃。本实验不生成 ICMP Time Exceeded
 
 ## 实验步骤
 
-### 1. 实现 LPM 转发
+代码框架已经提供 LPM 表 `ti_ipv4_lpm` 和转发动作 `ai_ipv4_forward`，转发动作会设置 egress port 并改写 Ethernet source/destination MAC。需要完成的逻辑在代码中以 `TODO (TASK 2.x)` 标出：
 
-在 `switch/ipv4_action.p4` 中补全 IPv4 LPM 表和转发动作。命中转发表项时，数据平面需要设置 egress port，并将 Ethernet source/destination MAC 改写为控制面指定的值。
+| Task | 内容 | 文件 |
+|---|---|---|
+| 2.1 | 添加 `10.1.0.0/16` drop 表项 | `ctrl/switch_config.h` |
+| 2.2 | TTL 递减与过期丢弃 | `switch/ipv4_action.p4` |
+| 2.3 | IPv4 checksum 更新 | `switch/parser.p4`（ingress deparser） |
 
-可以先只下发 `10.0.0.0/8` 表项，观察发往 `10.1.2.3` 的报文被转发；再加入 `10.1.0.0/16` drop 表项，确认相同目的地址改为命中 `/16` 并被丢弃。
+各步骤的记录要求见实验目录中的 `README.md`，报告模板为同目录下的 `report.md`。
 
-### 2. 实现 TTL 处理
+### 1. 实现 TTL 处理（TASK 2.2）
 
 转发动作中使用以下语句递减 TTL：
 
@@ -57,30 +61,26 @@ TTL 小于等于 1 的报文直接丢弃。本实验不生成 ICMP Time Exceeded
 hdr.ipv4.ttl = hdr.ipv4.ttl - 8w1;
 ```
 
-执行 LPM 查询前，应先判断 TTL。TTL 大于 1 时继续处理，TTL 小于等于 1 时设置 drop 标志。
+执行 LPM 查询前，应先判断 TTL。TTL 大于 1 时才允许查询 LPM 表，TTL 小于等于 1 时直接丢弃。
 
-### 3. 更新 IPv4 Checksum
+### 2. 更新 IPv4 Checksum（TASK 2.3）
 
-TTL 位于 IPv4 header 中，修改 TTL 后原有 header checksum 不再有效。数据平面需要设置 checksum 更新标志，并在 ingress deparser 中调用 TNA `Checksum` extern，按照 IPv4 header 的字段顺序计算新的 checksum。
+TTL 位于 IPv4 header 中，修改 TTL 后原有 header checksum 不再有效。转发动作已经将 `ig_md.update_ipv4_checksum` 置为 `1`；需要在 ingress deparser 中根据该标志调用 TNA `Checksum` extern，按照 IPv4 header 的字段顺序计算新的 checksum。
 
-为了观察错误现象，可以暂时关闭 checksum 更新：
+### 3. 添加 LPM 表项（TASK 2.1）
 
-```p4
-ig_md.update_ipv4_checksum = 1w0;
-```
-
-此时报文的 TTL 仍会变为 63，但 Host B 的验证脚本或 `tcpdump` 会将 IPv4 checksum 标记为错误。恢复 checksum 更新后，应得到正确的校验结果。
+控制面框架中只有 `10.0.0.0/8` 转发表项。先只保留这一条表项，按“实验验证”完成第一轮 LPM 测试，观察发往 `10.1.2.3` 的 `drop-16` 报文被转发；再在 `ctrl/switch_config.h` 中加入 `10.1.0.0/16` drop 表项，确认相同目的地址改为命中 `/16` 并被丢弃。
 
 ### 4. 编译与运行
 
-完成前面的 P4 修改后，在 Tofino 交换机上进入 `p4-ipv4-action` 目录：
+完成 TASK 2.2 和 TASK 2.3 后，在 Tofino 交换机上进入 `p4-ipv4-action` 目录：
 
 ```bash
 make
 ./contrl
 ```
 
-控制面完成端口开启和 LPM 表项下发后，应输出：
+控制面完成端口开启和 LPM 表项下发后，应输出以下日志（仅有 `/8` 表项时不出现第二行）：
 
 ```text
 [LPM] prefix=10.0.0.0/8 action=FORWARD egress=133
@@ -88,7 +88,7 @@ make
 [CONTROL] status=READY
 ```
 
-修改 P4 程序后，先按 `Ctrl-C` 停止当前控制面，再重新运行 `make` 和 `./contrl`。
+修改 P4 程序或控制面表项后，先按 `Ctrl-C` 停止当前控制面，再重新运行 `make` 和 `./contrl`。
 
 ### 5. 配置实验主机
 
@@ -151,3 +151,10 @@ PASS: LPM, TTL, checksum, and drop behavior are correct
 ```bash
 tcpdump -ni eth0 -e -vvv -XX 'ip and udp dst port 9000'
 ```
+
+按以下顺序完成测试：
+
+1. **验证 LPM**：仅有 `/8` 表项时运行一轮测试，验证脚本会因收到 `drop-16` 报 FAIL，这是该轮的预期现象。加入 `/16` 表项后停止旧实例、重新编译运行，再测试一轮。记录每轮测试前后 `9/0` RX 和 `9/1` TX 端口计数器的增量。增量中可能包含 Host 自动发出的 IPv6 邻居发现报文（Neighbor Solicitation、Router Solicitation）、MLD 组播监听报告和 ARP 请求等非测试报文，需结合同一时段两端不加过滤条件的抓包核对。
+2. **验证 TTL 边界**：保持两条 LPM 表项，对照 Host A 发送记录与 Host B 接收记录检查 `route-8` 和 `drop-ttl`。
+3. **制造 checksum 错误**：在 Host A 和 Host B 同时抓取测试报文，以记录输入、输出 IPv4 checksum 的具体数值。把 `ai_ipv4_forward` 中的 `ig_md.update_ipv4_checksum = 1w1;` 临时改为 `1w0`，停止旧实例后重新编译运行。此时报文的 TTL 仍会变为 63，但 Host B 的验证脚本会将 IPv4 checksum 标记为 `bad`。
+4. **恢复 checksum 更新**：将该行改回 `1w1`，重新编译运行，应得到 `checksum=correct` 和最终的 `PASS`。
