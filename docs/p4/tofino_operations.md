@@ -13,10 +13,10 @@
 | [Lab 3：有状态流量监测](./tofino_lab3_stateful.md) | Hash、Register、Counter 与 Digest | 补全数据平面程序 |
 | [Lab 4：复制、重提交与包生成](./tofino_lab4_replication.md) | PRE multicast、resubmit 与 packet generator | 补全数据平面程序 |
 
-实验代码位于 [`p4-basic-tofino-operation`](https://git.tsinghua.edu.cn/p4-lab/p4-basic-tofino-operation) 仓库。各实验分别位于以下目录：
+实验代码位于 [`p4-lab2-basic-tofino-operation`](https://git.tsinghua.edu.cn/p4-lab/p4-lab2-basic-tofino-operation) 仓库。完成实验时，请同时参考本实验指导书和仓库中各实验目录下的 `README.md`。各实验分别位于以下目录：
 
 ```text
-p4-basic-tofino-operation/
+p4-lab2-basic-tofino-operation/
 ├── p4-blackbox-observe/
 ├── p4-ipv4-action/
 ├── p4-stateful-monitor/
