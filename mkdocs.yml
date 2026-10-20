@@ -62,9 +62,15 @@ nav:
     - 第一阶段:
       - 数据平面: p4/data_plane.md
       - 控制平面: p4/control_plane.md
-    - 第二阶段:
+    - 第二阶段：Tofino 基础操作:
+      - 总述: p4/tofino_operations.md
       - 实验平台使用说明: p4/platform.md
-      - Tofino 交换机: p4/tofino_data_plane.md
+      - Tofino 交换机使用: p4/tofino_data_plane.md
+      - Lab 1：黑盒观察与调试: p4/tofino_lab1_observe.md
+      - Lab 2：IPv4 单跳处理: p4/tofino_lab2_ipv4.md
+      - Lab 3：有状态流量监测: p4/tofino_lab3_stateful.md
+      - Lab 4：复制、重提交与包生成: p4/tofino_lab4_replication.md
+    - 第三阶段：Tofino 转发实验:
       - 交换机转发实验: p4/tofino_lab.md
   - 硬件路由器实验【停开】:
     - 总述: joint/index.md
